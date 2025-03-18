@@ -13,8 +13,6 @@ import pandas as pd
 
 class ProteinDataset(Dataset):
     def __init__(self, dataframe, embeddings, attention_weights,
-                value_column_embedding, value_column_attention,
-                id_embedding, id_attention_weights,
                 target_column='Class', id_column='UniProt IDs',
                 solve_inconsitence=False, save_path="./OUTPUTS/"):
         
@@ -22,20 +20,20 @@ class ProteinDataset(Dataset):
         os.makedirs(self.save_path, exist_ok=True)
 
         self.dataframe = dataframe
-        self.embeddings = embeddings[value_column_embedding]
-        self.attention_weights = attention_weights[value_column_attention]
+        self.embeddings = embeddings
+        self.attention_weights = attention_weights
 
         print("Checking consistency...")
-        self.ensure_consistency(solve_inconsitence, target_column, id_column, id_embedding, id_attention_weights)
+        self.ensure_consistency(embeddings, attention_weights, id_column, solve_inconsitence)
+        print("Consistency checked.")
 
         self.labels = self.dataframe[target_column].tolist()
         self.ids = self.dataframe[id_column].tolist()
+        self.save_path = save_path
 
-        self.display_report()
+        self.display_report(target_column=target_column, id_column=id_column)
 
     def check_arguments(self, dataframe, embeddings, attention_weights,
-                        id_embedding, id_attention_weights, 
-                        value_column_embedding, value_column_attention,
                         target_column, id_column):
         
         if not isinstance(dataframe, pd.DataFrame):
@@ -46,14 +44,6 @@ class ProteinDataset(Dataset):
         if not isinstance(attention_weights, dict):
             raise ValueError("attention_weights must be a dictionary.")
         
-        if not isinstance(id_embedding, str):
-            raise ValueError("id_embedding must be a string.")
-        if not isinstance(id_attention_weights, str):
-            raise ValueError("id_attention_weights must be a string.")
-        if not isinstance(value_column_embedding, str):
-            raise ValueError("value_column_embedding must be a string.")
-        if not isinstance(value_column_attention, str):
-            raise ValueError("value_column_attention must be a string.")
         if not isinstance(target_column, str):
             raise ValueError("target_column must be a string.")
         if not isinstance(id_column, str):
@@ -63,57 +53,47 @@ class ProteinDataset(Dataset):
             raise ValueError("id_column not found in dataframe.")
         if target_column not in dataframe.columns:
             raise ValueError("target_column not found in dataframe.")
-        if id_embedding not in embeddings.columns:
-            raise ValueError("id_embedding not found in embeddings.")
-        if id_attention_weights not in attention_weights.columns:    
-            raise ValueError("id_attention_weights not found in attention_weights.")
 
-    def ensure_consistency(self, solve_inconsitence,
-                            target_column, id_column, id_embedding, id_attention_weights):
+    def ensure_consistency(self, embeddings, attention_weights, id_column, solve_inconsitence):
         
-        if self.check_duplicates(target_column) and solve_inconsitence:
+        if self.check_duplicates(id_column) and solve_inconsitence:
             print("Removing duplicates...")
             old_len = len(self.dataframe)
-            self.dataframe.drop_duplicates(inplace=True)
+            self.dataframe.drop_duplicates(subset=[id_column], inplace=True)
             print(f"Removed {old_len - len(self.dataframe)} duplicates.")
 
-        self.check_and_solve_ids_consistency(id_column, id_embedding, id_attention_weights,
-                                        solve_inconsitence)
+        self.check_and_solve_ids_consistency(embeddings, attention_weights, id_column, solve_inconsitence)
         
-    def check_duplicates(self, target_column):
-        duplicates = self.dataframe[target_column].duplicated()
+    def check_duplicates(self, id_column):
+        duplicates = self.dataframe[id_column].duplicated()
         if duplicates.any():
             print("Warning: The dataframe contains duplicates.")
             print(f"Number of duplicates: {duplicates.sum()}")
             print("Use the remove_duplicates function to remove duplicates.")
+            return True
+        return False
 
-    def check_main_columns_exist(self, target_column, id_column):
-        if target_column not in self.dataframe.columns or id_column not in self.dataframe.columns:
-            raise ValueError(f"Dataframe must contain the columns '{target_column}' and '{id_column}'.")
-
-    def check_and_solve_ids_consistency(self, id_column, id_embedding, id_attention_weights, 
-                                        solve_inconsitence):
-        
+    def check_and_solve_ids_consistency(self, embeddings, attention_weights, id_column, solve_inconsitence):
         df_ids = set(self.dataframe[id_column])
-        emb_ids = set(self.embeddings[id_embedding])
-        attn_ids = set(self.attention_weights[id_attention_weights])
+        emb_ids = set(embeddings.keys())
+        attn_ids = set(attention_weights.keys())
         
         if df_ids != emb_ids or df_ids != attn_ids:
             print("Warning: Inconsistency found between dataframe, embeddings, and attention_weights IDs.")
             if solve_inconsitence:
+                print("Solving inconsistency...")
                 common_ids = df_ids & emb_ids & attn_ids
                 self.dataframe = self.dataframe[self.dataframe[id_column].isin(common_ids)]
-                self.embeddings = {k: v for k, v in self.embeddings.items() if k in common_ids}
-                self.attention_weights = {k: v for k, v in self.attention_weights.items() if k in common_ids}
+                self.embeddings = [embeddings[k] for k in common_ids]
+                self.attention_weights = [attention_weights[k] for k in common_ids]
 
-
-    def display_report(self):
+    def display_report(self, target_column, id_column):
         print("ProteinDataset Report:")
         print(f"Number of samples: {len(self.dataframe)}")
         print(f"Number of embeddings: {len(self.embeddings)}")
         print(f"Number of attention weights: {len(self.attention_weights)}")
-        print(f"Target column values: {self.labels.unique()}")
-        print(f"ID column: {self.id}")
+        print(f"Target column: {target_column}")
+        print(f"ID column: {id_column}")
         print(f"Save path: {self.save_path}")
 
     def __len__(self):
@@ -123,9 +103,11 @@ class ProteinDataset(Dataset):
         # Convertir de numpy a tensor cuando se accede.
         return (torch.tensor(self.embeddings[idx]), torch.tensor(self.attention_weights[idx])), torch.tensor(self.labels[idx], dtype=torch.float)
 
-    def drop_duplicates(self, column: str):
+    def drop_duplicates(self, column: str, inplace: bool = True):
         """Drop duplicate rows based on a specific column in the dataframe."""
-        self.dataframe.drop_duplicates(subset=[column], inplace=True)
+        print(f"Number of samples before removing duplicates: {len(self.dataframe)}")
+        self.dataframe.drop_duplicates(subset=[column], inplace=inplace)
+        print(f"Number of samples after removing duplicates: {len(self.dataframe)}")
 
     def dropna(self):
         """Drop rows with NaN or None values in embeddings or attention layers."""
@@ -142,20 +124,49 @@ class ProteinDataset(Dataset):
         test_dataset = torch.utils.data.Subset(self, test_indices)
         return train_dataset, test_dataset
 
+    def combine_by_pca_trimming(self, pca_components=100):
+        """Combine embeddings and attention_weights by applying PCA trimming to attention_weights."""
+        # Flatten attention weights
+        flattened_attention_weights = [attn.flatten() for attn in self.attention_weights]
+        
+        # Convert flattened attention weights to NumPy array
+        flattened_attention_weights_array = np.array(flattened_attention_weights)
+        
+        # Apply PCA to the entire matrix of flattened attention weights
+        pca = PCA(n_components=min(pca_components, flattened_attention_weights_array.shape[1]))
+        reduced_attention_weights = pca.fit_transform(flattened_attention_weights_array)
+        
+        # Convert embeddings to NumPy arrays
+        embeddings_array = np.array(self.embeddings)
+        
+        # Check the shapes of the arrays
+        print(f"Embeddings shape: {embeddings_array.shape}")
+        print(f"Reduced attention weights shape: {reduced_attention_weights.shape}")
+        
+        # Concatenate embeddings and reduced attention weights along the feature dimension
+        combined_data = np.concatenate([embeddings_array, reduced_attention_weights], axis=1)
+        
+        return combined_data
+
     def plot_tsne(self, attribute='Class', combined=False):
         """Plot TSNE for embeddings, attention_weights, or both combined."""
         if combined:
-            data = np.concatenate([self.embeddings, self.attention_weights], axis=1)
+            # Ensure embeddings and attention_weights have the same number of samples
+            if len(self.embeddings) != len(self.attention_weights):
+                raise ValueError("Embeddings and attention weights must have the same number of samples.")
+            
+            # Combine embeddings and attention_weights by applying PCA trimming
+            data = self.combine_by_pca_trimming()
         else:
-            data = self.embeddings
-
-        # Ensure data is a NumPy array
-        data = np.array(data)
+            data = np.array(self.embeddings)
 
         # Check the shape of the data
         print(f"Data shape: {data.shape}")
 
-        tsne = TSNE(n_components=2, random_state=42)
+        # Set perplexity to a value less than the number of samples if needed
+        perplexity = min(30, data.shape[0] - 1)
+
+        tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
         tsne_results = tsne.fit_transform(data)
 
         plt.figure(figsize=(16, 10))
@@ -168,7 +179,7 @@ class ProteinDataset(Dataset):
         )
         plt.title(f'TSNE plot for {attribute}')
         plt.show()
-
+        
     def plot_pca(self, attribute='Class', combined=False):
         """Plot PCA for embeddings, attention_weights, or both combined."""
         if combined:
