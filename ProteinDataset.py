@@ -11,17 +11,19 @@ from sklearn.cluster import KMeans # type: ignore
 from torch.utils.data import Dataset
 import pandas as pd
 
+# Know how time left to finish the code
+from tqdm import tqdm
+
 class ProteinDataset(Dataset):
     def __init__(self, dataframe, embeddings, attention_weights,
                 target_column='Class', id_column='UniProt IDs',
-                solve_inconsitence=False, save_path="./OUTPUTS/"):
+                solve_inconsitence=False, 
+                save_path="./OUTPUTS/"):
         
         self.save_path = save_path
         os.makedirs(self.save_path, exist_ok=True)
 
         self.dataframe = dataframe
-        self.embeddings = embeddings
-        self.attention_weights = attention_weights
 
         print("Checking consistency...")
         self.ensure_consistency(embeddings, attention_weights, id_column, solve_inconsitence)
@@ -124,13 +126,91 @@ class ProteinDataset(Dataset):
         test_dataset = torch.utils.data.Subset(self, test_indices)
         return train_dataset, test_dataset
 
+    def new_combine_by_pca_trimming(self, pca_components=100):
+        """Combine embeddings and attention_weights by applying PCA trimming to attention_weights."""
+        # Flatten attention weights with progress bar
+        flattened_attention_weights = [attn.flatten() for attn in tqdm(self.attention_weights, desc="Flattening attention weights")]
+        
+        # Ensure all flattened attention weights have the same shape
+        max_length = max(len(attn) for attn in flattened_attention_weights)
+        padded_attention_weights = [np.pad(attn, (0, max_length - len(attn)), 'constant') for attn in tqdm(flattened_attention_weights, desc="Padding attention weights")]
+        
+        # Convert flattened attention weights to NumPy array
+        flattened_attention_weights_array = np.array(padded_attention_weights)
+        
+        # Apply PCA to the entire matrix of flattened attention weights
+        pca = PCA(n_components=min(pca_components, flattened_attention_weights_array.shape[1]))
+        reduced_attention_weights = pca.fit_transform(flattened_attention_weights_array)
+        
+        # Convert embeddings to NumPy arrays
+        embeddings_array = np.array(self.embeddings)
+        
+        # Check the shapes of the arrays
+        print(f"Embeddings shape: {embeddings_array.shape}")
+        print(f"Reduced attention weights shape: {reduced_attention_weights.shape}")
+        
+        # Concatenate embeddings and reduced attention weights along the feature dimension
+        combined_data = np.concatenate([embeddings_array, reduced_attention_weights], axis=1)
+        
+        return combined_data
+
+    def calculate_best_pca_components(self, data, method='threshold', threshold=0.95):
+        """Calculate the best number of PCA components using a specified method.
+        
+        Args:
+            data (np.ndarray): The data to perform PCA on.
+            method (str): The method to use ('threshold' or 'derivative').
+            threshold (float): The variance threshold for the 'threshold' method.
+        
+        Returns:
+            int: The best number of PCA components.
+        """
+        pca = PCA()
+        pca.fit(data)
+        explained_variance = pca.explained_variance_ratio_
+        cumulative_variance = np.cumsum(explained_variance)
+        
+        if method == 'threshold':
+            best_n_components = np.argmax(cumulative_variance >= threshold) + 1
+        elif method == 'derivative':
+            derivatives = np.diff(cumulative_variance)
+            best_n_components = np.argmax(derivatives) + 1
+        else:
+            raise ValueError("Invalid method. Use 'threshold' or 'derivative'.")
+        
+        return best_n_components
+
+    def get_best_pca_components_for_embeddings(self, method='threshold', threshold=0.95):
+        """Get the best number of PCA components for embeddings."""
+        embeddings_array = np.array(self.embeddings)
+        return self.calculate_best_pca_components(embeddings_array, method, threshold)
+
+    def get_best_pca_components_for_attention_weights(self, method='threshold', threshold=0.95):
+        """Get the best number of PCA components for attention_weights."""
+        flattened_attention_weights = [attn.flatten() for attn in self.attention_weights]
+        max_length = max(len(attn) for attn in flattened_attention_weights)
+        padded_attention_weights = [np.pad(attn, (0, max_length - len(attn)), 'constant') for attn in flattened_attention_weights]
+        flattened_attention_weights_array = np.array(padded_attention_weights)
+        return self.calculate_best_pca_components(flattened_attention_weights_array, method, threshold)
+
+    def get_best_pca_components_for_combined_data(self, method='threshold', threshold=0.95):
+        """Get the best number of PCA components for combined embeddings and attention_weights."""
+        combined_data = self.combine_by_pca_trimming()
+        return self.calculate_best_pca_components(combined_data, method, threshold)
+
+
+
     def combine_by_pca_trimming(self, pca_components=100):
         """Combine embeddings and attention_weights by applying PCA trimming to attention_weights."""
         # Flatten attention weights
         flattened_attention_weights = [attn.flatten() for attn in self.attention_weights]
         
+        # Ensure all flattened attention weights have the same shape
+        max_length = max(len(attn) for attn in flattened_attention_weights)
+        padded_attention_weights = [np.pad(attn, (0, max_length - len(attn)), 'constant') for attn in flattened_attention_weights]
+        
         # Convert flattened attention weights to NumPy array
-        flattened_attention_weights_array = np.array(flattened_attention_weights)
+        flattened_attention_weights_array = np.array(padded_attention_weights)
         
         # Apply PCA to the entire matrix of flattened attention weights
         pca = PCA(n_components=min(pca_components, flattened_attention_weights_array.shape[1]))
@@ -183,9 +263,14 @@ class ProteinDataset(Dataset):
     def plot_pca(self, attribute='Class', combined=False):
         """Plot PCA for embeddings, attention_weights, or both combined."""
         if combined:
-            data = np.concatenate([self.embeddings, self.attention_weights], axis=1)
+            # Ensure embeddings and attention_weights have the same number of samples
+            if len(self.embeddings) != len(self.attention_weights):
+                raise ValueError("Embeddings and attention weights must have the same number of samples.")
+            
+            # Combine embeddings and attention_weights by applying PCA trimming
+            data = self.combine_by_pca_trimming()
         else:
-            data = self.embeddings
+            data = np.array(self.embeddings)
 
         # Ensure data is a NumPy array
         data = np.array(data)
@@ -207,9 +292,14 @@ class ProteinDataset(Dataset):
     def plot_pca_variance(self, combined=False):
         """Plot PCA variance explained for embeddings, attention_weights, or both combined."""
         if combined:
-            data = np.concatenate([self.embeddings, self.attention_weights], axis=1)
+            # Ensure embeddings and attention_weights have the same number of samples
+            if len(self.embeddings) != len(self.attention_weights):
+                raise ValueError("Embeddings and attention weights must have the same number of samples.")
+            
+            # Combine embeddings and attention_weights by applying PCA trimming
+            data = self.combine_by_pca_trimming()
         else:
-            data = self.embeddings
+            data = np.array(self.embeddings)
 
         # Ensure data is a NumPy array
         data = np.array(data)
