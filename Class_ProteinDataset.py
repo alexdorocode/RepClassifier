@@ -1,5 +1,4 @@
 import os
-from matplotlib import pyplot as plt
 import torch
 
 from torch.utils.data import Dataset
@@ -8,7 +7,7 @@ import pandas as pd
 class ProteinDataset(Dataset):
     def __init__(self, dataframe, embeddings, attention_weights,
                 target_column='Class', id_column='UniProt IDs',
-                solve_inconsitence=False, calculate_pca=True,
+                solve_inconsitence=False,
                 save_path="./OUTPUTS/"):
         
         self.save_path = save_path
@@ -23,13 +22,6 @@ class ProteinDataset(Dataset):
         self.labels = self.dataframe[target_column].tolist()
         self.ids = self.dataframe[id_column].tolist()
         self.save_path = save_path
-
-        if calculate_pca:
-            print("Calculating PCA for embeddings...")
-            self.embeddings_pca = self.pca_embeddings_reduction()
-            print("Calculating PCA for attention weights...")
-            self.attention_weights_pca = self.pca_attention_weights_reduction()
-            print("PCA calculated.")
 
         self.display_report(target_column, id_column)
 
@@ -116,13 +108,6 @@ class ProteinDataset(Dataset):
         self.attention_weights = [self.attention_weights[i] for i in valid_indices]
         self.labels = [self.labels[i] for i in valid_indices]
         self.id = [self.id[i] for i in valid_indices]
-
-    def split_train_test(self, test_size=0.2):
-        """Split the dataset into train and test sets."""
-        train_indices, test_indices = train_test_split(range(len(self.dataframe)), test_size=test_size, random_state=42, stratify=self.labels)
-        train_dataset = torch.utils.data.Subset(self, train_indices)
-        test_dataset = torch.utils.data.Subset(self, test_indices)
-        return train_dataset, test_dataset
 
 
 

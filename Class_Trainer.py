@@ -2,51 +2,9 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import confusion_matrix, classification_report, cohen_kappa_score
+import seaborn as sns # type: ignore
+from sklearn.metrics import confusion_matrix, classification_report, cohen_kappa_score # type: ignore
 
-
-class ProteinClassifier(nn.Module):
-    def __init__(self, device, input_size, output_size, num_hidden_layers, dropout_rate=0.1, hidden_layers_mode="quadratic_increase", custom_hidden_layers=None):
-        super(ProteinClassifier, self).__init__()
-        hidden_layers_sizes = self.set_hidden_layers_size(hidden_layers_mode, num_hidden_layers, input_size, custom_hidden_layers)
-        layers = []
-        
-        # Input layer
-        layers.append(nn.Linear(input_size, hidden_layers_sizes[0]))
-        layers.append(nn.ReLU())
-        layers.append(nn.Dropout(dropout_rate))
-        
-        # Hidden layers
-        for i in range(1, len(hidden_layers_sizes)):
-            layers.append(nn.Linear(hidden_layers_sizes[i-1], hidden_layers_sizes[i]))
-            layers.append(nn.ReLU())
-            layers.append(nn.Dropout(dropout_rate))
-        
-        # Output layer
-        layers.append(nn.Linear(hidden_layers_sizes[-1], output_size))
-        
-        self.classifier = nn.Sequential(*layers).to(device)
-
-    def forward(self, embeddings, attention_layers):
-        # Concatenar los embeddings y las capas de atención.
-        combined_input = torch.cat((embeddings, attention_layers), dim=1)
-        # Pasamos los embeddings por el clasificador para obtener los logits
-        logits = self.classifier(combined_input)
-        return logits
-    
-    def set_hidden_layers_size(self, hidden_layers_mode, num_hidden_layers, input_size, custom_hidden_layers=None):
-
-        if hidden_layers_mode == "quadratic_increase":
-            # Calculate hidden layer sizes
-            hidden_layer_sizes = [input_size // (2 ** (num_hidden_layers - i)) for i in range(num_hidden_layers)]
-        elif hidden_layers_mode == "custom" and custom_hidden_layers is not None:
-            hidden_layer_sizes = custom_hidden_layers
-        else:
-            raise ValueError("Invalid hidden_layers_mode or custom_hidden_layers not provided.")
-        
-        return hidden_layer_sizes
-    
 class Trainer:
     def __init__(self, model_class, model_size='small', lr=5e-5):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -2,13 +2,11 @@ from Class_ProteinDataset import ProteinDataset
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns # type: ignore
-import numpy as np
-from sklearn.model_selection import train_test_split # type: ignore
 from sklearn.decomposition import PCA # type: ignore
 from sklearn.manifold import TSNE # type: ignore
 from sklearn.cluster import KMeans # type: ignore
 
-class ReducedProteinDataset(ProteinDataset):
+class WrappedProteinDataset(ProteinDataset):
     def __init__(self, dataset, reduce_method='pca'):
         super().__init__(dataset)
 
