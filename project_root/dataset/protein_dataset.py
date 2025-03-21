@@ -101,7 +101,7 @@ class DatasetUtils:
                 print(f"Resolving inconsistencies. Keeping {len(common_ids)} common samples.")
                 dataframe = dataframe[dataframe[id_column].isin(common_ids)]
                 embeddings = {k: embeddings[k] for k in common_ids}
-                attention_weights = {k: attention_weights[k] for k in common_ids}
+                attention_weights = {k: attention_weights[k].flatten() for k in common_ids}
             else:
                 print("Inconsistencies detected but not resolved. Consider enabling `solve_inconsistencies=True`.")
 
