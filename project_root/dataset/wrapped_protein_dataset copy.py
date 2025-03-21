@@ -26,8 +26,8 @@ class WrappedProteinDataset(ProteinDataset):
         self.dataset = dataset  # Store original dataset reference
 
         print("Converting embeddings and attention weights to NumPy arrays...")
-        embeddings_array = np.array(self.dataset.get_embeddings())
-        flattened_attention_weights = flatten_attention_weights(self.dataset.get_attention_weights())
+        embeddings_array = np.array(self.dataset.embeddings)
+        flattened_attention_weights = flatten_attention_weights(self.dataset.attention_weights)
         padded_attention_weights = pad_attention_weights(flattened_attention_weights)
 
         if random_projection_dim < padded_attention_weights.shape[1]:
@@ -65,7 +65,7 @@ class WrappedProteinDataset(ProteinDataset):
 
     def plot_kmeans(self, n_clusters=3, attribute='Class', embedding=False, attention_weights=False):
         """Apply K-Means clustering and visualize results."""
-
+        
         data = self.select_data(embedding, attention_weights)
         kmeans = KMeans(n_clusters=n_clusters, random_state=42).fit(data)
         clusters = kmeans.labels_

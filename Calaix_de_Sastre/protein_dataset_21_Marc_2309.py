@@ -3,33 +3,35 @@ import torch
 import pandas as pd
 from torch.utils.data import Dataset
 
-
 class ProteinDataset(Dataset):
     """
     Handles protein dataset preprocessing, consistency checking, and integration with PyTorch's Dataset API.
-    Stores labels, embeddings, attention weights, and ids as dictionaries indexed by UniProt IDs.
     """
     def __init__(self, dataframe, embeddings, attention_weights,
                  target_column='Class', id_column='UniProt IDs',
                  solve_inconsistencies=False, save_path="./OUTPUTS/"):
-
+        
         self.save_path = save_path
         os.makedirs(self.save_path, exist_ok=True)
-
+        
         # Validate inputs
         DatasetUtils.check_arguments(dataframe, embeddings, attention_weights, target_column, id_column)
-
+        
         print("Checking consistency...")
-        self.dataframe, self.embeddings, self.attention_weights, self.labels, self.ids = DatasetUtils.ensure_consistency(
-            dataframe, embeddings, attention_weights, target_column, id_column, solve_inconsistencies
+        self.dataframe, self.embeddings, self.attention_weights = DatasetUtils.ensure_consistency(
+            dataframe, embeddings, attention_weights, id_column, solve_inconsistencies
         )
         print("Consistency checked.")
+
+        self.labels = dataframe[target_column].tolist()
+        self.ids = dataframe[id_column].tolist()
 
         self.display_report(target_column, id_column)
 
     def display_report(self, target_column, id_column):
+        """Prints a summary of the dataset's structure."""
         print("\nProteinDataset Report:")
-        print(f" - Number of samples: {len(self.ids)}")
+        print(f" - Number of samples: {len(self.dataframe)}")
         print(f" - Number of embeddings: {len(self.embeddings)}")
         print(f" - Number of attention weights: {len(self.attention_weights)}")
         print(f" - Target column: {target_column}")
@@ -37,34 +39,30 @@ class ProteinDataset(Dataset):
         print(f" - Save path: {self.save_path}\n")
 
     def __len__(self):
-        return len(self.ids)
+        return len(self.dataframe)
 
     def __getitem__(self, idx):
-        id_ = list(self.ids.keys())[idx]
-        return (
-            torch.tensor(self.embeddings[id_]),
-            torch.tensor(self.attention_weights[id_])
-        ), torch.tensor(self.labels[id_], dtype=torch.float)
+        """Returns embeddings, attention weights, and labels as tensors."""
+        return (torch.tensor(self.embeddings[idx]), torch.tensor(self.attention_weights[idx])), torch.tensor(self.labels[idx], dtype=torch.float)
 
-    def get_embeddings(self):
-        return list(self.embeddings.values())
+    def drop_duplicates(self, column: str, inplace: bool = True):
+        """Removes duplicate rows from the dataset based on a specific column."""
+        print(f"Samples before deduplication: {len(self.dataframe)}")
+        self.dataframe.drop_duplicates(subset=[column], inplace=inplace)
+        print(f"Samples after deduplication: {len(self.dataframe)}")
 
-    def get_attention_weights(self):
-        return list(self.attention_weights.values())
-
-    def get_labels(self):
-        return list(self.labels.values())
-
-    def get_ids(self):
-        return list(self.ids.values())
-
-    def get_attribute(self, attribute_name):
-        if attribute_name not in self.dataframe.columns:
-            raise ValueError(f"Attribute '{attribute_name}' not found in dataframe.")
-        return self.dataframe.set_index('UniProt IDs').loc[list(self.ids.keys()), attribute_name].tolist()
+    def dropna(self):
+        """Removes samples with missing embeddings or attention weights."""
+        valid_indices = [i for i, (emb, attn) in enumerate(zip(self.embeddings, self.attention_weights)) if emb is not None and attn is not None]
+        self.embeddings = [self.embeddings[i] for i in valid_indices]
+        self.attention_weights = [self.attention_weights[i] for i in valid_indices]
+        self.labels = [self.labels[i] for i in valid_indices]
+        self.ids = [self.ids[i] for i in valid_indices]
 
 
 class DatasetUtils:
+    """Helper class to manage consistency checks and dataset validation."""
+    
     @staticmethod
     def check_arguments(dataframe, embeddings, attention_weights, target_column, id_column):
         if not isinstance(dataframe, pd.DataFrame):
@@ -85,10 +83,11 @@ class DatasetUtils:
         return False
 
     @staticmethod
-    def ensure_consistency(dataframe, embeddings, attention_weights, target_column, id_column, solve_inconsistencies):
+    def ensure_consistency(dataframe, embeddings, attention_weights, id_column, solve_inconsistencies):
+        """Ensures dataset consistency by aligning IDs and removing duplicates if necessary."""
         if DatasetUtils.check_duplicates(dataframe, id_column) and solve_inconsistencies:
             print("Removing duplicate entries...")
-            dataframe = dataframe.drop_duplicates(subset=[id_column])
+            dataframe.drop_duplicates(subset=[id_column], inplace=True)
 
         df_ids = set(dataframe[id_column])
         emb_ids = set(embeddings.keys())
@@ -107,8 +106,10 @@ class DatasetUtils:
                 embeddings = {k: embeddings[k] for k in common_ids}
                 attention_weights = {k: attention_weights[k].flatten() for k in common_ids}
             else:
-                print("Inconsistencies detected but not resolved. Consider enabling solve_inconsistencies=True.")
+                print("Inconsistencies detected but not resolved. Consider enabling `solve_inconsistencies=True`.")
 
-        labels = {row[id_column]: row[target_column] for _, row in dataframe.iterrows()}
-        ids = {id_: id_ for id_ in dataframe[id_column]}
-        return dataframe, embeddings, attention_weights, labels, ids
+        print(f" - DataFrame IDs: {len(df_ids)}")
+        print(f" - Embeddings IDs: {len(emb_ids)}")
+        print(f" - Attention Weights IDs: {len(attn_ids)}")
+
+        return dataframe, list(embeddings.values()), list(attention_weights.values())
