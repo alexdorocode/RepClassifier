@@ -10,7 +10,7 @@ from tqdm import tqdm  # type: ignore
 
 
 class WrappedProteinDataset(ProteinDataset):
-    def __init__(self, dataset, reduce_method=None, pca_method='threshold', random_projection_dim=1000, **kwargs):
+    def __init__(self, dataset, reduce_method=None, pca_method='threshold', random_projection_dim=1000, threshold=0.95):
         """
         Initializes WrappedProteinDataset with optional dimensionality reduction.
 
@@ -42,9 +42,9 @@ class WrappedProteinDataset(ProteinDataset):
         if reduce_method:
             if reduce_method == 'pca':
                 print("Applying PCA reduction to embeddings")
-                reduced_embeddings = self.pca_embeddings_reduction(embeddings_array, method=pca_method)
+                reduced_embeddings = self.pca_embeddings_reduction(embeddings_array, method=pca_method, threshold=threshold)
                 print("Applying PCA reduction to attention weights")
-                reduced_attention_weights = self.pca_attention_weights_reduction(attention_weights_array, method=pca_method)
+                reduced_attention_weights = self.pca_attention_weights_reduction(attention_weights_array, method=pca_method, threshold=threshold)
             elif reduce_method == 'tsne':
                 print("Applying t-SNE reduction to embeddings")
                 perplexity = min(30, len(embeddings_array) - 1)
@@ -101,11 +101,11 @@ class WrappedProteinDataset(ProteinDataset):
 
     def pca_attention_weights_reduction(self, attention_weights_array, method='derivative', pca_components=100, threshold=0.95):
         """Reduce attention weights using PCA."""
-        return self.apply_pca(attention_weights_array, method, pca_components, threshold=0.95)
+        return self.apply_pca(attention_weights_array, method, pca_components, threshold)
 
-    def pca_embeddings_reduction(self, embeddings_array, method='derivative', pca_components=100):
+    def pca_embeddings_reduction(self, embeddings_array, method='derivative', pca_components=100, threshold=0.95):
         """Reduce embeddings using PCA."""
-        return self.apply_pca(embeddings_array, method, pca_components, threshold=0.95)
+        return self.apply_pca(embeddings_array, method, pca_components, threshold)
 
     def get_pca(self, embedding=False, attention_weights=False):
         """Plot PCA variance explained by each component."""
@@ -125,7 +125,6 @@ class WrappedProteinDataset(ProteinDataset):
     # ========================= #
     #  DATA VISUALIZATION       #
     # ========================= #
-
     def plot_pca_variance(self, embeddings=False, attention_weights=False, threshold=0.95):
         """Plot PCA variance explained by each component."""
 
@@ -143,13 +142,21 @@ class WrappedProteinDataset(ProteinDataset):
 
         pca = PCA().fit(data)
         pca_variance = pca.explained_variance_ratio_
+        cumulative_variance = np.cumsum(pca_variance)
+
+        # Find the number of components where the cumulative variance meets the threshold
+        n_components = np.argmax(cumulative_variance >= threshold) + 1
 
         plt.figure(figsize=(16, 10))
-        plt.plot(np.cumsum(pca_variance))
+        plt.plot(cumulative_variance, label='Cumulative Variance')
+        plt.axhline(y=threshold, color='r', linestyle='--', label=f'Threshold: {threshold}')
+        plt.axvline(x=n_components - 1, color='b', linestyle='--', label=f'Components: {n_components}')
+        plt.scatter(n_components - 1, cumulative_variance[n_components - 1], color='b')
+        plt.text(n_components - 1, cumulative_variance[n_components - 1], f'{n_components}', fontsize=12, ha='right')
         plt.xlabel('Number of Components')
         plt.ylabel('Variance (%)')
         plt.title(f'PCA Variance Explained by Components of {text} (Threshold: {threshold})')
-        plt.axhline(y=threshold, color='r', linestyle='--')
+        plt.legend()
         plt.show()
 
     def plot_pca(self, attribute='Class', embedding=False, attention_weights=False):
@@ -172,7 +179,7 @@ class WrappedProteinDataset(ProteinDataset):
             x=pca_data[:, 0],
             y=pca_data[:, 1],
             hue=self.dataset.dataframe[attribute],
-            palette=sns.color_palette("hsv", len(self.dataset.dataframe[attribute].unique())),
+            palette=sns.color_palette("hsv", len(self.dataset[attribute].unique())),
             legend="full",
             alpha=0.7
         )
@@ -203,7 +210,7 @@ class WrappedProteinDataset(ProteinDataset):
             x=data[:, 0],
             y=data[:, 1],
             hue=clusters,
-            style=self.dataset.dataframe[attribute],
+            style=self.dataset[attribute],
             palette=sns.color_palette("hsv", n_clusters),
             legend="full",
             alpha=0.7
