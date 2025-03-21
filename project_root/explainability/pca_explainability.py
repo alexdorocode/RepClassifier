@@ -5,7 +5,7 @@ class PCAExplainability:
     """Provides tools to interpret PCA results."""
     
     @staticmethod
-    def plot_variance_explained(pca):
+    def plot_variance_explained(pca, title = 'PCA Variance Explained by Components', threshold=0.95):
         """
         Plots the cumulative explained variance of PCA components.
         
@@ -16,12 +16,22 @@ class PCAExplainability:
         Parameters:
         pca (sklearn.decomposition.PCA): Fitted PCA object with explained_variance_ratio_.
         """
-        plt.figure(figsize=(8, 5))
-        plt.plot(np.cumsum(pca.explained_variance_ratio_))
+
+        # Find the number of components where the cumulative variance meets the threshold
+        n_components = np.argmax(pca.explained_variance_ratio_ >= threshold) + 1
+        cumulative_variance = np.cumsum(pca.explained_variance_ratio_)
+        text = f'{len(pca.explained_variance_ratio_)} components'
+
+        plt.figure(figsize=(16, 10))
+        plt.plot(cumulative_variance, label='Cumulative Variance')
+        plt.axhline(y=threshold, color='r', linestyle='--', label=f'Threshold: {threshold}')
+        plt.axvline(x=n_components - 1, color='b', linestyle='--', label=f'Components: {n_components}')
+        plt.scatter(n_components - 1, cumulative_variance[n_components - 1], color='b')
+        plt.text(n_components - 1, cumulative_variance[n_components - 1], f'{n_components}', fontsize=12, ha='right')
         plt.xlabel('Number of Components')
-        plt.ylabel('Cumulative Explained Variance')
-        plt.title('PCA Cumulative Explained Variance')
-        plt.grid()
+        plt.ylabel('Variance (%)')
+        plt.title(f'{title} (Threshold: {threshold})')
+        plt.legend()
         plt.show()
 
     @staticmethod
