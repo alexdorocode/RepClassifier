@@ -1,7 +1,45 @@
 import numpy as np
+from tqdm import tqdm
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from sklearn.random_projection import SparseRandomProjection
+
+def process_embeddings_and_attention(
+    embeddings_array,
+    attention_weights_array,
+    reduce_method=None,
+    pca_method='threshold',
+    threshold=0.95,
+    random_projection_dim=1000,
+    random_projection_method='global'
+):
+    """
+    Applies optional random projection and dimensionality reduction to embeddings and attention weights.
+    """
+
+    if random_projection_dim < attention_weights_array.shape[1]:
+        print(f"Applying random projection to reduce attention weights from {attention_weights_array.shape[1]} to {random_projection_dim} dimensions...")
+        if random_projection_method == 'global':
+            attention_weights_array = apply_random_projection_globaly(attention_weights_array, n_components=random_projection_dim)
+        elif random_projection_method == 'by_prot':
+            attention_weights_array = apply_random_projection_by_prot(attention_weights_array, n_components=random_projection_dim)
+        else:
+            raise ValueError(f"Unknown random_projection_method: {random_projection_method}")
+
+    print(f"Applying dimensionality reduction using {reduce_method}...")
+    if reduce_method == 'pca':
+        reduced_embeddings = apply_pca(embeddings_array, method=pca_method, threshold=threshold)
+        reduced_attention_weights = apply_pca(attention_weights_array, method=pca_method, threshold=threshold)
+    elif reduce_method == 'tsne':
+        perplexity = min(30, len(embeddings_array) - 1)
+        reduced_embeddings = apply_tsne(embeddings_array, perplexity=perplexity)
+        reduced_attention_weights = apply_tsne(attention_weights_array, perplexity=perplexity)
+    else:
+        reduced_embeddings = embeddings_array
+        reduced_attention_weights = attention_weights_array
+
+    return reduced_embeddings, reduced_attention_weights
+
 
 
 def flatten_attention_weights(attention_weights):
@@ -22,12 +60,33 @@ def pad_attention_weights(flattened_attention_weights):
     ])
 
 
-def apply_random_projection(data, n_components=1000):
+def apply_random_projection_globaly(data, n_components=1000):
     """
     Applies sparse random projection to reduce dimensionality.
     """
     transformer = SparseRandomProjection(n_components=n_components)
     return transformer.fit_transform(data)
+
+
+def apply_random_projection_by_prot(data, n_components=1000):
+    """
+    Applies sparse random projection to each protein individually.
+
+    Args:
+        data (np.ndarray): Array of shape (n_proteins, seq_len, feature_dim)
+        n_components (int): Target dimensionality
+
+    Returns:
+        np.ndarray: Array of shape (n_proteins, seq_len, n_components)
+    """
+    """
+    return np.array([
+        SparseRandomProjection(n_components=n_components).fit_transform(prot)
+        for prot in tqdm(data, desc="Applying projection per protein")
+    ])
+    """
+    RuntimeError("Not implemented yet")
+    return None
 
 
 def get_best_pca_components(data, method='threshold', threshold=0.95):
