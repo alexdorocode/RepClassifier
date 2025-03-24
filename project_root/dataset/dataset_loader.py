@@ -39,4 +39,7 @@ class DatasetLoader:
         embeddings_dict = {id_: emb for id_, emb in zip(prott5_embeddings['UniProt IDs'], prott5_embeddings['embeddings'])}
         attention_weights_dict = {id_: attn for id_, attn in zip(prott5_attention_weights['UniProt IDs'], prott5_attention_weights['attention_layers'])}
 
+        for attention_weights in attention_weights_dict.values():
+            print(attention_weights.shape)
+
         return embeddings_dict, attention_weights_dict

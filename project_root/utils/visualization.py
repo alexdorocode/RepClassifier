@@ -1,8 +1,10 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import matplotlib.pyplot as plt # type: ignore
+import numpy as np # type: ignore
+import seaborn as sns # type: ignore
+from sklearn.cluster import KMeans # type: ignore
 
-class PCAExplainability:
-    """Provides tools to interpret PCA results."""
+class DataVisualizer:
+    """Provides tools to visualize data and interpret results."""
     
     @staticmethod
     def plot_variance_explained(pca, title = 'PCA Variance Explained by Components', threshold=0.95):
@@ -136,11 +138,39 @@ class PCAExplainability:
         Parameters:
         pca (sklearn.decomposition.PCA): Fitted PCA object with explained_variance_.
         """
-        variance_contribution = PCAExplainability.get_variance_contribution(pca)['variance_contribution']
+        variance_contribution = DataVisualizer.get_variance_contribution(pca)['variance_contribution']
         plt.figure(figsize=(8, 5))
         plt.bar(range(1, len(variance_contribution) + 1), variance_contribution)
         plt.xlabel('Principal Component')
         plt.ylabel('Variance Contribution')
         plt.title('PCA Variance Contribution per Component')
         plt.grid()
+        plt.show()
+
+    @staticmethod
+    def plot_kmeans(data, n_clusters=3):
+        """Apply K-Means clustering and visualize results."""
+
+        kmeans = KMeans(n_clusters=n_clusters, random_state=42).fit(data)
+        clusters = kmeans.labels_
+
+        plt.figure(figsize=(16, 10))
+        sns.scatterplot(
+            x=data[:, 0],
+            y=data[:, 1],
+            hue=clusters,
+            palette=sns.color_palette("hsv", n_clusters),
+            legend="full",
+            alpha=0.7
+        )
+        plt.title(f'K-means clustering with {n_clusters} clusters')
+        plt.show()
+
+    @staticmethod
+    def plot_correration_heatmap(data):
+        """Plot a heatmap of the correlation between features."""
+        corr = np.corrcoef(data, rowvar=False)
+        plt.figure(figsize=(16, 10))
+        sns.heatmap(corr, annot=False, cmap='coolwarm')
+        plt.title('Correlation Heatmap')
         plt.show()

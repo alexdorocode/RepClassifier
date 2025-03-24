@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torchinfo import summary
 
 class ProteinClassifier(nn.Module):
     def __init__(self, device, input_size, output_size, num_hidden_layers, dropout_rate=0.1, hidden_layers_mode="quadratic_increase", custom_hidden_layers=None):
@@ -23,6 +24,8 @@ class ProteinClassifier(nn.Module):
         
         self.classifier = nn.Sequential(*layers).to(device)
 
+        # Print torch summary
+        print(summary(self, input_size=(1, input_size), device=device))
 
     def forward(self, input):
         # Pasamos los embeddings por el clasificador para obtener los logits
