@@ -54,13 +54,24 @@ class WrappedProteinDataset(ProteinDataset):
             raise ValueError("At least one of 'embedding' or 'attention_weights' must be True.")
         
         if id_column:
-            data = np.concatenate([self.dataset.get_ids(), data], axis=1)
+            print("Adding IDs to data...")
+            ids = np.array(self.dataset.get_ids()).reshape(-1, 1)
+            print(f"Shape data before adding: {data.shape} | Shape IDs: {ids.shape}")
+            data = np.concatenate([ids, data], axis=1)
         if target_column:
-            data = np.concatenate([self.dataset.get_labels(), data], axis=1)
+            print("Adding labels to data...")
+            labels = np.array(self.dataset.get_labels()).reshape(-1, 1)
+            print(f"Shape data before adding: {data.shape} | Shape labels: {labels.shape}")
+            data = np.concatenate([labels, data], axis=1)
         if additional_columns:
+            print("Adding additional columns to data...")
             for column in additional_columns:
-                data = np.concatenate([self.dataset.get_attribute(column), data], axis=1)
-
+                attribute = np.array(self.dataset.get_attribute(column)).reshape(-1, 1)
+                print(f"Shape data before adding: {data.shape} | Shape column: {attribute.shape}")
+                data = np.concatenate([attribute, data], axis=1)
+    
+        print(f"Final data shape: {data.shape}")
+    
         return data
         
 

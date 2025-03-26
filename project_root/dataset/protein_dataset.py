@@ -94,10 +94,6 @@ class DatasetUtils:
         emb_ids = set(embeddings.keys())
         attn_ids = set(attention_weights.keys())
 
-        print(f" - DataFrame IDs: {len(df_ids)}")
-        print(f" - Embeddings IDs: {len(emb_ids)}")
-        print(f" - Attention Weights IDs: {len(attn_ids)}")
-
         if df_ids != emb_ids or df_ids != attn_ids:
             print("Warning: Inconsistencies found between dataframe, embeddings, and attention_weights.")
             if solve_inconsistencies:

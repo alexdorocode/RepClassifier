@@ -109,7 +109,7 @@ def apply_pca(data, method='threshold', pca_components=100, threshold=0.95):
     Apply PCA reduction using threshold or fixed component count.
     """
     best_n_components = (
-        min(pca_components, data.shape[1])
+        min(pca_components, len(data))
         if method == 'custom'
         else get_best_pca_components(data, method, threshold)
     )
