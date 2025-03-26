@@ -7,23 +7,25 @@ class DataVisualizer:
     """Provides tools to visualize data and interpret results."""
     
     @staticmethod
-    def plot_variance_explained(pca, title = 'PCA Variance Explained by Components', threshold=0.95):
+    def plot_variance_explained(pca, title='PCA Variance Explained by Components', threshold=0.95):
         """
         Plots the cumulative explained variance of PCA components.
         
         The plot shows the cumulative explained variance as more components are added. 
         This helps determine how many components are required to explain a certain 
         amount of variance in the dataset.
-
+    
         Parameters:
         pca (sklearn.decomposition.PCA): Fitted PCA object with explained_variance_ratio_.
         """
-
-        # Find the number of components where the cumulative variance meets the threshold
-        n_components = np.argmax(pca.explained_variance_ratio_ >= threshold) + 1
+    
+        # Calculate cumulative variance
         cumulative_variance = np.cumsum(pca.explained_variance_ratio_)
+    
+        # Find the number of components where the cumulative variance meets the threshold
+        n_components = np.argmax(cumulative_variance >= threshold) + 1
         text = f'{len(pca.explained_variance_ratio_)} components'
-
+    
         plt.figure(figsize=(16, 10))
         plt.plot(cumulative_variance, label='Cumulative Variance')
         plt.axhline(y=threshold, color='r', linestyle='--', label=f'Threshold: {threshold}')
