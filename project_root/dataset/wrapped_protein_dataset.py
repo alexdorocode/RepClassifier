@@ -12,7 +12,7 @@ from project_root.utils.feature_processor import (
 
 
 class WrappedProteinDataset(ProteinDataset):
-    def __init__(self, dataset, reduce_method=None, pca_method='threshold', random_projection_dim=1000, random_projection_method='global', threshold=0.95):
+    def __init__(self, dataset, process_attention_weights = True, reduce_method=None, pca_method='threshold', random_projection_dim=1000, random_projection_method='global', threshold=0.95):
         """
         Initializes WrappedProteinDataset with optional dimensionality reduction.
 
@@ -25,12 +25,17 @@ class WrappedProteinDataset(ProteinDataset):
 
         print("Converting embeddings and attention weights to NumPy arrays...")
         embeddings_array = np.array(self.dataset.get_embeddings())
-        flattened_attention_weights = flatten_attention_weights(self.dataset.get_attention_weights())
-        padded_attention_weights = pad_attention_weights(flattened_attention_weights)
+        
+        if process_attention_weights:
+            flattened_attention_weights = flatten_attention_weights(self.dataset.get_attention_weights())
+            padded_attention_weights = pad_attention_weights(flattened_attention_weights)
+        else:
+            padded_attention_weights = None
 
         reduced_embeddings, reduced_attention_weights = process_embeddings_and_attention(
             embeddings_array,
             padded_attention_weights,
+            process_attention_weights,
             reduce_method=reduce_method,
             pca_method=pca_method,
             threshold=threshold,
@@ -40,10 +45,15 @@ class WrappedProteinDataset(ProteinDataset):
 
         self.embeddings = reduced_embeddings
         self.attention_weights = reduced_attention_weights
-        self.combined_embeddings_and_attention = np.concatenate([self.embeddings, self.attention_weights], axis=1)
+        if self.attention_weights is not None:
+            self.combined_embeddings_and_attention = np.concatenate([self.embeddings, self.attention_weights], axis=1)
 
     def select_data(self, embedding=False, attention_weights=False, id_column=False, target_column=False, additional_columns=None):
         """Select data for visualization."""
+
+        if attention_weights and self.attention_weights is None:
+            raise ValueError("Attention weights are not available for this dataset.")
+
         if embedding and attention_weights:
             data = self.combined_embeddings_and_attention
         elif embedding:
