@@ -1,4 +1,4 @@
-from project_root.dataset.protein_dataset import ProteinDataset
+from project_root.dataset.representation_dataset import RepresentationDataset
 import numpy as np # type: ignore
 import matplotlib.pyplot as plt # type: ignore
 import seaborn as sns  # type: ignore
@@ -11,7 +11,7 @@ from project_root.utils.feature_processor import (
 )
 
 
-class WrappedProteinDataset(ProteinDataset):
+class WrappedRepresentationDataset(RepresentationDataset):
     def __init__(self, dataset, process_attention_weights = True, reduce_method=None, pca_method='threshold', random_projection_dim=1000, random_projection_method='global', threshold=0.95):
         """
         Initializes WrappedProteinDataset with optional dimensionality reduction.
@@ -49,7 +49,7 @@ class WrappedProteinDataset(ProteinDataset):
             self.combined_embeddings_and_attention = np.concatenate([self.embeddings, self.attention_weights], axis=1)
 
     def select_data(self, embedding=False, attention_weights=False, id_column=False, target_column=False, additional_columns=None):
-        """Select data for visualization."""
+        """Select data for visualization and print the column order."""
 
         if attention_weights and self.attention_weights is None:
             raise ValueError("Attention weights are not available for this dataset.")
@@ -63,24 +63,38 @@ class WrappedProteinDataset(ProteinDataset):
         else:
             raise ValueError("At least one of 'embedding' or 'attention_weights' must be True.")
         
-        if id_column:
-            print("Adding IDs to data...")
-            ids = np.array(self.dataset.get_ids()).reshape(-1, 1)
-            print(f"Shape data before adding: {data.shape} | Shape IDs: {ids.shape}")
-            data = np.concatenate([ids, data], axis=1)
+        column_order = []
+        current_column_index = 0
+
         if target_column:
             print("Adding labels to data...")
             labels = np.array(self.dataset.get_labels()).reshape(-1, 1)
             print(f"Shape data before adding: {data.shape} | Shape labels: {labels.shape}")
             data = np.concatenate([labels, data], axis=1)
+            column_order.append("target_column")
+            current_column_index += 1
+
         if additional_columns:
             print("Adding additional columns to data...")
             for column in additional_columns:
                 attribute = np.array(self.dataset.get_attribute(column)).reshape(-1, 1)
                 print(f"Shape data before adding: {data.shape} | Shape column: {attribute.shape}")
                 data = np.concatenate([attribute, data], axis=1)
-    
+                column_order.append(column)
+                current_column_index += 1
+
+        if id_column:
+            print("Adding IDs to data...")
+            ids = np.array(self.dataset.get_ids()).reshape(-1, 1)
+            print(f"Shape data before adding: {data.shape} | Shape IDs: {ids.shape}")
+            data = np.concatenate([ids, data], axis=1)
+            column_order.append("id_column")
+            current_column_index += 1
+
         print(f"Final data shape: {data.shape}")
+        print("Column order in the resulting dataset:")
+        for index, column_name in enumerate(column_order):
+            print(f"Column {index}: {column_name}")
     
         return data
         
