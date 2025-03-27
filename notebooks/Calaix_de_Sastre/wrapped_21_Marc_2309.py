@@ -1,4 +1,4 @@
-from project_root.dataset.protein_dataset import ProteinDataset
+from project_root.dataset.representation_dataset import ProteinDataset
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns  # type: ignore

@@ -4,7 +4,7 @@ import pandas as pd
 from torch.utils.data import Dataset
 
 
-class ProteinDataset(Dataset):
+class RepresentationDataset(Dataset):
     """
     Handles protein dataset preprocessing, consistency checking, and integration with PyTorch's Dataset API.
     Stores labels, embeddings, attention weights, and ids as dictionaries indexed by UniProt IDs.

@@ -1,10 +1,10 @@
 import numpy as np
 import pytest
-from project_root.dataset.protein_dataset import ProteinDataset
-from project_root.dataset.wrapped_protein_dataset import WrappedProteinDataset
+from project_root.dataset.representation_dataset import RepresentationDataset
+from project_root.dataset.wrapped_representation_dataset import WrappedRepresentationDataset
 
 # ---- Dummy Dataset for Testing ----
-class DummyProteinDataset(ProteinDataset):
+class DummyProteinDataset(RepresentationDataset):
     def __init__(self, n=5, d_embed=8, d_attn=5):
         self.embeddings = [np.random.rand(d_embed) for _ in range(n)]
         self.attention_weights = [np.random.rand(d_attn, d_attn) for _ in range(n)]
@@ -33,7 +33,7 @@ class DummyProteinDataset(ProteinDataset):
 @pytest.fixture
 def wrapped_dataset():
     dummy = DummyProteinDataset()
-    return WrappedProteinDataset(dummy, reduce_method='pca', pca_method='threshold', threshold=0.9)
+    return WrappedRepresentationDataset(dummy, reduce_method='pca', pca_method='threshold', threshold=0.9)
 
 # ---- Tests ----
 def test_select_embeddings_only(wrapped_dataset):
