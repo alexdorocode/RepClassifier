@@ -12,7 +12,14 @@ from project_root.utils.feature_processor import (
 
 
 class WrappedRepresentationDataset(RepresentationDataset):
-    def __init__(self, dataset, process_attention_weights = True, reduce_method=None, pca_method='threshold', random_projection_dim=1000, random_projection_method='global', threshold=0.95):
+    def __init__(self, dataset,
+                 process_attention_weights = True,
+                 reduce_method=None,
+                 pca_method='threshold',
+                 random_projection_dim=1000,
+                 random_projection_method='global',
+                 threshold=0.95,
+                 attributes_to_one_hot=None):
         """
         Initializes WrappedProteinDataset with optional dimensionality reduction.
 
@@ -105,10 +112,18 @@ class WrappedRepresentationDataset(RepresentationDataset):
             print(f"Column {index}: {column_name}")
     
         return data
-        
+
+    def one_hot_encode_attribute(self, attribute):
+        """ One-hot encode a specified attribute."""
+        attribute_data = self.dataset.get_attribute(attribute)
+        unique_values = list(set(attribute_data))
+        value_to_int = {value: idx for idx, value in enumerate(unique_values)}
+        integer_encoded = [value_to_int[value] for value in attribute_data]
+        one_hot_encoded = np.eye(len(unique_values))[integer_encoded]
+        return one_hot_encoded
 
     def plot_kmeans(self, n_clusters=3, attribute='Class', embedding=False, attention_weights=False):
-        """Apply K-Means clustering and visualize results."""
+        """ Apply K-Means clustering and visualize results."""
 
         data = self.select_data(embedding, attention_weights)
         kmeans = KMeans(n_clusters=n_clusters, random_state=42).fit(data)
