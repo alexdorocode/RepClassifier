@@ -48,7 +48,7 @@ class WrappedRepresentationDataset(RepresentationDataset):
         if self.attention_weights is not None:
             self.combined_embeddings_and_attention = np.concatenate([self.embeddings, self.attention_weights], axis=1)
 
-    def select_data(self, embedding=False, attention_weights=False, id_column=False, target_column=False, additional_columns=None):
+    def select_data(self, embedding=False, attention_weights=False, id_column=False, target_column=False, additional_columns=None, length_column=False):
         """Select data for visualization and print the column order."""
 
         if attention_weights and self.attention_weights is None:
@@ -82,6 +82,14 @@ class WrappedRepresentationDataset(RepresentationDataset):
                 data = np.concatenate([attribute, data], axis=1)
                 column_order.append(column)
                 current_column_index += 1
+        
+        if length_column:
+            print("Adding lengths to data...")
+            lengths = np.array(self.dataset.get_lengths()).reshape(-1, 1)
+            print(f"Shape data before adding: {data.shape} | Shape lengths: {lengths.shape}")
+            data = np.concatenate([lengths, data], axis=1)
+            column_order.append("length_column")
+            current_column_index += 1
 
         if id_column:
             print("Adding IDs to data...")

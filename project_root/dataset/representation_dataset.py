@@ -25,6 +25,12 @@ class RepresentationDataset(Dataset):
         )
         print("Consistency checked.")
 
+        # Calculate lengths of the 'Amino Acid Sequence' column
+        if 'Amino Acid Sequence' in self.dataframe.columns:
+            self.lengths = self.dataframe['Amino Acid Sequence'].apply(len).to_dict()
+        else:
+            raise ValueError("The dataframe must contain the 'Amino Acid Sequence' column.")
+
         self.display_report(target_column, id_column)
 
     def display_report(self, target_column, id_column):
@@ -34,7 +40,10 @@ class RepresentationDataset(Dataset):
         print(f" - Number of attention weights: {len(self.attention_weights)}")
         print(f" - Target column: {target_column}")
         print(f" - ID column: {id_column}")
-        print(f" - Save path: {self.save_path}\n")
+        print(f" - Save path: {self.save_path}")
+        print(f" - Min sequence length: {min(self.lengths.values())}")
+        print(f" - Max sequence length: {max(self.lengths.values())}")
+        print(f" - Mean sequence length: {sum(self.lengths.values()) / len(self.lengths):.2f}\n")
 
     def __len__(self):
         return len(self.ids)
@@ -57,6 +66,10 @@ class RepresentationDataset(Dataset):
 
     def get_ids(self):
         return list(self.ids.values())
+
+    def get_lengths(self):
+        """Returns the lengths of the amino acid sequences."""
+        return list(self.lengths.values())
 
     def get_attribute(self, attribute_name):
         if attribute_name not in self.dataframe.columns:
