@@ -36,9 +36,11 @@ class WrappedRepresentationDataset(RepresentationDataset):
         embeddings_array = np.array(self.dataset.get_embeddings())
         
         if process_attention_weights:
+            print("Flattening attention weights...")
             flattened_attention_weights = flatten_attention_weights(self.dataset.get_attention_weights())
             padded_attention_weights = pad_attention_weights(flattened_attention_weights)
         else:
+            print("Attention weights are not processed.")
             padded_attention_weights = None
 
         reduced_embeddings, reduced_attention_weights = process_embeddings_and_attention(
@@ -52,12 +54,14 @@ class WrappedRepresentationDataset(RepresentationDataset):
             random_projection_method=random_projection_method
         )
 
+        print("Dimensionality reduction applied.")
         self.embeddings = reduced_embeddings
         self.attention_weights = reduced_attention_weights
         if self.attention_weights is not None:
             self.combined_embeddings_and_attention = np.concatenate([self.embeddings, self.attention_weights], axis=1)
 
         if attributes_to_one_hot:
+            print("One-hot encoding attributes: ", attributes_to_one_hot)
             for attribute in attributes_to_one_hot:
                 if attribute not in self.dataset.get_attributes():
                     raise ValueError(f"Attribute '{attribute}' not found in dataset.")
@@ -91,10 +95,27 @@ class WrappedRepresentationDataset(RepresentationDataset):
         if target_column:
             print("Adding labels to data...")
             labels = np.array(self.dataset.get_labels()).reshape(-1, 1)
-            print(f"Shape data before adding: {data.shape} | Shape labels: {labels.shape}")
             data = np.concatenate([labels, data], axis=1)
             column_order.append("target_column")
             current_column_index += 1
+
+        if one_hot_columns:
+            print("Adding one-hot encoded attributes to data...")
+            for column in one_hot_columns:
+                if column not in self.one_hot_encoded_attributes:
+                    self.one_hot_encode_attribute(column)
+                one_hot_data = self.one_hot_encoded_attributes[column]
+        
+                # Ensure `data` is a 2D array before concatenation
+                if len(data) == 0:  # If `data` is empty, initialize it with zeros
+                    data = np.zeros((one_hot_data.shape[0], 0))
+                elif data.ndim == 1:  # If `data` is 1D, reshape it to 2D
+                    data = data.reshape(-1, 1)
+        
+                # Concatenate one-hot data with the existing data
+                data = np.concatenate([one_hot_data, data], axis=1)
+                column_order.append(f"one_hot_{column}")
+                current_column_index += one_hot_data.shape[1]
 
         if additional_columns:
             print("Adding additional columns to data...")
@@ -102,11 +123,17 @@ class WrappedRepresentationDataset(RepresentationDataset):
                 attribute = np.array(self.dataset.get_attribute(column))
                 if attribute.ndim == 1:
                     attribute = attribute.reshape(-1, 1)
-                print(f"Shape data before adding: {data.shape} | Shape column: {attribute.shape}")
+        
+                # Ensure `data` is a 2D array before concatenation
+                if len(data) == 0:  # If `data` is empty, initialize it with zeros
+                    data = np.zeros((attribute.shape[0], 0))
+                elif data.ndim == 1:  # If `data` is 1D, reshape it to 2D
+                    data = data.reshape(-1, 1)
+        
+                # Concatenate the attribute with the existing data
                 data = np.concatenate([attribute, data], axis=1)
                 column_order.append(column)
                 current_column_index += attribute.shape[1]
-
 
         if length_column:
             print("Adding lengths to data...")
@@ -124,15 +151,6 @@ class WrappedRepresentationDataset(RepresentationDataset):
             column_order.append("id_column")
             current_column_index += 1
 
-        if one_hot_columns:
-            print("Adding one-hot encoded attributes to data...")
-            for column in one_hot_columns:
-                if column not in self.one_hot_encoded_attributes:
-                    self.one_hot_encode_attribute(column)
-                one_hot_data = self.one_hot_encoded_attributes[column]
-                data = np.concatenate([one_hot_data, data], axis=1)
-                column_order.append(f"one_hot_{column}")
-                current_column_index += one_hot_data.shape[1]
 
         print(f"Final data shape: {data.shape}")
         print("Column order in the resulting dataset:")
