@@ -32,13 +32,6 @@ class WrappedRepresentationDataset(RepresentationDataset):
         self.one_hot_encoded_attributes = {}
         self.integer_encoded_attributes = {}
 
-        if attributes_to_one_hot:
-            for attribute in attributes_to_one_hot:
-                if attribute not in self.dataset.get_attributes():
-                    raise ValueError(f"Attribute '{attribute}' not found in dataset.")
-                self.one_hot_encode_attribute(attribute)
-
-
         print("Converting embeddings and attention weights to NumPy arrays...")
         embeddings_array = np.array(self.dataset.get_embeddings())
         
@@ -180,6 +173,27 @@ class WrappedRepresentationDataset(RepresentationDataset):
     
         self.one_hot_encoded_attributes[attribute] = one_hot_encoded
         self.integer_encoded_attributes[attribute] = value_to_int
+
+'''
+Converting embeddings and attention weights to NumPy arrays...
+Applying random projection to reduce attention weights from 6255001 to 1000 dimensions...
+Applying dimensionality reduction using None...
+One-hot encoding attribute: GO CC Terms
+One-hot encoding attribute: GO MF Terms
+Final data shape: (975, 1024)
+Column order in the resulting dataset:
+Final data shape: (975, 1000)
+Column order in the resulting dataset:
+Adding one-hot encoded attributes to data...
+Traceback (most recent call last):
+  File "/data/users/rodalex/RepClassifier/./project_root/scripts/distribution_analysis.py", line 107, in <module>
+    main(dataset_path, analysis_title)
+  File "/data/users/rodalex/RepClassifier/./project_root/scripts/distribution_analysis.py", line 62, in main
+    data_go_cc = wrapped_dataset.select_data(one_hot_columns=['GO CC Terms'])
+  File "/data/users/rodalex/RepClassifier/project_root/dataset/wrapped_representation_dataset.py", line 133, in select_data
+    data = np.concatenate([one_hot_data, data], axis=1)
+ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 2 dimension(s) and the array at index 1 has 1 dimension(s)
+'''
 
 """
     def plot_kmeans(self, n_clusters=3, attribute='Class', embedding=False, attention_weights=False):
