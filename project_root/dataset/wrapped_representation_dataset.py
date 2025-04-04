@@ -29,6 +29,8 @@ class WrappedRepresentationDataset(RepresentationDataset):
             random_projection_dim (int): Target dimensionality for random projection before PCA.
         """
         self.dataset = dataset  # Store original dataset reference
+        self.one_hot_encoded_attributes = {}
+        self.integer_encoded_attributes = {}
 
         print("Converting embeddings and attention weights to NumPy arrays...")
         embeddings_array = np.array(self.dataset.get_embeddings())
@@ -55,7 +57,20 @@ class WrappedRepresentationDataset(RepresentationDataset):
         if self.attention_weights is not None:
             self.combined_embeddings_and_attention = np.concatenate([self.embeddings, self.attention_weights], axis=1)
 
-    def select_data(self, embedding=False, attention_weights=False, id_column=False, target_column=False, additional_columns=None, length_column=False):
+        if attributes_to_one_hot:
+            for attribute in attributes_to_one_hot:
+                if attribute not in self.dataset.get_attributes():
+                    raise ValueError(f"Attribute '{attribute}' not found in dataset.")
+                self.one_hot_encode_attribute(attribute)
+
+    def select_data(self,
+                    embedding=False,
+                    attention_weights=False,
+                    id_column=False,
+                    target_column=False,
+                    additional_columns=None,
+                    length_column=False,
+                    one_hot_columns=None):
         """Select data for visualization and print the column order."""
 
         if attention_weights and self.attention_weights is None:
@@ -68,8 +83,8 @@ class WrappedRepresentationDataset(RepresentationDataset):
         elif attention_weights:
             data = self.attention_weights
         else:
-            raise ValueError("At least one of 'embedding' or 'attention_weights' must be True.")
-        
+            data = []
+
         column_order = []
         current_column_index = 0
 
@@ -84,12 +99,15 @@ class WrappedRepresentationDataset(RepresentationDataset):
         if additional_columns:
             print("Adding additional columns to data...")
             for column in additional_columns:
-                attribute = np.array(self.dataset.get_attribute(column)).reshape(-1, 1)
+                attribute = np.array(self.dataset.get_attribute(column))
+                if attribute.ndim == 1:
+                    attribute = attribute.reshape(-1, 1)
                 print(f"Shape data before adding: {data.shape} | Shape column: {attribute.shape}")
                 data = np.concatenate([attribute, data], axis=1)
                 column_order.append(column)
-                current_column_index += 1
-        
+                current_column_index += attribute.shape[1]
+
+
         if length_column:
             print("Adding lengths to data...")
             lengths = np.array(self.dataset.get_lengths()).reshape(-1, 1)
@@ -106,25 +124,36 @@ class WrappedRepresentationDataset(RepresentationDataset):
             column_order.append("id_column")
             current_column_index += 1
 
+        if one_hot_columns:
+            print("Adding one-hot encoded attributes to data...")
+            for column in one_hot_columns:
+                if column not in self.one_hot_encoded_attributes:
+                    self.one_hot_encode_attribute(column)
+                one_hot_data = self.one_hot_encoded_attributes[column]
+                data = np.concatenate([one_hot_data, data], axis=1)
+                column_order.append(f"one_hot_{column}")
+                current_column_index += one_hot_data.shape[1]
+
         print(f"Final data shape: {data.shape}")
         print("Column order in the resulting dataset:")
         for index, column_name in enumerate(column_order):
             print(f"Column {index}: {column_name}")
-    
+
         return data
+
 
     def one_hot_encode_attribute(self, attribute):
         """ One-hot encode a specified attribute."""
         attribute_data = self.dataset.get_attribute(attribute)
-        unique_values = list(set(attribute_data))
+        unique_values = list(set(tuple(row) for row in attribute_data))
         value_to_int = {value: idx for idx, value in enumerate(unique_values)}
-        integer_encoded = [value_to_int[value] for value in attribute_data]
+        integer_encoded = np.array([value_to_int[tuple(row)] for row in attribute_data])
         one_hot_encoded = np.eye(len(unique_values))[integer_encoded]
-        return one_hot_encoded
+        self.one_hot_encoded_attributes[attribute] = one_hot_encoded
+        self.integer_encoded_attributes[attribute] = integer_encoded
 
+"""
     def plot_kmeans(self, n_clusters=3, attribute='Class', embedding=False, attention_weights=False):
-        """ Apply K-Means clustering and visualize results."""
-
         data = self.select_data(embedding, attention_weights)
         kmeans = KMeans(n_clusters=n_clusters, random_state=42).fit(data)
         clusters = kmeans.labels_
@@ -144,10 +173,10 @@ class WrappedRepresentationDataset(RepresentationDataset):
 
 
     def plot_correration_heatmap(self, embedding=False, attention_weights=False):
-        """Plot a heatmap of the correlation between features."""
         data = self.select_data(embedding, attention_weights)
         corr = np.corrcoef(data, rowvar=False)
         plt.figure(figsize=(16, 10))
         sns.heatmap(corr, annot=False, cmap='coolwarm')
         plt.title('Correlation Heatmap')
         plt.show()
+"""
