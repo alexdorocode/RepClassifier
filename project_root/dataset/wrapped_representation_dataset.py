@@ -32,6 +32,13 @@ class WrappedRepresentationDataset(RepresentationDataset):
         self.one_hot_encoded_attributes = {}
         self.integer_encoded_attributes = {}
 
+        if attributes_to_one_hot:
+            for attribute in attributes_to_one_hot:
+                if attribute not in self.dataset.get_attributes():
+                    raise ValueError(f"Attribute '{attribute}' not found in dataset.")
+                self.one_hot_encode_attribute(attribute)
+
+
         print("Converting embeddings and attention weights to NumPy arrays...")
         embeddings_array = np.array(self.dataset.get_embeddings())
         
@@ -144,13 +151,35 @@ class WrappedRepresentationDataset(RepresentationDataset):
 
     def one_hot_encode_attribute(self, attribute):
         """ One-hot encode a specified attribute."""
+        print(f"One-hot encoding attribute: {attribute}")
+        if attribute in self.one_hot_encoded_attributes:
+            print(f"Attribute '{attribute}' is already one-hot encoded.")
+            return
         attribute_data = self.dataset.get_attribute(attribute)
-        unique_values = list(set(tuple(row) for row in attribute_data))
+        unique_values = set()
+        for go_terms in attribute_data:
+            for term in go_terms:
+                if isinstance(term, str):
+                    unique_values.add(term)
+                else:
+                    raise ValueError(f"Invalid term type: {type(term)}. Expected string.")
+    
+        # Map unique values to integers
         value_to_int = {value: idx for idx, value in enumerate(unique_values)}
-        integer_encoded = np.array([value_to_int[tuple(row)] for row in attribute_data])
-        one_hot_encoded = np.eye(len(unique_values))[integer_encoded]
+    
+        # Convert attribute_data to integer indices
+        integer_encoded = []
+        for go_terms in attribute_data:
+            row_indices = [value_to_int[term] for term in go_terms if term in value_to_int]
+            integer_encoded.append(row_indices)
+    
+        # Create one-hot encoded array
+        one_hot_encoded = np.zeros((len(attribute_data), len(unique_values)))
+        for i, row_indices in enumerate(integer_encoded):
+            one_hot_encoded[i, row_indices] = 1
+    
         self.one_hot_encoded_attributes[attribute] = one_hot_encoded
-        self.integer_encoded_attributes[attribute] = integer_encoded
+        self.integer_encoded_attributes[attribute] = value_to_int
 
 """
     def plot_kmeans(self, n_clusters=3, attribute='Class', embedding=False, attention_weights=False):

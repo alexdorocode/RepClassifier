@@ -1,14 +1,16 @@
 import os
 import sys
-import numpy as np # type: ignore
-import matplotlib.pyplot as plt # type: ignore
-import seaborn as sns # type: ignore
-from sklearn.decomposition import PCA # type: ignore
-from sklearn.manifold import TSNE # type: ignore
-from sklearn.cluster import KMeans # type: ignore
+import numpy as np  # type: ignore
+import matplotlib.pyplot as plt  # type: ignore
+import seaborn as sns  # type: ignore
+from datetime import datetime
+from sklearn.decomposition import PCA  # type: ignore
+from sklearn.manifold import TSNE  # type: ignore
+from sklearn.cluster import KMeans  # type: ignore
 from project_root.dataset.dataset_loader import DatasetLoader
 from project_root.dataset.representation_dataset import RepresentationDataset
 from project_root.dataset.wrapped_representation_dataset import WrappedRepresentationDataset
+
 
 def plot_2d(data, labels, title, save_path):
     plt.figure(figsize=(10, 8))
@@ -16,6 +18,7 @@ def plot_2d(data, labels, title, save_path):
     plt.title(title)
     plt.savefig(save_path)
     plt.close()
+
 
 def create_plots(data, labels, data_name, output_dir):
     os.makedirs(output_dir, exist_ok=True)
@@ -35,7 +38,8 @@ def create_plots(data, labels, data_name, output_dir):
     kmeans_data = kmeans.fit_transform(data)
     plot_2d(kmeans_data, labels, f'KMeans 2D - {data_name}', os.path.join(output_dir, f'kmeans_{data_name}.png'))
 
-def main(dataset_path):
+
+def main(dataset_path, analysis_title):
     # Load data
     loader = DatasetLoader(dataset_path)
     df = loader.load_dataframe()
@@ -48,10 +52,8 @@ def main(dataset_path):
     wrapped_dataset = WrappedRepresentationDataset(
         dataset=representation_dataset,
         process_attention_weights=True,
-        reduce_method='pca',
-        pca_method='threshold',
-        threshold=0.95,
-        random_projection_dim=50
+        random_projection_dim=1000,
+        attributes_to_one_hot=['GO CC Terms', 'GO MF Terms'],
     )
 
     # Select data
@@ -66,19 +68,40 @@ def main(dataset_path):
     labels = np.array(representation_dataset.get_labels())
 
     # Define output directory
-    output_base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'images', 'distribution_analysis')
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    output_base_dir = os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        'images',
+        'distribution_analysis',
+        f"{date_str}_{analysis_title}"
+    )
 
     # Create plots for each data combination
-    create_plots(data_emb, labels, 'embeddings', os.path.join(output_base_dir, 'embeddings'))
-    create_plots(data_att, labels, 'attention_weights', os.path.join(output_base_dir, 'attention_weights'))
-    create_plots(data_go_cc, labels, 'go_cc_terms', os.path.join(output_base_dir, 'go_cc_terms'))
-    create_plots(data_go_mf, labels, 'go_mf_terms', os.path.join(output_base_dir, 'go_mf_terms'))
-    create_plots(data_max_mbl_cc, labels, 'max_mbl_cc', os.path.join(output_base_dir, 'max_mbl_cc'))
-    create_plots(data_max_mbl_mf, labels, 'max_mbl_mf', os.path.join(output_base_dir, 'max_mbl_mf'))
+    combinations = {
+        'embeddings': data_emb,
+        'attention_weights': data_att,
+        'go_cc_terms': data_go_cc,
+        'go_mf_terms': data_go_mf,
+        'max_mbl_cc': data_max_mbl_cc,
+        'max_mbl_mf': data_max_mbl_mf,
+        'embedding_attention': np.hstack((data_emb, data_att)),
+        'go_terms': np.hstack((data_go_cc, data_go_mf)),
+        'max_mbl': np.hstack((data_max_mbl_cc, data_max_mbl_mf)),
+        'go_terms_max_mbl': np.hstack((data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf)),
+        'embedding_go_terms_max_mbl': np.hstack((data_emb, data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf)),
+        'attention_go_terms_max_mbl': np.hstack((data_att, data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf)),
+        'all_combined': np.hstack((data_emb, data_att, data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf))
+    }
+
+    for combination_name, combination_data in combinations.items():
+        output_dir = os.path.join(output_base_dir, combination_name)
+        create_plots(combination_data, labels, combination_name, output_dir)
+
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <dataset_path>")
+    if len(sys.argv) != 3:
+        print("Usage:         PYTHONPATH=$(pwd) OMP_NUM_THREADS=64 MKL_NUM_THREADS=64 OPENBLAS_NUM_THREADS=64 python ./project_root/scripts/distribution_analysis.py ../DATASETS/ embedding_mean")
         sys.exit(1)
     dataset_path = sys.argv[1]
-    main(dataset_path)
+    analysis_title = sys.argv[2]
+    main(dataset_path, analysis_title)

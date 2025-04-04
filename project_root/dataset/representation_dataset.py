@@ -70,6 +70,10 @@ class RepresentationDataset(Dataset):
     def get_lengths(self):
         """Returns the lengths of the amino acid sequences."""
         return list(self.lengths.values())
+    
+    def get_attributes(self):
+        """Returns the attributes of the dataframe."""
+        return list(self.dataframe.columns)
 
     def get_attribute(self, attribute_name):
         if attribute_name not in self.dataframe.columns:
@@ -102,6 +106,8 @@ class DatasetUtils:
         if DatasetUtils.check_duplicates(dataframe, id_column) and solve_inconsistencies:
             print("Removing duplicate entries...")
             dataframe = dataframe.drop_duplicates(subset=[id_column])
+            print("Removing all raws with NaN values...")
+            dataframe = dataframe.dropna()
 
         df_ids = set(dataframe[id_column])
         emb_ids = set(embeddings.keys())
@@ -120,4 +126,9 @@ class DatasetUtils:
 
         labels = {row[id_column]: row[target_column] for _, row in dataframe.iterrows()}
         ids = {id_: id_ for id_ in dataframe[id_column]}
+
+        # Check for NaN values in the target column
+        for column in dataframe.columns:
+            print(f"Dataframe nan in {column}: {dataframe[column].isna().sum()}")
+
         return dataframe, embeddings, attention_weights, labels, ids
