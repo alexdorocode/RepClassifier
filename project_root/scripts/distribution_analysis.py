@@ -24,9 +24,12 @@ def create_plots(data, labels, data_name, output_dir):
     os.makedirs(output_dir, exist_ok=True)
 
     # PCA
-    pca = PCA(n_components=2)
-    pca_data = pca.fit_transform(data)
-    plot_2d(pca_data, labels, f'PCA 2D - {data_name}', os.path.join(output_dir, f'pca_{data_name}.png'))
+    if data.shape[1] < 2:  # Skip PCA if there are fewer than 2 features
+        print(f"Skipping PCA for {data_name} due to insufficient features (data shape: {data.shape}).")
+    else:
+        pca = PCA(n_components=2)
+        pca_data = pca.fit_transform(data)
+        plot_2d(pca_data, labels, f'PCA 2D - {data_name}', os.path.join(output_dir, f'pca_{data_name}.png'))
 
     # TSNE
     tsne = TSNE(n_components=2, random_state=42)
@@ -78,15 +81,12 @@ def main(dataset_path, analysis_title):
 
     # Create plots for each data combination
     combinations = {
-        'embeddings': data_emb,
-        'attention_weights': data_att,
-        'go_cc_terms': data_go_cc,
-        'go_mf_terms': data_go_mf,
-        'max_mbl_cc': data_max_mbl_cc,
-        'max_mbl_mf': data_max_mbl_mf,
+        #'embeddings': data_emb,
+        #'attention_weights': data_att,
+        #'go_cc_terms': data_go_cc,
+        #'go_mf_terms': data_go_mf,
         'embedding_attention': np.hstack((data_emb, data_att)),
         'go_terms': np.hstack((data_go_cc, data_go_mf)),
-        'max_mbl': np.hstack((data_max_mbl_cc, data_max_mbl_mf)),
         'go_terms_max_mbl': np.hstack((data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf)),
         'embedding_go_terms_max_mbl': np.hstack((data_emb, data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf)),
         'attention_go_terms_max_mbl': np.hstack((data_att, data_go_cc, data_go_mf, data_max_mbl_cc, data_max_mbl_mf)),
@@ -95,6 +95,11 @@ def main(dataset_path, analysis_title):
 
     for combination_name, combination_data in combinations.items():
         output_dir = os.path.join(output_base_dir, combination_name)
+        print(f"Creating plots for {combination_name}...")
+        print(f"Data shape: {combination_data.shape}")
+        print(f"Labels shape: {labels.shape}")
+        print(f"Output directory: {output_dir}")
+        # Create plots for each combination
         create_plots(combination_data, labels, combination_name, output_dir)
 
 
