@@ -18,10 +18,13 @@ class FeatureProcessor(ABC):
 
 
 # ============================
-# Fixed Vector Processors
+# Processors for Fixed-Length Outputs
 # ============================
+
 class FixedVectorProcessor(FeatureProcessor):
+    """ Abstract class for processors that return a fixed-length vector per sample """
     pass
+
 
 class PseAACProcessor(FixedVectorProcessor):
     def __init__(self, sequences, λ=10, ω=0.05):
@@ -241,14 +244,23 @@ class TokenizedProcessor(FeatureProcessor):
         pass
 
 
+# ============================
+# Specific Token Processors
+# ============================
+
 class SequenceProcessor(TokenizedProcessor):
-    pass
+    def __init__(self, raw_data, encoding='onehot', max_length=512):
+        super().__init__(raw_data, token_type='sequence', encoding=encoding, max_length=max_length)
+
 
 class ThreeDiProcessor(TokenizedProcessor):
-    pass
+    def __init__(self, raw_data, encoding='onehot', max_length=256):
+        super().__init__(raw_data, token_type='sequence', encoding=encoding, max_length=max_length)
+
 
 class GOProcessor(TokenizedProcessor):
-    pass
+    def __init__(self, raw_data, encoding='onehot'):
+        super().__init__(raw_data, token_type='set', encoding=encoding)
 
 
 # ============================

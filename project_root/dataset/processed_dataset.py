@@ -1,4 +1,111 @@
-from project_root.dataset.representation_dataset import RepresentationDataset
+from project_root.dataset.raw_dataset import RawDataset
+from project_root.features.feature_processor import (
+    SequenceProcessor,
+    PseAACProcessor,
+    SVMProt188DProcessor,
+    ThreeDiProcessor,
+    Pse3DiProcessor,
+    GOProcessor,
+    pLMProcessor
+)
+
+
+class ProcessedDataset(RawDataset):
+    def __init__(self, dataset, features_to_process=None):
+        """
+        Initializes the ProcessedDataset by applying feature processing logic.
+
+        Args:
+            dataset (RawDataset): An instance of RawDataset containing raw inputs.
+            features_to_process (list or None): List of feature names to process.
+                If None, tries to process all known features.
+        """
+        self.dataset = dataset
+        self.feature_outputs = {}
+
+        self.all_possible_features = {
+            "aa_onehot", "pseaac", "svmprot",
+            "3di_onehot", "pse3di",
+            "go_onehot",
+            "protT5", "prostT5", "esm2"
+        }
+
+        self.features_to_process = set(features_to_process) if features_to_process else self.all_possible_features
+
+        self._process_features()
+
+    def _process_features(self):
+        if "aa_onehot" in self.features_to_process and self._has_attribute("aa_sequence"):
+            print("🔍 Processing aa_onehot...")
+            aa = self.dataset.get_attribute("aa_sequence")
+            processor = SequenceProcessor(aa, encoding='onehot')
+            processor.process()
+            self.feature_outputs["aa_onehot"] = processor.processed_data
+
+        if "pseaac" in self.features_to_process and self._has_attribute("aa_sequence"):
+            print("🔍 Processing pseaac...")
+            aa = self.dataset.get_attribute("aa_sequence")
+            processor = PseAACProcessor(aa)
+            processor.process()
+            self.feature_outputs["pseaac"] = processor.processed_data
+
+        if "svmprot" in self.features_to_process and self._has_attribute("aa_sequence"):
+            print("🔍 Processing svmprot...")
+            aa = self.dataset.get_attribute("aa_sequence")
+            processor = SVMProt188DProcessor(aa)
+            processor.process()
+            self.feature_outputs["svmprot"] = processor.processed_data
+
+        if "3di_onehot" in self.features_to_process and self._has_attribute("3di_tokens"):
+            print("🔍 Processing 3di_onehot...")
+            tokens = self.dataset.get_attribute("3di_tokens")
+            processor = ThreeDiProcessor(tokens)
+            processor.process()
+            self.feature_outputs["3di_onehot"] = processor.processed_data
+
+        if "pse3di" in self.features_to_process and self._has_attribute("3di_tokens"):
+            print("🔍 Processing pse3di...")
+            tokens = self.dataset.get_attribute("3di_tokens")
+            processor = Pse3DiProcessor(tokens)
+            processor.process()
+            self.feature_outputs["pse3di"] = processor.processed_data
+
+        if "go_onehot" in self.features_to_process and self._has_attribute("go_annotations"):
+            print("🔍 Processing go_onehot...")
+            go_terms = self.dataset.get_attribute("go_annotations")
+            processor = GOProcessor(go_terms)
+            processor.process()
+            self.feature_outputs["go_onehot"] = processor.processed_data
+
+        for model in ["protT5", "prostT5", "esm2"]:
+            if model in self.features_to_process and self._has_attribute(f"{model}_embedding"):
+                print(f"🔍 Processing {model}...")
+                emb = self.dataset.get_attribute(f"{model}_embedding")
+                processor = pLMProcessor(model, raw_data=emb)
+                processor.process()
+                self.feature_outputs[model] = processor.processed_data
+
+        print("✅ Selected features processed.")
+
+    def _has_attribute(self, attr_name):
+        try:
+            _ = self.dataset.get_attribute(attr_name)
+            return True
+        except KeyError:
+            print(f"⚠️ Attribute '{attr_name}' not found in dataset. Skipping...")
+            return False
+
+    def get_feature(self, name):
+        return self.feature_outputs.get(name)
+
+    def get_all_features(self):
+        return self.feature_outputs
+
+
+
+
+''''
+from project_root.dataset.raw_dataset import RawDataset
 import numpy as np # type: ignore
 import matplotlib.pyplot as plt # type: ignore
 import seaborn as sns  # type: ignore
@@ -11,7 +118,7 @@ from project_root.utils.feature_processor import (
 )
 
 
-class WrappedRepresentationDataset(RepresentationDataset):
+class ProcessedDataset(RawDataset):
     def __init__(self, dataset,
                  process_attention_weights = True,
                  reduce_method=None,
@@ -160,6 +267,7 @@ class WrappedRepresentationDataset(RepresentationDataset):
         return data
 
 
+
     def one_hot_encode_attribute(self, attribute):
         """ One-hot encode a specified attribute."""
         print(f"One-hot encoding attribute: {attribute}")
@@ -192,7 +300,6 @@ class WrappedRepresentationDataset(RepresentationDataset):
         self.one_hot_encoded_attributes[attribute] = one_hot_encoded
         self.integer_encoded_attributes[attribute] = value_to_int
 
-'''
 Converting embeddings and attention weights to NumPy arrays...
 Applying random projection to reduce attention weights from 6255001 to 1000 dimensions...
 Applying dimensionality reduction using None...

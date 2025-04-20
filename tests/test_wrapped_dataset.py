@@ -1,7 +1,7 @@
 import numpy as np # type: ignore
 import pytest # type: ignore
-from project_root.dataset.representation_dataset import RepresentationDataset
-from project_root.dataset.wrapped_representation_dataset import WrappedRepresentationDataset
+from project_root.dataset.raw_dataset import RepresentationDataset
+from project_root.dataset.processed_dataset import WrappedRepresentationDataset
 
 # ---- Dummy Dataset for Testing ----
 class DummyProteinDataset(RepresentationDataset):
