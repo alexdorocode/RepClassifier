@@ -164,9 +164,13 @@ def main():
     print(f" - Unreviewed UniProt IDs: {', '.join(unreviewed_ids)}")
     print(f" - Non-reviewed information UniProt IDs: {', '.join(non_reviewed_inf_ids)}")
 
-    # Save outputs
-    pd.DataFrame(sequence_data).to_csv(os.path.join(OUTPUT_DIR, "MoonProt3_sequences.csv"), index=False)
-    pd.DataFrame(go_annotation_data).to_csv(os.path.join(OUTPUT_DIR, "MoonProt3_go_anotations.csv"), index=False)
+    # Save outputs with headers
+    pd.DataFrame(sequence_data).to_csv(
+        os.path.join(OUTPUT_DIR, "MoonProt3_sequences.csv"), index=False, header=True
+    )
+    pd.DataFrame(go_annotation_data).to_csv(
+        os.path.join(OUTPUT_DIR, "MoonProt3_go_anotations.csv"), index=False, header=True
+    )
     print("\n✅ Saved MoonProt3_sequences.csv and MoonProt3_go_anotations.csv in ../DATASETS/")
 
 if __name__ == "__main__":
