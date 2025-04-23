@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import numpy as np
+import numpy as np # type: ignore
 
 # ============================
 # Abstract Base
@@ -68,39 +68,39 @@ class SVMProt188DProcessor(FixedVectorProcessor):
                 'hydrophobic': set('CVLIMFW')
             },
             'van_der_waals_volume': {
-                'small': set('A', 'G', 'S', 'T', 'P', 'D', 'C'),
-                'medium': set('N', 'V', 'E', 'Q', 'I', 'L'),
-                'large': set('M', 'H', 'K', 'F', 'R', 'Y', 'W')
+                'small': set(['A', 'G', 'S', 'T', 'P', 'D', 'C']),
+                'medium': set(['N', 'V', 'E', 'Q', 'I', 'L']),
+                'large': set(['M', 'H', 'K', 'F', 'R', 'Y', 'W'])
             },
             'polarity': {
-                'nonpolar': set('G', 'A', 'V', 'L', 'I', 'M', 'F', 'W', 'P'),
-                'polar_uncharged': set('S', 'T', 'C', 'Y', 'N', 'Q'),
-                'polar_charged': set('D', 'E', 'K', 'R', 'H')
+                'nonpolar': set(['G', 'A', 'V', 'L', 'I', 'M', 'F', 'W', 'P']),
+                'polar_uncharged': set(['S', 'T', 'C', 'Y', 'N', 'Q']),
+                'polar_charged': set(['D', 'E', 'K', 'R', 'H'])
             },
             'polarizability': {
-                'low': set('G', 'A', 'S', 'T', 'P', 'D'),
-                'medium': set('C', 'E', 'N', 'Q', 'K', 'H'),
-                'high': set('M', 'I', 'L', 'V', 'F', 'Y', 'W', 'R')
+                'low': set(['G', 'A', 'S', 'T', 'P', 'D']),
+                'medium': set(['C', 'E', 'N', 'Q', 'K', 'H']),
+                'high': set(['M', 'I', 'L', 'V', 'F', 'Y', 'W', 'R'])
             },
             'charge': {
-                'positive': set('K', 'R', 'H'),
-                'negative': set('D', 'E'),
-                'neutral': set('A', 'N', 'C', 'Q', 'G', 'I', 'L', 'M', 'F', 'P', 'S', 'T', 'V', 'W', 'Y')
+                'positive': set(['K', 'R', 'H']),
+                'negative': set(['D', 'E']),
+                'neutral': set(['A', 'N', 'C', 'Q', 'G', 'I', 'L', 'M', 'F', 'P', 'S', 'T', 'V', 'W', 'Y'])
             },
             'secondary_structure': {
-                'helix': set('E', 'A', 'L', 'M', 'Q', 'K', 'R', 'H'),
-                'strand': set('V', 'I', 'Y', 'F', 'W', 'T'),
-                'coil': set('G', 'N', 'P', 'S', 'D', 'C')
+                'helix': set(['E', 'A', 'L', 'M', 'Q', 'K', 'R', 'H']),
+                'strand': set(['V', 'I', 'Y', 'F', 'W', 'T']),
+                'coil': set(['G', 'N', 'P', 'S', 'D', 'C'])
             },
             'solvent_accessibility': {
-                'buried': set('A', 'L', 'F', 'C', 'G', 'I', 'V', 'W'),
-                'exposed': set('R', 'K', 'Q', 'E', 'N', 'D'),
-                'intermediate': set('M', 'S', 'P', 'T', 'H', 'Y')
+                'buried': set(['A', 'L', 'F', 'C', 'G', 'I', 'V', 'W']),
+                'exposed': set(['R', 'K', 'Q', 'E', 'N', 'D']),
+                'intermediate': set(['M', 'S', 'P', 'T', 'H', 'Y'])
             },
             'surface_tension': {
-                'low': set('A', 'G', 'S', 'T', 'P'),
-                'medium': set('D', 'E', 'N', 'Q', 'K'),
-                'high': set('M', 'I', 'L', 'V', 'F', 'Y', 'W', 'R', 'H', 'C')
+                'low': set(['A', 'G', 'S', 'T', 'P']),
+                'medium': set(['D', 'E', 'N', 'Q', 'K']),
+                'high': set(['M', 'I', 'L', 'V', 'F', 'Y', 'W', 'R', 'H', 'C'])
             }
         }
 
@@ -210,9 +210,17 @@ class TokenizedProcessor(FeatureProcessor):
     def _encode_sequence(self, tokens):
         encoded = []
         for seq in tokens:
+            # Ensure seq is a list of tokens (convert string to list of characters if necessary)
+            if isinstance(seq, str):
+                seq = list(seq)
+            
+            # Pad or truncate the sequence to the maximum length
             seq = seq[:self.max_length] + ['<PAD>'] * (self.max_length - len(seq))
+            
+            # Convert tokens to one-hot vectors
             vecs = [self._token_to_onehot(tok) for tok in seq]
             encoded.append(vecs)
+        
         return np.array(encoded)
 
     def _encode_set(self, tokens):

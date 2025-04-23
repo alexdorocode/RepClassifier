@@ -7,7 +7,7 @@ from datetime import datetime
 from sklearn.decomposition import PCA  # type: ignore
 from sklearn.manifold import TSNE  # type: ignore
 from sklearn.cluster import KMeans  # type: ignore
-from project_root.dataset.dataset_loader import DatasetLoader
+from project_root.dataset.dataset_handler import DatasetLoader
 from project_root.dataset.raw_dataset import RepresentationDataset
 from project_root.dataset.processed_dataset import WrappedRepresentationDataset
 

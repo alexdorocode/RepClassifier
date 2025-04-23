@@ -11,18 +11,26 @@ from project_root.features.feature_processor import (
 
 
 class ProcessedDataset(RawDataset):
-    def __init__(self, dataset, features_to_process=None):
+    def __init__(self, raw_dataset: RawDataset, features_to_process=None):
         """
-        Initializes the ProcessedDataset by applying feature processing logic.
+        Initializes the ProcessedDataset by processing selected features from the raw dataset.
 
         Args:
-            dataset (RawDataset): An instance of RawDataset containing raw inputs.
-            features_to_process (list or None): List of feature names to process.
-                If None, tries to process all known features.
+            raw_dataset (RawDataset): An instance of RawDataset.
+            features_to_process (list or None): Features to process; if None, process all.
         """
-        self.dataset = dataset
+        # Initialize RawDataset by passing its data
+        super().__init__(
+            raw_data={
+                "uniprot_ids": raw_dataset.uniprot_ids,
+                "labels": raw_dataset.labels,
+                "sequences": raw_dataset.sequences,
+                "tokens_3di": raw_dataset.tokens_3di,
+            },
+            embeddings=raw_dataset.embeddings,
+        )
+        self.dataset = raw_dataset
         self.feature_outputs = {}
-
         self.all_possible_features = {
             "aa_onehot", "pseaac", "svmprot",
             "3di_onehot", "pse3di",

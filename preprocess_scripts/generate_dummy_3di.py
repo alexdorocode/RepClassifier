@@ -1,9 +1,15 @@
 import os
 import pandas as pd
 import random
+import sys
+
+# Add the project root directory to PYTHONPATH
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+if project_root not in sys.path:
+    sys.path.append(project_root)
 
 # Load your aa_sequences.csv
-seq_file = "../DATASETS/row_data/aa_sequences.csv"
+seq_file = "../DATASETS/raw_data/aa_sequences.csv"
 df = pd.read_csv(seq_file)
 
 # Dummy 3Di tokens generator
