@@ -18,5 +18,10 @@ __pycache__/
 *.env
 
 # Ignore wandb files
-.wandb
-.json
+.wandb/
+*.json
+
+# Ignore additional files
+logs/
+*.csv
+*.h5
