@@ -1,0 +1,37 @@
+_wandb:
+    value:
+        cli_version: 0.19.10
+        m: []
+        python_version: 3.9.13
+        t:
+            "1":
+                - 1
+                - 55
+            "2":
+                - 1
+                - 55
+            "3":
+                - 2
+                - 14
+                - 23
+                - 55
+            "4": 3.9.13
+            "5": 0.19.10
+            "8":
+                - 5
+            "12": 0.19.10
+            "13": darwin-x86_64
+activation:
+    value: relu
+batch_size:
+    value: 32
+epochs:
+    value: 50
+input_dim:
+    value: 1000
+latent_dim:
+    value: 128
+learning_rate:
+    value: 0.00024332338447586785
+optimizer:
+    value: Adam

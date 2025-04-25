@@ -1,0 +1,35 @@
+{
+  "os":  "macOS-10.16-x86_64-i386-64bit",
+  "python":  "CPython 3.9.13",
+  "startedAt":  "2025-04-25T14:55:46.386955Z",
+  "program":  "/Users/alexdominguez/Documents/GitHub/TFM/RepClassifier/preprocess/embeddings_geokg/launch_autoencoder_sweeps.py",
+  "codePath":  "preprocess/embeddings_geokg/launch_autoencoder_sweeps.py",
+  "git":  {
+    "remote":  "https://github.com/alexdorocode/RepClassifier.git",
+    "commit":  "af3fc0ceede2b746a0e494e8b185763947825142"
+  },
+  "email":  "alexdoro2020@gmail.com",
+  "root":  "/Users/alexdominguez/Documents/GitHub/TFM/RepClassifier",
+  "host":  "EiMac.local",
+  "executable":  "/Users/alexdominguez/opt/anaconda3/bin/python",
+  "codePathLocal":  "preprocess/embeddings_geokg/launch_autoencoder_sweeps.py",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "499963174912",
+      "used":  "466968211456"
+    },
+    "/System/Volumes/Data":  {
+      "total":  "499963174912",
+      "used":  "466968211456"
+    }
+  },
+  "memory":  {
+    "total":  "17179869184"
+  },
+  "cpu":  {
+    "count":  4,
+    "countLogical":  8
+  }
+}

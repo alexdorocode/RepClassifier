@@ -7,7 +7,7 @@ from datetime import date
 import torch
 import torch.nn as nn
 
-from preprocess.embeddings_geokg.train_GOAutoencoder import GOAutoencoder
+from preprocess.embeddings_geokg.train_go_autoencoder_wandb import GOAutoencoder
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Extract GO embeddings using GeOKG")

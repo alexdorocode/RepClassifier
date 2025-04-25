@@ -1,0 +1,16 @@
+wandb_version: 1
+
+activation:
+  value: leaky_relu
+batch_size:
+  value: 32
+epochs:
+  value: 10
+input_dim:
+  value: 500
+latent_dim:
+  value: 128
+learning_rate:
+  value: 0.00561865884567406
+optimizer:
+  value: Adam
