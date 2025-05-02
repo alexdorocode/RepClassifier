@@ -1,0 +1,16 @@
+dataset:
+  root_dir: ../DATASETS/raw_data
+  raw:
+    uniprot_ids: uniprot_ids.csv
+    labels: uniprot_ids_labeled.csv
+    sequences: aa_sequences.csv
+    tokens_3di: 3di_tokens.csv
+embeddings:
+  emb_dir: ../DATASETS/embeddings
+  esm: null
+  prott5: null
+  prostt5: null
+  geokg: null
+options:
+  use_embeddings: true
+  load_from_raw: true
