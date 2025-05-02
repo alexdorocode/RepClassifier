@@ -19,6 +19,7 @@ __pycache__/
 
 # Ignore wandb files
 .wandb/
+*.wandb
 *.json
 
 # Ignore additional files
