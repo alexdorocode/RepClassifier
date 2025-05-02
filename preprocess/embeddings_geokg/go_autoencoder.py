@@ -9,7 +9,6 @@ def generate_hidden_dims(input_dim, latent_dim):
     """Generate a list of hidden dimensions from input_dim down to latent_dim using powers of 2"""
     dims = []
     current = next_power_of_two(input_dim)
-    target = max(latent_dim * 2, 32)
 
     while current > latent_dim:
         next_dim = current // 2

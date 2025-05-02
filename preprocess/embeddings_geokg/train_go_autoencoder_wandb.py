@@ -8,28 +8,34 @@ import wandb
 
 EMB_PATH = "../DATASETS/embeddings/GeOKG/goa_embedding/"
 SAVE_PATH = "../DATASETS/embeddings/GeOKG/autoencoders/"
-EMB_DIMENSIONS = [50, 100, 200, 500, 1000]
-
 
 # ==== Sweep Training Function ====
-def train():
-    wandb.init()
-    config = wandb.config
+def train(wandb_run=True, config=None):
+
+    # Initialize wandb
+    if wandb_run:
+        wandb.init()
+        config = dict(wandb.config)  # 👈 Convert wandb.config to a normal dictionary
 
     # Load data
-    emb_path = f"../DATASETS/embeddings/GeOKG/goa_embedding/GeOKG_{config.input_dim}dim.npy"
+    emb_name = f"GeOKG_{config['input_dim']}dim.npy"
+    emb_path = f"{EMB_PATH}{emb_name}"
     embeddings = np.load(emb_path)
     data = torch.tensor(embeddings, dtype=torch.float32)
     dataset = TensorDataset(data)
-    loader = DataLoader(dataset, batch_size=config.batch_size, shuffle=True)
+    loader = DataLoader(dataset, batch_size=config['batch_size'], shuffle=True)
 
     # Model
-    model = GOAutoencoder(input_dim=config.input_dim, latent_dim=config.latent_dim, activation_name=config.activation)
-    optimizer = getattr(torch.optim, config.optimizer)(model.parameters(), lr=config.learning_rate)
+    model = GOAutoencoder(
+        input_dim=config['input_dim'],
+        latent_dim=config['latent_dim'],
+        activation_name=config['activation']
+    )
+    optimizer = getattr(torch.optim, config['optimizer'])(model.parameters(), lr=config['learning_rate'])
     loss_fn = nn.MSELoss()
 
     model.train()
-    for epoch in range(config.epochs):
+    for epoch in range(config['epochs']):
         total_loss = 0
         for batch in loader:
             x = batch[0]
@@ -39,8 +45,15 @@ def train():
             optimizer.step()
             total_loss += loss.item()
         avg_loss = total_loss / len(loader)
-        wandb.log({"epoch": epoch, "loss": avg_loss})
+        if wandb_run:
+            wandb.log({"epoch": epoch, "loss": avg_loss})
+        else:
+            print(f"Epoch {epoch+1}/{config['epochs']}, Loss: {avg_loss:.4f}")
 
     # Save encoder
-    torch.save(model.state_dict(), f"{SAVE_PATH}geokg_{config.input_dim}dim_autoencoder.pt")
-    print("Autoencoder GeOKG {dim}dim saved to:", f"{SAVE_PATH}geokg_{config.input_dim}dim_autoencoder.pt")
+    save_name = f"geokg_IN_{config['input_dim']}dim_OUT_{config['latent_dim']}dim.pt"
+    torch.save(model.state_dict(), f"{SAVE_PATH}{save_name}")
+    print(f"Autoencoder GeOKG {config['input_dim']}dim saved to: {SAVE_PATH}{save_name}")
+    
+    if wandb_run:
+        wandb.finish()

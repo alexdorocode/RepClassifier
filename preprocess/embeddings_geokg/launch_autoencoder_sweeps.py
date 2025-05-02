@@ -28,7 +28,7 @@ sweep_config = {
             "values": list([32, 64])
         },
         "epochs": {
-            "values": list([10, 20, 50])
+            "values": list([10, 20, 30, 40, 50])
         }
     }
 }
@@ -43,4 +43,4 @@ sweep_id = wandb.sweep(sweep_config, project=project_name)
 from train_go_autoencoder_wandb import train  # must match the training script
 
 # Run the sweep agent
-wandb.agent(sweep_id, function=train, count=10)
+wandb.agent(sweep_id, function=train, count=100)
