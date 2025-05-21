@@ -7,7 +7,7 @@ BASE_CONFIG = {
     "input_csv": "../DATASETS/BioData_backup_alex/go_annotations_with_category.csv",
     "id_col": "accession_code",
     "go_col": "go_id",
-    "category_col": "go_category",
+    "category_col": "category",
     "one_letter_categories": True,
     "two_letter_categories": False,
     "embedding_folder": "../DATASETS/embeddings/GeOKG/goa_embedding/",
@@ -17,7 +17,7 @@ BASE_CONFIG = {
 }
 
 # Settings
-categories_list = [["C"], ["F"], ["C", "F"]]
+categories_list = [["C"], ["F"], ["P"], ["C", "F"], ["C", "F", "P"]]
 embedding_dimensions = ["50", "100", "200", "500", "1000"]
 big_embedding_dimensions = ["1000", "500", "200"]
 aggregation_strategies = ["mean_pool", "padding"]

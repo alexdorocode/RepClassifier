@@ -20,7 +20,6 @@ class RawDataset:
         self.uniprot_ids = raw_data.get("uniprot_ids", pd.DataFrame())
         self.labels = raw_data.get("labels", pd.DataFrame())
         self.sequences = raw_data.get("sequences", pd.DataFrame())
-        self.tokens_3di = raw_data.get("tokens_3di", pd.DataFrame())
         self.embeddings = embeddings if embeddings is not None else {}
 
     def __len__(self):
@@ -31,7 +30,6 @@ class RawDataset:
             "num_ids": len(self.uniprot_ids),
             "has_labels": not self.labels.empty,
             "has_sequences": not self.sequences.empty,
-            "has_3di_tokens": not self.tokens_3di.empty,
             "embeddings_loaded": list(self.embeddings.keys())
         }
 
@@ -40,7 +38,6 @@ class RawDataset:
             "aa_sequence": self.sequences,
             "labels": self.labels,
             "uniprot_ids": self.uniprot_ids,
-            "3di_tokens": self.tokens_3di,
             "go_annotations": getattr(self, "go_annotations", None),
             "protT5_embedding": self.embeddings.get("prott5"),
             "prostT5_embedding": self.embeddings.get("prostt5"),

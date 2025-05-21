@@ -47,8 +47,7 @@ embedding_matrix = np.load(embedding_path)
 # Load annotation data
 print("Loading annotations from:", config["input_csv"])
 df = pd.read_csv(config["input_csv"])
-print(f"Loaded {len(df[config["id_col"]])} entries from the input CSV")
-
+print(f"Loaded {len(df[config['id_col']])} entries from the input CSV")
 
 # Filter if categories are provided
 if selected_categories and config.get("category_col"):
