@@ -9,7 +9,7 @@ from sklearn.manifold import TSNE  # type: ignore
 from sklearn.cluster import KMeans  # type: ignore
 from project_root.dataset.dataset_handler import DatasetLoader
 from project_root.dataset.raw_dataset import RepresentationDataset
-from project_root.dataset.processed_dataset import WrappedRepresentationDataset
+from project_root.dataset.old_processed_dataset import WrappedRepresentationDataset
 
 
 def plot_2d(data, labels, title, save_path):

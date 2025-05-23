@@ -18,10 +18,35 @@ def load(cfg: DictConfig):
     config_reader = DatasetConfigReader(cfg)
     handler = DatasetHandler(config_reader)
 
-    raw_data = handler.load_raw() if cfg.options.load_from_raw else {}
-    embeddings = handler.load_embeddings() if cfg.options.use_embeddings else {}
+    dataset_info = handler.load_raw()
 
-    dataset = RawDataset(raw_data, embeddings)
+    # Access the loaded DataFrame and column names
+    id_col = dataset_info["id_col"]
+    label_col = dataset_info["label_col"]
+    organism_col = dataset_info["organism_col"]
+    sequence_col = dataset_info["sequence_col"]
+    metrics_col = dataset_info["metrics_col"]
+
+    print("Dataset loaded successfully!")
+    print("ID Column:", id_col)
+    print("Label Column:", label_col)
+    print("Organism Column:", organism_col)
+    print("Sequence Column:", sequence_col)
+    print("Metrics Columns:", metrics_col)
+    print(dataset_info['dataset'].head())
+
+    # embeddings = handler.load_embeddings() if cfg.options.use_embeddings else {}
+
+    dataset = RawDataset(
+        dataset = dataset_info["dataset"],
+        id_col = id_col,
+        label_col = label_col,
+        organism_col = organism_col,
+        metrics_col = metrics_col,
+        sequence_col = sequence_col,
+        #embeddings = embeddings
+        )
+    
     print(dataset.summary())
 
 if __name__ == "__main__":

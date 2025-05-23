@@ -1,20 +1,32 @@
 # config/load_config.yaml
 
 dataset:
-  root_dir: "../DATASETS/raw_data"
-  raw:
-    uniprot_ids: "uniprot_ids.csv"
-    labels: "uniprot_ids_labeled.csv"
-    sequences: "aa_sequences.csv"
-    tokens_3di: "3di_tokens.csv"
+  root_dir: "./datasets"
+  unified_dataset:
+    file: "merged_dataset.csv"
+    id_col: "accession_code"
+    label_col: "class"
+    organism_col: "organism"
+    sequence_col: "sequence"
+    metrics_col: ['c_max_mbl', 'f_max_mbl', 'p_max_mbl', 'seq_length']
 
 embeddings:
-  emb_dir: "../DATASETS/embeddings"
-  esm: null        # e.g. "esm_embeddings.npy"
-  prott5: null
-  prostt5: null
+  emb_dir: "../DATASETS/embeddings/"
+  esm: 
+    id_col: "accession_code"
+    emb_col: "esm_embedding"
+    file: "sequence_embeddings/esm_embeddings.csv"
+  prott5:
+    id_col: "accession_code"
+    emb_col: "esm_embedding"
+    file: "sequence_embeddings/protT5_embeddings.csv"
+  prostt5: 
+    id_col: "accession_code"
+    emb_col: "esm_embedding"
+    file: "sequence_embeddings/prostT5_embeddings.csv"
   geokg: null
 
 options:
   use_embeddings: true
   load_from_raw: true
+  use_embeddings_ids_as_reference: true

@@ -1,14 +1,14 @@
-# scripts/process_dataset.py
+# run_process_dataset.py
 
-import hydra # type: ignore
-from omegaconf import DictConfig # type: ignore
+import hydra  # type: ignore
+from omegaconf import DictConfig  # type: ignore
+import os
+import sys
+
 from project_root.dataset.dataset_handler import DatasetHandler
 from project_root.dataset.dataset_config import DatasetConfigReader
 from project_root.dataset.raw_dataset import RawDataset
 from project_root.dataset.processed_dataset import ProcessedDataset
-
-import os
-import sys
 
 # Add the project root directory to PYTHONPATH
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
@@ -17,20 +17,36 @@ if project_root not in sys.path:
 
 @hydra.main(config_path="../config", config_name="config_process", version_base="1.3")
 def process(cfg: DictConfig):
+    print("⚙️  Initializing raw dataset...")
     config_reader = DatasetConfigReader(cfg)
     handler = DatasetHandler(config_reader)
 
-    raw_data = handler.load_raw() if cfg.options.load_from_raw else {}
-    embeddings = handler.load_embeddings() if cfg.options.use_embeddings else {}
+    dataset_info = handler.load_raw()
 
-    raw_dataset = RawDataset(raw_data, embeddings)
-    print("📦 Raw dataset summary:")
-    print(raw_dataset.summary())
+    dataset = RawDataset(
+        dataset=dataset_info["dataset"],
+        id_col=dataset_info["id_col"],
+        label_col=dataset_info["label_col"],
+        organism_col=dataset_info["organism_col"],
+        metrics_col=dataset_info["metrics_col"],
+        sequence_col=dataset_info["sequence_col"],
+    )
 
-    processed_dataset = ProcessedDataset(raw_dataset, features_to_process=cfg.features.to_process)
-    print("✅ Processed features:")
-    for name in processed_dataset.get_all_features().keys():
-        print(f"  • {name}")
+    print(dataset.summary())
+
+    print("\n🔧 Creating processed dataset...")
+    processed = ProcessedDataset(
+        raw_dataset=dataset,
+        config=cfg,
+        features_to_process=["metrics", "sequence_embeddings", "go_embeddings"]
+    )
+
+    metrics_df = processed.get_feature("metrics")
+    print("\n📊 Normalized metrics preview:")
+    print(metrics_df.head())
+
+    #print("\n📥 Sequence Embeddings shape:", processed.sequence_embeddings.shape)
+    #print("📥 GO Embeddings shape:", processed.go_embeddings.shape)
 
 if __name__ == "__main__":
     process()

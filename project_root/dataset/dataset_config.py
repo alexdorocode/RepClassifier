@@ -4,12 +4,15 @@ import os
 class DatasetConfigReader:
     def __init__(self, cfg):
         self.root = cfg.dataset.root_dir
-        self.paths = {
-            "uniprot_ids": os.path.join(self.root, cfg.dataset.raw.uniprot_ids),
-            "labels": os.path.join(self.root, cfg.dataset.raw.labels),
-            "sequences": os.path.join(self.root, cfg.dataset.raw.sequences),
-            "tokens_3di": os.path.join(self.root, cfg.dataset.raw.tokens_3di),
-        }
+
+        if cfg.dataset.unified_dataset is not None:
+            self.file = cfg.dataset.unified_dataset.file
+            self.id_col = cfg.dataset.unified_dataset.id_col
+            self.label_col = cfg.dataset.unified_dataset.label_col
+            self.organism_col = cfg.dataset.unified_dataset.organism_col
+            self.sequence_col = cfg.dataset.unified_dataset.sequence_col
+            self.metrics_col = cfg.dataset.unified_dataset.metrics_col
+
         self.embeddings = {
             "esm": cfg.embeddings.esm,
             "prott5": cfg.embeddings.prott5,

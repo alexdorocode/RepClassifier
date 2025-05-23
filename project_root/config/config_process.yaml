@@ -2,16 +2,20 @@
 
 defaults:
   - _self_
-  - config_load.yaml
+  - config_load  # Inherits loading config
 
-features:
-  to_process: 
-    - aa_onehot
-    - pseaac
-    - svmprot
-    - 3di_onehot
-    - pse3di
-    # - go_onehot
-    # - protT5
-    # - prostT5
-    # - esm2
+metrics:
+  columns: ["seq_length", "c_max_mbl", "f_max_mbl", "p_max_mbl"]
+  nan_strategy: "fill_minus_one"  # Options: drop, fill_mean, fill_zero
+  scaler_type: "standard"    # Options: standard, minmax
+  trim_config:
+    column: ["seq_length"]
+    max: 2000
+    min: -1
+
+sequence_embedding_name: "ProtT5"
+
+go:
+  dim: 500
+  pooling: "mean_pool"
+  go_type: "C_F_P"
