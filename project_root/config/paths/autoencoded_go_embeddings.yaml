@@ -1,0 +1,343 @@
+# path/autoencoded_go_embeddings.yaml
+
+autoencoded_go_embeddings:
+  folder_path: "../DATASETS/embeddings/GeOKG/2025-05-16"
+
+  file_paths:
+    non_autoencoded_embeddings:
+    # GeOKG embeddings with different input dimension 1000
+    - path: "geokg_embeddings_1000dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 1000
+      aggreated_dim: 1000
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+    
+    - path: "geokg_embeddings_1000dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 1000
+      aggreated_dim: 1000
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 500
+    - path: "geokg_embeddings_500dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 500
+      aggreated_dim: 500
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 500
+      aggreated_dim: 500
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 200
+    - path: "geokg_embeddings_200dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 200
+      aggreated_dim: 200
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 200
+      aggreated_dim: 200
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 100
+    - path: "geokg_embeddings_100dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 100
+      emb_dim: 100
+      aggreated_dim: 100
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_100dim_padding_C_F_go_terms.csv"
+      input_dim: 100
+      emb_dim: 100
+      aggreated_dim: 1000
+      aggregation_strategy: padding
+      go_categories: C_F
+    
+    - path: "geokg_embeddings_100dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 100
+      emb_dim: 100
+      aggreated_dim: 100
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_100dim_padding_C_F_P_go_terms.csv"
+      input_dim: 100
+      emb_dim: 100
+      aggreated_dim: 1000
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 50
+    - path: "geokg_embeddings_50dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 50
+      emb_dim: 50
+      aggreated_dim: 50
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_50dim_padding_C_F_go_terms.csv"
+      input_dim: 50
+      emb_dim: 50
+      aggreated_dim: 500
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_50dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 50
+      emb_dim: 50
+      aggreated_dim: 50
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_50dim_padding_C_F_P_go_terms.csv"
+      input_dim: 50
+      emb_dim: 50
+      aggreated_dim: 500
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    autoencoded_embeddings:
+
+    # GeOKG embeddings with different input dimension 1000 and output dimension 128
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 128
+      aggreated_dim: 128
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_padding_C_F_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 128
+      aggreated_dim: 1280
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 128
+      aggreated_dim: 128
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_padding_C_F_P_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 128
+      aggreated_dim: 1280
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 1000 and output dimension 32
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 32
+      aggreated_dim: 32
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_padding_C_F_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 32
+      aggreated_dim: 320
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 32
+      aggreated_dim: 32
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_padding_C_F_P_go_terms.csv"
+      input_dim: 1000
+      emb_dim: 32
+      aggreated_dim: 320
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 500 and output dimension 128
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 128
+      aggreated_dim: 128
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_padding_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 128
+      aggreated_dim: 1280
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 128
+      aggreated_dim: 128
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_padding_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 128
+      aggreated_dim: 1280
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 500 and output dimension 64
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 64
+      aggreated_dim: 64
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 64
+      aggreated_dim: 640
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 64
+      aggreated_dim: 64
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 64
+      aggreated_dim: 640
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 500 and output dimension 32
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 32
+      aggreated_dim: 32
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_padding_C_F_go_terms.csv"
+      input_dim: 500
+      emb_dim: 32
+      aggreated_dim: 320
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 32
+      aggreated_dim: 32
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_padding_C_F_P_go_terms.csv"
+      input_dim: 500
+      emb_dim: 32
+      aggreated_dim: 320
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 200 and output dimension 128
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 128
+      aggreated_dim: 128
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_padding_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 128
+      aggreated_dim: 1280
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 128
+      aggreated_dim: 128
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_padding_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 128
+      aggreated_dim: 1280
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 200 and output dimension 64
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 64
+      aggreated_dim: 64
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_padding_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 64
+      aggreated_dim: 640
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 64
+      aggreated_dim: 64
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_padding_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 64
+      aggreated_dim: 640
+      aggregation_strategy: padding
+      go_categories: C_F_P
+
+    # GeOKG embeddings with different input dimension 200 and output dimension 32
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_mean_pool_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 32
+      aggreated_dim: 32
+      aggregation_strategy: mean_pool
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_padding_C_F_go_terms.csv"
+      input_dim: 200
+      emb_dim: 32
+      aggreated_dim: 320
+      aggregation_strategy: padding
+      go_categories: C_F
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 32
+      aggreated_dim: 32
+      aggregation_strategy: mean_pool
+      go_categories: C_F_P
+
+    - path: "geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_padding_C_F_P_go_terms.csv"
+      input_dim: 200
+      emb_dim: 32
+      aggreated_dim: 320
+      aggregation_strategy: padding
+      go_categories: C_F_P

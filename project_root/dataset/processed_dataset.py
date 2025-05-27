@@ -1,7 +1,7 @@
 from project_root.dataset.raw_dataset import RawDataset
 from project_root.dataset.features.metric_processor import MetricProcessor
-# from project_root.dataset.loaders.sequence_embedding_loader import SequenceEmbeddingLoader
-# from project_root.dataset.loaders.go_embedding_loader import GOEmbeddingLoader
+from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
+
 
 class ProcessedDataset:
     def __init__(self, raw_dataset: RawDataset, config, features_to_process=None):
@@ -22,9 +22,23 @@ class ProcessedDataset:
         self._go_embeddings = None
         self._processed_metrics = None
 
-        # Embedding loaders
-        # self.seq_loader = SequenceEmbeddingLoader(config)
-        # self.go_loader = GOEmbeddingLoader(config)
+        # Initialize loaders with appropriate configs
+        self.seq_loader = SequenceEmbeddingLoader(
+            embedding_cfg=config.embedding_paths,
+            ae_cfg=config.autoencoder,
+            model_name=config.sequence_embedding_name,
+            target_dim=getattr(config.sequence_embedding, "target_dim", None)
+        )
+
+        self.go_loader = GOEmbeddingLoader(
+            embedding_cfg=config.embedding_paths,
+            ae_cfg=config.autoencoder,
+            model_name="GeoKG",  # Assuming this is the key used for GO
+            target_dim=getattr(config.go, "target_dim", None),
+            dim=config.go.dim,
+            pooling=config.go.pooling,
+            go_type=config.go.go_type
+        )
 
         self._process_features()
 
@@ -38,13 +52,6 @@ class ProcessedDataset:
         if "metrics" in self.features_to_process:
             self.feature_outputs["metrics"] = self._process_metrics()
 
-        # sequence/go embeddings are loaded lazily below
-        #if "sequence_embeddings" in self.features_to_process:
-        #    _ = self.sequence_embeddings
-
-        #if "go_embeddings" in self.features_to_process:
-        #    _ = self.go_embeddings
-
     def _process_metrics(self):
         metric_cols = self.config.metrics.columns
         print(f"Processing metrics: {metric_cols}")
@@ -53,24 +60,20 @@ class ProcessedDataset:
             metric_cols=metric_cols,
             nan_strategy=self.config.metrics.nan_strategy,
             scaler=self.config.metrics.scaler_type,
-            trim_config=self.config.metrics.trim_config
+            trim_config=getattr(self.config.metrics, "trim_config", None)
         )
         return processor.handle_nans().normalize().get_processed_df()
 
     @property
     def sequence_embeddings(self):
         if self._sequence_embeddings is None:
-            self._sequence_embeddings = self.seq_loader.load(self.config.sequence_embedding_name)
+            self._sequence_embeddings = self.seq_loader.load()
         return self._sequence_embeddings
 
     @property
     def go_embeddings(self):
         if self._go_embeddings is None:
-            self._go_embeddings = self.go_loader.load(
-                dim=self.config.go.dim,
-                pool=self.config.go.pooling,
-                type=self.config.go.go_type
-            )
+            self._go_embeddings = self.go_loader.load()
         return self._go_embeddings
 
     def get_feature(self, name):

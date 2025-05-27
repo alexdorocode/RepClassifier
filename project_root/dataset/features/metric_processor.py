@@ -8,16 +8,30 @@ class MetricProcessor:
         self.nan_strategy = nan_strategy  # "drop", "fill_mean", "fill_zero"
         self.scaler = self._init_scaler(scaler)
         
+        print(f"All columns: {self.df.columns.tolist()}")
+
         if trim_config:
-            column = trim_config["column"]
-            if column not in self.df.columns:
-                print(f"Available columns: {self.df.columns}")
-                raise ValueError(f"Column '{column}' specified in trim_config does not exist in the DataFrame.")
-            
             old_len = len(self.df)
-            self.df = self.df[self.df[column].between(trim_config["min"], trim_config["max"])]
-            print(f"Trimmed {old_len - len(self.df)} rows based on {column} between {trim_config['min']} and {trim_config['max']}")
-    
+            # Collect all rows to be trimmed
+            trimmed_mask = pd.Series(True, index=self.df.index)  # Start with all rows included
+            for config in trim_config:
+                print(f"Applying trim config: {config}")
+                self._valid_trim_config(config)
+                column = config["column"]
+                trimmed_mask &= self.df[column].between(config["min"], config["max"])
+            
+            # Identify rows to be trimmed (invert the mask)
+            rows_to_trim = ~trimmed_mask
+            trimmed_df = self.df[rows_to_trim]
+            
+            # Print trimmed organisms divided by 'class'
+            print("Trimmed rows by organism and class:")
+            print(trimmed_df.groupby(['organism', 'class']).size())
+            
+            # Keep only the rows that are not trimmed
+            self.df = self.df[trimmed_mask]
+            print(f"Trimmed {old_len - len(self.df)} rows based on trim_config.")
+            
     def _init_scaler(self, scaler_name):
         if scaler_name == "standard":
             return StandardScaler()
@@ -56,3 +70,11 @@ class MetricProcessor:
     
     def get_processed_df(self):
         return self.df
+    
+    def _valid_trim_config(self, config):
+        if "column" not in config or "min" not in config or "max" not in config:
+            raise ValueError("Each trim config must contain 'column', 'min', and 'max' keys.")
+        if not isinstance(config["min"], (int, float)) or not isinstance(config["max"], (int, float)):
+            raise ValueError("'min' and 'max' values must be numeric.")
+        if config["min"] >= config["max"]:
+            raise ValueError("'min' value must be less than 'max' value.")

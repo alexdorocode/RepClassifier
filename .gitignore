@@ -1,5 +1,6 @@
 # Ignore datasets and large files
 datasets/
+output/
 
 # Ignore temporary files
 *.tmp

@@ -1,36 +1,30 @@
-# dataset/dataset_handler.py
 import os
-import numpy as np # type: ignore
-import pandas as pd # type: ignore
+import numpy as np  # type: ignore
+import pandas as pd  # type: ignore
+import yaml  # We'll need this to parse YAML if you load from YAML files
+from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
 
 class DatasetHandler:
     def __init__(self, config_reader):
         self.config = config_reader
-        
+
     def load_raw(self):
-        # Access the unified dataset configuration
         root_dir = self.config.root
         unified_dataset = self.config.file
-
-        # Construct the full path to the dataset file
         dataset_path = os.path.join(root_dir, unified_dataset)
 
-        # Check if the dataset file exists
         if not os.path.exists(dataset_path):
             raise FileNotFoundError(f"Dataset file {dataset_path} does not exist.")
 
-        # Load the dataset
         print(f"Loading dataset from {dataset_path}")
         df = pd.read_csv(dataset_path)
 
-        # Extract relevant columns based on the configuration
         id_col = self.config.id_col
         label_col = self.config.label_col
         organism_col = self.config.organism_col
         sequence_col = self.config.sequence_col
         metrics_col = self.config.metrics_col
 
-        # Ensure all required columns exist in the dataset
         required_columns = [id_col, label_col, organism_col] + metrics_col
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
@@ -38,7 +32,6 @@ class DatasetHandler:
 
         self.id_col = df[id_col]
 
-        # Return the loaded dataset and relevant columns
         return {
             "dataset": df,
             "id_col": id_col,
@@ -48,47 +41,38 @@ class DatasetHandler:
             "metrics_col": metrics_col,
         }
 
-    def load_embeddings(self):
-        emb_data = {}
-        # Load embeddings from the specified directory
-        emb_folder = self.config.emb_dir
-        if not os.path.exists(emb_folder):
-            raise FileNotFoundError(f"Embedding directory {emb_folder} does not exist.")
-        
-        print(f"Loading embeddings from {emb_folder}")
+    def load_embedding_loaders(self):
+        """
+        Load configurations for embedding loaders (Sequence and GO) and return loader instances.
+        """
+        # Access paths from the nested paths dictionary
+        seq_emb_cfg = self.config.paths["embedding_sequence_paths"]
+        ae_cfg = self.config.paths["autoencoder_paths"]
+        autoencoded_seq_emb = self.config.paths["autoencoded_seq_embeddings"]
+        go_emb_cfg = self.config.paths["autoencoded_go_embeddings"]
 
-        for name, emb_info in self.config.embeddings.items():
-            # Check if the embedding info is provided
-            print(f"Loading {name} embeddings")
-            print(emb_info)
-            if emb_info:
-                file = emb_info.get("file")
-                id_col = emb_info.get("id_col")
-                emb_col = emb_info.get("emb_col")
+        # If go_emb_cfg is a YAML path (string), load it; otherwise, assume it's already a dict
+        if isinstance(go_emb_cfg, str):
+            with open(go_emb_cfg, "r") as f:
+                go_emb_cfg = yaml.safe_load(f)['autoencoded_go_embeddings']
 
-                path = os.path.join(emb_folder, file)
-                print(f"Loading {name} embeddings from {path}")
+        # Create loader instances
+        sequence_loader = SequenceEmbeddingLoader(
+            embedding_sequence_paths=seq_emb_cfg,
+            ae_paths=ae_cfg,
+            autoencoded_seq_embeddings=autoencoded_seq_emb,
+            autoencoded_go_embeddings=go_emb_cfg
+        )
 
-                if not self.check_embeddings(path, id_col, emb_col):
-                    raise ValueError(f"Invalid embedding file {file} or columns {id_col}, {emb_col}.")
+        go_loader = GOEmbeddingLoader(
+            embedding_sequence_paths=seq_emb_cfg,  # Optional: you can pass {} or None if not used by GO
+            ae_paths=ae_cfg,
+            autoencoded_seq_embeddings=autoencoded_seq_emb,
+            autoencoded_go_embeddings=go_emb_cfg
+        )
 
-                df = pd.read_csv(path)
-                embedding = df[emb_col].apply(lambda x: np.fromstring(x[1:-1], sep=',')).tolist()
-                emb_data[name] = np.array(embedding, dtype=np.float32)
-                
-        return emb_data
+        return {
+            "sequence_loader": sequence_loader,
+            "go_loader": go_loader
+        }
     
-    def check_embeddings(self, file, id_col, emb_col):
-        # Check if the embeddings are in the correct format
-        df = pd.read_csv(file)
-        if id_col not in df.columns or emb_col not in df.columns:
-            raise ValueError(f"Columns {id_col} or {emb_col} not found in {file}.")
-        
-        # Check if the embeddings are valid numpy arrays
-        for i, row in df.iterrows():
-            try:
-                np.fromstring(row[emb_col][1:-1], sep=',')
-            except Exception as e:
-                raise ValueError(f"Invalid embedding at row {i}: {e}")
-        
-        return True

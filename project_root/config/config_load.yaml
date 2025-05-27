@@ -10,22 +10,6 @@ dataset:
     sequence_col: "sequence"
     metrics_col: ['c_max_mbl', 'f_max_mbl', 'p_max_mbl', 'seq_length']
 
-embeddings:
-  emb_dir: "../DATASETS/embeddings/"
-  esm: 
-    id_col: "accession_code"
-    emb_col: "esm_embedding"
-    file: "sequence_embeddings/esm_embeddings.csv"
-  prott5:
-    id_col: "accession_code"
-    emb_col: "esm_embedding"
-    file: "sequence_embeddings/protT5_embeddings.csv"
-  prostt5: 
-    id_col: "accession_code"
-    emb_col: "esm_embedding"
-    file: "sequence_embeddings/prostT5_embeddings.csv"
-  geokg: null
-
 options:
   use_embeddings: true
   load_from_raw: true

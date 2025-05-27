@@ -3,19 +3,31 @@
 defaults:
   - _self_
   - config_load  # Inherits loading config
+  - paths/autoencoder_paths  # Inherits autoencoder paths
+  - paths/embedding_paths  # Inherits embedding paths
+  - paths/autoencoded_seq_embeddings  # Inherits autoencoded sequence embeddings paths
+  - paths/autoencoded_go_embeddings
 
-metrics:
+metrics_to_use:
   columns: ["seq_length", "c_max_mbl", "f_max_mbl", "p_max_mbl"]
   nan_strategy: "fill_minus_one"  # Options: drop, fill_mean, fill_zero
   scaler_type: "standard"    # Options: standard, minmax
   trim_config:
-    column: ["seq_length"]
-    max: 2000
+  - column: "seq_length"
     min: -1
+    max: 2000
 
-sequence_embedding_name: "ProtT5"
+sequence_embeddings:
+  use_autoencoder: False
+  model_name: ["ESM", "ProtT5", "ProstT5"]
+  target_dim: [32, 64, 128]
 
-go:
-  dim: 500
-  pooling: "mean_pool"
-  go_type: "C_F_P"
+go_embeddings:
+  use_autoencoder: False
+  autoencoded_embeddings: True
+  model_name: ["GeOKG"]
+  input_dim: [500]
+  emb_dim: [128]
+  aggregated_dim: [1280]
+  aggregation_strategy: [padding]
+  go_categories: [[C_F], [C_F_P]]
