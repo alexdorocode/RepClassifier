@@ -2,13 +2,20 @@ import os
 import numpy as np  # type: ignore
 import pandas as pd  # type: ignore
 import yaml  # We'll need this to parse YAML if you load from YAML files
+from project_root.dataset.raw_dataset import RawDataset
+from project_root.dataset.processed_dataset import ProcessedDataset
 from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
 
 class DatasetHandler:
     def __init__(self, config_reader):
         self.config = config_reader
+        
+        self._build_processed_dataset()
+        print("🔧 Processed dataset created successfully.")
 
-    def load_raw(self):
+        a = self.load_experimental_dataset
+
+    def _build_raw(self):
         root_dir = self.config.root
         unified_dataset = self.config.file
         dataset_path = os.path.join(root_dir, unified_dataset)
@@ -32,16 +39,16 @@ class DatasetHandler:
 
         self.id_col = df[id_col]
 
-        return {
-            "dataset": df,
-            "id_col": id_col,
-            "label_col": label_col,
-            "sequence_col": sequence_col,
-            "organism_col": organism_col,
-            "metrics_col": metrics_col,
-        }
-
-    def load_embedding_loaders(self):
+        return RawDataset(
+            dataset=df,
+            id_col=id_col,
+            label_col=label_col,
+            organism_col=organism_col,
+            sequence_col=sequence_col,
+            metrics_col=metrics_col
+        )
+    
+    def _build_embedding_loaders(self):
         """
         Load configurations for embedding loaders (Sequence and GO) and return loader instances.
         """
@@ -71,8 +78,29 @@ class DatasetHandler:
             autoencoded_go_embeddings=go_emb_cfg
         )
 
-        return {
-            "sequence_loader": sequence_loader,
-            "go_loader": go_loader
-        }
+        return sequence_loader, go_loader
     
+    def _build_processed_dataset(self):
+        """
+        Load the processed dataset based on the raw dataset and configuration.
+        """
+        
+        print("🔍 Initializing DatasetHandler")
+        raw_dataset = self._build_raw()
+        print("📥 Raw dataset loaded successfully.")
+        sequence_loader, go_loader = self._build_embedding_loaders()
+        print("🔍 Embedding loaders initialized successfully.")
+        
+        self.processed_dataset = ProcessedDataset(
+            raw_dataset= raw_dataset,
+            config=self.config.features_to_process,
+            seq_loader= sequence_loader,
+            go_loader= go_loader
+        )
+
+    def load_experimental_dataset(self, config):
+        """
+        Load the experimental dataset based on the configuration.
+        """
+        print("🔍 Loading experimental dataset...")
+        return self.processed_dataset.get_dataset(config)

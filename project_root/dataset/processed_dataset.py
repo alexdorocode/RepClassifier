@@ -4,7 +4,10 @@ from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoad
 
 
 class ProcessedDataset:
-    def __init__(self, raw_dataset: RawDataset, config, features_to_process=None):
+    def __init__(self, raw_dataset: RawDataset, 
+                 config, seq_loader: SequenceEmbeddingLoader = None,
+                 go_loader: GOEmbeddingLoader = None,
+                 features_to_process=None):
         """
         Initializes the ProcessedDataset for selected feature processing.
 
@@ -15,32 +18,53 @@ class ProcessedDataset:
         """
         self.raw_dataset = raw_dataset
         self.config = config
-        self.features_to_process = set(features_to_process) if features_to_process else self.all_possible_features
+
+        # Load embedding loaders if not provided
+        self.seq_loader = seq_loader
+        self.go_loader = go_loader
 
         # Lazy placeholders
         self._sequence_embeddings = None
         self._go_embeddings = None
         self._processed_metrics = None
 
-        # Initialize loaders with appropriate configs
-        self.seq_loader = SequenceEmbeddingLoader(
-            embedding_cfg=config.embedding_paths,
-            ae_cfg=config.autoencoder,
-            model_name=config.sequence_embedding_name,
-            target_dim=getattr(config.sequence_embedding, "target_dim", None)
-        )
+        self.processed_df = self._process_metrics()
 
-        self.go_loader = GOEmbeddingLoader(
-            embedding_cfg=config.embedding_paths,
-            ae_cfg=config.autoencoder,
-            model_name="GeoKG",  # Assuming this is the key used for GO
-            target_dim=getattr(config.go, "target_dim", None),
-            dim=config.go.dim,
-            pooling=config.go.pooling,
-            go_type=config.go.go_type
+    def _process_metrics(self):
+        metric_cols = self.config.columns
+        print(f"Processing metrics: {metric_cols}")
+        processor = MetricProcessor(
+            df=self.raw_dataset.dataset,
+            metric_cols=metric_cols,
+            nan_strategy=self.config.nan_strategy,
+            scaler=self.config.scaler_type,
+            trim_config=self.config.trim_config
         )
+        return processor.handle_nans().normalize().get_processed_df()
 
-        self._process_features()
+    def get_dataset(self, config):
+        """
+        Returns the processed dataset based on the provided configuration.
+
+        Args:
+            config (dict): Configuration for the dataset processing.
+
+        Returns:
+            pd.DataFrame: Processed dataset.
+        """
+        label_col = config['label_col']
+        features_col = config['features_col']
+        sequence_embeddings = config['sequence_embeddings']
+        go_embeddings = config['go_embeddings']
+        organism_discrimination_strategy = config['organism_discrimination_strategy']
+        
+        print(f"Returning dataset with label_col: {label_col}, features_col: {features_col}, "
+                f"sequence_embeddings: {sequence_embeddings}, go_embeddings: {go_embeddings}, " 
+                f"organism_discrimination_strategy: {organism_discrimination_strategy}")
+
+
+
+'''
 
     @property
     def all_possible_features(self):
@@ -51,18 +75,6 @@ class ProcessedDataset:
 
         if "metrics" in self.features_to_process:
             self.feature_outputs["metrics"] = self._process_metrics()
-
-    def _process_metrics(self):
-        metric_cols = self.config.metrics.columns
-        print(f"Processing metrics: {metric_cols}")
-        processor = MetricProcessor(
-            df=self.raw_dataset.dataset,
-            metric_cols=metric_cols,
-            nan_strategy=self.config.metrics.nan_strategy,
-            scaler=self.config.metrics.scaler_type,
-            trim_config=getattr(self.config.metrics, "trim_config", None)
-        )
-        return processor.handle_nans().normalize().get_processed_df()
 
     @property
     def sequence_embeddings(self):
@@ -80,3 +92,5 @@ class ProcessedDataset:
         if name not in self.feature_outputs:
             raise KeyError(f"Feature '{name}' not found or not processed.")
         return self.feature_outputs[name]
+
+        '''

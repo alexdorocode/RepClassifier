@@ -1,0 +1,32 @@
+# config/config_process.yaml
+
+defaults:
+  - _self_
+  - config_process
+
+experiment_definition:
+
+  experiment_name: "protein_classification_experiment_0"
+
+  label_col: "class"
+
+  features_col: ['c_max_mbl', 'f_max_mbl', 'p_max_mbl', 'seq_length']
+
+  sequence_embeddings:
+    use_autoencoder: False
+    model_name: ["ESM", "ProtT5", "ProstT5"]
+    target_dim: [32, 64, 128]
+
+  go_embeddings:
+    use_autoencoder: False
+    autoencoded_embeddings: True
+    model_name: ["GeOKG"]
+    input_dim: [500]
+    emb_dim: [128]
+    aggregated_dim: [1280]
+    aggregation_strategy: [padding]
+    go_categories: [[C_F], [C_F_P]]
+
+  organism_discrimination_strategy:
+    concrete_organisms: None
+    top_organisms: 4
