@@ -29,6 +29,14 @@ class RawDataset:
         self.organisms = dataset[organism_col]
         self.metrics = dataset[metrics_col] if metrics_col else pd.DataFrame()
         self.sequences = dataset[sequence_col]
+        self.main_columns = {
+            "id_col" : id_col,
+            "label_col" : label_col,
+            "organism_col" : organism_col,
+            "metrics_col" : metrics_col,
+            "sequence_col" : sequence_col
+        }
+        
         # self.embeddings = embeddings if embeddings is not None else {}
 
     def __len__(self):

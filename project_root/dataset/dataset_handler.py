@@ -13,7 +13,10 @@ class DatasetHandler:
         self._build_processed_dataset()
         print("🔧 Processed dataset created successfully.")
 
-        a = self.load_experimental_dataset
+        print("📦 DatasetHandler initialized successfully.")
+        a = self.load_experimental_dataset(config=self.config.experiment_definition)
+        print(a)
+        print("📦 DatasetHandler loading experimental dataset.")
 
     def _build_raw(self):
         root_dir = self.config.root
