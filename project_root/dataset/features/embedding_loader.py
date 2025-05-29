@@ -55,8 +55,11 @@ class EmbeddingLoader(ABC):
         raise ValueError(f"No autoencoder found for model {model_name} with input_dim={input_dim} and target_dim={target_dim}")
 
 class SequenceEmbeddingLoader(EmbeddingLoader):
-    def load(self, model_name: str, target_dim: int = None, use_autoencoder=False):
+    def load(self, model_name: str, target_dim: int = None, use_autoencoder=False, autoencoded_embeddings=False):
         
+        print(f"🚀 Loading sequence embeddings for {model_name}...")
+        print(f"Target dimension: {target_dim}, Use autoencoder: {use_autoencoder}, Autoencoded embeddings: {autoencoded_embeddings}")
+
         if use_autoencoder:
             
             emb_path = self.embedding_sequence_paths[model_name]

@@ -4,6 +4,7 @@ import pandas as pd  # type: ignore
 import yaml  # We'll need this to parse YAML if you load from YAML files
 from project_root.dataset.raw_dataset import RawDataset
 from project_root.dataset.processed_dataset import ProcessedDataset
+from project_root.dataset.classifier_dataset import ClassifierDataset
 from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
 
 class DatasetHandler:
@@ -12,11 +13,6 @@ class DatasetHandler:
         
         self._build_processed_dataset()
         print("🔧 Processed dataset created successfully.")
-
-        print("📦 DatasetHandler initialized successfully.")
-        a = self.load_experimental_dataset(config=self.config.experiment_definition)
-        print(a)
-        print("📦 DatasetHandler loading experimental dataset.")
 
     def _build_raw(self):
         root_dir = self.config.root
@@ -101,9 +97,16 @@ class DatasetHandler:
             go_loader= go_loader
         )
 
-    def load_experimental_dataset(self, config):
+    def load_experimental_dataset(self):
         """
         Load the experimental dataset based on the configuration.
         """
         print("🔍 Loading experimental dataset...")
-        return self.processed_dataset.get_dataset(config)
+        
+        classifier_dataset = ClassifierDataset(
+            processed_df=self.processed_dataset.get_dataset(self.config.experiment_definition),
+            label_col='class',
+            production=False
+        )
+
+        return classifier_dataset

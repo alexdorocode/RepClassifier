@@ -21,6 +21,16 @@ class ProcessedDataset:
         self.processed_df = self._process_metrics(raw_dataset)
         self.main_columns = raw_dataset.main_columns
 
+        '''
+        main_columns = {
+            "id_col" :
+            "label_col" :
+            "organism_col" :
+            "metrics_col" :
+            "sequence_col" :
+        }
+        '''
+
         # Load embedding loaders if not provided
         self.seq_loader = seq_loader
         self.go_loader = go_loader
@@ -58,21 +68,28 @@ class ProcessedDataset:
         go_embeddings = config['go_embeddings']
         organism_discrimination_strategy = config['organism_discrimination_strategy']
         
-        print(f"Returning dataset with label_col: {label_col}, features_col: {features_col}, "
-                f"sequence_embeddings: {sequence_embeddings}, go_embeddings: {go_embeddings}, " 
-                f"organism_discrimination_strategy: {organism_discrimination_strategy}")
-
-        print("Accessions on processed dataset: ", len(self.processed_df))
-        print("Accessions on selected dataset: ", len(self._selected_accessions(organism_discrimination_strategy)))
+        selected_accessions = self._selected_accessions(organism_discrimination_strategy)
         
-        '''
-        embeddings = _load_embeddings(
-            accessions=self.processed_df.selected_accessions(organism_discrimination_strategy),
-            sequence_embeddings=self.sequence_embeddings,
-            go_embeddings=self.go_embeddings,
-            organism_discrimination_strategy=organism_discrimination_strategy
+        embeddings = self._load_embeddings(
+            accessions=selected_accessions,
+            sequence_embeddings=sequence_embeddings,
+            go_embeddings=go_embeddings
         )
-        '''
+        
+        # Start with the selected features from the processed DataFrame
+        df = self.processed_df[self.processed_df[self.main_columns['id_col']].isin(selected_accessions)].copy()
+        df = df[[self.main_columns['id_col']] + features_col]
+        df.set_index(self.main_columns['id_col'], inplace=True)
+        
+        # Add each embedding as a new column (embedding tensor or array)
+        for emb_name, emb_dict in embeddings.items():
+            # emb_dict: {accession: embedding}
+            df[emb_name] = df.index.map(emb_dict)
+
+        # Optionally, reset index if you want accession as a column
+        # df.reset_index(inplace=True)
+        
+        return df
 
     def _selected_accessions(self, organism_discrimination_strategy=None):
         """
@@ -132,6 +149,65 @@ class ProcessedDataset:
         print(f"Selected organisms: {selected_organisms}")
         return self.processed_df[self.processed_df['organism'].isin(selected_organisms)][self.main_columns['id_col']]
     
+    def _extract_embeddings(self, df, accessions, accession_col):
+        filtered = df[df[accession_col].isin(accessions)]
+        if "embedding" in filtered.columns:
+            return filtered.set_index(accession_col)["embedding"].to_dict()
+        else:
+            emb_cols = filtered.columns[1:]
+            return (
+                filtered.set_index(accession_col)[emb_cols]
+                .apply(lambda row: row.values.astype(float), axis=1)
+                .to_dict()
+            )
+    
+    def _load_sequence_embeddings(self, accessions, sequence_embeddings):
+        seq_embeddings = {}
+        for model_name, seq_cfg in sequence_embeddings.items():
+            target_dim = seq_cfg.get("target_dim")
+            use_autoencoder = seq_cfg.get("use_autoencoder")
+            autoencoded_embeddings = seq_cfg.get("autoencoded_embeddings")
+            df = self.seq_loader.load(
+                model_name=model_name, 
+                target_dim=target_dim, 
+                use_autoencoder=use_autoencoder,
+                autoencoded_embeddings=autoencoded_embeddings
+            )
+            accession_col = df.columns[0]  # Assuming first column is accession
+            print(f"Filtered sequence embeddings for {model_name}: {df.shape}")
+            seq_embeddings[model_name] = self._extract_embeddings(df, accessions, accession_col)
+        return seq_embeddings
+    
+    def _load_go_embeddings(self, accessions, go_embeddings):
+        go_embs = {}
+        for model_name, go_cfg in go_embeddings.items():
+            input_dim = go_cfg.get("input_dim")
+            emb_dim = go_cfg.get("emb_dim")
+            aggregated_dim = go_cfg.get("aggregated_dim")
+            aggregation_strategy = go_cfg.get("aggregation_strategy")
+            go_categories = go_cfg.get("go_categories")
+            use_autoencoder = go_cfg.get("autoencoded_embeddings", False)
+            if isinstance(go_categories, str):
+                go_categories = go_categories.split("_")
+            df = self.go_loader.load(
+                input_dim=input_dim,
+                emb_dim=emb_dim,
+                aggregated_dim=aggregated_dim,
+                aggregation_strategy=aggregation_strategy,
+                go_categories=go_categories,
+                use_autoencoder=use_autoencoder,
+                autoencoded_embeddings=use_autoencoder
+            )
+            accession_col = df.columns[0]  # Assuming first column is accession
+            print(f"Filtered GO embeddings for {model_name}: {df.shape}")
+            go_embs[model_name + "_GO"] = self._extract_embeddings(df, accessions, accession_col)
+        return go_embs
+    
+    def _load_embeddings(self, accessions, sequence_embeddings, go_embeddings):
+        all_embeddings = {}
+        all_embeddings.update(self._load_sequence_embeddings(accessions, sequence_embeddings))
+        all_embeddings.update(self._load_go_embeddings(accessions, go_embeddings))
+        return all_embeddings
 
 '''
 

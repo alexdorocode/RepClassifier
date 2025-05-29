@@ -21,6 +21,7 @@ def test_sequence_loader(cfg: DictConfig):
     print("🔍 Initializing DatasetConfigReader and DatasetHandler...")
     config_reader = DatasetConfigReader(cfg)
     handler = DatasetHandler(config_reader)
+    experimental_dataset = handler.load_experimental_dataset()
 
     """
     dataset_info = handler.load_raw()
