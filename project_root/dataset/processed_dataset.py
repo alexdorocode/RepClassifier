@@ -78,7 +78,7 @@ class ProcessedDataset:
         
         # Start with the selected features from the processed DataFrame
         df = self.processed_df[self.processed_df[self.main_columns['id_col']].isin(selected_accessions)].copy()
-        df = df[[self.main_columns['id_col']] + features_col]
+        df = df[[self.main_columns['id_col']] + features_col + [label_col]]
         df.set_index(self.main_columns['id_col'], inplace=True)
         
         # Add each embedding as a new column (embedding tensor or array)

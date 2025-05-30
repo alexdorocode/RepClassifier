@@ -2,14 +2,14 @@ import hydra  # type: ignore
 from omegaconf import DictConfig  # type: ignore
 import os
 import sys
-import gc
 import torch
-import pandas as pd
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, random_split
+from sklearn.metrics import accuracy_score
 
 from project_root.dataset.dataset_config import DatasetConfigReader
 from project_root.dataset.dataset_handler import DatasetHandler
-from project_root.dataset.raw_dataset import RawDataset
-from project_root.dataset.processed_dataset import ProcessedDataset
 
 # Add the project root directory to PYTHONPATH
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
@@ -21,103 +21,65 @@ def test_sequence_loader(cfg: DictConfig):
     print("🔍 Initializing DatasetConfigReader and DatasetHandler...")
     config_reader = DatasetConfigReader(cfg)
     handler = DatasetHandler(config_reader)
-    experimental_dataset = handler.load_experimental_dataset()
 
-    """
-    dataset_info = handler.load_raw()
+    # Load ClassifierDataset
+    print("📦 Loading ClassifierDataset...")
+    classifier_dataset = handler.load_classifier_dataset()  # Add optional arguments as needed
 
-    dataset = RawDataset(
-        dataset=dataset_info["dataset"],
-        id_col=dataset_info["id_col"],
-        label_col=dataset_info["label_col"],
-        organism_col=dataset_info["organism_col"],
-        metrics_col=dataset_info["metrics_col"],
-        sequence_col=dataset_info["sequence_col"],
-    )
+    # Split dataset into train/test
+    dataset_size = len(classifier_dataset)
+    test_size = int(0.2 * dataset_size)
+    train_size = dataset_size - test_size
+    train_dataset, test_dataset = random_split(classifier_dataset, [train_size, test_size])
 
-    print(dataset.summary())
+    # Wrap in DataLoaders
+    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
-    print("\n🔧 Creating processed dataset...")
-    processed = ProcessedDataset(
-        raw_dataset=dataset,
-        config=cfg,
-        features_to_process=["metrics", "sequence_embeddings", "go_embeddings"]
-    )
+    # Define simple logistic regression model
+    input_dim = classifier_dataset.features.shape[1]
+    num_classes = len(torch.unique(classifier_dataset.labels))
+    print(f"📊 Input dim: {input_dim}, Number of classes: {num_classes}")
 
-    metrics_df = processed.get_feature("metrics")
-    print("\n📊 Normalized metrics preview:")
-    print(metrics_df.head())
+    class LogisticRegression(nn.Module):
+        def __init__(self, input_dim, num_classes):
+            super(LogisticRegression, self).__init__()
+            self.linear = nn.Linear(input_dim, num_classes)
 
+        def forward(self, x):
+            return self.linear(x)
 
+    model = LogisticRegression(input_dim, num_classes)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-    loaders = handler.load_embedding_loaders()
+    # Train
+    num_epochs = 50
+    print("🚀 Training Logistic Regression Model...")
+    for epoch in range(num_epochs):
+        model.train()
+        total_loss = 0
+        for features, labels in train_loader:
+            outputs = model(features)
+            loss = criterion(outputs, labels)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+        print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {total_loss:.4f}")
 
-    seq_loader = loaders['sequence_loader']
-    go_loader = loaders['go_loader']
+    # Evaluate on test set
+    print("🔍 Evaluating on test set...")
+    model.eval()
+    all_preds, all_labels = [], []
+    with torch.no_grad():
+        for features, labels in test_loader:
+            outputs = model(features)
+            _, predicted = torch.max(outputs, 1)
+            all_preds.extend(predicted.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+    acc = accuracy_score(all_labels, all_preds)
+    print(f"🎯 Logistic Regression Test Accuracy: {acc:.2%}")
 
-    # === SEQUENCE EMBEDDING LOADER ===
-    print("🔍 Testing SequenceEmbeddingLoader...")
-    model_name_collection = cfg.sequence_embedding.model_name
-    target_dim_collection = cfg.sequence_embedding.target_dim
-
-    for model_name in model_name_collection:
-        for target_dim in target_dim_collection:
-            print(f"\n🔍 Testing model: {model_name} with target dimension: {target_dim}")
-            embeddings_df = seq_loader.load(
-                model_name=model_name,
-                target_dim=target_dim,
-                use_autoencoder=True  # Assuming we want to use autoencoder compression
-            )
-            if embeddings_df.empty:
-                print(f"⚠️ No embeddings found for model {model_name}. Skipping...")
-                continue
-            print(f"✅ Loaded shape: {embeddings_df.columns.tolist()} with {len(embeddings_df)} rows.")
-            # Optional: save embeddings if needed
-            del embeddings_df
-            gc.collect()
-            print("🧹 Cleaned up resources.")
-
-    # === GO EMBEDDING LOADER ===
-    print("🔍 Testing GOEmbeddingLoader...")
-    go_models_collection = cfg.go_embeddings.model_name
-    input_dim_collection = cfg.go_embeddings.input_dim
-    emb_dim_collection = cfg.go_embeddings.emb_dim
-    aggregated_dim_collection = cfg.go_embeddings.aggregated_dim
-    aggregation_strategy_collection = cfg.go_embeddings.aggregation_strategy
-    go_categories_collection = cfg.go_embeddings.go_categories
-    use_autoencoder = cfg.go_embeddings.use_autoencoder
-
-    print("🔍 GO models to test:", go_models_collection)
-    print("🔍 Input dimensions to test:", input_dim_collection)
-    print("🔍 Embedding dimensions to test:", emb_dim_collection)
-    print("🔍 Aggregated dimensions to test:", aggregated_dim_collection)
-    print("🔍 Aggregation strategies to test:", aggregation_strategy_collection)
-    print("🔍 GO categories to test:", go_categories_collection)
-
-    for model_name in go_models_collection:
-        for input_dim in input_dim_collection:
-            for emb_dim in emb_dim_collection:
-                for aggregated_dim in aggregated_dim_collection:
-                    for aggregation_strategy in aggregation_strategy_collection:
-                        for go_categories in go_categories_collection:
-                            print(f"\n🔍 Testing GO model: {model_name} with input_dim: {input_dim}, emb_dim: {emb_dim}, aggregated_dim: {aggregated_dim}, aggregation_strategy: {aggregation_strategy}, go_categories: {go_categories}")
-                            embeddings_df = go_loader.load(
-                                input_dim=input_dim,
-                                emb_dim=emb_dim,
-                                aggregated_dim=aggregated_dim,
-                                aggregation_strategy=aggregation_strategy,
-                                go_categories=go_categories,
-                                use_autoencoder=use_autoencoder
-                            )
-                            if embeddings_df.empty:
-                                print(f"⚠️ No embeddings found for model {model_name}, input_dim: {input_dim}, emb_dim: {emb_dim}, aggregated_dim: {aggregated_dim}, aggregation_strategy: {aggregation_strategy}, go_categories: {go_categories}. Skipping...")
-                                continue
-                            print(f"✅ Loaded shape: {embeddings_df.columns.tolist()} with {len(embeddings_df)} rows.")
-                            # Optional: save embeddings if needed
-                            del embeddings_df
-                            gc.collect()
-                            print("🧹 Cleaned up resources.")
-    """
-                            
 if __name__ == "__main__":
     test_sequence_loader()

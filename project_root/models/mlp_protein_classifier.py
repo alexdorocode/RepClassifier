@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 from torchinfo import summary
 
-class ProteinClassifier(nn.Module):
+class MLPProteinClassifier(nn.Module):
     def __init__(self, device, input_size, output_size, num_hidden_layers, dropout_rate=0.1, hidden_layers_mode="quadratic_increase", custom_hidden_layers=None):
-        super(ProteinClassifier, self).__init__()
+        super(MLPProteinClassifier, self).__init__()
         hidden_layers_sizes = self.set_hidden_layers_size(hidden_layers_mode, num_hidden_layers, input_size, custom_hidden_layers)
         layers = []
         

@@ -39,8 +39,6 @@ class ClassifierDataset(Dataset):
             sample_value = self.df[col].iloc[0]
             if isinstance(sample_value, (list, np.ndarray)):
                 arr_list = [np.array(x) if x is not None else np.zeros_like(sample_value) for x in self.df[col]]
-                shapes = [a.shape for a in arr_list]
-                print(f"Column {col} shapes: {shapes}")
             
             elif isinstance(sample_value, (list, np.ndarray)):
                 # Ensure all entries are arrays of the same size

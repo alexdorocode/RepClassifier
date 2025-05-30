@@ -4,10 +4,6 @@ import os
 class DatasetConfigReader:
     def __init__(self, cfg):
 
-        # Initialize configuration parameters
-        for key, value in cfg.items():
-            print(f"Setting config parameter: {key} = {value}")
-
         self.root = cfg.dataset.root_dir
 
         if cfg.dataset.unified_dataset is not None:

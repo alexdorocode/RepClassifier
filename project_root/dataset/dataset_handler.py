@@ -97,7 +97,7 @@ class DatasetHandler:
             go_loader= go_loader
         )
 
-    def load_experimental_dataset(self):
+    def load_classifier_dataset(self):
         """
         Load the experimental dataset based on the configuration.
         """
