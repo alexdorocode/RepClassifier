@@ -1,0 +1,57 @@
+random_forest:
+  model_class: sklearn.ensemble.RandomForestClassifier
+  parameters:
+    n_estimators:
+      values: [100, 200, 500, 1000]  # Number of trees
+    criterion:
+      values: ['gini', 'entropy', 'log_loss']  # Splitting criterion
+    max_depth:
+      min: 3
+      max: 30
+      distribution: int_uniform  # Maximum tree depth
+    min_samples_split:
+      min: 2
+      max: 20
+      distribution: int_uniform  # Min samples required to split an internal node
+    min_samples_leaf:
+      min: 1
+      max: 10
+      distribution: int_uniform  # Min samples required at a leaf node
+    max_features:
+      values: ['auto', 'sqrt', 'log2', None]  # Number of features to consider at each split
+    bootstrap:
+      values: [True, False]  # Whether bootstrap samples are used
+    class_weight:
+      values: [null, 'balanced', 'balanced_subsample']  # Handling of class imbalance
+    max_samples:
+      min: 0.5
+      max: 1.0
+      distribution: uniform  # If bootstrap=True, defines the fraction of samples to use
+    n_jobs:
+      values: [-1, 1, 2, 4]  # Parallel jobs
+    random_state:
+      values: [42, 2025, 7]  # For reproducibility
+
+#🔍 Key Hyperparameter Notes
+
+#    n_estimators: More trees generally improve performance but increase computation time.
+
+ #   criterion:
+
+#        'gini': Measures impurity.
+
+#        'entropy' (or 'log_loss' for >= sklearn 1.1): Measures information gain.
+
+#    max_depth: Controls tree growth; deeper trees fit more but risk overfitting.
+
+#    min_samples_split & min_samples_leaf: Prevent overfitting by requiring more samples to split nodes or create leaves.
+
+#    max_features: 'auto' is default; 'sqrt' or 'log2' are often used for high-dimensional data.
+
+#    bootstrap: Sampling with replacement for building trees.
+
+#    class_weight: Handle imbalanced protein classes.
+
+#    max_samples: Fraction of samples used per tree if bootstrap is enabled.
+
+#    n_jobs: Controls CPU parallelization.

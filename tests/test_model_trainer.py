@@ -18,11 +18,15 @@ def generate_dummy_dataset(num_samples=100, input_size=10, num_classes=2):
 @pytest.mark.parametrize("model_type, model_params", [
     ("logistic", {"max_iter": 100}),
     ("svm", {"kernel": "linear", "probability": True}),
-    ("mlp", {"num_hidden_layers": 2, "dropout_rate": 0.1, "hidden_layers_mode": "quadratic_increase"}),
-    ("xgboost", {"n_estimators": 100, "max_depth": 3, "learning_rate": 0.1})
+    ("mlp", {
+        "num_hidden_layers": 2, "dropout_rate": 0.1, "hidden_layers_mode": "quadratic_increase",
+        "activation_function": "ReLU", "use_batch_norm": False, "output_activation": None, "initialization": None
+    }),
+    ("xgboost", {"n_estimators": 100, "max_depth": 3, "learning_rate": 0.1}),
+    ("random_forest", {"n_estimators": 100, "max_depth": 5, "criterion": "gini"}),
+    ("knn", {"n_neighbors": 5, "weights": "uniform"})
 ])
 def test_model_trainer_cross_val(model_type, model_params):
-
     print(f"🔍 Testing model type: {model_type} with params: {model_params}")
 
     input_size = 10
@@ -41,12 +45,14 @@ def test_model_trainer_cross_val(model_type, model_params):
     X, y = generate_dummy_dataset(num_samples=1000, input_size=input_size, num_classes=num_classes)
     dataset = TensorDataset(torch.tensor(X), torch.tensor(y))
     feature_names = [f'feature_{i}' for i in range(input_size)]
+
     # Initialize W&B tracker
-    tracker = TrackerModule(project_name="ProteinClassifier", run_name="run_01", offline=False, config={"model": model_type, "lr": 0.01, "epochs": 5})
+    tracker = TrackerModule(project_name="ProteinClassifier", run_name=f"run_{model_type}", offline=True,
+                            config={"model": model_type, "lr": 0.01, "epochs": 5})
     try:
         trainer = TrainerModule(
             model=model,
-            model_type=model_type,  # Pass model_type
+            model_type=model_type,
             device=device,
             learning_rate=0.01,
             num_epochs=1,
@@ -59,23 +65,26 @@ def test_model_trainer_cross_val(model_type, model_params):
         avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics = trainer.cross_validate(dataset)
         assert 0.0 <= avg_acc <= 1.0
         assert 0.0 <= avg_f1 <= 1.0
-        print(f"✅ Passed: {model_type} with avg_acc={avg_acc:.2%}, avg_f1={avg_f1:.2%}, precision={avg_precision:.2%}, recall={avg_recall:.2%}")
+        print(f"✅ Passed: {model_type} with avg_acc={avg_acc:.2%}, avg_f1={avg_f1:.2%}")
 
         # 🔥 Explainability test
         print(f"🧠 Running Explainability for {model_type}...")
         # Fit the model if needed for explainability
-        if model_type in ["logistic", "svm", "xgboost"]:
+        if model_type in ["logistic", "svm", "xgboost", "random_forest", "knn"]:
             model.fit(X, y)
+
         explainer = ExplainabilityModule(model, model_type, device=device)
-        # For SVM, consider skipping or using KernelExplainer
+
+        # SVM Explainability: use KernelExplainer, skip LinearExplainer warning
         if model_type == "svm":
-            print("⚠️ Skipping explainability for SVM (not supported by LinearExplainer).")
-            return
+            print("⚠️ SVM: Using KernelExplainer; explanations might be approximate.")
+
         # For MLP, pass a target if needed
         if model_type == "mlp":
             explanation_df = explainer.explain(X[:5], feature_names=feature_names, target=0)
         else:
             explanation_df = explainer.explain(X[:5], feature_names=feature_names)
+
         assert isinstance(explanation_df, pd.DataFrame)
         assert all(f in explanation_df.columns for f in feature_names)
         print(f"✅ Explainability completed for {model_type}, top rows:\n{explanation_df.head()}")

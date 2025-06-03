@@ -102,11 +102,21 @@ class DatasetHandler:
         Load the experimental dataset based on the configuration.
         """
         print("🔍 Loading experimental dataset...")
+
+        print("📦 Processing dataset with ClassifierDataset...")
+        print("Using configuration for classifier definition:")
+        print(self.config.classifier_definition)
+        print("--" * 20)
         
         classifier_dataset = ClassifierDataset(
-            processed_df=self.processed_dataset.get_dataset(self.config.experiment_definition),
+            processed_df=self.processed_dataset.get_dataset(self.config.classifier_definition),
             label_col='class',
+            balance_col=self.config.classifier_definition.get('balance_col'),
             production=False
         )
+
+        print("📦 ClassifierDataset loaded successfully.")
+        print(f"Dataset size: {len(classifier_dataset)} samples")
+        print(f"Dataset columns: {classifier_dataset.df.columns.tolist()}")
 
         return classifier_dataset

@@ -11,7 +11,7 @@ import numpy as np
 class TrainerModule:
     def __init__(self, model, model_type, device='cpu', learning_rate=0.001, num_epochs=10, cv_folds=5,
                 tracker=None, optimizer_name='Adam', criterion_name='CrossEntropyLoss', 
-                cross_val_balance=None, batch_size=32, random_seed=42):
+                cross_val_balance=None, batch_size=32, random_seed=42, early_stopping_patience=None):
         """
         Args:
             model: PyTorch or sklearn/xgb/lgbm model
@@ -36,36 +36,36 @@ class TrainerModule:
         self.cross_val_balance = cross_val_balance
         self.batch_size = batch_size
         self.random_seed = random_seed
+        self.early_stopping_patience = early_stopping_patience
 
-    def cross_validate(self, dataset):
+    def cross_validate(self, X, y, balance_df=None):
         print(f"🔄 Starting {self.cv_folds}-fold cross-validation...")
-    
-        X = dataset.tensors[0].numpy()
-        y = dataset.tensors[1].numpy()
-    
-        # Use stratification based on y or combined label+feature
-        if self.cross_val_balance and hasattr(dataset, 'df'):
-            stratify_labels = np.array([
-                f"{label}_{balance}"
-                for label, balance in zip(y, dataset.df[self.cross_val_balance].values)
-            ])
+
+        if self.cross_val_balance and balance_df is not None:
+            stratify_labels = np.array([f"{label}_{balance}" for label, balance in zip(y, balance_df)])
         else:
             stratify_labels = y
-    
+
         skf = StratifiedKFold(n_splits=self.cv_folds, shuffle=True, random_state=self.random_seed)
-    
+
         fold_metrics = []
         for fold, (train_idx, val_idx) in enumerate(skf.split(X, stratify_labels)):
-            print(f"🔍 Fold {fold+1}/{self.cv_folds}")
-            X_train = np.ascontiguousarray(X[train_idx]).astype(np.float32)
-            y_train = np.ascontiguousarray(y[train_idx]).astype(np.int64)
-            X_val = np.ascontiguousarray(X[val_idx]).astype(np.float32)
-            y_val = np.ascontiguousarray(y[val_idx]).astype(np.int64)
-    
+            print(f"\n🔍 Fold {fold+1}/{self.cv_folds}")
+
+            X_train, X_val = X[train_idx], X[val_idx]
+            y_train, y_val = y[train_idx], y[val_idx]
+            balance_train = balance_df[train_idx] if balance_df is not None else None
+            balance_val = balance_df[val_idx] if balance_df is not None else None
+
+            # 🏷️ Show balance summary in the train and validation sets
+            if balance_train is not None:
+                self.show_balance_summary(y_train, balance_train, y_val, balance_val)
+
+            # Now proceed with training...
             if isinstance(self.model, nn.Module):
                 train_loader, val_loader = self._create_loaders(X_train, y_train, X_val, y_val)
                 model_fold = self._clone_model()
-                self._train_pytorch(model_fold, train_loader)
+                self._train_pytorch(model_fold, train_loader, val_loader)
                 metrics = self._evaluate_pytorch(model_fold, val_loader)
             else:
                 model_fold = self._clone_model()
@@ -85,17 +85,16 @@ class TrainerModule:
                     'y_true': y_val,
                     'y_pred': y_pred
                 }
-    
+
             print(f"🎯 Fold {fold+1} Accuracy: {metrics['accuracy']:.2%}, F1: {metrics['f1']:.2%}, Precision: {metrics['precision']:.2%}, Recall: {metrics['recall']:.2%}")
             fold_metrics.append(metrics)
-    
+
             if self.tracker:
                 self.tracker.log_metric(f"fold_{fold+1}_accuracy", metrics['accuracy'])
                 self.tracker.log_metric(f"fold_{fold+1}_f1", metrics['f1'])
                 self.tracker.log_metric(f"fold_{fold+1}_precision", metrics['precision'])
                 self.tracker.log_metric(f"fold_{fold+1}_recall", metrics['recall'])
-                # Optionally log confusion matrix as artifact/image
-    
+
         avg_acc = np.mean([m['accuracy'] for m in fold_metrics])
         avg_f1 = np.mean([m['f1'] for m in fold_metrics])
         avg_precision = np.mean([m['precision'] for m in fold_metrics])
@@ -106,8 +105,9 @@ class TrainerModule:
             self.tracker.log_metric("cv_avg_f1", avg_f1)
             self.tracker.log_metric("cv_avg_precision", avg_precision)
             self.tracker.log_metric("cv_avg_recall", avg_recall)
-    
+
         return avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics
+
 
     def _create_loaders(self, X_train, y_train, X_val, y_val):
         from torch.utils.data import TensorDataset, DataLoader # type: ignore
@@ -143,11 +143,15 @@ class TrainerModule:
         }
         return crit_map.get(self.criterion_name, nn.CrossEntropyLoss())
 
-    def _train_pytorch(self, model, train_loader):
+
+    def _train_pytorch(self, model, train_loader, val_loader=None):
         model.to(self.device)
         criterion = self._get_criterion()
         optimizer = self._get_optimizer(model)
         model.train()
+        best_val_loss = float('inf')
+        epochs_no_improve = 0
+
         for epoch in range(self.num_epochs):
             total_loss = 0
             for features, labels in train_loader:
@@ -159,6 +163,30 @@ class TrainerModule:
                 optimizer.step()
                 total_loss += loss.item()
             print(f"Epoch [{epoch+1}/{self.num_epochs}], Loss: {total_loss:.4f}")
+
+            # Early stopping check (if val_loader provided)
+            if self.early_stopping_patience and val_loader is not None:
+                val_loss = self._compute_validation_loss(model, val_loader, criterion)
+                print(f"Validation Loss: {val_loss:.4f}")
+                if val_loss < best_val_loss:
+                    best_val_loss = val_loss
+                    epochs_no_improve = 0
+                else:
+                    epochs_no_improve += 1
+                    if epochs_no_improve >= self.early_stopping_patience:
+                        print(f"⏹️ Early stopping triggered at epoch {epoch+1}")
+                        break
+
+    def _compute_validation_loss(self, model, val_loader, criterion):
+        model.eval()
+        total_loss = 0.0
+        with torch.no_grad():
+            for features, labels in val_loader:
+                features, labels = features.to(self.device), labels.to(self.device)
+                outputs = model(features)
+                loss = criterion(outputs, labels)
+                total_loss += loss.item()
+        return total_loss / len(val_loader)
 
     def _evaluate_pytorch(self, model, val_loader):
         model.eval()
@@ -216,3 +244,30 @@ class TrainerModule:
             self.tracker.log_metric("zero_shot_recall", metrics['recall'])
             # Optionally log confusion matrix as an artifact or image
         return metrics
+    
+    def show_balance_summary(self, y_train, balance_train, y_val=None, balance_val=None):
+        """
+        Show balance summary for training and validation sets.
+        Args:
+            y_train: Labels for training set
+            balance_train: Balance column values for training set
+            y_val: Labels for validation set (optional)
+            balance_val: Balance column values for validation set (optional)
+        """
+        from collections import Counter
+    
+        def sorted_items(counter):
+            # Sort by balance (organism), then by label (0 before 1)
+            return sorted(
+                counter.items(),
+                key=lambda x: (x[0][1], x[0][0])  # (balance, label)
+            )
+    
+        train_summary = Counter(zip(y_train, balance_train))
+        val_summary = Counter(zip(y_val, balance_val))
+        print("🔎 Training Fold Balance Summary (label, balance_col):")
+        for (label, balance), count in sorted_items(train_summary):
+            print(f"  Label: {label}, Balance: {balance}, Count: {count}")
+        print("🔎 Validation Fold Balance Summary (label, balance_col):")
+        for (label, balance), count in sorted_items(val_summary):
+            print(f"  Label: {label}, Balance: {balance}, Count: {count}")

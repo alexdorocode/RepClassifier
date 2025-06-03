@@ -66,6 +66,7 @@ class ProcessedDataset:
         features_col = config['features_col']
         sequence_embeddings = config['sequence_embeddings']
         go_embeddings = config['go_embeddings']
+        balance_col = config['balance_col']
         organism_discrimination_strategy = config['organism_discrimination_strategy']
         
         selected_accessions = self._selected_accessions(organism_discrimination_strategy)
@@ -78,7 +79,12 @@ class ProcessedDataset:
         
         # Start with the selected features from the processed DataFrame
         df = self.processed_df[self.processed_df[self.main_columns['id_col']].isin(selected_accessions)].copy()
-        df = df[[self.main_columns['id_col']] + features_col + [label_col]]
+        print("Getting dataset with the following columns:")
+        print(f"Main ID column: {self.main_columns['id_col']}")
+        print(f"Features columns: {features_col}")
+        print(f"Label column: {label_col}")
+        print(f"Balance column: {balance_col}")
+        df = df[[self.main_columns['id_col']] + features_col + [label_col] + [balance_col]]
         df.set_index(self.main_columns['id_col'], inplace=True)
         
         # Add each embedding as a new column (embedding tensor or array)

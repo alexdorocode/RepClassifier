@@ -1,12 +1,10 @@
-# config/config_process.yaml
+# config/config_classifier.yaml
 
 defaults:
   - _self_
   - config_process
 
-experiment_definition:
-
-  experiment_name: "protein_classification_experiment_0"
+classifier_definition:
 
   label_col: "class"
 

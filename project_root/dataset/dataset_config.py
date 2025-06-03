@@ -15,9 +15,7 @@ class DatasetConfigReader:
             self.metrics_col = cfg.dataset.unified_dataset.metrics_col
 
         self.features_to_process = cfg.features_to_process
-        #self.sequence_embeddings = cfg.sequence_embeddings
-        #self.go_embeddings = cfg.go_embeddings
-
+        
         self.paths = {
             "embedding_sequence_paths": cfg.paths.embedding_sequence_paths,
             "autoencoder_paths": cfg.paths.autoencoder_paths,
@@ -25,11 +23,34 @@ class DatasetConfigReader:
             "autoencoded_go_embeddings": cfg.paths.autoencoded_go_embeddings
         }
 
-        self.experiment_definition = {
-            "experiment_name": cfg.experiment_definition.experiment_name,
-            "label_col": cfg.experiment_definition.label_col,
-            "features_col": cfg.experiment_definition.features_col,
-            "sequence_embeddings": cfg.experiment_definition.sequence_embeddings,
-            "go_embeddings": cfg.experiment_definition.go_embeddings,
-            "organism_discrimination_strategy": cfg.experiment_definition.organism_discrimination_strategy,
+        self.classifier_definition = {
+            "label_col": cfg.classifier_definition.label_col,
+            "features_col": cfg.classifier_definition.features_col,
+            "sequence_embeddings": cfg.classifier_definition.sequence_embeddings,
+            "go_embeddings": cfg.classifier_definition.go_embeddings,
+            "balance_col": cfg.classifier_definition.balance_col,
+            "organism_discrimination_strategy": cfg.classifier_definition.organism_discrimination_strategy,
         }
+
+        self.model = {
+            "type": cfg.classifier_definition.model.type,
+            "params": cfg.classifier_definition.model.params
+        }
+
+        self.training = {
+            "learning_rate": cfg.classifier_definition.training.learning_rate,
+            "num_epochs": cfg.classifier_definition.training.num_epochs,
+            "cv_folds": cfg.classifier_definition.training.cv_folds,
+            "optimizer": cfg.classifier_definition.training.optimizer,
+            "criterion": cfg.classifier_definition.training.criterion,
+            "batch_size": cfg.classifier_definition.training.batch_size,
+            "test_size_ratio": cfg.classifier_definition.training.test_size_ratio,
+            "early_stopping_patience": cfg.classifier_definition.training.early_stopping_patience,
+        }
+        self.tracker = {
+            "project_name": cfg.classifier_definition.tracker.project_name,
+            "run_name": cfg.classifier_definition.tracker.run_name,
+            "offline": cfg.classifier_definition.tracker.get('offline', False)
+        }
+        self.explainability = cfg.classifier_definition.explainability
+        

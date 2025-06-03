@@ -3,7 +3,7 @@ import numpy as np
 from torch.utils.data import Dataset
 
 class ClassifierDataset(Dataset):
-    def __init__(self, processed_df, feature_cols=None, label_col="label", production=False):
+    def __init__(self, processed_df, feature_cols=None, label_col="label", balance_col=None, production=False):
         """
         Args:
             processed_df: pandas DataFrame with all processed features and labels.
@@ -13,25 +13,37 @@ class ClassifierDataset(Dataset):
         """
         self.production = production
         self.df = processed_df
-
+        self.label_col = label_col
+        self.balance_col = balance_col
+        self.production = production
+        
+        # Determine excluded columns
+        excluded = []
+        if label_col in processed_df.columns and not production:
+            excluded.append(label_col)
+        if balance_col in processed_df.columns:
+            excluded.append(balance_col)
+        
+        # Determine feature columns
         if feature_cols is None:
-            # Default to all columns except label_col (if label_col exists and not production)
-            excluded = [label_col] if (label_col in processed_df.columns and not production) else []
             self.feature_cols = [col for col in processed_df.columns if col not in excluded]
         else:
             self.feature_cols = feature_cols
-
-        self.label_col = label_col
-
-        print(f"Initializing ClassifierDataset with features: {self.feature_cols} and label: {self.label_col}")
-        print(f"Production mode: {self.df.columns}")
-
-        # Extract features and labels
+        
+        print(f"Initializing ClassifierDataset with features: {self.feature_cols}, label: {self.label_col}, balance_col: {self.balance_col}")
+        
+        # Prepare features and labels
         self.features = self._prepare_features()
         if not production:
             self.labels = self._prepare_labels()
         else:
-            self.labels = None  # No labels in production
+            self.labels = None
+        
+        # Optional: balance values for stratification
+        if balance_col and balance_col in processed_df.columns:
+            self.balance_values = processed_df[balance_col].values
+        else:
+            self.balance_values = None
 
     def _prepare_features(self):
         feature_list = []
@@ -68,3 +80,14 @@ class ClassifierDataset(Dataset):
             return self.features[idx]
         else:
             return self.features[idx], self.labels[idx]
+    
+    def get_X_y(self):
+        """
+        Returns the features and labels as numpy arrays.
+        Useful for compatibility with sklearn or other libraries.
+        """
+        if self.production:
+            return self.features.numpy(), None
+        else:
+            return self.features.numpy(), self.labels.numpy()
+    

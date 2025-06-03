@@ -1,0 +1,11 @@
+
+tune_params:
+    features_tune_config:
+        max_mbl_c:
+            use: [true, false]
+        max_mbl_f:
+            use: [true, false]
+        max_mbl_p:
+            use: [true, false]
+        seq_length:
+            use: [true, false]

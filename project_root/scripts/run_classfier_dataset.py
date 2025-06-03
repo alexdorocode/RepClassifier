@@ -16,7 +16,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-@hydra.main(config_path="../config", config_name="config_experiment", version_base="1.3")
+@hydra.main(config_path="../config", config_name="config_classifier_dataset_test", version_base="1.3")
 def test_sequence_loader(cfg: DictConfig):
     print("🔍 Initializing DatasetConfigReader and DatasetHandler...")
     config_reader = DatasetConfigReader(cfg)
