@@ -1,8 +1,7 @@
 random_forest:
-  model_class: sklearn.ensemble.RandomForestClassifier
   parameters:
     n_estimators:
-      values: [100, 200, 500, 1000]  # Number of trees
+      values: [100, 200, 500]  # Number of trees
     criterion:
       values: ['gini', 'entropy', 'log_loss']  # Splitting criterion
     max_depth:
@@ -27,10 +26,8 @@ random_forest:
       min: 0.5
       max: 1.0
       distribution: uniform  # If bootstrap=True, defines the fraction of samples to use
-    n_jobs:
-      values: [-1, 1, 2, 4]  # Parallel jobs
-    random_state:
-      values: [42, 2025, 7]  # For reproducibility
+#    n_jobs:
+#      values: [-1, 1, 2, 4]  # Parallel jobs
 
 #🔍 Key Hyperparameter Notes
 

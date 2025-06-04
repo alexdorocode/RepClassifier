@@ -2,17 +2,20 @@ import os
 import itertools
 import pprint
 import json
-from omegaconf import OmegaConf
+from omegaconf import OmegaConf # type: ignore
 from project_root.experiment.classifier_launcher import ClassifierLauncher
 from project_root.dataset.dataset_config import DatasetConfigReader
-from project_root.experiment.validate_config import validate_config  # Assuming this is the correct import path for your validation function
+from project_root.utils.config_utils import validate_config  # Assuming this is the correct import path for your validation function
 
 class ExperimentLauncher:
     def __init__(self, base_config_path, config_forks):
         self.base_config_path = base_config_path
         self.config_forks = config_forks
         self.base_config = OmegaConf.load(base_config_path)
-        self.fork_configs = [OmegaConf.load(f) for f in config_forks]
+        self.fork_configs = [
+            OmegaConf.load(f) if isinstance(f, str) and os.path.isfile(f) else OmegaConf.create(f)
+            for f in config_forks
+        ]
 
         self.display_configs()
 

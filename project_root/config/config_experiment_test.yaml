@@ -1,45 +1,26 @@
 defaults:
   - _self_
-  - config_process
+  - config_classifier_base
 
 # Classifier-specific configuration
 classifier_definition:
   experiment_name: "protein_classification_experiment_0"
-  label_col: "class"
-  balance_col: "organism"
-  features_col: ['c_max_mbl', 'f_max_mbl', 'p_max_mbl', 'seq_length']
-
+  
   sequence_embeddings:
     ESM:
-      use_autoencoder: False
-      autoencoded_embeddings: True
       target_dim: 128
-      embedding_path: "../DATASETS/embeddings/ESM/esm_embeddings.csv"
     ProtT5:
-      use_autoencoder: False
-      autoencoded_embeddings: True
       target_dim: 128
-      embedding_path: "../DATASETS/embeddings/ProtT5/prott5_embeddings.csv"
     ProstT5:
-      use_autoencoder: False
-      autoencoded_embeddings: True
       target_dim: 128
-      embedding_path: "../DATASETS/embeddings/ProstT5/prostt5_embeddings.csv"
 
   go_embeddings:
     GeOKG:
-      autoencoded_embeddings: True
       input_dim: 500
       emb_dim: 128
       aggregated_dim: 1280
       aggregation_strategy: "padding"
       go_categories: "C_F"
-      embedding_path: "../DATASETS/embeddings/GeOKG/geokg_embeddings.csv"
-      autoencoder_path: "../DATASETS/embeddings/GeOKG/autoencoder_model.pt"
-
-  organism_discrimination_strategy:
-    use_selected_organisms: null
-    use_top_organisms: 4
 
   # Model configuration
   model:
@@ -55,20 +36,14 @@ classifier_definition:
 
   # Training configuration
   training:
-    learning_rate: 0.001
-    num_epochs: 200
     cv_folds: 3
-    optimizer: "Adam"
-    criterion: "CrossEntropyLoss"
-    batch_size: 32
+    cross_val_balance: "organism"  # Use "organism" for stratified sampling by organism
     test_size_ratio: 0.2
-    early_stopping_patience: True
-
-  # Tracker (W&B or local logging)
-  tracker:
-    project_name: "ProteinClassifier"
-    run_name: "classifier_run_1"
-    offline: False  # Set True to disable W&B online sync
-
-  # Optional explainability flag
-  explainability: True
+    mlp_params:
+      learning_rate: 0.001
+      num_epochs: 200
+      optimizer: "Adam"
+      criterion: "CrossEntropyLoss"
+      batch_size: 32
+      early_stopping_patience: 5
+    

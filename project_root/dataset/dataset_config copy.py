@@ -39,10 +39,14 @@ class DatasetConfigReader:
         }
 
         self.training = {
+            "learning_rate": cfg.classifier_definition.training.learning_rate,
+            "num_epochs": cfg.classifier_definition.training.num_epochs,
             "cv_folds": cfg.classifier_definition.training.cv_folds,
-            "cross_val_balance": cfg.classifier_definition.training.cross_val_balance,
+            "optimizer": cfg.classifier_definition.training.optimizer,
+            "criterion": cfg.classifier_definition.training.criterion,
+            "batch_size": cfg.classifier_definition.training.batch_size,
             "test_size_ratio": cfg.classifier_definition.training.test_size_ratio,
-            "mlp_params": cfg.classifier_definition.training.mlp_params,
+            "early_stopping_patience": cfg.classifier_definition.training.early_stopping_patience,
         }
         self.tracker = {
             "project_name": cfg.classifier_definition.tracker.project_name,

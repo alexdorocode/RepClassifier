@@ -1,58 +1,29 @@
 logistic_regression:
-  model_class: sklearn.linear_model.LogisticRegression
   parameters:
     penalty:
-      values: ['l1', 'l2', 'elasticnet', None]
-    dual:
-      values: [False, True]
-    tol:
-      min: 1e-5
-      max: 1e-2
-      distribution: log_uniform
+      values: ['l2', 'none']  # 'elasticnet' requires 'saga', which is slower
     C:
-      min: 1e-3
+      min: 0.01
       max: 10
       distribution: log_uniform
+    tol:
+      min: 1e-4
+      max: 1e-2
+      distribution: log_uniform
     fit_intercept:
-      values: [True, False]
-    intercept_scaling:
-      min: 0.1
-      max: 10.0
-      distribution: uniform
+      values: [True]
     class_weight:
       values: [null, 'balanced']
     solver:
-      values: ['lbfgs', 'liblinear', 'newton-cg', 'sag', 'saga', 'newton-cholesky']
+      values: ['liblinear', 'lbfgs']  # good for small/medium datasets
     max_iter:
-      values: [100, 200, 500, 1000]
-    multi_class:
-      values: ['auto', 'ovr', 'multinomial']
-    warm_start:
-      values: [False, True]
-    n_jobs:
-      values: [-1, 1, 2, 4]
-    l1_ratio:
-      min: 0.0
-      max: 1.0
-      distribution: uniform
+      values: [100, 200]
 
-# When designing the sweep:
-
-#    🔸 If solver='liblinear', limit penalty to 'l1' or 'l2', multi_class to 'ovr', and ensure dual=True only if penalty='l2'. Ignore n_jobs.
-
-#    🔸 If penalty='elasticnet', set solver='saga' and provide a l1_ratio.
-
-#    🔸 If multi_class='multinomial', exclude solver='liblinear' and newton-cholesky.
-
-#    🔸 Use compatible ranges for C, tol, intercept_scaling, and max_iter.
-# 4️⃣ Multiclass and Solver
-
-#    multi_class='multinomial' is only valid if solver is not 'liblinear' or 'newton-cholesky'.
-
-#    If multi_class='ovr', then it’s fine with all solvers.
-
-#    If multi_class='auto', it selects:
-
-#        'ovr' if binary or solver is 'liblinear'.
-
-#        'multinomial' otherwise.
+  base_line:
+    penalty: 'l2'
+    C: 1.0
+    tol: 0.0001
+    fit_intercept: True
+    class_weight: null
+    solver: 'lbfgs'
+    max_iter: 200

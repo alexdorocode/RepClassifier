@@ -9,34 +9,59 @@ from collections import Counter
 import numpy as np
 
 class TrainerModule:
-    def __init__(self, model, model_type, device='cpu', learning_rate=0.001, num_epochs=10, cv_folds=5,
-                tracker=None, optimizer_name='Adam', criterion_name='CrossEntropyLoss', 
-                cross_val_balance=None, batch_size=32, random_seed=42, early_stopping_patience=None):
+    def __init__(
+        self,
+        model,
+        model_type,
+        device='cpu',
+        cv_folds=5,
+        tracker=None,
+        cross_val_balance=None,
+        random_seed=42,
+        # MLP-specific (optional)
+        learning_rate=None,
+        num_epochs=None,
+        optimizer_name=None,
+        criterion_name=None,
+        batch_size=None,
+        early_stopping_patience=None,
+    ):
         """
+        Initializes a training wrapper for both PyTorch and sklearn-style models.
+
         Args:
-            model: PyTorch or sklearn/xgb/lgbm model
-            device: 'cpu' or 'cuda'
-            learning_rate: for PyTorch
-            num_epochs: for PyTorch
-            cv_folds: number of cross-validation folds
-            tracker: optional TrackerModule
-            optimizer_name: PyTorch optimizer name ('Adam', 'SGD', etc.)
-            criterion_name: PyTorch criterion name ('CrossEntropyLoss', 'MSELoss', etc.)
-            cross_val_balance: str, optional feature name to stratify cross-validation (e.g., 'organism')
+            model: Initialized model (PyTorch or sklearn/XGB/LGBM)
+            model_type: str, e.g., 'mlp', 'logistic_regression', 'svm', etc.
+            device: str, 'cpu' or 'cuda' (used for PyTorch)
+            cv_folds: int, number of folds for cross-validation
+            tracker: optional TrackerModule instance
+            cross_val_balance: str, optional stratification feature (e.g., 'organism')
+            random_seed: int, random state for reproducibility
+
+            # Only required for PyTorch-based models like MLP
+            learning_rate: float, optimizer learning rate
+            num_epochs: int, number of epochs
+            optimizer_name: str, e.g., 'Adam', 'SGD'
+            criterion_name: str, e.g., 'CrossEntropyLoss', 'MSELoss'
+            batch_size: int, training batch size
+            early_stopping_patience: int, early stopping patience
         """
         self.model = model
         self.model_type = model_type
         self.device = device
-        self.learning_rate = learning_rate
-        self.num_epochs = num_epochs
         self.cv_folds = cv_folds
         self.tracker = tracker
-        self.optimizer_name = optimizer_name
-        self.criterion_name = criterion_name
         self.cross_val_balance = cross_val_balance
-        self.batch_size = batch_size
         self.random_seed = random_seed
-        self.early_stopping_patience = early_stopping_patience
+
+        # Set MLP-specific training hyperparameters only when applicable
+        if self.model_type == "mlp":
+            self.learning_rate = learning_rate or 0.001
+            self.num_epochs = num_epochs or 10
+            self.optimizer_name = optimizer_name or "Adam"
+            self.criterion_name = criterion_name or "CrossEntropyLoss"
+            self.batch_size = batch_size or 32
+            self.early_stopping_patience = early_stopping_patience
 
     def cross_validate(self, X, y, balance_df=None):
         print(f"🔄 Starting {self.cv_folds}-fold cross-validation...")

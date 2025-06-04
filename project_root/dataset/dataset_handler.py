@@ -110,7 +110,7 @@ class DatasetHandler:
         
         classifier_dataset = ClassifierDataset(
             processed_df=self.processed_dataset.get_dataset(self.config.classifier_definition),
-            label_col='class',
+            label_col=self.config.classifier_definition.get('label_col'),
             balance_col=self.config.classifier_definition.get('balance_col'),
             production=False
         )

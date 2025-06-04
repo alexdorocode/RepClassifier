@@ -146,53 +146,16 @@ def validate_config(model_name, config):
 
     return True
 
+def merge_dicts(*dicts):
+    result = {}
+    for d in dicts:
+        for k, v in d.items():
+            if isinstance(v, dict) and k in result:
+                result[k] = merge_dicts(result[k], v)
+            else:
+                result[k] = v
 
-'''
-# Example usage
-try:
-    config_svm = {
-        "kernel": "linear",
-        "degree": 3,  # Should trigger a warning
-        "coef0": 0.5,  # Should trigger a warning
-        "gamma": "scale",
-        "probability": True
-    }
-    validate_config("svm", config_svm)
-except ValueError as e:
-    print(f"SVM config error: {e}")
+    if len(result) > 1000:
+        print(f"Merged configuration: {len(result)}")
+    return result
 
-try:
-    config_lr = {
-        "penalty": "elasticnet",
-        "solver": "liblinear",
-        "dual": False
-    }
-    validate_config("logistic_regression", config_lr)
-except ValueError as e:
-    print(f"LogisticRegression config error: {e}")
-
-
-
-# Example usage:
-try:
-    config_lr = {
-        "penalty": "l1",
-        "solver": "lbfgs",  # This will trigger an error
-        "dual": False,
-        "l1_ratio": None,
-        "multi_class": "auto"
-    }
-    validate_config("logistic_regression", config_lr)
-except ValueError as e:
-    print(f"LogisticRegression config error: {e}")
-
-try:
-    config_xgb = {
-        "booster": "gbtree",
-        "objective": "binary:logistic",
-        "scale_pos_weight": 0.5  # This will trigger an error
-    }
-    validate_config("xgboost", config_xgb)
-except ValueError as e:
-    print(f"XGBoost config error: {e}")
-'''

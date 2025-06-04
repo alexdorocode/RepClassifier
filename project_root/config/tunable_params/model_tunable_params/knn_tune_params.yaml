@@ -1,5 +1,4 @@
 knn:
-  model_class: sklearn.neighbors.KNeighborsClassifier
   parameters:
     n_neighbors:
       min: 1

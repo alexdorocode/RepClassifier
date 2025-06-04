@@ -65,17 +65,19 @@ class ClassifierLauncher:
     def run(self):
         try:
             training_cfg = self.config_reader.training
+            mlp_params = training_cfg.get('mlp_params', {})
             trainer = TrainerModule(
                 model=self.model,
                 model_type=self.config_reader.model['type'],
                 device=self.device,
-                learning_rate=training_cfg['learning_rate'],
-                num_epochs=training_cfg['num_epochs'],
+                learning_rate=mlp_params['learning_rate'],
+                num_epochs=mlp_params['num_epochs'],
                 cv_folds=training_cfg['cv_folds'],
                 tracker=self.tracker,
-                optimizer_name=training_cfg['optimizer'],
-                criterion_name=training_cfg['criterion'],
-                early_stopping_patience=training_cfg['early_stopping_patience'],
+                optimizer_name=mlp_params['optimizer'],
+                criterion_name=mlp_params['criterion'],
+                early_stopping_patience=mlp_params['early_stopping_patience'],
+                batch_size=mlp_params['batch_size'],
             )
             avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics = trainer.cross_validate(self.X_train, self.y_train, self.classifier_dataset.balance_values)
             print(f"✅ Training done! Accuracy: {avg_acc:.2%}, F1: {avg_f1:.2%}, Precision: {avg_precision:.2%}, Recall: {avg_recall:.2%}")

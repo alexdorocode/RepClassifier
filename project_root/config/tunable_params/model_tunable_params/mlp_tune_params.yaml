@@ -1,5 +1,4 @@
 mlp_protein_classifier:
-  model_class: MLPProteinClassifier
   parameters:
     num_hidden_layers:
       min: 1

@@ -36,3 +36,6 @@ classifier_definition:
 
   # Optional explainability flag
   explainability: True
+  production_mode: False  # Set True for production mode, False for development/testing
+
+  randomess_seeds: [2001, 2002, 2003, 2004, 2005]
