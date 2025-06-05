@@ -1,4 +1,4 @@
-random_forest:
+rf: 
   parameters:
     n_estimators:
       values: [100, 200, 500]  # Number of trees
@@ -17,7 +17,7 @@ random_forest:
       max: 10
       distribution: int_uniform  # Min samples required at a leaf node
     max_features:
-      values: ['auto', 'sqrt', 'log2', None]  # Number of features to consider at each split
+      values: ['sqrt', 'log2', None]  # Number of features to consider at each split
     bootstrap:
       values: [True, False]  # Whether bootstrap samples are used
     class_weight:
@@ -26,6 +26,19 @@ random_forest:
       min: 0.5
       max: 1.0
       distribution: uniform  # If bootstrap=True, defines the fraction of samples to use
+
+  base_line:
+    n_estimators: 100
+    criterion: 'gini'
+    max_depth: 10
+    min_samples_split: 2
+    min_samples_leaf: 1
+    max_features: 'sqrt'
+    bootstrap: True
+    class_weight: null
+    max_samples: 1.0
+
+
 #    n_jobs:
 #      values: [-1, 1, 2, 4]  # Parallel jobs
 

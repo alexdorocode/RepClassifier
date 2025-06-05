@@ -27,8 +27,7 @@ class ForkExpander:
                 continue  # skip if no parameters to tune
             
             param_grid = self._expand_parameter_block(model_block['parameters'])
-            
-            print(f"Expanding {model_name} with {len(param_grid)} parameter combinations.")
+
             for param_set in param_grid:
                 config = {
                     "model": {
@@ -36,9 +35,10 @@ class ForkExpander:
                         "params": param_set
                     }
                 }
+                is_valid = self._is_valid(model_name, param_set)
+                print(f"Config for {model_name}: {config} - Valid: {is_valid}")
                 if self._is_valid(model_name, param_set):
                     all_combinations.append(config)
-            print(f"Total valid configurations for {model_name}: {len(all_combinations)}")
 
         print(f"Total configurations across all models: {len(all_combinations)}")
         return all_combinations
@@ -65,6 +65,10 @@ class ForkExpander:
         agg_methods = auto.get("aggregated_dim", {}).get("strategies", ["mean_pooling"])
         go_cats = auto.get("go_categories", {}).get("values", ["C_F"])
 
+        print("---" * 20)
+        print(f"Auto values for GO embeddings: {auto}")
+        print("---" * 20)
+        
         # Sequence embedding combinations
         for combination in itertools.product(*seq_opts):
             seq_dict = {name: cfg for name, cfg in combination}
@@ -74,26 +78,28 @@ class ForkExpander:
                 if not use_go:
                     go_dict = {}
                 else:
-                    for input_dim in input_dims:
-                        for emb_dim in emb_dims:
-                            for agg in agg_methods:
-                                for cat in go_cats:
-                                    config = {
-                                        "classifier_definition": {
-                                            "sequence_embeddings": seq_dict,
-                                            "go_embeddings": {
-                                                "GeOKG": {
-                                                    "autoencoded_embeddings": True,
-                                                    "input_dim": input_dim,
-                                                    "emb_dim": emb_dim,
-                                                    "aggregated_dim": emb_dim * 10 if agg == "padding" else emb_dim,
-                                                    "aggregation_strategy": agg,
-                                                    "go_categories": cat
+                    for use_autoencoded in [True, False]:
+                        for input_dim in input_dims:
+                            for emb_dim in emb_dims:
+                                for agg in agg_methods:
+                                    for cat in go_cats:
+                                        config = {
+                                            "classifier_definition": {
+                                                "sequence_embeddings": seq_dict,
+                                                "go_embeddings": {
+                                                    "GeOKG": {
+                                                        "autoencoded_embeddings": use_autoencoded,
+                                                        "input_dim": input_dim,
+                                                        "emb_dim": emb_dim,
+                                                        "aggregated_dim": emb_dim * 10 if agg == "padding" else emb_dim,
+                                                        "aggregation_strategy": agg,
+                                                        "go_categories": cat
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                    configs.append(config)
+                                        if self._is_valid_embedding(config["classifier_definition"]["go_embeddings"]):
+                                            configs.append(config)
                 if not use_go:
                     configs.append({
                         "classifier_definition": {
@@ -203,3 +209,65 @@ class ForkExpander:
             # print(f"❌ Skipping invalid config for {model_name}: {e}")
             return False
 
+    def _is_valid_embedding(self, embedding_config: Dict[str, Any]) -> bool:
+        """
+        Validate if the embedding configuration is valid.
+        """
+
+        if not embedding_config:
+            return False
+        
+        if "GeOKG" not in embedding_config:
+            print("❌ The sistem if only supports GeOKG embeddings.")
+            print("If you want to use other embeddings, please modify the code in `fork_expander.py`.")
+            return False
+
+        geokg_config = embedding_config["GeOKG"]
+        
+        auto = geokg_config.get("autoencoded_embeddings", {})
+        input_dim = geokg_config.get("input_dim")
+        emb_dim = geokg_config.get("emb_dim")
+        agg = geokg_config.get("aggregation_strategy")
+        cat = geokg_config.get("go_categories")
+
+        if input_dim is None or emb_dim is None or agg is None or cat is None:
+            return False
+
+        if agg not in ["mean_pooling", "padding"]:
+            return False
+
+        if cat not in ["C_F", "C_F_P"]:
+            return False
+
+        if not auto:
+            if input_dim == emb_dim and input_dim in [50, 100, 200, 500, 1000]:
+                return True
+        elif input_dim in [200, 500, 1000]:
+            if input_dim == 1000:
+                if emb_dim in [32, 128]:
+                    return True
+            elif input_dim in [200, 500]:
+                if emb_dim in [32, 64, 128]:
+                    return True
+
+        return False
+    
+
+    """
+                                        config = {
+                                        "classifier_definition": {
+                                            "sequence_embeddings": seq_dict,
+                                            "go_embeddings": {
+                                                "GeOKG": {
+                                                    "autoencoded_embeddings": True,
+                                                    "input_dim": input_dim,
+                                                    "emb_dim": emb_dim,
+                                                    "aggregated_dim": emb_dim * 10 if agg == "padding" else emb_dim,
+                                                    "aggregation_strategy": agg,
+                                                    "go_categories": cat
+                                                }
+                                            }
+                                        }
+                                    }
+    
+    """

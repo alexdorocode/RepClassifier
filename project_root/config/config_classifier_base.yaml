@@ -31,11 +31,14 @@ classifier_definition:
   # Tracker (W&B or local logging)
   tracker:
     project_name: "ProteinClassifier"
-    run_name: "classifier_run_1"
-    offline: False  # Set True to disable W&B online sync
+    run_name: "phase_1_logistic_precomputed"
+    offline: True  # Set True to disable W&B online sync
 
   # Optional explainability flag
-  explainability: True
+  explainability: False
   production_mode: False  # Set True for production mode, False for development/testing
+
+  training:
+    test_size_ratio: 0.2  # Ratio of data to be used for testing
 
   randomess_seeds: [2001, 2002, 2003, 2004, 2005]

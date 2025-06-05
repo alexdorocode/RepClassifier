@@ -187,12 +187,16 @@ class ProcessedDataset:
     def _load_go_embeddings(self, accessions, go_embeddings):
         go_embs = {}
         for model_name, go_cfg in go_embeddings.items():
+            # Extract configuration parameters for GO embeddings
+
+            print(f"Loading GO embeddings for model: {model_name}")
+
             input_dim = go_cfg.get("input_dim")
             emb_dim = go_cfg.get("emb_dim")
             aggregated_dim = go_cfg.get("aggregated_dim")
             aggregation_strategy = go_cfg.get("aggregation_strategy")
             go_categories = go_cfg.get("go_categories")
-            use_autoencoder = go_cfg.get("autoencoded_embeddings", False)
+            autoencoded_embeddings = go_cfg.get("autoencoded_embeddings", False)
             if isinstance(go_categories, str):
                 go_categories = go_categories.split("_")
             df = self.go_loader.load(
@@ -201,8 +205,7 @@ class ProcessedDataset:
                 aggregated_dim=aggregated_dim,
                 aggregation_strategy=aggregation_strategy,
                 go_categories=go_categories,
-                use_autoencoder=use_autoencoder,
-                autoencoded_embeddings=use_autoencoder
+                autoencoded_embeddings=autoencoded_embeddings
             )
             accession_col = df.columns[0]  # Assuming first column is accession
             print(f"Filtered GO embeddings for {model_name}: {df.shape}")

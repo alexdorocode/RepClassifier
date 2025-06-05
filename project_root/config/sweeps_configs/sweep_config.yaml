@@ -1,0 +1,10 @@
+method: bayes
+metric:
+  name: f1_score       # 🧠 this must match what you call it in wandb.log()
+  goal: maximize
+
+parameters:
+  config_index:
+    min: 0
+    max: 1781
+    distribution: int_uniform

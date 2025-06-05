@@ -1,4 +1,4 @@
-mlp_protein_classifier:
+mlp:
   parameters:
     num_hidden_layers:
       min: 1
@@ -23,3 +23,13 @@ mlp_protein_classifier:
       values: [null, "Sigmoid", "Tanh"]  # Activation for output layer
     initialization:
       values: [null, "xavier", "kaiming", "normal"]  # Weight initialization methods
+
+  base_line:
+    num_hidden_layers: 3
+    dropout_rate: 0.2
+    hidden_layers_mode: "quadratic_increase"
+    custom_hidden_layers: Null
+    activation_function: "ReLU"
+    use_batch_norm: True
+    output_activation: null
+    initialization: "xavier"

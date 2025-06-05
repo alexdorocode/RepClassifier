@@ -4,6 +4,7 @@ import torch
 import gc
 import os
 from project_root.models.autoencoder import Autoencoder  # Adjust import
+from omegaconf import DictConfig, OmegaConf
 
 class EmbeddingLoader(ABC):
     def __init__(self, 
@@ -92,7 +93,6 @@ class GOEmbeddingLoader(EmbeddingLoader):
             aggregated_dim=aggregated_dim,
             aggregation_strategy=aggregation_strategy,
             go_categories=go_categories,
-            use_autoencoder=use_autoencoder,
             autoencoded_embeddings=autoencoded_embeddings
         )
         print(f"🚀 Loading GO embeddings from {path}...")
@@ -100,22 +100,24 @@ class GOEmbeddingLoader(EmbeddingLoader):
 
     def _resolve_go_embedding_path(self, input_dim, emb_dim, 
                                    aggregated_dim, aggregation_strategy, go_categories, 
-                                   use_autoencoder, autoencoded_embeddings):
+                                    autoencoded_embeddings):
         folder_path = self.autoencoded_go_embeddings['folder_path']
         file_entries = self.autoencoded_go_embeddings['file_paths']['autoencoded_embeddings'] if autoencoded_embeddings else self.autoencoded_go_embeddings['file_paths']['non_autoencoded_embeddings']
+
+        if aggregation_strategy == 'mean_pooling':
+            aggregation_strategy = 'mean_pool'
 
         for entry in file_entries:
             # Compare each key, assuming all are integers or strings as needed
             if (entry['input_dim'] == input_dim and
                 entry['emb_dim'] == emb_dim and
-                entry['aggreated_dim'] == aggregated_dim and
+                entry['aggregated_dim'] == aggregated_dim and
                 entry['aggregation_strategy'] == aggregation_strategy and
                 entry['go_categories'] == '_'.join(go_categories) if isinstance(entry['go_categories'], str) else entry['go_categories'] == go_categories):
                 return f"{folder_path}/{entry['path']}"
 
         # If not found
         raise ValueError(f"No embedding path found for input_dim={input_dim}, emb_dim={emb_dim}, "
-                         f"aggregated_dim={aggregated_dim}, strategy={aggregation_strategy}, categories={go_categories}, "
-                         f"use_autoencoder={use_autoencoder}")
+                         f"aggregated_dim={aggregated_dim}, strategy={aggregation_strategy}, categories={go_categories}")
 
 

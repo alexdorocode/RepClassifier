@@ -32,22 +32,18 @@ class ExperimentConfigHandler:
         expanded_models = self.expander.expand_models(model_forks)
         if not expanded_models:
             raise ValueError("No valid model configurations found after expansion.")
-        print(f"✅ Expanded {len(expanded_models)} model configurations.")
 
         expanded_embeddings = self.expander.expand_embeddings(embedding_fork)
         if not expanded_embeddings:
             raise ValueError("No valid embedding configurations found after expansion.")
-        print(f"✅ Expanded {len(expanded_embeddings)} embedding configurations.")
 
         expanded_features = self.expander.expand_features(feature_fork)
         if not expanded_features:
             raise ValueError("No valid feature configurations found after expansion.")
-        print(f"✅ Expanded {len(expanded_features)} feature configurations.")
 
         expanded_training = self.expander.expand_trainer(training_fork)
         if not expanded_training:
             raise ValueError("No valid training configurations found after expansion.")
-        print(f"✅ Expanded {len(expanded_training)} training configurations.")
 
         print(f"📦 Expanded: {len(expanded_models)} models × {len(expanded_embeddings)} embeddings × {len(expanded_features)} features × {len(expanded_training)} training")
 
@@ -60,24 +56,23 @@ class ExperimentConfigHandler:
         feature_fork = OmegaConf.to_container(OmegaConf.load(self.feature_fork_path), resolve=True)
         training_fork = OmegaConf.to_container(OmegaConf.load(self.training_fork_path), resolve=True)
 
-        print("🔄 Expanding configurations...")
         self.configs = self._expand_and_merge(model_forks, embedding_fork, feature_fork, training_fork)
-        print(f"✅ Total merged configurations: {len(self.configs)}")
 
-    def set_sweeps_config_phase_1(self) -> List[Dict]:
+    def set_sweeps_config_phase_1(self, model) -> List[Dict]:
         # Load logistic regression fork path
-        lr_path = next(path for path in self.model_fork_paths if "lr_tune_params" in path)
-        lr_config = OmegaConf.to_container(OmegaConf.load(lr_path), resolve=True)
+        path = next(path for path in self.model_fork_paths if f"{model}_tune_params" in path)
+        config = OmegaConf.to_container(OmegaConf.load(path), resolve=True)
 
         # Convert base_line to sweep-compatible format
         base_line_fixed = {
-            "logistic_regression": {
+            f"{model}": {
                 "parameters": {
-                    k: {"values": [v]} for k, v in lr_config["logistic_regression"]["base_line"].items()
+                    k: {"values": [v]} for k, v in config[f"{model}"]["base_line"].items()
                 }
             }
         }
         model_forks = [base_line_fixed]
+        print(f"🔍 Using base line configuration for {model}: {model_forks}")
 
         # Load and resolve other forks
         embedding_fork = OmegaConf.to_container(OmegaConf.load(self.embedding_fork_path), resolve=True)
@@ -94,7 +89,7 @@ class ExperimentConfigHandler:
         # Keep minimal trainer config
         training_fork = {
             "trainer_tune_config": {
-                "cv_folds": [3],
+                "cv_folds": 3,
                 "cross_val_balance": training_fork["trainer_tune_config"].get("cross_val_balance", [None])
             }
         }
@@ -141,7 +136,7 @@ class ExperimentConfigHandler:
     def get_configs(self) -> List[Dict]:
         return self.configs
 
-    def get_classifier_ready_configs(self, include_defaults: bool = True) -> List[dict]:
+    def get_classifier_ready_configs(self, input_cfg) -> List[dict]:
         """
         Extracts full classifier config in the desired format, preserving:
         - defaults
@@ -157,7 +152,7 @@ class ExperimentConfigHandler:
             if "classifier_definition" in cfg:
                 aux = cfg["classifier_definition"]
                 aux["model"] = cfg.get("model", {})
-                aux["training"] = cfg.get("training", {})
+                aux["training"] = {**aux.get('training', {}), **cfg.get("training", {})}
                 config_out["classifier_definition"] = aux
 
             # Preserve top-level metadata if available
@@ -167,5 +162,19 @@ class ExperimentConfigHandler:
 
             classifier_configs.append(config_out)
 
-        return classifier_configs
+        
+        OmegaConf.set_struct(input_cfg, False)
+        
+        for key in [
+            'classifier_definition',
+            'defaults',
+            'model_fork_paths',
+            'embedding_fork_path',
+            'feature_fork_path',
+            'training_fork_path'
+        ]:
+            if key in input_cfg:
+                del input_cfg[key]
+
+        return input_cfg, classifier_configs
 

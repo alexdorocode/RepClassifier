@@ -26,22 +26,21 @@ class ClassifierModelLoader:
         self.model = self._initialize_model()
 
     def _initialize_model(self):
-        if self.model_type == 'logistic':
+        if self.model_type == 'logistic_regression':
             return LogisticRegression(**self.model_params)
 
         elif self.model_type == 'svm':
             return SVC(**self.model_params)
 
-        elif self.model_type == 'xgboost':
+        elif self.model_type == 'xgb':
+            # Ensure model_params contains necessary parameters for XGBoost
             return xgb.XGBClassifier(**self.model_params)
 
-        elif self.model_type == 'lightgbm':
-            return lgb.LGBMClassifier(**self.model_params)
-
         elif self.model_type == 'knn':
+            print("Initializing KNN with parameters:", self.model_params)
             return KNeighborsClassifier(**self.model_params)
 
-        elif self.model_type == 'random_forest':
+        elif self.model_type == 'rf':
             return RandomForestClassifier(**self.model_params)
 
         elif self.model_type == 'mlp':

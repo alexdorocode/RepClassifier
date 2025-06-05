@@ -42,7 +42,7 @@ class DatasetConfigReader:
             "cv_folds": cfg.classifier_definition.training.cv_folds,
             "cross_val_balance": cfg.classifier_definition.training.cross_val_balance,
             "test_size_ratio": cfg.classifier_definition.training.test_size_ratio,
-            "mlp_params": cfg.classifier_definition.training.mlp_params,
+            "mlp_params": cfg.classifier_definition.training.mlp_params if 'mlp_params' in cfg.classifier_definition.training else {}
         }
         self.tracker = {
             "project_name": cfg.classifier_definition.tracker.project_name,
@@ -50,4 +50,26 @@ class DatasetConfigReader:
             "offline": cfg.classifier_definition.tracker.get('offline', False)
         }
         self.explainability = cfg.classifier_definition.explainability
+        self.random_seed = cfg.classifier_definition.get('random_seed') if 'random_seed' in cfg.classifier_definition else None
         
+    def get_as_dict(self):
+        return {
+            "root": self.root,
+            "file": self.file,
+            "id_col": self.id_col,
+            "label_col": self.label_col,
+            "organism_col": self.organism_col,
+            "sequence_col": self.sequence_col,
+            "metrics_col": self.metrics_col,
+            "features_to_process": self.features_to_process,
+            "paths": self.paths,
+            "classifier_definition": self.classifier_definition,
+            "model": self.model,
+            "training": self.training,
+            "tracker": self.tracker,
+            "explainability": self.explainability,
+            "random_seed": self.random_seed
+        }
+    
+    def get_random_seed(self):
+        return self.random_seed

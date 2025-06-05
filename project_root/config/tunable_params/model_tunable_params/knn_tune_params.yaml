@@ -16,7 +16,11 @@ knn:
       values: [1, 2]  # Power parameter for Minkowski metric: 1=Manhattan, 2=Euclidean
     metric:
       values: ['minkowski', 'euclidean', 'manhattan']  # Distance metric
-    metric_params:
-      values: [null]  # Additional params for custom metrics; usually not needed
-    n_jobs:
-      values: [-1, 1, 2, 4]  # Number of parallel jobs
+
+  base_line:
+    n_neighbors: 5
+    weights: 'uniform'
+    algorithm: 'auto'
+    leaf_size: 30
+    p: 2
+    metric: 'minkowski'

@@ -9,7 +9,7 @@ def validate_config(model_name, config):
     :param config: dict, hyperparameter values
     :return: True if valid, raises ValueError if invalid
     """
-    if model_name == "logistic_regression":
+    if model_name == "lr":
         penalty = config.get("penalty")
         solver = config.get("solver")
         dual = config.get("dual")
@@ -29,7 +29,7 @@ def validate_config(model_name, config):
         if multi_class == 'multinomial' and solver in ['liblinear', 'newton-cholesky']:
             raise ValueError("LogisticRegression: solver does not support multi_class='multinomial'.")
 
-    elif model_name == "xgboost":
+    elif model_name == "xgb":
         booster = config.get("booster", "gbtree")
         objective = config.get("objective", "binary:logistic")
         scale_pos_weight = config.get("scale_pos_weight", 1)
@@ -80,7 +80,7 @@ def validate_config(model_name, config):
         if n_jobs is not None and not isinstance(n_jobs, int):
             raise ValueError("KNN: n_jobs must be an integer.")
 
-    elif model_name == "random_forest":
+    elif model_name == "rf":
         n_estimators = config.get("n_estimators")
         criterion = config.get("criterion")
         max_depth = config.get("max_depth")
@@ -113,7 +113,7 @@ def validate_config(model_name, config):
         if n_jobs is not None and not isinstance(n_jobs, int):
             raise ValueError("RandomForest: n_jobs must be an integer.")
 
-    elif model_name == "mlp_protein_classifier":
+    elif model_name == "mlp":
         num_hidden_layers = config.get("num_hidden_layers")
         dropout_rate = config.get("dropout_rate")
         hidden_layers_mode = config.get("hidden_layers_mode")
@@ -144,6 +144,7 @@ def validate_config(model_name, config):
     else:
         raise ValueError(f"Unsupported model: {model_name}")
 
+    print(f"✅ Configuration for {model_name} is valid.")
     return True
 
 def merge_dicts(*dicts):

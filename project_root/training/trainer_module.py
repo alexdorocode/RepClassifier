@@ -71,6 +71,7 @@ class TrainerModule:
         else:
             stratify_labels = y
 
+        print(f"Using random seed: {self.random_seed}")
         skf = StratifiedKFold(n_splits=self.cv_folds, shuffle=True, random_state=self.random_seed)
 
         fold_metrics = []
@@ -169,7 +170,7 @@ class TrainerModule:
         return crit_map.get(self.criterion_name, nn.CrossEntropyLoss())
 
 
-    def _train_pytorch(self, model, train_loader, val_loader=None):
+    def _train_pytorch(self, model, train_loader, val_loader=None, debug=True):
         model.to(self.device)
         criterion = self._get_criterion()
         optimizer = self._get_optimizer(model)
@@ -177,12 +178,18 @@ class TrainerModule:
         best_val_loss = float('inf')
         epochs_no_improve = 0
 
+        print(f"Training PyTorch model with {self.optimizer_name} optimizer and {self.criterion_name} loss function...") if debug else None
+
         for epoch in range(self.num_epochs):
             total_loss = 0
             for features, labels in train_loader:
+                print(f"Epoch {epoch+1}/{self.num_epochs}...") if debug else None
                 features, labels = features.to(self.device), labels.to(self.device)
+                print(f"  Input type: {type(features)}, dtype: {features.dtype}, shape: {features.shape}") if debug else None
                 outputs = model(features)
+                print(f"  Output shape: {outputs.shape}") if debug else None
                 loss = criterion(outputs, labels)
+                print(f"  Loss: {loss.item():.4f}") if debug else None
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
