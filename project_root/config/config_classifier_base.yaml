@@ -1,0 +1,41 @@
+defaults:
+  - _self_
+  - config_process
+
+# Classifier-specific configuration
+classifier_definition:
+  experiment_name: "protein_classification_experiment_0"
+  label_col: "class"
+  balance_col: "organism"
+  features_col: ['c_max_mbl', 'f_max_mbl', 'p_max_mbl', 'seq_length']
+
+  sequence_embeddings:
+    ESM:
+      use_autoencoder: False
+      autoencoded_embeddings: True
+    ProtT5:
+      use_autoencoder: False
+      autoencoded_embeddings: True
+    ProstT5:
+      use_autoencoder: False
+      autoencoded_embeddings: True
+
+  go_embeddings:
+    GeOKG:
+      autoencoded_embeddings: True
+
+  organism_discrimination_strategy:
+    use_selected_organisms: null
+    use_top_organisms: 4
+
+  # Tracker (W&B or local logging)
+  tracker:
+    project_name: "ProteinClassifier"
+    run_name: "classifier_run_1"
+    offline: False  # Set True to disable W&B online sync
+
+  # Optional explainability flag
+  explainability: True
+  production_mode: False  # Set True for production mode, False for development/testing
+
+  randomess_seeds: [2001, 2002, 2003, 2004, 2005]

@@ -1,0 +1,17 @@
+defaults:
+  - _self_
+  - config_classifier_base
+
+base_path: project_root/config/config_classifier_base.yaml
+
+model_fork_paths:
+  - project_root/config/tunable_params/model_tunable_params/knn_tune_params.yaml
+  - project_root/config/tunable_params/model_tunable_params/svm_tune_params.yaml
+  - project_root/config/tunable_params/model_tunable_params/mlp_tune_params.yaml
+  - project_root/config/tunable_params/model_tunable_params/rf_tune_params.yaml
+  - project_root/config/tunable_params/model_tunable_params/xgb_tune_params.yaml
+  - project_root/config/tunable_params/model_tunable_params/lr_tune_params.yaml
+
+embedding_fork_path: project_root/config/tunable_params/embeddings_tunable_params.yaml
+feature_fork_path: project_root/config/tunable_params/features_tunable_params.yaml
+training_fork_path: project_root/config/tunable_params/training_tunable_params.yaml

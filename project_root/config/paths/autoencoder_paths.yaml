@@ -1,0 +1,67 @@
+# autoencoder_paths.yaml
+
+autoencoder_paths:
+  # Path to the autoencoder model
+  ESM:
+    folder_path: "../DATASETS/embeddings/sequence_embeddings/autoencoder_results"
+    models:
+      - in_out_dim: [320, 32]
+        file_name: "ESM_32dim.pt"
+        activation: "tanh"
+      - in_out_dim: [320, 64]
+        file_name: "ESM_64dim.pt"
+        activation: "tanh"
+      - in_out_dim: [320, 128]
+        file_name: "ESM_128dim.pt"
+        activation: "tanh"
+  ProtT5:
+    folder_path: "../DATASETS/embeddings/sequence_embeddings/autoencoder_results"
+    models:
+      - in_out_dim: [1024, 32]
+        file_name: "ProtT5_32dim.pt"
+        activation: "tanh"
+      - in_out_dim: [1024, 64]
+        file_name: "ProtT5_64dim.pt"
+        activation: "tanh"
+      - in_out_dim: [1024, 128]
+        file_name: "ProtT5_128dim.pt"
+        activation: "relu"
+  ProstT5:
+    folder_path: "../DATASETS/embeddings/sequence_embeddings/autoencoder_results"
+    models:
+      - in_out_dim: [1024, 32]
+        file_name: "ProstT5_32dim.pt"
+        activation: "tanh"
+      - in_out_dim: [1024, 64]
+        file_name: "ProstT5_64dim.pt"
+        activation: "tanh"
+      - in_out_dim: [1024, 128]
+        file_name: "ProstT5_128dim.pt"
+        activation: "tanh"
+  GeoKG:
+    folder_path: "../DATASETS/embeddings/GeOKG/autoencoders"
+    models:
+      - in_out_dim: [200, 32]
+        file_name: "geokg_IN_200dim_OUT_32dim.pt"
+        activation: "tanh"
+      - in_out_dim: [200, 64]
+        file_name: "geokg_IN_200dim_OUT_64dim.pt"
+        activation: "relu"
+      - in_out_dim: [200, 128]
+        file_name: "geokg_IN_200dim_OUT_128dim.pt"
+        activation: "leaky_relu"
+      - in_out_dim: [500, 32]
+        file_name: "geokg_IN_500dim_OUT_32dim.pt"
+        activation: "tanh"
+      - in_out_dim: [500, 64]
+        file_name: "geokg_IN_500dim_OUT_64dim.pt"
+        activation: "leaky_relu"
+      - in_out_dim: [500, 128]
+        file_name: "geokg_IN_500dim_OUT_128dim.pt"
+        activation: "leaky_relu"
+      - in_out_dim: [1000, 32]
+        file_name: "geokg_IN_1000dim_OUT_32dim.pt"
+        activation: "relu"
+      - in_out_dim: [1000, 128]
+        file_name: "geokg_IN_1000dim_OUT_128dim.pt"
+        activation: "tanh"

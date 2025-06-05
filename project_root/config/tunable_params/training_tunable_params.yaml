@@ -1,0 +1,21 @@
+
+trainer_tune_config:
+  device: "cuda"  # or "cpu"
+  learning_rate:
+    min: 1e-5
+    max: 1e-2
+    distribution: log_uniform
+  num_epochs:
+    values: [100, 200, 500]  # For MLP
+  early_stopping_patience:
+    values: [5, 10]  # Stop if no improvement for 5 or 10 epochs
+  cv_folds:
+    values: [3, 5, 8]
+  optimizer_name:
+    values: ["Adam", "SGD", "RMSprop", "Adagrad"]
+  criterion_name:
+    values: ["CrossEntropyLoss", "MSELoss", "BCEWithLogitsLoss"]
+  batch_size:
+    values: [32, 64]
+  cross_val_balance:
+    values: [null, "organism"]  # Use null for no stratification
