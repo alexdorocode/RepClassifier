@@ -1,0 +1,29 @@
+logistic_regression:
+  parameters:
+    penalty:
+      values: ['l2', 'none']  # 'elasticnet' requires 'saga', which is slower
+    C:
+      min: 0.01
+      max: 10
+      distribution: log_uniform
+    tol:
+      min: 1e-4
+      max: 1e-2
+      distribution: log_uniform
+    fit_intercept:
+      values: [True]
+    class_weight:
+      values: [null, 'balanced']
+    solver:
+      values: ['liblinear', 'lbfgs']  # good for small/medium datasets
+    max_iter:
+      values: [100, 200]
+
+  base_line:
+    penalty: 'l2'
+    C: 1.0
+    tol: 0.0001
+    fit_intercept: True
+    class_weight: null
+    solver: 'lbfgs'
+    max_iter: 200

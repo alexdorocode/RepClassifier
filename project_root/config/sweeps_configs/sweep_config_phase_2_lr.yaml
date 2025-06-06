@@ -1,0 +1,30 @@
+method: bayes
+metric:
+  name: f1_score
+  goal: maximize
+
+parameters:
+  penalty_solver:
+    values:
+      - {penalty: 'l2', solver: 'liblinear'}
+      - {penalty: 'l2', solver: 'lbfgs'}
+      - {penalty: 'none', solver: 'lbfgs'}  # only valid use of 'none'
+
+  C:
+    min: 0.01
+    max: 10
+    distribution: log_uniform
+
+  tol:
+    min: 0.0001
+    max: 0.01
+    distribution: log_uniform
+
+  fit_intercept:
+    values: [true]
+
+  class_weight:
+    values: [null, 'balanced']
+
+  max_iter:
+    values: [100, 200]

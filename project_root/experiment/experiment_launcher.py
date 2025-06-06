@@ -1,0 +1,81 @@
+import hydra
+from omegaconf import DictConfig, OmegaConf
+import wandb
+from project_root.experiment.experiment_config_handler import ExperimentConfigHandler
+from project_root.experiment.classifier_launcher import ClassifierLauncher
+
+class ExperimentLauncher:
+    def __init__(self, 
+                 cfg: DictConfig, 
+                 phase_1_result_path: str = None,
+                 phase_2_result_path: str = None,
+                 phase_3_result_path: str = None,
+                 ):
+        
+        self.cfg = cfg
+
+        self.handler = ExperimentConfigHandler(
+            base_config_path=cfg.get('base_path', {}),
+            model_fork_paths=cfg.get('model_fork_paths', []),
+            embedding_fork_path=cfg.get('embedding_fork_path', {}),
+            feature_fork_path=cfg.get('feature_fork_path', {}),
+            training_fork_path=cfg.get('training_fork_path', {}),
+            phase_1_result_path=phase_1_result_path,
+            phase_2_result_path=phase_2_result_path,
+            phase_3_result_path=phase_3_result_path,
+        )
+
+    def run_phase_1_sweep(self, model_name: str):
+        print("🔍 Preparing sweep configuration for Phase 1...")
+        self.handler.set_sweeps_config_phase_1(model=model_name)
+        base_cfg, final_classifier_configs = self.handler.get_classifier_ready_configs(self.cfg)
+        
+        run = wandb.init()
+        config_index = wandb.config.get("config_index")
+        cv_folds = wandb.config["training_cv_folds"]
+        cross_val_balance = wandb.config["training_cross_val_balance"]
+
+        assert 0 <= config_index < len(final_classifier_configs), "Index out of range."
+
+        # Overwrite the training config with the one from W&B
+        training_config = {
+            "cv_folds": cv_folds,
+            "cross_val_balance": cross_val_balance
+        }
+
+        base_cfg, final_classifier_configs = self.handler.get_classifier_ready_configs(self.cfg)
+        cfg_dict = final_classifier_configs[config_index]
+        cfg_custom = OmegaConf.create(cfg_dict)
+        cfg_custom = OmegaConf.merge(base_cfg, cfg_custom)
+
+        cfg_custom['classifier_definition']['training']['cv_folds'] = training_config['cv_folds']
+        cfg_custom['classifier_definition']['training']['cross_val_balance'] = training_config['cross_val_balance']
+
+        print(f"🔍 Running config index {OmegaConf.to_yaml(cfg_custom)}")
+
+        seed = 42 + config_index * training_config['cv_folds'] * (2 if cross_val_balance == 'organism' else 1)
+        print(f"🔍 Running config index {config_index} with seed {seed}:")
+        launcher = ClassifierLauncher(cfg_custom, random_seed=seed)
+        launcher.run()
+
+        wandb.finish()
+        
+    def run_phase_2_sweep(self, model_name: str):
+        print("🔍 Preparing sweep configuration for Phase 1...")
+        self.handler.set_sweeps_config_phase_1(model=model_name)
+        base_cfg, final_classifier_configs = self.handler.get_classifier_ready_configs(self.cfg)
+
+        run = wandb.init()
+        config_index = wandb.config.get("config_index")
+        assert 0 <= config_index < len(final_classifier_configs), "Index out of range."
+
+        cfg_dict = final_classifier_configs[config_index]
+        cfg_custom = OmegaConf.create(cfg_dict)
+        cfg_custom = OmegaConf.merge(base_cfg, cfg_custom)
+
+        seed = 42 + config_index
+        print(f"🔍 Running config index {config_index} with seed {seed}:")
+        launcher = ClassifierLauncher(cfg_custom, random_seed=seed)
+        launcher.run()
+
+        wandb.finish()

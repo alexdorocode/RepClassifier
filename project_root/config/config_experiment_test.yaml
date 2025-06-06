@@ -1,0 +1,49 @@
+defaults:
+  - _self_
+  - config_classifier_base
+
+# Classifier-specific configuration
+classifier_definition:
+  experiment_name: "protein_classification_experiment_0"
+  
+  sequence_embeddings:
+    ESM:
+      target_dim: 128
+    ProtT5:
+      target_dim: 128
+    ProstT5:
+      target_dim: 128
+
+  go_embeddings:
+    GeOKG:
+      input_dim: 500
+      emb_dim: 128
+      aggregated_dim: 1280
+      aggregation_strategy: "padding"
+      go_categories: "C_F"
+
+  # Model configuration
+  model:
+    type: "mlp"  # Options: logistic, svm, mlp, xgboost, random_forest, knn
+    params:
+      num_hidden_layers: 2
+      dropout_rate: 0.2
+      hidden_layers_mode: "quadratic_increase"
+      activation_function: "ReLU"
+      use_batch_norm: False
+      output_activation: "Softmax"
+      initialization: "xavier"
+
+  # Training configuration
+  training:
+    cv_folds: 3
+    cross_val_balance: "organism"  # Use "organism" for stratified sampling by organism
+    test_size_ratio: 0.2
+    mlp_params:
+      learning_rate: 0.001
+      num_epochs: 200
+      optimizer: "Adam"
+      criterion: "CrossEntropyLoss"
+      batch_size: 32
+      early_stopping_patience: 5
+    

@@ -1,0 +1,16 @@
+method: bayes
+metric:
+  name: f1_score       # 🧠 this must match what you call it in wandb.log()
+  goal: maximize
+
+parameters:
+  config_index:
+    min: 0
+    max: 890
+    distribution: int_uniform
+
+  training_cv_folds:
+    values: [3, 5, 8]
+
+  training_cross_val_balance:
+    values: ['organism', null]

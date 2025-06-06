@@ -1,0 +1,111 @@
+
+embedding_configs_phase_1:
+  rf:
+    sequence_embeddings:
+      ESM:
+        use: True
+        dim: 64
+      ProtT5:
+        use: True
+        dim: 64
+      ProstT5:
+        use: True
+        dim: 64
+    go_embeddings:
+      use: True
+      autoencoded_go_embeddings:
+        input_dim: 200
+        emb_dim: 64
+        include_original: False
+      aggregated_dim:
+        strategy: padding
+      go_categories:
+        value: C_F_P
+
+  lr:
+    sequence_embeddings:
+      ESM:
+        use: True
+        dim: 64
+      ProtT5:
+        use: True
+        dim: 128
+      ProstT5:
+        use: True
+        dim: 32
+    go_embeddings:
+      use: True
+      autoencoded_go_embeddings:
+        input_dim: 1000
+        emb_dim: 32
+        include_original: False
+      aggregated_dim:
+        strategy: mean_pooling
+      go_categories:
+        value: C_F
+
+  knn:
+    sequence_embeddings:
+      ESM:
+        use: True
+        dim: 32
+      ProtT5:
+        use: True
+        dim: 128
+      ProstT5:
+        use: True
+        dim: 128
+    go_embeddings:
+      use: True
+      autoencoded_go_embeddings:
+        input_dim: 1000
+        emb_dim: 32
+        include_original: False
+      aggregated_dim:
+        strategy: mean_pooling
+      go_categories:
+        value: C_F
+
+  svm:
+    sequence_embeddings:
+      ESM:
+        use: True
+        dim: 32
+      ProtT5:
+        use: True
+        dim: 64
+      ProstT5:
+        use: True
+        dim: 128
+    go_embeddings:
+      use: True
+      autoencoded_go_embeddings:
+        input_dim: 500
+        emb_dim: 64
+        include_original: False
+      aggregated_dim:
+        strategy: mean_pooling
+      go_categories:
+        value: C_F_P
+
+  xgb:
+    sequence_embeddings:
+      ESM:
+        use: True
+        dim: 32
+      ProtT5:
+        use: True
+        dim: 64
+      ProstT5:
+        use: True
+        dim: 128
+    go_embeddings:
+      use: True
+      autoencoded_go_embeddings:
+        input_dim: 500
+        emb_dim: 64
+        include_original: False
+      aggregated_dim:
+        strategy: mean_pooling
+      go_categories:
+        value: C_F_P
