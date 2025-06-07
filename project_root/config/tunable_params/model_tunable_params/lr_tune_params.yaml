@@ -1,4 +1,4 @@
-logistic_regression:
+lr:
   parameters:
     penalty:
       values: ['l2', 'none']  # 'elasticnet' requires 'saga', which is slower

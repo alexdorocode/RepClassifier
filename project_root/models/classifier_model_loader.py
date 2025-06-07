@@ -26,7 +26,7 @@ class ClassifierModelLoader:
         self.model = self._initialize_model()
 
     def _initialize_model(self):
-        if self.model_type == 'logistic_regression':
+        if self.model_type == 'lr':
             return LogisticRegression(**self.model_params)
 
         elif self.model_type == 'svm':

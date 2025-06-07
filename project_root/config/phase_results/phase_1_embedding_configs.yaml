@@ -4,24 +4,27 @@ embedding_configs_phase_1:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 64
+        dim: 128
       ProtT5:
         use: True
-        dim: 64
+        dim: 32
       ProstT5:
         use: True
-        dim: 64
+        dim: 128
     go_embeddings:
       use: True
       autoencoded_go_embeddings:
-        input_dim: 200
-        emb_dim: 64
+        input_dim: 500
+        emb_dim: 128
         include_original: False
       aggregated_dim:
         strategy: padding
       go_categories:
-        value: C_F_P
-
+        value: C_F
+    training:
+      cv_folds: 5
+      cross_val_balance: null 
+      
   lr:
     sequence_embeddings:
       ESM:
@@ -54,58 +57,67 @@ embedding_configs_phase_1:
         dim: 128
       ProstT5:
         use: True
-        dim: 128
+        dim: 32
     go_embeddings:
       use: True
       autoencoded_go_embeddings:
         input_dim: 1000
-        emb_dim: 32
+        emb_dim: 128
         include_original: False
       aggregated_dim:
         strategy: mean_pooling
       go_categories:
-        value: C_F
+        value: C_F_P
+    training:
+      cv_folds: 8
+      cross_val_balance: null 
 
   svm:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 32
+        dim: 64
       ProtT5:
         use: True
-        dim: 64
+        dim: 128
       ProstT5:
         use: True
-        dim: 128
+        dim: 64
     go_embeddings:
       use: True
       autoencoded_go_embeddings:
         input_dim: 500
-        emb_dim: 64
+        emb_dim: 32
         include_original: False
       aggregated_dim:
-        strategy: mean_pooling
+        strategy: padding
       go_categories:
-        value: C_F_P
-
+        value: C_F
+    training:
+      cv_folds: 5
+      cross_val_balance: 'organism' 
+      
   xgb:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 32
+        dim: 128
       ProtT5:
         use: True
-        dim: 64
+        dim: 32
       ProstT5:
         use: True
-        dim: 128
+        dim: 64
     go_embeddings:
       use: True
       autoencoded_go_embeddings:
-        input_dim: 500
+        input_dim: 200
         emb_dim: 64
         include_original: False
       aggregated_dim:
         strategy: mean_pooling
       go_categories:
         value: C_F_P
+    training:
+      cv_folds: 5
+      cross_val_balance: 'organism' 

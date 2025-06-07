@@ -66,7 +66,7 @@ class ExperimentLauncher:
         base_cfg, final_classifier_configs = self.handler.get_classifier_ready_configs(self.cfg)
 
         run = wandb.init()
-        config_index = wandb.config.get("config_index")
+        config_index = wandb.config
         assert 0 <= config_index < len(final_classifier_configs), "Index out of range."
 
         cfg_dict = final_classifier_configs[config_index]
