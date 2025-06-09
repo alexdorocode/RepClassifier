@@ -4,21 +4,20 @@ metric:
   goal: maximize
 
 parameters:
-  penalty_solver:
-    values:
-      - {penalty: 'l2', solver: 'liblinear'}
-      - {penalty: 'l2', solver: 'lbfgs'}
-      - {penalty: 'none', solver: 'lbfgs'}  # only valid use of 'none'
+  penalty:
+    values: ['l2']
+  solver:
+    values: ['liblinear', 'lbfgs']
 
   C:
     min: 0.01
     max: 10
-    distribution: log_uniform
+    distribution: uniform
 
   tol:
     min: 0.0001
     max: 0.01
-    distribution: log_uniform
+    distribution: uniform
 
   fit_intercept:
     values: [true]

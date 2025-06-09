@@ -109,23 +109,44 @@ class ExperimentConfigHandler:
 
         self.configs = phase_1_configs
 
-    def set_sweeps_config_phase_2(self, model):
+    def get_sweeps_config_phase_2(self, model, classifier_config, sweep_config=None):
         # Phase 2: test all models with fixed embedding/feature config
         if self.phase_1_result_load_path is None:
             raise ValueError("Phase 1 result path must be set before running Phase 2.")
         
-        fixed_embedding = OmegaConf.to_container(OmegaConf.load(self.phase_1_result_load_path), resolve=True)["embedding_configs_phase_1"][f'{model}']
-        fixed_feature = {
-            "features_tune_config": {
-                "c_max_mbl": {"use": [True]},
-                "f_max_mbl": {"use": [True]},
-                "p_max_mbl": {"use": [True]},
-                "seq_length": {"use": [True]}
-            }
+        phase_1_result = OmegaConf.to_container(OmegaConf.load(self.phase_1_result_load_path), resolve=True)['embedding_configs_phase_1'][f'{model}']
+
+        OmegaConf.set_struct(classifier_config, False)  # Allow dynamic updates to classifier_config
+
+        for k, v in phase_1_result.items():
+            if k in classifier_config and k == 'training':
+                for key, value in v.items():
+                    classifier_config[k][key] = value
+            elif k == 'sequence_embeddings' or k == 'go_embeddings':
+                for key, value in v.items():
+                    if isinstance(value, dict):
+                        # Ensure the sub-dictionary exists
+                        if key not in classifier_config[k]:
+                            classifier_config[k][key] = {}
+                        # Update existing dictionary with new keys/values
+                        classifier_config[k][key].update(value)
+                    else:
+                        print(f"Warning: Expected dict for {k}.{key}, got {type(value)}. Skipping.")
+                    
+                    if k == 'go_embeddings' and key == 'autoencoded_go_embeddings':
+                        if classifier_config[k]['aggregation_strategy'] == 'mean_pooling':
+                            classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim']
+                        elif classifier_config[k]['aggregation_strategy'] == 'padding':
+                            classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim'] * 10
+                        else:
+                            raise ValueError(f"Unsupported aggregation strategy: {classifier_config[k]['aggregation_strategy']}")
+
+        classifier_config['model'] = {
+            'type': model,
+            'params': self._unwrap_sweep_config(sweep_config)
         }
-        training_fork = OmegaConf.to_container(OmegaConf.load(self.training_fork_path), resolve=True)
-        model_forks = [OmegaConf.to_container(OmegaConf.load(path), resolve=True) for path in self.model_fork_paths]
-        self.configs = self._expand_and_merge(model_forks, fixed_embedding, fixed_feature, training_fork)
+
+        return classifier_config
 
     def set_sweeps_config_phase_3(self):
         # Phase 3: sweep training hyperparameters for top models
@@ -227,3 +248,20 @@ class ExperimentConfigHandler:
                     print(f"Warning: {key} not found in {overwrite_config}, skipping update.")
         else:
             print(f"Warning: {overwrite_config} not found in config, skipping update.")
+
+    def _unwrap_sweep_config(self, sweep_config):
+        """
+        Unwraps the model configuration from the sweep config.
+        """
+        config = {}
+        for key, value in sweep_config.items():
+            if isinstance(value, dict):
+                for sub_key, sub_value in value.items():
+                    if isinstance(sub_value, dict):
+                        raise ValueError(f"Unexpected nested dictionary in sweep config for key '{sub_key}'")
+                    else:
+                        config[sub_key] = sub_value
+            else:
+                config[key] = value
+        
+        return config

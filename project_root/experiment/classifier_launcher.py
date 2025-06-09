@@ -43,7 +43,7 @@ class ClassifierLauncher:
             offline=tracker_cfg.get('offline', False),
             config=self.config_reader,  # You can store the entire config_reader as a reference
             random_seed=self.random_seed,
-            tags=['phase1_v2', 'classifier', f'{self.config_reader.model["type"]}']
+            tags=['phase2_500', 'classifier', f'{self.config_reader.model["type"]}']
             )
         
 

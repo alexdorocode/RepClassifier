@@ -192,6 +192,7 @@ class ProcessedDataset:
             # Extract configuration parameters for GO embeddings
 
             print(f"Loading GO embeddings for model: {model_name}")
+            print(f"GO configuration: {go_cfg}")
 
             input_dim = go_cfg.get("input_dim")
             emb_dim = go_cfg.get("emb_dim")

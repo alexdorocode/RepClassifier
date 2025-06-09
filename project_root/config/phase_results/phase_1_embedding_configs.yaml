@@ -4,70 +4,67 @@ embedding_configs_phase_1:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 128
+        target_dim: 128
       ProtT5:
         use: True
-        dim: 32
+        target_dim: 32
       ProstT5:
         use: True
-        dim: 128
+        target_dim: 128
     go_embeddings:
-      use: True
-      autoencoded_go_embeddings:
+      GeOKG:
+        use: True
         input_dim: 500
         emb_dim: 128
         include_original: False
-      aggregated_dim:
-        strategy: padding
-      go_categories:
-        value: C_F
+        aggregation_strategy: padding
+        go_categories: C_F
     training:
       cv_folds: 5
       cross_val_balance: null 
-      
+    
   lr:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 64
+        target_dim: 128
       ProtT5:
         use: True
-        dim: 128
+        target_dim: 128
       ProstT5:
         use: True
-        dim: 32
+        target_dim: 128
     go_embeddings:
-      use: True
-      autoencoded_go_embeddings:
-        input_dim: 1000
-        emb_dim: 32
+      GeOKG:
+        use: True
+        input_dim: 500
+        emb_dim: 128
         include_original: False
-      aggregated_dim:
-        strategy: mean_pooling
-      go_categories:
-        value: C_F
+        aggregation_strategy: mean_pooling
+        go_categories: C_F_P
+    training:
+      cv_folds: 5
+      cross_val_balance: null
 
   knn:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 32
+        target_dim: 32
       ProtT5:
         use: True
-        dim: 128
+        target_dim: 128
       ProstT5:
         use: True
-        dim: 32
+        target_dim: 32
     go_embeddings:
-      use: True
-      autoencoded_go_embeddings:
+      GeOKG:
+        use: True
         input_dim: 1000
         emb_dim: 128
         include_original: False
-      aggregated_dim:
-        strategy: mean_pooling
-      go_categories:
-        value: C_F_P
+        aggregation_strategy: mean_pooling
+        go_categories: C_F_P
     training:
       cv_folds: 8
       cross_val_balance: null 
@@ -76,23 +73,21 @@ embedding_configs_phase_1:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 64
+        target_dim: 64
       ProtT5:
         use: True
-        dim: 128
+        target_dim: 128
       ProstT5:
         use: True
-        dim: 64
+        target_dim: 64
     go_embeddings:
-      use: True
-      autoencoded_go_embeddings:
+      GeOKG:
+        use: True
         input_dim: 500
         emb_dim: 32
         include_original: False
-      aggregated_dim:
-        strategy: padding
-      go_categories:
-        value: C_F
+        aggregation_strategy: padding
+        go_categories: C_F
     training:
       cv_folds: 5
       cross_val_balance: 'organism' 
@@ -101,23 +96,21 @@ embedding_configs_phase_1:
     sequence_embeddings:
       ESM:
         use: True
-        dim: 128
+        target_dim: 128
       ProtT5:
         use: True
-        dim: 32
+        target_dim: 32
       ProstT5:
         use: True
-        dim: 64
+        target_dim: 64
     go_embeddings:
-      use: True
-      autoencoded_go_embeddings:
+      GeOKG:
+        use: True
         input_dim: 200
         emb_dim: 64
         include_original: False
-      aggregated_dim:
-        strategy: mean_pooling
-      go_categories:
-        value: C_F_P
+        aggregation_strategy: mean_pooling
+        go_categories: C_F_P
     training:
       cv_folds: 5
       cross_val_balance: 'organism' 

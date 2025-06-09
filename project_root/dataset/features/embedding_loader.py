@@ -56,7 +56,7 @@ class EmbeddingLoader(ABC):
         raise ValueError(f"No autoencoder found for model {model_name} with input_dim={input_dim} and target_dim={target_dim}")
 
 class SequenceEmbeddingLoader(EmbeddingLoader):
-    def load(self, model_name: str, target_dim: int = None, use_autoencoder=False, autoencoded_embeddings=False):
+    def load(self, model_name: str, target_dim, use_autoencoder=False, autoencoded_embeddings=False):
         
         print(f"🚀 Loading sequence embeddings for {model_name}...")
         print(f"Target dimension: {target_dim}, Use autoencoder: {use_autoencoder}, Autoencoded embeddings: {autoencoded_embeddings}")
@@ -69,9 +69,6 @@ class SequenceEmbeddingLoader(EmbeddingLoader):
             input_dim = pd.read_csv(emb_path, nrows=1).shape[1] - 1
             ae_model = self._load_autoencoder(model_name, input_dim, target_dim) if target_dim else None
             return self._load_flat_csv_embeddings(emb_path, target_dim=target_dim, ae_model=ae_model)
-
-        # Load precomputed autoencoded embeddings
-        print(f"🚀 Loading precomputed autoencoded sequence embeddings for {model_name}...")
 
         # Find the entry with the correct dimension
         precomputed_list = self.autoencoded_seq_embeddings[model_name]
@@ -87,6 +84,17 @@ class GOEmbeddingLoader(EmbeddingLoader):
     def load(self, input_dim: int, emb_dim: int, 
              aggregated_dim: int, aggregation_strategy: str, 
              go_categories: list, use_autoencoder=False, autoencoded_embeddings=False):
+        
+        print(f"🚀 Loading GO embeddings with input_dim={input_dim}, emb_dim={emb_dim},    "
+                f"aggregated_dim={aggregated_dim}, aggregation_strategy={aggregation_strategy}, "
+                f"go_categories={go_categories}, use_autoencoder={use_autoencoder}, autoencoded_embeddings={autoencoded_embeddings}")
+        
+        if aggregated_dim is None and aggregation_strategy is not None:
+            if aggregation_strategy == 'mean_pooling':
+                aggregated_dim = emb_dim
+            else:
+                aggregated_dim = emb_dim * 10
+
         path = self._resolve_go_embedding_path(
             input_dim=input_dim,
             emb_dim=emb_dim,
@@ -96,6 +104,8 @@ class GOEmbeddingLoader(EmbeddingLoader):
             autoencoded_embeddings=autoencoded_embeddings
         )
         print(f"🚀 Loading GO embeddings from {path}...")
+        if os.path.getsize(path) == 0:
+            raise ValueError(f"Embedding file {path} is empty!")
         return pd.read_csv(path)
 
     def _resolve_go_embedding_path(self, input_dim, emb_dim, 

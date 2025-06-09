@@ -30,6 +30,9 @@ class ClassifierModelLoader:
             return LogisticRegression(**self.model_params)
 
         elif self.model_type == 'svm':
+            print("Initializing SVM with parameters:", self.model_params)
+            self.model_params.pop('fit_intercept', None)  # Remove device if present, as SVC does not use it
+            self.model_params.pop('penalty', None)  # Remove device if present, as SVC does not use it
             return SVC(**self.model_params)
 
         elif self.model_type == 'xgb':

@@ -17,7 +17,7 @@ parameters:
   C:
     min: 1e-3
     max: 100
-    distribution: log_uniform
+    distribution: uniform
 
   shrinking:
     values: [True, False]
@@ -28,7 +28,7 @@ parameters:
   tol:
     min: 1e-5
     max: 1e-2
-    distribution: log_uniform
+    distribution: uniform
 
   cache_size:
     values: [200, 500]
