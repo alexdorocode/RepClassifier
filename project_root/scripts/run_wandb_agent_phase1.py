@@ -9,5 +9,11 @@ def sweep_run():
     wandb.finish()
 
 if __name__ == "__main__":
-    sweep_id = "alexdoro_code/RepClassifier/s0eehaax"
-    wandb.agent(sweep_id, function=sweep_run, count=200)  # Adjust count as needed
+    sweep_id = "alexdoro_code/RepClassifier/dioysw4i"
+    wandb.agent(
+        sweep_id=sweep_id,
+        function=sweep_run,
+        entity="alexdoro_code",         # Your W&B username or team
+        project="RepClassifier",        # Name of the project (W&B will auto-create if it doesn't exist)
+        count=200
+        )

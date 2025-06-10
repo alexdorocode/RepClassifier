@@ -3,6 +3,8 @@ from omegaconf import DictConfig, OmegaConf
 import wandb
 from project_root.experiment.experiment_config_handler import ExperimentConfigHandler
 from project_root.experiment.classifier_launcher import ClassifierLauncher
+from project_root.dataset.dataset_config import DatasetConfigReader
+from project_root.dataset.dataset_handler import DatasetHandler
 
 class ExperimentLauncher:
     def __init__(self, 
@@ -55,7 +57,9 @@ class ExperimentLauncher:
 
         seed = 42 + config_index * training_config['cv_folds'] * (2 if cross_val_balance == 'organism' else 1)
         print(f"🔍 Running config index {config_index} with seed {seed}:")
-        launcher = ClassifierLauncher(cfg_custom, random_seed=seed)
+        config_reader = DatasetConfigReader(self.cfg)
+        dataset_handler = DatasetHandler(config_reader)
+        launcher = ClassifierLauncher(config_reader, dataset_handler, random_seed=seed)
         launcher.run()
 
         wandb.finish()
@@ -75,11 +79,39 @@ class ExperimentLauncher:
     
         seed = self._calculate_seed_from_config(wandb.config)
         print(f"🔍 Running config with seed {seed}:")
-        launcher = ClassifierLauncher(self.cfg, random_seed=seed)
+        
+        config_reader = DatasetConfigReader(self.cfg)
+        dataset_handler = DatasetHandler(config_reader)
+        launcher = ClassifierLauncher(config_reader, dataset_handler, random_seed=seed)
         launcher.run()
     
         wandb.finish()
         
+    def run_phase_3_sweep(self, model_name: str):
+        print("🔍 Preparing sweep configuration for Phase 2...")
+    
+        run = wandb.init()
+
+        if self._validate_phase_3_sweep_config(wandb.config):
+
+            classifier_config = self.handler.get_sweeps_config_phase_3(
+                model=model_name,
+                classifier_config=self.cfg['classifier_definition'],
+                sweep_config=wandb.config
+            )
+            
+            self.cfg['classifier_definition'] = classifier_config
+
+            print(OmegaConf.to_yaml(self.cfg['classifier_definition']))
+            
+
+            seed = self._calculate_seed_from_config(wandb.config)
+            print(f"🔍 Running config with seed {seed}:")
+            config_reader = DatasetConfigReader(self.cfg)
+            dataset_handler = DatasetHandler(config_reader, build_zero_shot_dataset=True)
+            launcher = ClassifierLauncher(config_reader, dataset_handler, zero_shot_test=True, random_seed=seed)
+            launcher.run()
+
     def _calculate_seed_from_config(self, config):
         
         ints = []
@@ -99,3 +131,24 @@ class ExperimentLauncher:
             seed *= int(f * 100) if f != 0.0 else 1
         return abs(seed) % (2**31)
     
+    def _validate_phase_3_sweep_config(self, config):
+        use_flags = [
+            config.get("use_ESM"),
+            config.get("use_ProtT5"),
+            config.get("use_ProstT5"),
+            config.get("go_embedding_config").get("use_GeOKG"),
+            config.get("use_c_max_mbl"),
+            config.get("use_f_max_mbl"),
+            config.get("use_p_max_mbl"),
+            config.get("use_seq_length"),
+        ]
+
+        if sum(bool(v) for v in use_flags) < 2:
+            print("❌ Invalid config: fewer than 2 features selected. Skipping...")
+            wandb.log({"skipped": True})
+            wandb.finish()
+            return False
+
+        
+        return True
+

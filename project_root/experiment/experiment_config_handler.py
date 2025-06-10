@@ -30,10 +30,10 @@ class ExperimentConfigHandler:
 
         self.phase_1_result_load_path = phase_1_result_path
         print("Initialized with phase 1 result path:", self.phase_1_result_load_path) if self.phase_1_result_load_path else None
-        self.phase_2_result_path = phase_2_result_path
-        print("Initialized with phase 2 result path:", self.phase_2_result_path) if self.phase_2_result_path else None
-        self.phase_3_result_path = phase_3_result_path
-        print("Initialized with phase 3 result path:", self.phase_3_result_path) if self.phase_3_result_path else None
+        self.phase_2_result_load_path  = phase_2_result_path
+        print("Initialized with phase 2 result path:", self.phase_2_result_load_path ) if self.phase_2_result_load_path else None
+        self.phase_3_result_load_path  = phase_3_result_path
+        print("Initialized with phase 3 result path:", self.phase_3_result_load_path ) if self.phase_3_result_load_path  else None
 
         self.configs = []
 
@@ -147,6 +147,28 @@ class ExperimentConfigHandler:
         }
 
         return classifier_config
+
+    def get_sweeps_config_phase_3(self, model, classifier_config, sweep_config=None):
+        # Phase 2: test all models with fixed embedding/feature config
+        if self.phase_1_result_load_path is None:
+            raise ValueError("Phase 1 result path must be set before running Phase 2.")
+        if self.phase_2_result_load_path is None:
+            raise ValueError("Phase 2 result path must be set before running Phase 3.")
+
+        phase_1_result = OmegaConf.to_container(OmegaConf.load(self.phase_1_result_load_path), resolve=True)['embedding_configs_phase_1'][f'{model}']
+        phase_2_result = OmegaConf.to_container(OmegaConf.load(self.phase_2_result_load_path), resolve=True)['model_configs_phase_2'][f'{model}']
+
+        sweep_config = self._unwrap_sweep_config(sweep_config)
+
+        config_index_embedding = f"best_config_{sweep_config['config_index_embedding']}"
+        config_index_model = f"best_config_{sweep_config['config_index_model']}"
+
+        embedding_config = phase_1_result[config_index_embedding]
+        model_config = phase_2_result[config_index_model]
+        
+        return self._build_classifier_config(classifier_config, model, 
+                                      self._build_embedding_config(embedding_config, sweep_config), 
+                                      model_config, sweep_config)
 
     def set_sweeps_config_phase_3(self):
         # Phase 3: sweep training hyperparameters for top models
@@ -265,3 +287,76 @@ class ExperimentConfigHandler:
                 config[key] = value
         
         return config
+
+    def _build_classifier_config(self, classifier_config, model, embedding_config, model_config, sweep_config):
+        """
+        Builds the classifier configuration based on the provided model, embedding, and model configs.
+        """
+        self._set_feature_cols(classifier_config['features_col'], sweep_config)
+
+        self._build_embedding_config(embedding_config, sweep_config)
+        
+        OmegaConf.set_struct(classifier_config, False)  # Allow dynamic updates to classifier_config
+
+        classifier_config['model'] = {
+            'type': model,
+            'params': model_config
+        }
+
+        self._set_embedding_and_training_configs(classifier_config, embedding_config)
+
+        return classifier_config
+    
+    def _build_embedding_config(self, embedding_config, sweep_config):
+        """
+        Builds the embedding configuration based on the provided embedding config and sweep config.
+        """
+        for k, v in embedding_config.items():
+            if k == 'training':
+                for key, value in v.items():
+                    embedding_config[k][key] = value
+            elif k == 'sequence_embeddings' or k == 'go_embeddings':
+                for key, value in v.items():
+                    embedding_config[k][key]['use'] = sweep_config.get(f'use_{key}')
+                    
+                    if k == 'go_embeddings' and embedding_config[k][key]['use']:
+                        embedding_config[k][key]['aggregation_strategy'] = sweep_config.get('go_aggregation_strategy')
+                        embedding_config[k][key]['go_categories'] = sweep_config.get('go_categories')
+        
+        return embedding_config
+
+    def _set_embedding_and_training_configs(self, classifier_config, embedding_config):
+        """
+        Sets the embedding and training configurations in the classifier config.
+        """
+        for k, v in embedding_config.items():
+                    if k in classifier_config and k == 'training':
+                        for key, value in v.items():
+                            classifier_config[k][key] = value
+                    elif k == 'sequence_embeddings' or k == 'go_embeddings':
+                        for key, value in v.items():
+                            if isinstance(value, dict):
+                                # Ensure the sub-dictionary exists
+                                if key not in classifier_config[k]:
+                                    classifier_config[k][key] = {}
+                                # Update existing dictionary with new keys/values
+                                classifier_config[k][key].update(value)
+                            else:
+                                print(f"Warning: Expected dict for {k}.{key}, got {type(value)}. Skipping.")
+                            
+                            if k == 'go_embeddings' and key == 'autoencoded_go_embeddings':
+                                if classifier_config[k]['aggregation_strategy'] == 'mean_pooling':
+                                    classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim']
+                                elif classifier_config[k]['aggregation_strategy'] == 'padding':
+                                    classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim'] * 10
+                                else:
+                                    raise ValueError(f"Unsupported aggregation strategy: {classifier_config[k]['aggregation_strategy']}")
+
+    def _set_feature_cols(self, features_col, sweep_config):
+        """
+        Sets the feature columns in the classifier config based on the sweep configuration.
+        """
+        for feature in features_col:
+            if not sweep_config[f'use_{feature}']:
+                features_col.remove(feature)
+                print(f"Removed feature '{feature}' from features_col due to sweep config setting.")

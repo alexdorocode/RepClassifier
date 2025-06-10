@@ -1,0 +1,225 @@
+
+model_configs_phase_2:
+  rf:
+    # 🔹 Baseline configuration (provided by you)
+    best_config_0:
+      n_estimators: 100
+      criterion: 'gini'
+      max_depth: 10
+      min_samples_split: 2
+      min_samples_leaf: 1
+      max_features: 'sqrt'
+      bootstrap: True
+      class_weight: null
+      max_samples: 1.0
+
+    # 🔹 Best Configuration #1 — bumbling-sweep-171
+    best_config_1:
+      n_estimators: 200
+      criterion: 'gini'
+      max_depth: 20
+      min_samples_split: 2
+      min_samples_leaf: 1
+      max_features: 'log2'
+      bootstrap: True
+      class_weight: 'balanced_subsample'
+      max_samples: 0.6
+
+    # 🔹 Best Configuration #2 — glad-sweep-25
+    best_config_2:
+      n_estimators: 100
+      criterion: 'entropy'
+      max_depth: 10
+      min_samples_split: 5
+      min_samples_leaf: 5
+      max_features: 'log2'
+      bootstrap: True
+      class_weight: 'balanced_subsample'
+      max_samples: 0.8
+
+    # 🔹 Best Configuration #3 — lively-sweep-235
+    best_config_3:
+      n_estimators: 200
+      criterion: 'gini'
+      max_depth: 20
+      min_samples_split: 2
+      min_samples_leaf: 1
+      max_features: 'sqrt'
+      bootstrap: True
+      class_weight: null
+      max_samples: 0.8
+
+
+  lr:
+    # 🔹 Baseline configuration (provided by you)
+    best_config_0:
+      penalty: 'l2'
+      C: 1.0
+      tol: 0.0001
+      fit_intercept: True
+      class_weight: null
+      solver: 'lbfgs'
+      max_iter: 200
+
+    # 🔹 Best Configuration #1 — faithful-sweep-13
+    best_config_1:
+      penalty: 'l2'
+      C: 2.768540
+      tol: 0.009756
+      fit_intercept: True
+      class_weight: null
+      solver: 'lbfgs'
+      max_iter: 100
+
+    # 🔹 Best Configuration #2 — faithful-sweep-138
+    best_config_2:
+      penalty: 'l2'
+      C: 8.797972
+      tol: 0.009726
+      fit_intercept: True
+      class_weight: null
+      solver: 'lbfgs'
+      max_iter: 200
+
+    # 🔹 Best Configuration #3 — eternal-sweep-3
+    best_config_3:
+      penalty: 'l2'
+      C: 8.565569
+      tol: 0.009621
+      fit_intercept: True
+      class_weight: null
+      solver: 'lbfgs'
+      max_iter: 200
+
+
+
+  knn:
+    # 🔹 Baseline configuration (provided by you)
+    best_config_0:
+      n_neighbors: 5
+      weights: 'uniform'
+      algorithm: 'auto'
+      leaf_size: 30
+      p: 2
+      metric: 'minkowski'
+
+    # 🔹 Best Configuration #1 — whole-sweep-120
+    best_config_1:
+      n_neighbors: 24
+      weights: 'uniform'
+      algorithm: 'auto'
+      leaf_size: 30
+      p: 1
+      metric: 'manhattan'
+
+    # 🔹 Best Configuration #2 — usual-sweep-168
+    best_config_2:
+      n_neighbors: 18
+      weights: 'uniform'
+      algorithm: 'auto'
+      leaf_size: 30
+      p: 2
+      metric: 'minkowski'
+
+    # 🔹 Best Configuration #3 — resilient-sweep-107
+    best_config_3:
+      n_neighbors: 30
+      weights: 'uniform'
+      algorithm: 'auto'
+      leaf_size: 30
+      p: 1
+      metric: 'minkowski'
+
+  svm:
+    # 🔹 Baseline configuration (provided by you)
+    best_config_0:
+      C: 1.0
+      kernel: 'poly'
+      degree: 3
+      gamma: 'scale'
+      coef0: 0.0
+      shrinking: True
+      probability: False
+      tol: 0.001
+      cache_size: 200
+      class_weight: null
+      max_iter: 1000
+
+    # 🔹 Best Configuration #1 — swept-sweep-76
+    best_config_1:
+      C: 62.128012
+      kernel: 'poly'
+      degree: 3
+      gamma: 'scale'
+      coef0: 0.5
+      shrinking: True
+      probability: True
+      tol: 0.009657
+      cache_size: 200
+      class_weight: 'balanced'
+      max_iter: -1  # no limit
+
+    # 🔹 Best Configuration #2 — rose-sweep-147
+    best_config_2:
+      C: 88.844038
+      kernel: 'poly'
+      degree: 3
+      gamma: 'scale'
+      coef0: 0.5
+      shrinking: True
+      probability: False
+      tol: 0.002450
+      cache_size: 200
+      class_weight: 'balanced'
+      max_iter: -1  # no limit
+
+    # 🔹 Best Configuration #3 — comfy-sweep-333
+    best_config_3:
+      C: 60.165235
+      kernel: 'poly'
+      degree: 3
+      gamma: 'scale'
+      coef0: 0.5
+      shrinking: True
+      probability: True
+      tol: 0.005687
+      cache_size: 200
+      class_weight: 'balanced'
+      max_iter: -1  # no limit
+
+  xgb:
+    # 🔹 Baseline configuration (provided by you)
+    best_config_0:
+      learning_rate: 0.1
+      n_estimators: 100
+      max_depth: 6
+      min_child_weight: 1
+      subsample: 1.0
+      colsample_bytree: 1.0
+
+    # 🔹 Best Configuration #1 — smart-sweep-8
+    best_config_1:
+      learning_rate: 1.238096
+      n_estimators: 200
+      max_depth: 7
+      min_child_weight: 1.835538
+      subsample: 0.933758
+      colsample_bytree: 0.774135
+
+    # 🔹 Best Configuration #2 — eternal-sweep-135
+    best_config_2:
+      learning_rate: 1.034221
+      n_estimators: 200
+      max_depth: 5
+      min_child_weight: 9.163695
+      subsample: 0.924969
+      colsample_bytree: 0.794421
+
+    # 🔹 Best Configuration #3 — fancy-sweep-42
+    best_config_3:
+      learning_rate: 1.189324
+      n_estimators: 100
+      max_depth: 7
+      min_child_weight: 7.245963
+      subsample: 0.948320
+      colsample_bytree: 0.658970

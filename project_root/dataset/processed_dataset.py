@@ -5,9 +5,10 @@ from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoad
 
 class ProcessedDataset:
     def __init__(self, raw_dataset: RawDataset, 
-                 config, seq_loader: SequenceEmbeddingLoader = None,
+                 config, classifier_dataset_config=None,
+                 seq_loader: SequenceEmbeddingLoader = None,
                  go_loader: GOEmbeddingLoader = None,
-                 features_to_process=None):
+                 build_zero_shot_dataset: bool = False):
         """
         Initializes the ProcessedDataset for selected feature processing.
 
@@ -20,6 +21,7 @@ class ProcessedDataset:
         self.config = config
         self.processed_df = self._process_metrics(raw_dataset)
         self.main_columns = raw_dataset.main_columns
+        self.build_zero_shot_dataset = build_zero_shot_dataset
 
         '''
         main_columns = {
@@ -40,6 +42,26 @@ class ProcessedDataset:
         self._go_embeddings = None
         self._processed_metrics = None
 
+        self._build_processed_dataset(classifier_dataset_config)
+
+    def get_dataset(self):
+        """
+        Returns the processed dataset as a pandas DataFrame.
+        Returns:
+            pd.DataFrame: Processed dataset with embeddings and metrics.
+        """
+        return self.df
+
+    def get_zero_shot_dataset(self):
+        """
+        Returns the zero-shot dataset as a pandas DataFrame.
+        Returns:
+            pd.DataFrame: Zero-shot dataset with embeddings and metrics.
+        """
+        if not self.build_zero_shot_dataset:
+            raise ValueError("Zero-shot dataset is not enabled in the configuration.")
+        return self.zero_shot_df
+
     def _process_metrics(self, raw_dataset: RawDataset):
         metric_cols = self.config.columns
         print(f"Processing metrics: {metric_cols}")
@@ -52,7 +74,7 @@ class ProcessedDataset:
         )
         return processor.handle_nans().normalize().get_processed_df()
 
-    def get_dataset(self, config, debug=False):
+    def _build_processed_dataset(self, config, debug=False):
         """
         Returns the processed dataset based on the provided configuration.
 
@@ -62,19 +84,41 @@ class ProcessedDataset:
         Returns:
             pd.DataFrame: Processed dataset.
         """
-        label_col = config['label_col']
-        features_col = config['features_col']
-        sequence_embeddings = config['sequence_embeddings']
-        go_embeddings = config['go_embeddings']
-        balance_col = config['balance_col']
-        organism_discrimination_strategy = config['organism_discrimination_strategy']
+        selected_accessions = self._selected_accessions(config['organism_discrimination_strategy'])
+                    
+        self.df = self._build_dataset(config, selected_accessions, debug=debug)
+
+        print('----' * 20)
+        print(f"Zero-shot dataset enabled: {self.build_zero_shot_dataset}")
+
+        if self.build_zero_shot_dataset:
+            # For zero-shot, we use all accessions not in the selected ones
+            print("Creating zero-shot dataset, using all accessions not in the selected ones.")
+            all_accessions = self.processed_df[self.main_columns['id_col']]
+            zero_shot_accesions = all_accessions[~all_accessions.isin(selected_accessions)]
+            self.zero_shot_df = self._build_dataset(config, zero_shot_accesions, debug=debug)
+
+    def _build_dataset(self, config, selected_accessions, debug=False):
+        """
+        Builds the dataset based on the provided configuration and selected accessions.
+
+        Args:
+            config (dict): Configuration for the dataset processing.
+            selected_accessions (pd.Series): Accessions to include in the dataset.
+            debug (bool): If True, prints debug information.
+
+        Returns:
+            pd.DataFrame: Processed dataset.
+        """
         
-        selected_accessions = self._selected_accessions(organism_discrimination_strategy)
+        if debug:
+            print(f"Building dataset with {len(selected_accessions)} accessions.")
         
+        # Extract embeddings
         embeddings = self._load_embeddings(
             accessions=selected_accessions,
-            sequence_embeddings=sequence_embeddings,
-            go_embeddings=go_embeddings
+            sequence_embeddings=config['sequence_embeddings'],
+            go_embeddings=config['go_embeddings']
         )
         
         # Start with the selected features from the processed DataFrame
@@ -83,11 +127,11 @@ class ProcessedDataset:
         if debug:
             print("Getting dataset with the following columns:")
             print(f"Main ID column: {self.main_columns['id_col']}")
-            print(f"Features columns: {features_col}")
-            print(f"Label column: {label_col}")
-            print(f"Balance column: {balance_col}")
+            print(f"Features columns: {config['features_col']}")
+            print(f"Label column: {config['label_col']}")
+            print(f"Balance column: {config['balance_col']}")
             
-        df = df[[self.main_columns['id_col']] + features_col + [label_col] + [balance_col]]
+        df = df[[self.main_columns['id_col']] + config['features_col'] + [config['label_col']] + [config['balance_col']]]
         df.set_index(self.main_columns['id_col'], inplace=True)
         
         # Add each embedding as a new column (embedding tensor or array)

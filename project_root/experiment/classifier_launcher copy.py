@@ -8,22 +8,21 @@ import torch
 from torch.utils.data import DataLoader, random_split
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score, precision_score, recall_score
 
 from project_root.models.classifier_model_loader import ClassifierModelLoader
 from project_root.training.trainer_module import TrainerModule
 from project_root.explainability.explainability_module import ExplainabilityModule
 from project_root.training.tracker_module import TrackerModule
+from project_root.dataset.dataset_config import DatasetConfigReader
+from project_root.dataset.dataset_handler import DatasetHandler
 
 class ClassifierLauncher:
-    def __init__(self, config_reader, dataset_handler, zero_shot_test=False, random_seed=None):
-
+    def __init__(self, cfg: DictConfig, random_seed=None):
+        self.cfg = cfg
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
         # Initialize config reader to access parsed dictionaries
-        self.config_reader = config_reader
-        self.dataset_handler = dataset_handler
-        self.zero_shot_test = zero_shot_test
+        self.config_reader = DatasetConfigReader(cfg)
 
         self.random_seed = random_seed
         self._set_all_seeds(self.random_seed)
@@ -47,8 +46,10 @@ class ClassifierLauncher:
             tags=['phase3_develop', 'classifier', f'{self.config_reader.model["type"]}']
             )
         
+
     def _initialize_dataset(self):
-        self.classifier_dataset = self.dataset_handler.load_classifier_dataset()
+        handler = DatasetHandler(self.config_reader)
+        self.classifier_dataset = handler.load_classifier_dataset()
         X, y = self.classifier_dataset.get_X_y()
 
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
@@ -97,54 +98,16 @@ class ClassifierLauncher:
             avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics = trainer.cross_validate(self.X_train, self.y_train, self.classifier_dataset.balance_values)
             print(f"✅ Training done! Accuracy: {avg_acc:.2%}, F1: {avg_f1:.2%}, Precision: {avg_precision:.2%}, Recall: {avg_recall:.2%}")
 
-            if self.zero_shot_test:
-                # Run zero-shot testing
-                acc, f1, precision, recall = self._run_zero_shot()
-                print(f"🔍 Zero-shot testing results - Accuracy: {acc:.2%}, F1: {f1:.2%}, Precision: {precision:.2%}, Recall: {recall:.2%}")
-                self.tracker.log_metric("zero_shot_accuracy", acc)
-                self.tracker.log_metric("zero_shot_f1", f1)
-                self.tracker.log_metric("zero_shot_precision", precision)
-                self.tracker.log_metric("zero_shot_recall", recall)
-
             # Explainability (optional)
             if self.config_reader.explainability:
-                self._run_explainability()
+                explainer = ExplainabilityModule(self.model, self.config_reader.model['type'], device=self.device)
+                explanation_df = explainer.explain(
+                    self.classifier_dataset.features[:5], 
+                    feature_names=self.classifier_dataset.feature_cols,
+                    target=1  # or 0, depending on which class you want to explain
+                )
+                print(f"🧠 Explainability output:\n{explanation_df.head()}")
 
         finally:
             self.tracker.finish()
-        
-    def _run_zero_shot(self):
-        print("🧪 Performing zero-shot testing...")
-        zero_shot_dataset = self.dataset_handler.load_classifier_dataset(zero_shot=True)
-        X_zero, y_zero = zero_shot_dataset.get_X_y()
 
-        # Check if the model is a torch.nn.Module
-        if isinstance(self.model, torch.nn.Module):
-            self.model.eval()
-            with torch.no_grad():
-                inputs = torch.tensor(X_zero, dtype=torch.float32).to(self.device)
-                outputs = self.model(inputs)
-                preds_class = torch.argmax(outputs, dim=1).cpu().numpy()
-        else:
-            # For sklearn-like models (e.g., XGBClassifier)
-            preds_class = self.model.predict(X_zero)
-
-        acc = accuracy_score(y_zero, preds_class)
-        f1 = f1_score(y_zero, preds_class, average='weighted')
-        precision = precision_score(y_zero, preds_class, average='weighted')
-        recall = recall_score(y_zero, preds_class, average='weighted')
-        
-        return acc, f1, precision, recall
-
-    def _run_explainability(self):
-        """
-        Run explainability on the model.
-        """
-        print("🧠 Running explainability...")
-        explainer = ExplainabilityModule(self.model, self.config_reader.model['type'], device=self.device)
-        explanation_df = explainer.explain(
-            self.classifier_dataset.features[:5], 
-            feature_names=self.classifier_dataset.feature_cols,
-            target=1  # or 0, depending on which class you want to explain
-        )
-        print(f"🧠 Explainability output:\n{explanation_df.head()}")

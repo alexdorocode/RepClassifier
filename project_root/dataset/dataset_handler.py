@@ -8,8 +8,9 @@ from project_root.dataset.classifier_dataset import ClassifierDataset
 from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
 
 class DatasetHandler:
-    def __init__(self, config_reader):
+    def __init__(self, config_reader, build_zero_shot_dataset: bool = False):
         self.config = config_reader
+        self.build_zero_shot_dataset = build_zero_shot_dataset
         
         self._build_processed_dataset()
         print("🔧 Processed dataset created successfully.")
@@ -94,17 +95,26 @@ class DatasetHandler:
             raw_dataset= raw_dataset,
             config=self.config.features_to_process,
             seq_loader= sequence_loader,
-            go_loader= go_loader
+            go_loader= go_loader,
+            classifier_dataset_config=self.config.classifier_definition,
+            build_zero_shot_dataset=self.build_zero_shot_dataset
         )
 
-    def load_classifier_dataset(self):
+    def load_classifier_dataset(self, zero_shot: bool = False):
         """
         Load the experimental dataset based on the configuration.
         """
         print("📦 Processing dataset with ClassifierDataset...")
         
+        if zero_shot:
+            df = self.processed_dataset.get_zero_shot_dataset()
+            print("🔍 Zero-shot dataset processed successfully.")
+        else:
+            df = self.processed_dataset.get_dataset()
+            print("🔍 Processed dataset created successfully.")
+        # self.processed_dataset.get_dataset(self.config.classifier_definition)
         classifier_dataset = ClassifierDataset(
-            processed_df=self.processed_dataset.get_dataset(self.config.classifier_definition),
+            processed_df=df,
             label_col=self.config.classifier_definition.get('label_col'),
             balance_col=self.config.classifier_definition.get('balance_col'),
             production=False
