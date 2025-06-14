@@ -49,7 +49,7 @@ def process_results(csv_paths):
 
         # Save with prefix
         filename = os.path.basename(path)
-        output_name = f"clean_{filename}"
+        output_name = f"../RESULTS/clean_{filename}"
         df.to_csv(output_name, index=False)
         print(f"✅ Saved cleaned file to {output_name}")
 

@@ -105,12 +105,110 @@ class ExperimentLauncher:
             print(OmegaConf.to_yaml(self.cfg['classifier_definition']))
             
 
-            seed = self._calculate_seed_from_config(wandb.config)
+            seed = 42
             print(f"🔍 Running config with seed {seed}:")
             config_reader = DatasetConfigReader(self.cfg)
             dataset_handler = DatasetHandler(config_reader, build_zero_shot_dataset=True)
             launcher = ClassifierLauncher(config_reader, dataset_handler, zero_shot_test=True, random_seed=seed)
             launcher.run()
+
+    def run_final_evaluation(self, model_name: str, save_model_folder: str, save_metrics_path: str = None):
+        
+        print("🔍 Preparing configuration for final evaluation")
+    
+        phase_1_configs, phase_2_configs, phase_3_configs = self.handler.get_final_evaluation_config(model=model_name, classifier_config=self.cfg['classifier_definition'])
+        
+        avg_metrics_collection = {}
+        
+        if phase_1_configs is not None:
+            aux_cfg = self.cfg.copy()
+            model_config = phase_1_configs['model_config']
+        
+            for key, value in phase_1_configs['embedding_config'].items():
+                metrics_collection = {}
+
+                classifier_config = self.handler._build_classifier_config(
+                    classifier_config=aux_cfg['classifier_definition'],
+                    model=model_name,
+                    model_config=model_config,
+                    embedding_config=value,
+                )
+                print(f"Classifier config: \n", {classifier_config})
+
+                aux_cfg['classifier_definition'] = classifier_config
+
+                for seed in aux_cfg['classifier_definition']['random_seeds']:
+                    metrics, _ = self._launch_classifier_launcher(aux_cfg, seed)
+
+                    for metric, value in metrics.items():
+                        if metric not in metrics_collection:
+                            metrics_collection[metric] = []
+                        metrics_collection[metric].append(value)
+
+                avg_metrics = {k: sum(v) / len(v) for k, v in metrics_collection.items()}
+                avg_metrics_collection[key] = avg_metrics
+
+        if phase_2_configs is not None:
+            aux_cfg = self.cfg.copy()
+            embedding_config = phase_2_configs['embedding_config']
+        
+            for key, value in phase_2_configs['model_configs'].items():
+                metrics_collection = {}
+
+                classifier_config = self.handler._build_classifier_config(
+                    classifier_config=aux_cfg['classifier_definition'],
+                    model=model_name,
+                    model_config=value.get('parameters'),
+                    embedding_config=embedding_config,
+                )
+
+                aux_cfg['classifier_definition'] = classifier_config
+            
+                for seed in aux_cfg['classifier_definition']['random_seeds']:
+                    metrics, _ = self._launch_classifier_launcher(aux_cfg, seed)
+
+                    for metric, value in metrics.items():
+                        if metric not in metrics_collection:
+                            metrics_collection[metric] = []
+                        metrics_collection[metric].append(value)
+
+                avg_metrics = {k: sum(v) / len(v) for k, v in metrics_collection.items()}
+                avg_metrics_collection[key] = avg_metrics
+        
+        if phase_3_configs is not None:
+            aux_cfg = self.cfg.copy()
+            for key, value in phase_3_configs.items():
+                metrics_collection = {}
+
+                classifier_config = self.handler.get_sweeps_config_phase_3(
+                    model=model_name,
+                    classifier_config=aux_cfg['classifier_definition'],
+                    sweep_config=value.get('parameters'),
+                )
+                
+                aux_cfg['classifier_definition'] = classifier_config
+
+                for seed in aux_cfg['classifier_definition']['random_seeds']:
+
+                    metrics, _ = self._launch_classifier_launcher(aux_cfg, seed)
+                    for metric, value in metrics.items():
+                        if metric not in metrics_collection:
+                            metrics_collection[metric] = []
+                        metrics_collection[metric].append(value)
+
+                avg_metrics = {k: sum(v) / len(v) for k, v in metrics_collection.items()}
+                avg_metrics_collection[key] = avg_metrics
+
+        print("🔍 Final evaluation metrics:")
+        self._store_metrics_csv(avg_metrics_collection, model_name, save_metrics_path)
+
+    def _launch_classifier_launcher(self, cfg, seed=42):
+        print(f"🔍 Running config with seed {seed}:")
+        
+        config_reader = DatasetConfigReader(cfg)
+        dataset_handler = DatasetHandler(config_reader, build_zero_shot_dataset=True)
+        launcher = ClassifierLauncher(config_reader, dataset_handler, zero_shot_test=True, random_seed=seed)
+        return launcher.run()
 
     def _calculate_seed_from_config(self, config):
         
@@ -152,3 +250,12 @@ class ExperimentLauncher:
         
         return True
 
+    def _store_metrics_csv(self, metrics_collection, model_name, save_metrics_path):
+        if save_metrics_path is None:
+            save_metrics_path = f"./results/final_evaluation_{model_name}.csv"
+        
+        import pandas as pd
+        
+        df = pd.DataFrame(metrics_collection).T
+        df.to_csv(save_metrics_path, index_label='Configuration')
+        print(f"✅ Metrics saved to {save_metrics_path}")

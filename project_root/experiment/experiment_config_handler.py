@@ -6,6 +6,8 @@ from omegaconf import OmegaConf
 from project_root.experiment.fork_expander import ForkExpander
 from project_root.utils.config_utils import merge_dicts
 
+PATH_RESULTS_PHASE_1_EMBEDDINGS_CONFIG = "./project_root/config/phase_results/for_phase_3_embedding_configs.yaml"
+PATH_RESULTS_PHASE_2_MODEL_CONFIG = "./project_root/config/phase_results/for_phase_3_model_configs.yaml"
 
 class ExperimentConfigHandler:
     def __init__(
@@ -154,9 +156,9 @@ class ExperimentConfigHandler:
             raise ValueError("Phase 1 result path must be set before running Phase 2.")
         if self.phase_2_result_load_path is None:
             raise ValueError("Phase 2 result path must be set before running Phase 3.")
-
-        phase_1_result = OmegaConf.to_container(OmegaConf.load(self.phase_1_result_load_path), resolve=True)['embedding_configs_phase_1'][f'{model}']
-        phase_2_result = OmegaConf.to_container(OmegaConf.load(self.phase_2_result_load_path), resolve=True)['model_configs_phase_2'][f'{model}']
+        
+        phase_1_result = OmegaConf.to_container(OmegaConf.load(PATH_RESULTS_PHASE_1_EMBEDDINGS_CONFIG), resolve=True)['embedding_configs_phase_1'][f'{model}']
+        phase_2_result = OmegaConf.to_container(OmegaConf.load(PATH_RESULTS_PHASE_2_MODEL_CONFIG), resolve=True)['model_configs_phase_2'][f'{model}']
 
         sweep_config = self._unwrap_sweep_config(sweep_config)
 
@@ -170,16 +172,38 @@ class ExperimentConfigHandler:
                                       self._build_embedding_config(embedding_config, sweep_config), 
                                       model_config, sweep_config)
 
-    def set_sweeps_config_phase_3(self):
-        # Phase 3: sweep training hyperparameters for top models
-        top_model_paths = [path for path in self.model_fork_paths if any(x in path for x in ["mlp", "xgboost"])]
-        model_forks = [OmegaConf.to_container(OmegaConf.load(path), resolve=True) for path in top_model_paths]
-        embedding = OmegaConf.to_container(OmegaConf.load(self.embedding_fork_path), resolve=True)["best_embedding"]
-        feature = OmegaConf.to_container(OmegaConf.load(self.feature_fork_path), resolve=True)["best_features"]
-        training_fork = OmegaConf.to_container(OmegaConf.load(self.training_fork_path), resolve=True)
-        self.configs = self._expand_and_merge(model_forks, [embedding], [feature], training_fork)
+    def get_final_evaluation_config(self, model, classifier_config, sweep_config=None):
+        # Phase 2: test all models with fixed embedding/feature config
+        if self.phase_1_result_load_path is None:
+            raise ValueError("Phase 1 result path must be set before running Phase 2.")
+        if self.phase_2_result_load_path is None:
+            raise ValueError("Phase 2 result path must be set before running Phase 3.")
+        
+        phase_1_result = OmegaConf.to_container(OmegaConf.load(self.phase_1_result_load_path), resolve=True)['best_configs_phase_1']
+        phase_2_result = OmegaConf.to_container(OmegaConf.load(self.phase_2_result_load_path), resolve=True)['best_configs_phase_2']
+        phase_3_result = OmegaConf.to_container(OmegaConf.load(self.phase_3_result_load_path), resolve=True)['best_configs_phase_3']
 
-    def set_sweeps_config_phase_4(self):
+        phase_1_result = phase_1_result[f'{model}'] if f'{model}' in phase_1_result else None
+        phase_2_result = phase_2_result[f'{model}'] if f'{model}' in phase_2_result else None
+        phase_3_result = phase_3_result[f'{model}'] if f'{model}' in phase_3_result else None
+       
+        return phase_1_result, phase_2_result, phase_3_result
+        
+        '''
+        sweep_config = self._unwrap_sweep_config(sweep_config)
+
+        config_index_embedding = f"best_config_{sweep_config['config_index_embedding']}"
+        config_index_model = f"best_config_{sweep_config['config_index_model']}"
+
+        embedding_config = phase_1_result[config_index_embedding]
+        model_config = phase_2_result[config_index_model]
+        
+        return self._build_classifier_config(classifier_config, model, 
+                                      self._build_embedding_config(embedding_config, sweep_config), 
+                                      model_config, sweep_config)
+        '''
+
+    def set_sweeps_config_final_eval(self):
         # Phase 4: test robustness across stratification or organism filtering
         best_model = OmegaConf.to_container(OmegaConf.load(self.model_fork_paths[0]), resolve=True)["best_model"]
         best_embedding = OmegaConf.to_container(OmegaConf.load(self.embedding_fork_path), resolve=True)["best_embedding"]
@@ -288,14 +312,15 @@ class ExperimentConfigHandler:
         
         return config
 
-    def _build_classifier_config(self, classifier_config, model, embedding_config, model_config, sweep_config):
+    def _build_classifier_config(self, classifier_config, model, embedding_config, model_config, sweep_config=None):
         """
         Builds the classifier configuration based on the provided model, embedding, and model configs.
         """
-        self._set_feature_cols(classifier_config['features_col'], sweep_config)
+        if sweep_config is not None:
+            self._set_feature_cols(classifier_config['features_col'], sweep_config)
 
-        self._build_embedding_config(embedding_config, sweep_config)
-        
+            self._build_embedding_config(embedding_config, sweep_config)
+            
         OmegaConf.set_struct(classifier_config, False)  # Allow dynamic updates to classifier_config
 
         classifier_config['model'] = {

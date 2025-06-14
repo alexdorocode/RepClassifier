@@ -39,7 +39,6 @@ parameters:
   go_embedding_config:
     values:
       - {use_GeOKG: false}
-
       - {use_GeOKG: true, go_categories: 'C_F', go_aggregation_strategy: 'mean_pooling'}
       - {use_GeOKG: true, go_categories: 'C_F', go_aggregation_strategy: 'padding'}
       - {use_GeOKG: true, go_categories: 'C_F_P', go_aggregation_strategy: 'mean_pooling'}

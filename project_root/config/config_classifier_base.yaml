@@ -41,4 +41,4 @@ classifier_definition:
   training:
     test_size_ratio: 0.2  # Ratio of data to be used for testing
 
-  randomess_seeds: [2001, 2002, 2003, 2004, 2005]
+  random_seeds: [9123, 1234, 5678, 91011, 121314, 151617, 181920, 212223, 242526, 272829]

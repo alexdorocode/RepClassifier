@@ -1,7 +1,7 @@
 import wandb
 
 class TrackerModule:
-    def __init__(self, project_name="ProteinClassification", run_name=None, config=None, offline=False, tags=None, random_seed=None):
+    def __init__(self, project_name="RepClassifier", run_name=None, config=None, offline=False, tags=None, random_seed=None):
         """
         Args:
             project_name: W&B project name

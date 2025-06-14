@@ -1,0 +1,1600 @@
+
+best_configs_phase_3:
+  lr:
+# 🔹 Best configurations for Logistic Regression model in Phase 3
+    best_config_lr_3_1:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_2:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_3:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_4:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_5:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_6:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_7:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.720818
+        f1_score: 0.719968
+        precision: 0.723720
+        recall: 0.720818
+
+    best_config_lr_3_8:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 1
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.718278
+        f1_score: 0.717372
+        precision: 0.721254
+        recall: 0.718278
+
+    best_config_lr_3_9:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.718278
+        f1_score: 0.717372
+        precision: 0.721254
+        recall: 0.718278
+
+    best_config_lr_3_10:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: true
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.718278
+        f1_score: 0.717372
+        precision: 0.721254
+        recall: 0.718278
+
+
+# 🔹 Best configurations for SVM model in Phase 3
+  svm:
+
+    best_config_svm_3_1:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_2:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 1
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_3:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 1
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_4:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 1
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_5:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_6:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 1
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_7:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_8:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 1
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_9:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 1
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_10:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+    best_config_svm_3_11:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 1
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.737330
+        f1_score: 0.736157
+        precision: 0.741075
+        recall: 0.737330
+
+# 🔹 Best configurations for Random Forest model in Phase 3
+  rf:
+    best_config_rf_3_1:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_2:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_3:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_4:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_5:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_6:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_7:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_8:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.751286
+        f1_score: 0.750404
+        precision: 0.754317
+        recall: 0.751286
+
+    best_config_rf_3_9:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.749988
+        f1_score: 0.749874
+        precision: 0.750499
+        recall: 0.749988
+
+    best_config_rf_3_10:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.749988
+        f1_score: 0.749874
+        precision: 0.750499
+        recall: 0.749988
+
+# 🔹 Best configurations for XGBoost model in Phase 3
+  xgb:
+    best_config_xgb_3_1:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_2:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_3:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_4:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_5:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_6:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_7:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_8:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_9:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_10:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_11:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 0
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_12:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_13:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_14:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 0
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739821
+        f1_score: 0.739709
+        precision: 0.740258
+        recall: 0.739821
+
+    best_config_xgb_3_15:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_16:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_17:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_18:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_19:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_20:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_21:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_22:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_23:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_24:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_25:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_26:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_27:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_28:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_29:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_30:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_31:
+      parameters:
+        config_index_embedding: 0
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+    best_config_xgb_3_32:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 3
+        cross_val_balance: null
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.739797
+        f1_score: 0.739660
+        precision: 0.740508
+        recall: 0.739797
+
+  knn:
+    best_config_knn_3_1:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_2:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: null
+        use_ESM: true
+        use_ProstT5: true
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_3:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_4:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_5:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_6:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F_P
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_7:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: padding
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_8:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: false
+        use_c_max_mbl: true
+        use_f_max_mbl: true
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+          go_categories: null
+          go_aggregation_strategy: null
+      previous_results:
+        accuracy: 0.749964
+        f1_score: 0.748888
+        precision: 0.754299
+        recall: 0.749964
+
+    best_config_knn_3_9:
+      parameters:
+        config_index_embedding: 2
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: false
+        use_ProstT5: true
+        use_ProtT5: false
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: true
+          go_categories: C_F
+          go_aggregation_strategy: mean_pooling
+      previous_results:
+        accuracy: 0.743618
+        f1_score: 0.743480
+        precision: 0.744141
+        recall: 0.743618
+
+    best_config_knn_3_10:
+      parameters:
+        config_index_embedding: 1
+        config_index_model: 2
+        cross_val_balance: organism
+        use_ESM: true
+        use_ProstT5: false
+        use_ProtT5: true
+        use_c_max_mbl: false
+        use_f_max_mbl: false
+        use_p_max_mbl: true
+        use_seq_length: false
+        go_embedding_config:
+          use_GeOKG: false
+          go_categories: null
+          go_aggregation_strategy: null
+      previous_results:
+        accuracy: 0.743618
+        f1_score: 0.743480
+        precision: 0.744141
+        recall: 0.743618

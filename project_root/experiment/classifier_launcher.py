@@ -44,7 +44,7 @@ class ClassifierLauncher:
             offline=tracker_cfg.get('offline', False),
             config=self.config_reader,  # You can store the entire config_reader as a reference
             random_seed=self.random_seed,
-            tags=['phase3_develop', 'classifier', f'{self.config_reader.model["type"]}']
+            tags=['phase_final_eval_develop', 'zero_shot', 'classifier', f'{self.config_reader.model["type"]}']
             )
         
     def _initialize_dataset(self):
@@ -97,6 +97,13 @@ class ClassifierLauncher:
             avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics = trainer.cross_validate(self.X_train, self.y_train, self.classifier_dataset.balance_values)
             print(f"✅ Training done! Accuracy: {avg_acc:.2%}, F1: {avg_f1:.2%}, Precision: {avg_precision:.2%}, Recall: {avg_recall:.2%}")
 
+            metrics = {
+                "accuracy": avg_acc,
+                "f1": avg_f1,
+                "precision": avg_precision,
+                "recall": avg_recall
+            }
+
             if self.zero_shot_test:
                 # Run zero-shot testing
                 acc, f1, precision, recall = self._run_zero_shot()
@@ -106,9 +113,18 @@ class ClassifierLauncher:
                 self.tracker.log_metric("zero_shot_precision", precision)
                 self.tracker.log_metric("zero_shot_recall", recall)
 
+                metrics.update({
+                    "zero_shot_accuracy": acc,
+                    "zero_shot_f1": f1,
+                    "zero_shot_precision": precision,
+                    "zero_shot_recall": recall
+                })
+
             # Explainability (optional)
             if self.config_reader.explainability:
                 self._run_explainability()
+            
+            return metrics, fold_metrics
 
         finally:
             self.tracker.finish()
@@ -119,6 +135,7 @@ class ClassifierLauncher:
         X_zero, y_zero = zero_shot_dataset.get_X_y()
 
         # Check if the model is a torch.nn.Module
+        print(f"🔍 Running zero-shot evaluation for {type(self.model)}")
         if isinstance(self.model, torch.nn.Module):
             self.model.eval()
             with torch.no_grad():
@@ -127,6 +144,7 @@ class ClassifierLauncher:
                 preds_class = torch.argmax(outputs, dim=1).cpu().numpy()
         else:
             # For sklearn-like models (e.g., XGBClassifier)
+            self.model.fit(self.X_train, self.y_train) 
             preds_class = self.model.predict(X_zero)
 
         acc = accuracy_score(y_zero, preds_class)

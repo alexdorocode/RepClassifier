@@ -13,7 +13,7 @@ def main(cfg: DictConfig):
 
     launcher = ExperimentLauncher(cfg, phase_1_result_path=PATH_RESULTS_PHASE_1_EMBEDDINGS_CONFIG, 
                                   phase_2_result_path=PATH_RESULTS_PHASE_2_MODEL_CONFIG)
-    launcher.run_phase_3_sweep(model_name="xgb")  # or 'rf', 'svm', etc.
+    launcher.run_phase_3_sweep(model_name="knn")  # or 'rf', 'svm', etc.
 
 if __name__ == "__main__":
     main()
