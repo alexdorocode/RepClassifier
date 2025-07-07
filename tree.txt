@@ -9,12 +9,6 @@
 │   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_padding_C_F_go_terms.csv
 │   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_padding_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_1000dim_mean_pool_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_1000dim_mean_pool_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_100dim_mean_pool_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_100dim_mean_pool_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_100dim_padding_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_100dim_padding_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_mean_pool_C_F_go_terms.csv
 │   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_padding_C_F_go_terms.csv
@@ -27,8 +21,6 @@
 │   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_mean_pool_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_padding_C_F_go_terms.csv
 │   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_padding_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_200dim_mean_pool_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_200dim_mean_pool_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_mean_pool_C_F_go_terms.csv
 │   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_padding_C_F_go_terms.csv
@@ -40,13 +32,7 @@
 │   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_mean_pool_C_F_go_terms.csv
 │   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_mean_pool_C_F_P_go_terms.csv
 │   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_500dim_mean_pool_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_500dim_mean_pool_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_50dim_mean_pool_C_F_go_terms.csv
-│   │   ├── geokg_embeddings_50dim_mean_pool_C_F_P_go_terms.csv
-│   │   ├── geokg_embeddings_50dim_padding_C_F_go_terms.csv
-│   │   └── geokg_embeddings_50dim_padding_C_F_P_go_terms.csv
+│   │   └── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_P_go_terms.csv
 │   ├── autoencoded_seq_embeddings
 │   │   ├── ESM_embeddings_128dim.csv
 │   │   ├── ESM_embeddings_32dim.csv
@@ -255,4 +241,4 @@
 │   └── test_wrapped_dataset.py
 └── tree.txt
 
-38 directories, 218 files
+38 directories, 204 files
