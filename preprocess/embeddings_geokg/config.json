@@ -1,0 +1,14 @@
+{
+    "input_csv": "../DATASETS/BioData_backup_alex/go_annotations_with_category.csv",
+    "id_col": "accession_code",
+    "go_col": "go_id",
+    "category_col": "category",
+    "categories_to_embed": "C,F",
+    "one_letter_categories": true,
+    "two_letter_categories": false,
+    "embedding_folder": "../DATASETS/embeddings/GeOKG/goa_embedding/",
+    "embedding_dimentions": "50",
+    "autoencoder_path": "../DATASETS/embeddings/GeOKG/autoencoders/",
+    "entity_map": "../GeOKG/GeOKG/src_data/GO/entities.tsv",
+    "reduction_strategy": "mean_pool"
+}
