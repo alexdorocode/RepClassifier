@@ -1,0 +1,258 @@
+.
+├── csv_embeddings
+│   ├── autoencoded_go_embeddings
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_128dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_go_ae_IN_1000dim_OUT_32dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_1000dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_100dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_100dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_100dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_100dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_128dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_32dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_go_ae_IN_200dim_OUT_64dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_200dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_128dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_32dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_go_ae_IN_500dim_OUT_64dim_padding_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_500dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_50dim_mean_pool_C_F_go_terms.csv
+│   │   ├── geokg_embeddings_50dim_mean_pool_C_F_P_go_terms.csv
+│   │   ├── geokg_embeddings_50dim_padding_C_F_go_terms.csv
+│   │   └── geokg_embeddings_50dim_padding_C_F_P_go_terms.csv
+│   ├── autoencoded_seq_embeddings
+│   │   ├── ESM_embeddings_128dim.csv
+│   │   ├── ESM_embeddings_32dim.csv
+│   │   ├── ESM_embeddings_64dim.csv
+│   │   ├── ProstT5_embeddings_128dim.csv
+│   │   ├── ProstT5_embeddings_32dim.csv
+│   │   ├── ProstT5_embeddings_64dim.csv
+│   │   ├── ProtT5_embeddings_128dim.csv
+│   │   ├── ProtT5_embeddings_32dim.csv
+│   │   └── ProtT5_embeddings_64dim.csv
+│   ├── esm_embeddings.csv
+│   ├── go_annotations_with_category.csv
+│   ├── prostT5_embeddings.csv
+│   └── prot_embeddings.csv
+├── datasets
+│   ├── all_data_mbls.csv
+│   ├── all_data_seq.csv
+│   ├── merged_dataset.csv
+│   ├── moondb_dataset.csv
+│   ├── moonprot_dataset.csv
+│   ├── moonprot3_uniprot_ids_list.csv
+│   ├── predictor_dataset.csv
+│   ├── uniprot_ids_moondb.csv
+│   └── uniprot_ids_moonprot.csv
+├── Doxyfile
+├── LICENSE
+├── notebooks
+│   ├── 3Di_processor.py
+│   ├── base_test
+│   ├── BaseLineNotebooks
+│   │   ├── esm3 2
+│   │   └── Pla2g2_features 2.csv
+│   ├── BaseLineNotebooks 2
+│   │   └── esm3
+│   ├── Calaix_de_Sastre
+│   ├── check_uniprot_ids.py
+│   ├── distribution_analysis_go_only.py
+│   ├── download_MoonProt3.py
+│   ├── embedding_processor.py
+│   ├── experiments
+│   ├── feature_processor.py
+│   ├── generate_dummy_3di.py
+│   ├── get_pdbs.py
+│   ├── get_raw_aa_seq.py
+│   ├── get_raw_uniprot_ids_labeled.py
+│   ├── go_processor.py
+│   ├── merge_MoonProt3.py
+│   ├── preprocess
+│   │   ├── all_ids_labeled.csv
+│   │   ├── all_ids.csv
+│   │   ├── compare_moonprot3.ipynb
+│   │   ├── dataset_preprocess.ipynb
+│   │   ├── exploringMBLs_top7.ipynb
+│   │   ├── get_embedding_prott5.ipynb
+│   │   ├── get_embeddings_emc3.ipynb
+│   │   ├── get_uniprots_moondb.ipynb
+│   │   ├── go-basic.obo
+│   │   ├── merged_dataset.csv
+│   │   ├── moondb_not_in_labels.csv
+│   │   ├── not_in_mbls.csv
+│   │   ├── processed_proteins_labeled.csv
+│   │   ├── protein_procedence_statistics.csv
+│   │   └── protein_procedence.csv
+│   └── processor_utils.py
+├── preprocess
+│   ├── analyses
+│   │   ├── distribution_analysis.py
+│   │   ├── exploring_GOEmbeddings.ipynb
+│   │   ├── exploringBioData.ipynb
+│   │   ├── exploringFeatrues.ipynb
+│   │   └── exploringSeqEmbeddings.ipynb
+│   └── embeddings_geokg
+│       ├── config.json
+│       ├── get_geokg_embeddings.py
+│       ├── go_autoencoder.py
+│       ├── go_embeddings_per_protein.py
+│       ├── launch_autoencoder_results_of_sweep.py
+│       ├── launch_GO_autoencoder_sweeps.py
+│       ├── launch_go_embeddings_per_protein.py
+│       ├── launch_seq_autoencoder_results_of_sweep.py
+│       ├── launch_seq_autoencoder_sweeps.py
+│       ├── test_wandb.py
+│       ├── train_go_autoencoder_wandb.py
+│       └── train_seq_autoencoder_wandb.py
+├── project_root
+│   ├── config
+│   │   ├── config_classifier_base.yaml
+│   │   ├── config_classifier_dataset_test.yaml
+│   │   ├── config_experiment_base.yaml
+│   │   ├── config_experiment_test.yaml
+│   │   ├── config_load.yaml
+│   │   ├── config_process.yaml
+│   │   ├── paths
+│   │   │   ├── autoencoded_go_embeddings.yaml
+│   │   │   ├── autoencoded_seq_embeddings.yaml
+│   │   │   ├── autoencoder_paths.yaml
+│   │   │   └── embedding_paths.yaml
+│   │   ├── phase_results
+│   │   │   ├── for_final_eval_phase_1_configs.yaml
+│   │   │   ├── for_final_eval_phase_2_configs.yaml
+│   │   │   ├── for_final_eval_phase_3_configs.yaml
+│   │   │   ├── for_phase_2_embedding_configs.yaml
+│   │   │   ├── for_phase_3_embedding_configs.yaml
+│   │   │   └── for_phase_3_model_configs.yaml
+│   │   ├── sweeps_configs
+│   │   │   ├── sweep_config_phase_1.yaml
+│   │   │   ├── sweep_config_phase_2_knn.yaml
+│   │   │   ├── sweep_config_phase_2_lr.yaml
+│   │   │   ├── sweep_config_phase_2_mlp_training.yaml
+│   │   │   ├── sweep_config_phase_2_mlp.yaml
+│   │   │   ├── sweep_config_phase_2_rf.yaml
+│   │   │   ├── sweep_config_phase_2_svm.yaml
+│   │   │   ├── sweep_config_phase_2_xgb.yaml
+│   │   │   └── sweep_config_phase_3.yaml
+│   │   └── tunable_params
+│   │       ├── embeddings_tunable_params.yaml
+│   │       ├── features_tunable_params.yaml
+│   │       ├── model_tunable_params
+│   │       │   ├── knn_tune_params.yaml
+│   │       │   ├── lr_tune_params_EXTENDED.yaml
+│   │       │   ├── lr_tune_params.yaml
+│   │       │   ├── mlp_tune_params.yaml
+│   │       │   ├── rf_tune_params.yaml
+│   │       │   ├── svm_tune_params.yaml
+│   │       │   └── xgb_tune_params.yaml
+│   │       ├── model_tunable_params 2
+│   │       └── training_tunable_params.yaml
+│   ├── dataset
+│   │   ├── classifier_dataset.py
+│   │   ├── dataset_config.py
+│   │   ├── dataset_handler.py
+│   │   ├── features
+│   │   │   ├── embedding_loader.py
+│   │   │   └── metric_processor.py
+│   │   ├── processed_dataset.py
+│   │   └── raw_dataset.py
+│   ├── experiment
+│   │   ├── experiment_config_handler.py
+│   │   └── fork_expander.py
+│   ├── explainability
+│   │   └── explainability_module.py
+│   ├── features
+│   ├── launchers
+│   │   ├── classifier_launcher.py
+│   │   └── experiment_launcher.py
+│   ├── mainpage.dox
+│   ├── models
+│   │   ├── autoencoder.py
+│   │   ├── classifier_model_loader.py
+│   │   ├── mlp_protein_classifier.py
+│   │   └── test_mlp.py
+│   ├── scripts
+│   │   ├── get_seq_emb_autoencoded.py
+│   │   ├── model_aggreement
+│   │   │   ├── analyze_model_agreement.py
+│   │   │   ├── f1_score_by_agreement_policy.py
+│   │   │   ├── plot_by_model_f1.py
+│   │   │   ├── plot_by_model.py
+│   │   │   ├── plot_by_policy.py
+│   │   │   ├── plot_stacked_aggreement.py
+│   │   │   ├── plot_stacked_binary_aggreement.py
+│   │   │   └── plot_stacked_incorrect_agreement.py
+│   │   ├── process_result_csv_phase_1.py
+│   │   ├── process_result_csv_phase_2.py
+│   │   ├── run_classfier_dataset.py
+│   │   ├── run_classifier_launcher.py
+│   │   ├── run_experiment_launcher.py
+│   │   ├── run_final_evaluation.py
+│   │   ├── run_load_dataset.py
+│   │   ├── run_prediction_agreement.py
+│   │   ├── run_process_dataset.py
+│   │   ├── run_sweeps_phase_1.py
+│   │   ├── run_sweeps_phase_2.py
+│   │   ├── run_sweeps_phase_3.py
+│   │   ├── run_wandb_agent_phase1.py
+│   │   ├── run_wandb_agent_phase2.py
+│   │   └── run_wandb_agent_phase3.py
+│   ├── training
+│   │   ├── tracker_module.py
+│   │   └── trainer_module.py
+│   └── utils
+│       ├── config_utils.py
+│       ├── feature_processor.py
+│       └── visualization.py
+├── README.md
+├── results
+│   ├── agreement_summary.csv
+│   ├── Figure_1.png
+│   ├── final_evaluation_knn.csv
+│   ├── final_evaluation_lr.csv
+│   ├── final_evaluation_rf.csv
+│   ├── final_evaluation_svm.csv
+│   ├── final_evaluation_xgb.csv
+│   ├── incorrect_agreement_proteins_80.png
+│   ├── model_self_agreement.csv
+│   ├── stacked_agreement_per_protein_80pct_threshold.png
+│   ├── zero_shot_prediction_agreement_knn.csv
+│   ├── zero_shot_prediction_agreement_lr.csv
+│   ├── zero_shot_prediction_agreement_rf.csv
+│   ├── zero_shot_prediction_agreement_svm.csv
+│   └── zero_shot_prediction_agreement_xgb.csv
+├── tests
+│   ├── test_data_visualizer.py
+│   ├── test_model_explainability.py
+│   ├── test_model_trainer.py
+│   └── test_wrapped_dataset.py
+└── tree.txt
+
+38 directories, 218 files
