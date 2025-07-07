@@ -1,0 +1,539 @@
+
+best_configs_phase_2:
+  lr:
+    embedding_config:
+      sequence_embeddings:
+        ESM:
+          use: True
+          target_dim: 128
+        ProtT5:
+          use: True
+          target_dim: 128
+        ProstT5:
+          use: True
+          target_dim: 128
+      go_embeddings:
+        GeOKG:
+          use: True
+          input_dim: 500
+          emb_dim: 128
+          include_original: False
+          aggregation_strategy: mean_pooling
+          go_categories: C_F_P
+      training:
+        cv_folds: 5
+        cross_val_balance: null
+
+    model_configs:
+      
+      best_config_lr_2_1:
+        parameters:
+          penalty: 'l2'
+          C: 2.768540
+          tol: 0.009756
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 100
+        previous_results:
+          accuracy: 0.729743
+          f1_score: 0.728785
+          precision: 0.732684
+          recall: 0.729743
+      
+      best_config_lr_2_2:
+        parameters:
+          penalty: 'l2'
+          C: 8.565569
+          tol: 0.009621
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 200
+        previous_results:
+          accuracy: 0.729743
+          f1_score: 0.728785
+          precision: 0.732684
+          recall: 0.729743
+
+      best_config_lr_2_3:
+        parameters:
+          penalty: 'l2'
+          C: 2.768540
+          tol: 0.009756
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 100
+        previous_results:
+          accuracy: 0.729743
+          f1_score: 0.728785
+          precision: 0.732684
+          recall: 0.729743
+
+      best_config_lr_2_4:
+        parameters:
+          penalty: 'l2'
+          C: 0.862815
+          tol: 0.009453
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 100
+        previous_results:
+          accuracy: 0.729743
+          f1_score: 0.728785
+          precision: 0.732684
+          recall: 0.729743
+
+      best_config_lr_2_5:
+        parameters:
+          penalty: 'l2'
+          C: 8.797972
+          tol: 0.009726
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 200
+        previous_results:
+          accuracy: 0.729743
+          f1_score: 0.728785
+          precision: 0.732684
+          recall: 0.729743
+
+      best_config_lr_2_6:
+        parameters:
+          penalty: 'l2'
+          C: 9.897313
+          tol: 0.009484
+          fit_intercept: True
+          class_weight: balanced
+          solver: 'lbfgs'
+          max_iter: 200
+        previous_results:
+          accuracy: 0.727203
+          f1_score: 0.726244
+          precision: 0.730159
+          recall: 0.727203
+
+      best_config_lr_2_7:
+        parameters:
+          penalty: 'l2'
+          C: 7.755549
+          tol: 0.009664
+          fit_intercept: True
+          class_weight: balanced
+          solver: 'lbfgs'
+          max_iter: 200
+        previous_results:
+          accuracy: 0.727203
+          f1_score: 0.726244
+          precision: 0.730159
+          recall: 0.727203
+
+      best_config_lr_2_8:
+        parameters:
+          penalty: 'l2'
+          C: 4.688353
+          tol: 0.006918
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 200
+        previous_results:
+          accuracy: 0.727211
+          f1_score: 0.726199
+          precision: 0.730264
+          recall: 0.727211
+
+      best_config_lr_2_9:
+        parameters:
+          penalty: 'l2'
+          C: 7.275891
+          tol: 0.006154
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 100
+        previous_results:
+          accuracy: 0.727211
+          f1_score: 0.726199
+          precision: 0.730264
+          recall: 0.727211
+
+      best_config_lr_2_10:
+        parameters:
+          penalty: 'l2'
+          C: 9.565516
+          tol: 0.006977
+          fit_intercept: True
+          class_weight: null
+          solver: 'lbfgs'
+          max_iter: 100
+        previous_results:
+          accuracy: 0.727211
+          f1_score: 0.726199
+          precision: 0.730264
+          recall: 0.727211
+
+
+  rf:
+      embedding_config:
+        sequence_embeddings:
+          ESM:
+            use: True
+            target_dim: 128
+          ProtT5:
+            use: True
+            target_dim: 32
+          ProstT5:
+            use: True
+            target_dim: 128
+        go_embeddings:
+          GeOKG:
+            use: True
+            input_dim: 500
+            emb_dim: 128
+            include_original: False
+            aggregation_strategy: padding
+            go_categories: C_F
+        training:
+          cv_folds: 5
+          cross_val_balance: null
+
+      model_configs:
+        best_config_rf_2_1:
+          parameters:
+            n_estimators: 200
+            criterion: 'gini'
+            max_depth: 20
+            min_samples_split: 2
+            min_samples_leaf: 1
+            max_features: 'log2'
+            bootstrap: True
+            class_weight: balanced_subsample
+            max_samples: 0.6
+          previous_results:
+            accuracy: 0.763976
+            f1_score: 0.763517
+            precision: 0.766147
+            recall: 0.763976
+
+        best_config_rf_2_2:
+          parameters:
+            n_estimators: 100
+            criterion: 'entropy'
+            max_depth: 10
+            min_samples_split: 5
+            min_samples_leaf: 5
+            max_features: 'log2'
+            bootstrap: True
+            class_weight: balanced_subsample
+            max_samples: 0.8
+          previous_results:
+            accuracy: 0.758873
+            f1_score: 0.758720
+            precision: 0.759420
+            recall: 0.758873
+
+        best_config_rf_2_3:
+          parameters:
+            n_estimators: 200
+            criterion: 'gini'
+            max_depth: 20
+            min_samples_split: 2
+            min_samples_leaf: 1
+            max_features: 'sqrt'
+            bootstrap: True
+            class_weight: null
+            max_samples: 0.8
+          previous_results:
+            accuracy: 0.756373
+            f1_score: 0.756023
+            precision: 0.758232
+            recall: 0.756373
+
+        best_config_rf_2_4:
+          parameters:
+            n_estimators: 100
+            criterion: 'log_loss'
+            max_depth: 5
+            min_samples_split: 2
+            min_samples_leaf: 1
+            max_features: null
+            bootstrap: True
+            class_weight: balanced
+            max_samples: 0.6
+          previous_results:
+            accuracy: 0.756325
+            f1_score: 0.755713
+            precision: 0.758841
+            recall: 0.756325
+
+        best_config_rf_2_5:
+          parameters:
+            n_estimators: 100
+            criterion: 'gini'
+            max_depth: 10
+            min_samples_split: 5
+            min_samples_leaf: 5
+            max_features: null
+            bootstrap: True
+            class_weight: balanced
+            max_samples: 0.6
+          previous_results:
+            accuracy: 0.753818
+            f1_score: 0.753195
+            precision: 0.756339
+            recall: 0.753818
+
+        best_config_rf_2_6:
+          parameters:
+            n_estimators: 500
+            criterion: 'log_loss'
+            max_depth: 5
+            min_samples_split: 10
+            min_samples_leaf: 1
+            max_features: null
+            bootstrap: True
+            class_weight: null
+            max_samples: 0.6
+          previous_results:
+            accuracy: 0.753777
+            f1_score: 0.753148
+            precision: 0.756348
+            recall: 0.753777
+
+        best_config_rf_2_7:
+          parameters:
+            n_estimators: 200
+            criterion: 'entropy'
+            max_depth: 5
+            min_samples_split: 5
+            min_samples_leaf: 5
+            max_features: 'log2'
+            bootstrap: True
+            class_weight: null
+            max_samples: 0.8
+          previous_results:
+            accuracy: 0.752487
+            f1_score: 0.752296
+            precision: 0.753088
+            recall: 0.752487
+
+        best_config_rf_2_8:
+          parameters:
+            n_estimators: 100
+            criterion: 'entropy'
+            max_depth: 10
+            min_samples_split: 5
+            min_samples_leaf: 5
+            max_features: 'log2'
+            bootstrap: True
+            class_weight: null
+            max_samples: 0.8
+          previous_results:
+            accuracy: 0.751238
+            f1_score: 0.750936
+            precision: 0.752163
+            recall: 0.751238
+
+        best_config_rf_2_9:
+          parameters:
+            n_estimators: 200
+            criterion: 'log_loss'
+            max_depth: 5
+            min_samples_split: 2
+            min_samples_leaf: 5
+            max_features: 'sqrt'
+            bootstrap: True
+            class_weight: null
+            max_samples: 0.6
+          previous_results:
+            accuracy: 0.750060
+            f1_score: 0.749777
+            precision: 0.750903
+            recall: 0.750060
+
+        best_config_rf_2_10:
+          parameters:
+            n_estimators: 100
+            criterion: 'entropy'
+            max_depth: 5
+            min_samples_split: 10
+            min_samples_leaf: 5
+            max_features: 'log2'
+            bootstrap: True
+            class_weight: balanced
+            max_samples: 0.8
+          previous_results:
+            accuracy: 0.749940
+            f1_score: 0.749715
+            precision: 0.750664
+            recall: 0.749940
+
+
+  xgb:
+      embedding_config:
+        sequence_embeddings:
+          ESM:
+            use: True
+            target_dim: 32
+          ProtT5:
+            use: True
+            target_dim: 128
+          ProstT5:
+            use: True
+            target_dim: 128
+        go_embeddings:
+          GeOKG:
+            use: True
+            input_dim: 1000
+            emb_dim: 32
+            include_original: False
+            aggregation_strategy: padding
+            go_categories: C_F
+        training:
+          cv_folds: 3
+          cross_val_balance: organism
+
+      model_configs:
+        best_config_xgb_2_1:
+          parameters:
+            learning_rate: 1.238096
+            n_estimators: 200
+            max_depth: 7
+            min_child_weight: 1.835538
+            subsample: 0.933758
+            colsample_bytree: 0.774135
+          previous_results:
+            accuracy: 0.729743
+            f1_score: 0.728785
+            precision: 0.732684
+            recall: 0.729743
+
+        best_config_xgb_2_2:
+          parameters:
+            colsample_bytree: 0.794421
+            learning_rate: 1.034221
+            max_depth: 5
+            min_child_weight: 9.163695
+            n_estimators: 200
+            subsample: 0.924969
+          previous_results:
+            accuracy: 0.744844
+            f1_score: 0.744537
+            precision: 0.745870
+            recall: 0.744844
+
+        best_config_xgb_2_3:
+          parameters:
+            colsample_bytree: 0.658970
+            learning_rate: 1.189324
+            max_depth: 7
+            min_child_weight: 7.245963
+            n_estimators: 100
+            subsample: 0.948320
+          previous_results:
+            accuracy: 0.742425
+            f1_score: 0.742280
+            precision: 0.743176
+            recall: 0.742425
+
+        best_config_xgb_2_4:
+          parameters:
+            colsample_bytree: 0.686206
+            learning_rate: 1.165552
+            max_depth: 3
+            min_child_weight: 8.211975
+            n_estimators: 200
+            subsample: 0.931465
+          previous_results:
+            accuracy: 0.742433
+            f1_score: 0.742170
+            precision: 0.743403
+            recall: 0.742433
+
+        best_config_xgb_2_5:
+          parameters:
+            colsample_bytree: 0.974704
+            learning_rate: 1.227180
+            max_depth: 3
+            min_child_weight: 8.439548
+            n_estimators: 100
+            subsample: 0.692407
+          previous_results:
+            accuracy: 0.742377
+            f1_score: 0.742090
+            precision: 0.743461
+            recall: 0.742377
+
+        best_config_xgb_2_6:
+          parameters:
+            colsample_bytree: 0.961911
+            learning_rate: 1.120734
+            max_depth: 7
+            min_child_weight: 4.336114
+            n_estimators: 100
+            subsample: 0.801861
+          previous_results:
+            accuracy: 0.741159
+            f1_score: 0.740997
+            precision: 0.741801
+            recall: 0.741159
+
+        best_config_xgb_2_7:
+          parameters:
+            colsample_bytree: 0.769924
+            learning_rate: 1.114040
+            max_depth: 5
+            min_child_weight: 3.787853
+            n_estimators: 100
+            subsample: 0.860346
+          previous_results:
+            accuracy: 0.741159
+            f1_score: 0.740833
+            precision: 0.742351
+            recall: 0.741159
+
+        best_config_xgb_2_8:
+          parameters:
+            colsample_bytree: 0.941772
+            learning_rate: 1.307601
+            max_depth: 5
+            min_child_weight: 3.534779
+            n_estimators: 500
+            subsample: 0.957782
+          previous_results:
+            accuracy: 0.741103
+            f1_score: 0.740759
+            precision: 0.742064
+            recall: 0.741103
+
+        best_config_xgb_2_9:
+          parameters:
+            colsample_bytree: 0.906745
+            learning_rate: 1.091307
+            max_depth: 7
+            min_child_weight: 7.169689
+            n_estimators: 200
+            subsample: 0.980917
+          previous_results:
+            accuracy: 0.741030
+            f1_score: 0.740467
+            precision: 0.743332
+            recall: 0.741030
+
+        best_config_xgb_2_10:
+          parameters:
+            colsample_bytree: 0.928364
+            learning_rate: 1.246995
+            max_depth: 5
+            min_child_weight: 4.040972
+            n_estimators: 100
+            subsample: 0.668693
+          previous_results:
+            accuracy: 0.739910
+            f1_score: 0.739809
+            precision: 0.740385
+            recall: 0.739910

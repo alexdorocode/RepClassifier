@@ -1,0 +1,50 @@
+method: bayes
+metric:
+  name: f1_score       # 🧠 this must match what you call it in wandb.log()
+  goal: maximize
+
+parameters:
+
+  config_index_model:
+    min: 0
+    max: 3
+    distribution: int_uniform
+
+  config_index_embedding:
+    min: 0
+    max: 2
+    distribution: int_uniform
+
+  use_ESM:
+    values: [true, false]
+
+  use_ProtT5:
+    values: [true, false]
+
+  use_ProstT5:
+    values: [true, false]
+
+  use_c_max_mbl:
+    values: [true, false]
+  
+  use_f_max_mbl:
+    values: [true, false]
+
+  use_p_max_mbl:
+    values: [true, false]
+
+  use_seq_length:
+    values: [true, false]
+
+  go_embedding_config:
+    values:
+      - {use_GeOKG: false}
+      - {use_GeOKG: true, go_categories: 'C_F', go_aggregation_strategy: 'mean_pooling'}
+      - {use_GeOKG: true, go_categories: 'C_F', go_aggregation_strategy: 'padding'}
+      - {use_GeOKG: true, go_categories: 'C_F_P', go_aggregation_strategy: 'mean_pooling'}
+      - {use_GeOKG: true, go_categories: 'C_F_P', go_aggregation_strategy: 'padding'}
+
+  cross_val_balance:
+    values: ['organism', null]
+
+  

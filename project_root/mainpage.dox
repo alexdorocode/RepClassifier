@@ -1,0 +1,52 @@
+/// \mainpage Experimentation System
+///
+/// \section structure Structure
+/// - `ExperimentLauncher` calls `ExperimentConfigHandler`
+/// - `ExperimentConfigHandler` expands the fork trees and validates configs
+/// - `DatasetHandler` loads and processes datasets
+/// - `Trainer` runs training given a config and logs results
+/// - `ClassifierModelLoader` builds models from config
+/// - `ClassifierDataset` wraps processed data for PyTorch
+/// - `ExplainabilityModule` and `ModelExplainability` provide model interpretation
+///
+/// \section components Main Components
+/// - **ExperimentLauncher**: Orchestrates the experiment, calling config, dataset, and training modules.
+/// - **ExperimentConfigHandler**: Expands configuration forks, merges configs, and manages sweep/final evaluation configs.
+/// - **DatasetHandler**: Loads raw data, builds processed datasets, and prepares classifier-ready data.
+/// - **RawDataset**: Container for raw protein data (IDs, labels, sequences, metrics).
+/// - **ProcessedDataset**: Handles feature processing, embedding loading, and dataset construction.
+/// - **ClassifierDataset**: PyTorch Dataset for processed features and labels.
+/// - **TrainerModule**: Runs training and cross-validation, logs metrics.
+/// - **ClassifierModelLoader**: Instantiates models from config.
+/// - **ExplainabilityModule** / **ModelExplainability**: Provides SHAP, Integrated Gradients, and GradCAM explanations.
+///
+/// \section flow Experiment Flow
+/// 1. **ExperimentLauncher** initializes and coordinates the experiment.
+/// 2. **ExperimentConfigHandler** expands and validates all configuration forks.
+/// 3. **DatasetHandler** loads and processes the dataset, including embeddings.
+/// 4. **TrainerModule** trains the model using the processed data.
+/// 5. **ClassifierModelLoader** builds the model as specified in the config.
+/// 6. **ClassifierDataset** wraps the processed data for PyTorch training.
+/// 7. **ExplainabilityModule** and **ModelExplainability** provide model interpretation and feature importance.
+///
+/// \section diagram Class/Module Relationships
+///
+/// \dot
+/// digraph experiment_flow {
+///     ExperimentLauncher -> ExperimentConfigHandler;
+///     ExperimentLauncher -> DatasetHandler;
+///     ExperimentLauncher -> TrainerModule;
+///     ExperimentConfigHandler -> DatasetHandler;
+///     DatasetHandler -> RawDataset;
+///     DatasetHandler -> ProcessedDataset;
+///     DatasetHandler -> ClassifierDataset;
+///     TrainerModule -> ClassifierModelLoader;
+///     TrainerModule -> ClassifierDataset;
+///     TrainerModule -> ExplainabilityModule;
+///     ExplainabilityModule -> ModelExplainability;
+/// }
+/// \enddot
+///
+/// \section explainability Explainability
+/// - `ExplainabilityModule` and `ModelExplainability` support SHAP, Integrated Gradients, and GradCAM for model interpretation.
+///

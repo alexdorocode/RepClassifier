@@ -1,0 +1,26 @@
+knn:
+  parameters:
+    n_neighbors:
+      min: 1
+      max: 30
+      distribution: int_uniform  # Number of neighbors to use
+    weights:
+      values: ['uniform', 'distance']  # Weight function used in prediction
+    algorithm:
+      values: ['auto', 'ball_tree', 'kd_tree', 'brute']  # Algorithm used to compute nearest neighbors
+    leaf_size:
+      min: 10
+      max: 100
+      distribution: int_uniform  # Leaf size for BallTree or KDTree
+    p:
+      values: [1, 2]  # Power parameter for Minkowski metric: 1=Manhattan, 2=Euclidean
+    metric:
+      values: ['minkowski', 'euclidean', 'manhattan']  # Distance metric
+
+  base_line:
+    n_neighbors: 5
+    weights: 'uniform'
+    algorithm: 'auto'
+    leaf_size: 30
+    p: 2
+    metric: 'minkowski'

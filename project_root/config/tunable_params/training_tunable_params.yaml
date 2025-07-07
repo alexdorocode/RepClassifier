@@ -1,0 +1,29 @@
+
+trainer_tune_config:
+  device: "cuda"  # or "cpu"
+  learning_rate:
+    min: 1e-5
+    max: 1e-2
+    distribution: log_uniform
+  num_epochs:
+    values: [100, 200, 500]  # For MLP
+  early_stopping_patience:
+    values: [5, 10]  # Stop if no improvement for 5 or 10 epochs
+  optimizer_name:
+    values: ["Adam", "SGD", "RMSprop", "Adagrad"]
+  criterion_name:
+    values: ["CrossEntropyLoss", "MSELoss", "BCEWithLogitsLoss"]
+  batch_size:
+    values: [32, 64]
+
+  training:
+    cv_folds: 3
+    cross_val_balance: "organism"  # Use "organism" for stratified sampling by organism
+    test_size_ratio: 0.2
+    mlp_params:
+      learning_rate: 0.001
+      num_epochs: 200
+      optimizer: "Adam"
+      criterion: "CrossEntropyLoss"
+      batch_size: 32
+      early_stopping_patience: 5
