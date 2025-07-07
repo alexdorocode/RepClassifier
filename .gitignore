@@ -1,5 +1,4 @@
 # Ignore datasets and large files
-datasets/
 output/
 
 # Ignore temporary files
@@ -25,7 +24,6 @@ __pycache__/
 
 # Ignore additional files
 logs/
-*.csv
 *.h5
 wandb/sweep-y8iidw9i/config-zmh126kv.yaml
 wandb/sweep-y8iidw9i/config-z2fdx6mw.yaml
