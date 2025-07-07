@@ -1,14 +1,24 @@
 import os
-import numpy as np  # type: ignore
 import pandas as pd  # type: ignore
-import yaml  # We'll need this to parse YAML if you load from YAML files
+import yaml  # type: ignore
 from project_root.dataset.raw_dataset import RawDataset
 from project_root.dataset.processed_dataset import ProcessedDataset
 from project_root.dataset.classifier_dataset import ClassifierDataset
 from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
 
 class DatasetHandler:
+    """
+    Handles loading, processing, and embedding enrichment of protein datasets.
+    Supports both standard and zero-shot dataset splits.
+    """
+
     def __init__(self, config_reader, build_zero_shot_dataset: bool = False):
+        """
+        Initialize the DatasetHandler.
+
+        :param config_reader: Configuration object with dataset and embedding paths/settings.
+        :param build_zero_shot_dataset: If True, enables zero-shot dataset split.
+        """
         self.config = config_reader
         self.build_zero_shot_dataset = build_zero_shot_dataset
         
@@ -16,6 +26,13 @@ class DatasetHandler:
         print("🔧 Processed dataset created successfully.")
 
     def _build_raw(self):
+        """
+        Loads the raw dataset from disk and checks required columns.
+
+        :return: RawDataset instance
+        :raises FileNotFoundError: If the dataset file does not exist.
+        :raises ValueError: If required columns are missing.
+        """
         root_dir = self.config.root
         unified_dataset = self.config.file
         dataset_path = os.path.join(root_dir, unified_dataset)
@@ -51,8 +68,9 @@ class DatasetHandler:
     def _build_embedding_loaders(self):
         """
         Load configurations for embedding loaders (Sequence and GO) and return loader instances.
+
+        :return: Tuple (SequenceEmbeddingLoader, GOEmbeddingLoader)
         """
-        # Access paths from the nested paths dictionary
         seq_emb_cfg = self.config.paths["embedding_sequence_paths"]
         ae_cfg = self.config.paths["autoencoder_paths"]
         autoencoded_seq_emb = self.config.paths["autoencoded_seq_embeddings"]
@@ -63,7 +81,6 @@ class DatasetHandler:
             with open(go_emb_cfg, "r") as f:
                 go_emb_cfg = yaml.safe_load(f)['autoencoded_go_embeddings']
 
-        # Create loader instances
         sequence_loader = SequenceEmbeddingLoader(
             embedding_sequence_paths=seq_emb_cfg,
             ae_paths=ae_cfg,
@@ -84,7 +101,6 @@ class DatasetHandler:
         """
         Load the processed dataset based on the raw dataset and configuration.
         """
-        
         print("🔍 Initializing DatasetHandler")
         raw_dataset = self._build_raw()
         print("📥 Raw dataset loaded successfully.")
@@ -92,10 +108,10 @@ class DatasetHandler:
         print("🔍 Embedding loaders initialized successfully.")
         
         self.processed_dataset = ProcessedDataset(
-            raw_dataset= raw_dataset,
+            raw_dataset=raw_dataset,
             config=self.config.features_to_process,
-            seq_loader= sequence_loader,
-            go_loader= go_loader,
+            seq_loader=sequence_loader,
+            go_loader=go_loader,
             classifier_dataset_config=self.config.classifier_definition,
             build_zero_shot_dataset=self.build_zero_shot_dataset
         )
@@ -103,25 +119,29 @@ class DatasetHandler:
     def load_classifier_dataset(self, zero_shot: bool = False):
         """
         Load the experimental dataset based on the configuration.
+
+        :param zero_shot: If True, loads the zero-shot dataset split.
+        :return: ClassifierDataset instance
         """
         print("📦 Processing dataset with ClassifierDataset...")
         
         if zero_shot:
             df = self.processed_dataset.get_zero_shot_dataset()
+            accessions = self.processed_dataset.get_zero_shot_accessions()
             print("🔍 Zero-shot dataset processed successfully.")
         else:
             df = self.processed_dataset.get_dataset()
+            accessions = self.processed_dataset.get_accessions()
             print("🔍 Processed dataset created successfully.")
-        # self.processed_dataset.get_dataset(self.config.classifier_definition)
+            
         classifier_dataset = ClassifierDataset(
             processed_df=df,
             label_col=self.config.classifier_definition.get('label_col'),
             balance_col=self.config.classifier_definition.get('balance_col'),
-            production=False
+            production=False,
+            accession_ids=accessions,
         )
 
         print("📦 ClassifierDataset loaded successfully.")
         print(f"Dataset size: {len(classifier_dataset)} samples")
         print(f"Dataset columns: {classifier_dataset.df.columns.tolist()}")
-
-        return classifier_dataset

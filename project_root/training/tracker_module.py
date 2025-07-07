@@ -1,14 +1,21 @@
-import wandb
+import wandb # type: ignore
 
 class TrackerModule:
+    """
+    Wrapper for Weights & Biases (wandb) experiment tracking.
+    Handles run initialization, metric logging, artifact logging, and run finishing.
+    """
+
     def __init__(self, project_name="RepClassifier", run_name=None, config=None, offline=False, tags=None, random_seed=None):
         """
-        Args:
-            project_name: W&B project name
-            run_name: Optional custom run name
-            config: Optional dict with hyperparameters/config
-            offline: If True, runs W&B in offline mode
-            tags: Optional list of tags to attach to the run
+        Initialize the TrackerModule.
+
+        :param project_name: W&B project name
+        :param run_name: Optional custom run name
+        :param config: Optional dict with hyperparameters/config
+        :param offline: If True, runs W&B in offline mode
+        :param tags: Optional list of tags to attach to the run
+        :param random_seed: Optional random seed for reproducibility
         """
         self.run = wandb.run
 
@@ -33,13 +40,30 @@ class TrackerModule:
                 self.run.tags = current_tags
 
     def log_metric(self, name, value, step=None):
+        """
+        Log a scalar metric to W&B.
+
+        :param name: Metric name (str)
+        :param value: Metric value (float or int)
+        :param step: Optional step index (int)
+        """
         wandb.log({name: value}, step=step)
 
     def log_artifact(self, artifact_path, artifact_name, artifact_type="file"):
+        """
+        Log a file as an artifact to W&B.
+
+        :param artifact_path: Path to the file to log
+        :param artifact_name: Name for the artifact in W&B
+        :param artifact_type: Artifact type (default: "file")
+        """
         artifact = wandb.Artifact(artifact_name, type=artifact_type)
         artifact.add_file(artifact_path)
         wandb.log_artifact(artifact)
 
     def finish(self):
+        """
+        Finish the W&B run (if active).
+        """
         if self.run:
             wandb.finish()

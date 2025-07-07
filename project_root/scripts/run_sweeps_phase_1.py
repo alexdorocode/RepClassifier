@@ -2,7 +2,7 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 import wandb
 from project_root.dataset.dataset_config import DatasetConfigReader
-from project_root.experiment.classifier_launcher import ClassifierLauncher
+from project_root.launchers.classifier_launcher import ClassifierLauncher
 from project_root.experiment.experiment_config_handler import ExperimentConfigHandler
 
 SAVE_CONFIGS_FOLDER = "./project_root/config/sweeps_configs/"

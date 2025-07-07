@@ -1,7 +1,8 @@
 import hydra
 from omegaconf import DictConfig, OmegaConf
 from project_root.dataset.dataset_config import DatasetConfigReader
-from project_root.experiment.classifier_launcher import ClassifierLauncher
+from project_root.dataset.dataset_handler import DatasetHandler
+from project_root.launchers.classifier_launcher import ClassifierLauncher
 from project_root.experiment.experiment_config_handler import ExperimentConfigHandler
 
 SAVE_CONFIGS_FOLDER = "./project_root/config/sweeps_configs/"
@@ -34,7 +35,12 @@ def main(cfg: DictConfig):
         cfg_custom = OmegaConf.create(cfg_dict)
         cfg_custom = OmegaConf.merge(base_cfg, cfg_custom)
         # print(f"🔧 Running with config: {OmegaConf.to_yaml(cfg_custom)}")
-        launcher = ClassifierLauncher(cfg_custom, random_seed=42)
+        config_reader = DatasetConfigReader(cfg_custom)
+        dataset_handler = DatasetHandler(config_reader)
+        launcher = ClassifierLauncher(config_reader=config_reader,
+                                   dataset_handler=dataset_handler,
+                                   zero_shot_test=False,
+                                   random_seed=42)
         launcher.run()
 
 

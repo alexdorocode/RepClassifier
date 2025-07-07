@@ -1,7 +1,7 @@
 import hydra
 from omegaconf import DictConfig, OmegaConf
 import wandb
-from project_root.experiment.experiment_launcher import ExperimentLauncher
+from project_root.launchers.experiment_launcher import ExperimentLauncher
 SAVE_MODEL_FOLDER = "./project_root/model_weights/final_eval/"
 PATH_RESULTS_PHASE_1 = "./project_root/config/phase_results/for_final_eval_phase_1_configs.yaml"
 PATH_RESULTS_PHASE_2 = "./project_root/config/phase_results/for_final_eval_phase_2_configs.yaml"

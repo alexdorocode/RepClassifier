@@ -1,14 +1,19 @@
 # project_root/models/trainer_module.py
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix
+import torch # type: ignore
+import torch.nn as nn # type: ignore
+import torch.optim as optim # type: ignore
+from sklearn.model_selection import StratifiedKFold # type: ignore
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix # type: ignore
 from collections import Counter
-import numpy as np
+import numpy as np # type: ignore
 
 class TrainerModule:
+    """
+    Training and evaluation wrapper for PyTorch and sklearn-style models.
+    Supports cross-validation, early stopping, and metric tracking.
+    """
+
     def __init__(
         self,
         model,
@@ -27,24 +32,21 @@ class TrainerModule:
         early_stopping_patience=None,
     ):
         """
-        Initializes a training wrapper for both PyTorch and sklearn-style models.
+        Initialize the TrainerModule.
 
-        Args:
-            model: Initialized model (PyTorch or sklearn/XGB/LGBM)
-            model_type: str, e.g., 'mlp', 'logistic_regression', 'svm', etc.
-            device: str, 'cpu' or 'cuda' (used for PyTorch)
-            cv_folds: int, number of folds for cross-validation
-            tracker: optional TrackerModule instance
-            cross_val_balance: str, optional stratification feature (e.g., 'organism')
-            random_seed: int, random state for reproducibility
-
-            # Only required for PyTorch-based models like MLP
-            learning_rate: float, optimizer learning rate
-            num_epochs: int, number of epochs
-            optimizer_name: str, e.g., 'Adam', 'SGD'
-            criterion_name: str, e.g., 'CrossEntropyLoss', 'MSELoss'
-            batch_size: int, training batch size
-            early_stopping_patience: int, early stopping patience
+        :param model: Initialized model (PyTorch or sklearn/XGB/LGBM)
+        :param model_type: Model type string, e.g., 'mlp', 'logistic_regression', 'svm', etc.
+        :param device: 'cpu' or 'cuda' (used for PyTorch)
+        :param cv_folds: Number of folds for cross-validation
+        :param tracker: Optional TrackerModule instance
+        :param cross_val_balance: Optional stratification feature (e.g., 'organism')
+        :param random_seed: Random state for reproducibility
+        :param learning_rate: Optimizer learning rate (MLP only)
+        :param num_epochs: Number of epochs (MLP only)
+        :param optimizer_name: Optimizer name (MLP only)
+        :param criterion_name: Loss function name (MLP only)
+        :param batch_size: Training batch size (MLP only)
+        :param early_stopping_patience: Early stopping patience (MLP only)
         """
         self.model = model
         self.model_type = model_type
@@ -64,8 +66,18 @@ class TrainerModule:
             self.early_stopping_patience = early_stopping_patience
 
     def cross_validate(self, X, y, balance_df=None, debug=False):
+        """
+        Perform cross-validation and return average metrics.
+
+        :param X: Features (numpy array)
+        :param y: Labels (numpy array)
+        :param balance_df: Optional stratification column
+        :param debug: If True, print debug info
+        :return: avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics
+        """
         print(f"🔄 Starting {self.cv_folds}-fold cross-validation...")
 
+        # Stratify by label and optional balance column
         if self.cross_val_balance and balance_df is not None:
             stratify_labels = np.array([f"{label}_{balance}" for label, balance in zip(y, balance_df)])
         else:
@@ -83,11 +95,11 @@ class TrainerModule:
             balance_train = balance_df[train_idx] if balance_df is not None else None
             balance_val = balance_df[val_idx] if balance_df is not None else None
 
-            # 🏷️ Show balance summary in the train and validation sets
+            # Show balance summary in the train and validation sets
             if balance_train is not None and debug:
                 self.show_balance_summary(y_train, balance_train, y_val, balance_val)
 
-            # Now proceed with training...
+            # Train and evaluate model for this fold
             if isinstance(self.model, nn.Module):
                 train_loader, val_loader = self._create_loaders(X_train, y_train, X_val, y_val)
                 model_fold = self._clone_model()
@@ -115,12 +127,14 @@ class TrainerModule:
             print(f"🎯 Fold {fold+1} Accuracy: {metrics['accuracy']:.2%}, F1: {metrics['f1']:.2%}, Precision: {metrics['precision']:.2%}, Recall: {metrics['recall']:.2%}")
             fold_metrics.append(metrics)
 
+            # Log metrics if tracker is provided
             if self.tracker:
                 self.tracker.log_metric(f"fold_{fold+1}_accuracy", metrics['accuracy'])
                 self.tracker.log_metric(f"fold_{fold+1}_f1", metrics['f1'])
                 self.tracker.log_metric(f"fold_{fold+1}_precision", metrics['precision'])
                 self.tracker.log_metric(f"fold_{fold+1}_recall", metrics['recall'])
 
+        # Compute average metrics across folds
         avg_acc = np.mean([m['accuracy'] for m in fold_metrics])
         avg_f1 = np.mean([m['f1'] for m in fold_metrics])
         avg_precision = np.mean([m['precision'] for m in fold_metrics])
@@ -134,8 +148,16 @@ class TrainerModule:
 
         return avg_acc, avg_f1, avg_precision, avg_recall, fold_metrics
 
-
     def _create_loaders(self, X_train, y_train, X_val, y_val):
+        """
+        Create PyTorch DataLoaders for training and validation sets.
+
+        :param X_train: Training features
+        :param y_train: Training labels
+        :param X_val: Validation features
+        :param y_val: Validation labels
+        :return: train_loader, val_loader
+        """
         from torch.utils.data import TensorDataset, DataLoader # type: ignore
         train_ds = TensorDataset(torch.tensor(X_train, dtype=torch.float32), torch.tensor(y_train))
         val_ds = TensorDataset(torch.tensor(X_val, dtype=torch.float32), torch.tensor(y_val))
@@ -144,6 +166,10 @@ class TrainerModule:
         return train_loader, val_loader
 
     def _clone_model(self):
+        """
+        Clone the model for each fold to avoid data leakage.
+        :return: A deep copy of the model.
+        """
         import copy
         if self.model in ['xgboost', 'lightgbm']:
             # Re-initialize with same params instead of deepcopy
@@ -152,6 +178,11 @@ class TrainerModule:
             return copy.deepcopy(self.model)
 
     def _get_optimizer(self, model):
+        """
+        Get the optimizer for PyTorch models.
+        :param model: PyTorch model
+        :return: Optimizer instance
+        """
         opt_map = {
             'Adam': optim.Adam,
             'SGD': optim.SGD,
@@ -162,6 +193,10 @@ class TrainerModule:
         return opt_cls(model.parameters(), lr=self.learning_rate)
 
     def _get_criterion(self):
+        """
+        Get the loss function for PyTorch models.
+        :return: Loss function instance
+        """
         crit_map = {
             'CrossEntropyLoss': nn.CrossEntropyLoss(),
             'MSELoss': nn.MSELoss(),
@@ -169,8 +204,15 @@ class TrainerModule:
         }
         return crit_map.get(self.criterion_name, nn.CrossEntropyLoss())
 
+    def _train_pytorch(self, model, train_loader, val_loader=None, debug=False):
+        """
+        Train a PyTorch model with optional early stopping.
 
-    def _train_pytorch(self, model, train_loader, val_loader=None, debug=True):
+        :param model: PyTorch model
+        :param train_loader: DataLoader for training data
+        :param val_loader: DataLoader for validation data
+        :param debug: If True, print debug info
+        """
         model.to(self.device)
         criterion = self._get_criterion()
         optimizer = self._get_optimizer(model)
@@ -210,6 +252,14 @@ class TrainerModule:
                         break
 
     def _compute_validation_loss(self, model, val_loader, criterion):
+        """
+        Compute validation loss for early stopping.
+
+        :param model: PyTorch model
+        :param val_loader: DataLoader for validation data
+        :param criterion: Loss function
+        :return: Average validation loss
+        """
         model.eval()
         total_loss = 0.0
         with torch.no_grad():
@@ -221,6 +271,13 @@ class TrainerModule:
         return total_loss / len(val_loader)
 
     def _evaluate_pytorch(self, model, val_loader):
+        """
+        Evaluate a PyTorch model on validation data.
+
+        :param model: PyTorch model
+        :param val_loader: DataLoader for validation data
+        :return: Dictionary of metrics
+        """
         model.eval()
         all_preds, all_labels = [], []
         with torch.no_grad():
@@ -246,6 +303,12 @@ class TrainerModule:
         }
     
     def evaluate_on_dataset(self, dataset):
+        """
+        Evaluate the model on a given dataset (zero-shot or test).
+
+        :param dataset: PyTorch TensorDataset
+        :return: Dictionary of metrics
+        """
         print("🔍 Evaluating on zero-shot dataset...")
         X = dataset.tensors[0].numpy()
         y = dataset.tensors[1].numpy()
@@ -276,15 +339,15 @@ class TrainerModule:
             self.tracker.log_metric("zero_shot_recall", metrics['recall'])
             # Optionally log confusion matrix as an artifact or image
         return metrics
-    
+        
     def show_balance_summary(self, y_train, balance_train, y_val=None, balance_val=None):
         """
         Show balance summary for training and validation sets.
-        Args:
-            y_train: Labels for training set
-            balance_train: Balance column values for training set
-            y_val: Labels for validation set (optional)
-            balance_val: Balance column values for validation set (optional)
+
+        :param y_train: Labels for training set
+        :param balance_train: Balance column values for training set
+        :param y_val: Labels for validation set (optional)
+        :param balance_val: Balance column values for validation set (optional)
         """
         from collections import Counter
     

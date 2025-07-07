@@ -1,19 +1,29 @@
 import itertools
-import numpy as np
+import numpy as np # type: ignore
 from copy import deepcopy
 from typing import Dict, List, Any
 from project_root.utils.config_utils import validate_config
 
 class ForkExpander:
+    """
+    Utility class to expand parameter/configuration forks into all valid combinations
+    for models, embeddings, features, and trainer settings.
+    """
+
     def __init__(self, sampling_resolution: int = 5):
         """
-        :param sampling_resolution: How many discrete samples to take from distributions (min/max)
+        Initialize the ForkExpander.
+
+        :param sampling_resolution: Number of discrete samples for continuous distributions (min/max)
         """
         self.sampling_resolution = sampling_resolution
 
     def expand_models(self, forks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
-        Expand a list of forked parameter spaces into all valid configurations.
+        Expand a list of forked model parameter spaces into all valid configurations.
+
+        :param forks: List of model fork dictionaries
+        :return: List of valid model configuration dictionaries
         """
         all_combinations = []
 
@@ -37,13 +47,19 @@ class ForkExpander:
                 }
                 is_valid = self._is_valid(model_name, param_set)
                 print(f"Config for {model_name}: {config} - Valid: {is_valid}")
-                if self._is_valid(model_name, param_set):
+                if is_valid:
                     all_combinations.append(config)
 
         print(f"Total configurations across all models: {len(all_combinations)}")
         return all_combinations
 
     def expand_embeddings(self, embedding_config: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+        Expand embedding configuration into all valid combinations.
+
+        :param embedding_config: Embedding configuration dictionary
+        :return: List of valid embedding configuration dictionaries
+        """
         configs = []
 
         seq_cfg = embedding_config.get("embedding_tune_config", {}).get("sequence_embeddings", {})
@@ -110,6 +126,12 @@ class ForkExpander:
         return configs
 
     def expand_features(self, feature_config: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+        Expand feature configuration into all valid feature column combinations.
+
+        :param feature_config: Feature configuration dictionary
+        :return: List of feature configuration dictionaries
+        """
         features = feature_config.get("features_tune_config", {})
         print(f"Expanding features with {features} settings.")
         options = {
@@ -131,6 +153,12 @@ class ForkExpander:
         return expanded
 
     def expand_trainer(self, trainer_config: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+        Expand trainer configuration into all valid combinations.
+
+        :param trainer_config: Trainer configuration dictionary
+        :return: List of trainer configuration dictionaries
+        """
         params = trainer_config.get("trainer_tune_config", {})
         discrete_grid = {}
 
@@ -156,7 +184,11 @@ class ForkExpander:
 
     def _expand_parameter_block(self, param_dict: Dict[str, Any], debug: bool = False) -> List[Dict[str, Any]]:
         """
-        Expand a single model's parameter space into combinations.
+        Expand a single model's parameter space into all combinations.
+
+        :param param_dict: Dictionary of parameter settings
+        :param debug: If True, print debug info
+        :return: List of parameter combination dictionaries
         """
         param_lists = {}
         print(f"[DEBUG] Expanding parameter block: {param_dict}") if debug else None
@@ -203,6 +235,13 @@ class ForkExpander:
         return combinations
 
     def _is_valid(self, model_name: str, param_config: Dict[str, Any]) -> bool:
+        """
+        Validate a model parameter configuration using external validation.
+
+        :param model_name: Name of the model
+        :param param_config: Parameter configuration dictionary
+        :return: True if valid, False otherwise
+        """
         try:
             return validate_config(model_name, param_config)
         except ValueError as e:
@@ -212,13 +251,15 @@ class ForkExpander:
     def _is_valid_embedding(self, embedding_config: Dict[str, Any]) -> bool:
         """
         Validate if the embedding configuration is valid.
-        """
 
+        :param embedding_config: Embedding configuration dictionary
+        :return: True if valid, False otherwise
+        """
         if not embedding_config:
             return False
         
         if "GeOKG" not in embedding_config:
-            print("❌ The sistem if only supports GeOKG embeddings.")
+            print("❌ The system only supports GeOKG embeddings.")
             print("If you want to use other embeddings, please modify the code in `fork_expander.py`.")
             return False
 
@@ -251,23 +292,3 @@ class ForkExpander:
                     return True
 
         return False
-    
-
-    """
-                                        config = {
-                                        "classifier_definition": {
-                                            "sequence_embeddings": seq_dict,
-                                            "go_embeddings": {
-                                                "GeOKG": {
-                                                    "autoencoded_embeddings": True,
-                                                    "input_dim": input_dim,
-                                                    "emb_dim": emb_dim,
-                                                    "aggregated_dim": emb_dim * 10 if agg == "padding" else emb_dim,
-                                                    "aggregation_strategy": agg,
-                                                    "go_categories": cat
-                                                }
-                                            }
-                                        }
-                                    }
-    
-    """

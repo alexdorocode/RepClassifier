@@ -1,18 +1,40 @@
-import torch
-import torch.nn as nn
+import torch # type: ignore
+import torch.nn as nn # type: ignore
 
 class MLPProteinClassifier(nn.Module):
+    """
+    Multi-layer Perceptron (MLP) classifier for protein data.
+    Supports configurable hidden layers, dropout, batch normalization, activation, and weight initialization.
+    """
+
     def __init__(self, input_size, output_size, num_hidden_layers,
                  dropout_rate=0.1, hidden_layers_mode="quadratic_increase",
                  custom_hidden_layers=None, activation_function="ReLU",
                  use_batch_norm=False, output_activation=None, device=None,
                  initialization=None):
+        """
+        Initialize the MLPProteinClassifier.
+
+        :param input_size: Number of input features (int)
+        :param output_size: Number of output classes (int)
+        :param num_hidden_layers: Number of hidden layers (int)
+        :param dropout_rate: Dropout rate for regularization (float)
+        :param hidden_layers_mode: "quadratic_increase" or "custom" (str)
+        :param custom_hidden_layers: List of custom hidden layer sizes (list of int)
+        :param activation_function: Name of activation function (str, e.g., "ReLU")
+        :param use_batch_norm: Whether to use batch normalization (bool)
+        :param output_activation: Optional output activation function (str, e.g., "Sigmoid")
+        :param device: Device to use ("cpu" or "cuda"), not used directly here
+        :param initialization: Weight initialization method ("xavier", "kaiming", "normal", or None)
+        """
         super().__init__()
 
+        # Determine hidden layer sizes
         self.hidden_layers_sizes = self._set_hidden_layers_size(
             hidden_layers_mode, num_hidden_layers, input_size, custom_hidden_layers
         )
 
+        # Build the classifier network
         self.classifier = self._build_classifier(
             input_size=input_size,
             output_size=output_size,
@@ -23,14 +45,31 @@ class MLPProteinClassifier(nn.Module):
             output_activation=output_activation
         )
 
+        # Apply weight initialization if specified
         if initialization:
             self.apply(self._get_initializer(initialization))
 
     def forward(self, x):
+        """
+        Forward pass through the MLP.
+
+        :param x: Input tensor
+        :return: Output tensor
+        """
         return self.classifier(x)
 
     def _set_hidden_layers_size(self, mode, num_layers, input_size, custom_sizes):
+        """
+        Determine hidden layer sizes based on mode.
+
+        :param mode: "quadratic_increase" or "custom"
+        :param num_layers: Number of hidden layers
+        :param input_size: Input feature size
+        :param custom_sizes: List of custom hidden layer sizes
+        :return: List of hidden layer sizes
+        """
         if mode == "quadratic_increase":
+            # Each layer halves the previous size
             return [input_size // (2 ** (num_layers - i)) for i in range(num_layers)]
         elif mode == "custom":
             if custom_sizes is None:
@@ -42,6 +81,18 @@ class MLPProteinClassifier(nn.Module):
     def _build_classifier(self, input_size, output_size, hidden_layers_sizes,
                           dropout_rate, activation_function,
                           use_batch_norm, output_activation):
+        """
+        Build the sequential classifier network.
+
+        :param input_size: Input feature size
+        :param output_size: Output class size
+        :param hidden_layers_sizes: List of hidden layer sizes
+        :param dropout_rate: Dropout rate
+        :param activation_function: Activation function name
+        :param use_batch_norm: Whether to use batch normalization
+        :param output_activation: Optional output activation function name
+        :return: nn.Sequential classifier network
+        """
         layers = []
 
         # Define activation function class
@@ -77,6 +128,12 @@ class MLPProteinClassifier(nn.Module):
         return nn.Sequential(*layers)
 
     def _get_initializer(self, method):
+        """
+        Return a weight initialization function for use with .apply().
+
+        :param method: Initialization method ("xavier", "kaiming", "normal")
+        :return: Initialization function
+        """
         def init_weights(m):
             if isinstance(m, nn.Linear):
                 if method == "xavier":

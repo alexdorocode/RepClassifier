@@ -10,6 +10,11 @@ PATH_RESULTS_PHASE_1_EMBEDDINGS_CONFIG = "./project_root/config/phase_results/fo
 PATH_RESULTS_PHASE_2_MODEL_CONFIG = "./project_root/config/phase_results/for_phase_3_model_configs.yaml"
 
 class ExperimentConfigHandler:
+    """
+    Handles the expansion, merging, and management of experiment configurations for all phases.
+    Supports sweep setup, config merging, and loading/saving of configs.
+    """
+
     def __init__(
         self,
         base_config_path: str,
@@ -18,11 +23,23 @@ class ExperimentConfigHandler:
         feature_fork_path: str,
         training_fork_path: str,
         sampling_resolution: int = 3,
-
         phase_1_result_path: str = None,
         phase_2_result_path: str = None,
         phase_3_result_path: str = None,
     ):
+        """
+        Initialize the ExperimentConfigHandler.
+
+        :param base_config_path: Path to the base config YAML
+        :param model_fork_paths: List of model fork config paths
+        :param embedding_fork_path: Path to embedding fork config
+        :param feature_fork_path: Path to feature fork config
+        :param training_fork_path: Path to training fork config
+        :param sampling_resolution: Sampling resolution for parameter grids
+        :param phase_1_result_path: Optional path to phase 1 results
+        :param phase_2_result_path: Optional path to phase 2 results
+        :param phase_3_result_path: Optional path to phase 3 results
+        """
         self.base_config_path = base_config_path
         self.model_fork_paths = model_fork_paths
         self.embedding_fork_path = embedding_fork_path
@@ -40,6 +57,15 @@ class ExperimentConfigHandler:
         self.configs = []
 
     def _expand_and_merge(self, model_forks, embedding_fork, feature_fork, training_fork):
+        """
+        Expand and merge all forks into a list of full experiment configs.
+
+        :param model_forks: List of model fork dicts
+        :param embedding_fork: Embedding fork dict
+        :param feature_fork: Feature fork dict
+        :param training_fork: Training fork dict
+        :return: List of merged config dicts
+        """
         base_config = OmegaConf.to_container(OmegaConf.load(self.base_config_path), resolve=True)
 
         expanded_models = self.expander.expand_models(model_forks)
@@ -64,6 +90,9 @@ class ExperimentConfigHandler:
         return [merge_dicts(base_config, *combo) for combo in product]
 
     def expand_all(self):
+        """
+        Expand all forks and store the resulting configs in self.configs.
+        """
         model_forks = [OmegaConf.to_container(OmegaConf.load(path), resolve=True) for path in self.model_fork_paths]
         embedding_fork = OmegaConf.to_container(OmegaConf.load(self.embedding_fork_path), resolve=True)
         feature_fork = OmegaConf.to_container(OmegaConf.load(self.feature_fork_path), resolve=True)
@@ -72,7 +101,12 @@ class ExperimentConfigHandler:
         self.configs = self._expand_and_merge(model_forks, embedding_fork, feature_fork, training_fork)
 
     def set_sweeps_config_phase_1(self, model) -> List[Dict]:
-        # Load logistic regression fork path
+        """
+        Prepare sweep configuration for phase 1 using the baseline for the given model.
+
+        :param model: Model name
+        :return: List of expanded configs
+        """
         path = next(path for path in self.model_fork_paths if f"{model}_tune_params" in path)
         config = OmegaConf.to_container(OmegaConf.load(path), resolve=True)
 
@@ -112,7 +146,14 @@ class ExperimentConfigHandler:
         self.configs = phase_1_configs
 
     def get_sweeps_config_phase_2(self, model, classifier_config, sweep_config=None):
-        # Phase 2: test all models with fixed embedding/feature config
+        """
+        Prepare sweep configuration for phase 2 using phase 1 results.
+
+        :param model: Model name
+        :param classifier_config: Classifier config dict
+        :param sweep_config: Sweep config dict
+        :return: Updated classifier config
+        """
         if self.phase_1_result_load_path is None:
             raise ValueError("Phase 1 result path must be set before running Phase 2.")
         
@@ -151,7 +192,14 @@ class ExperimentConfigHandler:
         return classifier_config
 
     def get_sweeps_config_phase_3(self, model, classifier_config, sweep_config=None):
-        # Phase 2: test all models with fixed embedding/feature config
+        """
+        Prepare sweep configuration for phase 3 using phase 1 and 2 results.
+
+        :param model: Model name
+        :param classifier_config: Classifier config dict
+        :param sweep_config: Sweep config dict
+        :return: Updated classifier config
+        """
         if self.phase_1_result_load_path is None:
             raise ValueError("Phase 1 result path must be set before running Phase 2.")
         if self.phase_2_result_load_path is None:
@@ -173,7 +221,14 @@ class ExperimentConfigHandler:
                                       model_config, sweep_config)
 
     def get_final_evaluation_config(self, model, classifier_config, sweep_config=None):
-        # Phase 2: test all models with fixed embedding/feature config
+        """
+        Get the best configs for final evaluation from all phases.
+
+        :param model: Model name
+        :param classifier_config: Classifier config dict
+        :param sweep_config: Sweep config dict
+        :return: Tuple (phase_1_result, phase_2_result, phase_3_result)
+        """
         if self.phase_1_result_load_path is None:
             raise ValueError("Phase 1 result path must be set before running Phase 2.")
         if self.phase_2_result_load_path is None:
@@ -188,23 +243,11 @@ class ExperimentConfigHandler:
         phase_3_result = phase_3_result[f'{model}'] if f'{model}' in phase_3_result else None
        
         return phase_1_result, phase_2_result, phase_3_result
-        
-        '''
-        sweep_config = self._unwrap_sweep_config(sweep_config)
-
-        config_index_embedding = f"best_config_{sweep_config['config_index_embedding']}"
-        config_index_model = f"best_config_{sweep_config['config_index_model']}"
-
-        embedding_config = phase_1_result[config_index_embedding]
-        model_config = phase_2_result[config_index_model]
-        
-        return self._build_classifier_config(classifier_config, model, 
-                                      self._build_embedding_config(embedding_config, sweep_config), 
-                                      model_config, sweep_config)
-        '''
 
     def set_sweeps_config_final_eval(self):
-        # Phase 4: test robustness across stratification or organism filtering
+        """
+        Prepare sweep configuration for final evaluation (phase 4).
+        """
         best_model = OmegaConf.to_container(OmegaConf.load(self.model_fork_paths[0]), resolve=True)["best_model"]
         best_embedding = OmegaConf.to_container(OmegaConf.load(self.embedding_fork_path), resolve=True)["best_embedding"]
         best_feature = OmegaConf.to_container(OmegaConf.load(self.feature_fork_path), resolve=True)["best_features"]
@@ -212,16 +255,31 @@ class ExperimentConfigHandler:
         self.configs =  self._expand_and_merge([best_model], [best_embedding], [best_feature], [best_training])
 
     def save_to_file(self, path: str):
+        """
+        Save the expanded configs to a JSON file.
+
+        :param path: File path to save configs
+        """
         with open(path, "w") as f:
             json.dump(self.configs, f, indent=2)
         print(f"💾 Saved {len(self.configs)} configurations to {path}")
 
     def load_from_file(self, path: str):
+        """
+        Load configs from a JSON file.
+
+        :param path: File path to load configs from
+        """
         with open(path, "r") as f:
             self.configs = json.load(f)
         print(f"📂 Loaded {len(self.configs)} configurations from {path}")
 
     def get_configs(self) -> List[Dict]:
+        """
+        Get the current list of expanded configs.
+
+        :return: List of config dicts
+        """
         return self.configs
 
     def get_classifier_ready_configs(self, input_cfg, overwrite_config=None, new_config=None) -> List[dict]:
@@ -230,8 +288,12 @@ class ExperimentConfigHandler:
         - defaults
         - classifier_definition
         - any top-level config metadata (e.g., label_col, balance_col, etc.)
-        """
 
+        :param input_cfg: Input config object
+        :param overwrite_config: Optional config key to overwrite
+        :param new_config: New config values to overwrite
+        :return: Tuple (base_config, classifier_configs)
+        """
         print("🔍 Preparing classifier-ready configurations...")
         print("Overwrite config:", overwrite_config)
         print("New config:", new_config)
@@ -254,9 +316,7 @@ class ExperimentConfigHandler:
 
             classifier_configs.append(config_out)
 
-        
         OmegaConf.set_struct(input_cfg, False)
-        
         base_config = self._get_base_config(input_cfg)
 
         if overwrite_config and new_config:
@@ -267,6 +327,9 @@ class ExperimentConfigHandler:
     def _get_base_config(self, config):
         """
         Cleans the configuration by removing unnecessary keys.
+
+        :param config: Config dictionary
+        :return: Cleaned config dictionary
         """
         keys_to_remove = [
             'model_fork_paths',
@@ -278,12 +341,15 @@ class ExperimentConfigHandler:
         for key in keys_to_remove:
             if key in config:
                 del config[key]
-        
         return config
 
     def _overwrite_config(self, config, overwrite_config, new_config):
         """
         Overwrites specific configuration keys with new values.
+
+        :param config: Config dictionary
+        :param overwrite_config: Key to overwrite
+        :param new_config: New values to set
         """
         if overwrite_config in config and isinstance(config[overwrite_config], dict):
             for key, value in new_config.items():
@@ -298,6 +364,9 @@ class ExperimentConfigHandler:
     def _unwrap_sweep_config(self, sweep_config):
         """
         Unwraps the model configuration from the sweep config.
+
+        :param sweep_config: Sweep config dictionary
+        :return: Flat config dictionary
         """
         config = {}
         for key, value in sweep_config.items():
@@ -309,16 +378,21 @@ class ExperimentConfigHandler:
                         config[sub_key] = sub_value
             else:
                 config[key] = value
-        
         return config
 
     def _build_classifier_config(self, classifier_config, model, embedding_config, model_config, sweep_config=None):
         """
         Builds the classifier configuration based on the provided model, embedding, and model configs.
+
+        :param classifier_config: Classifier config dictionary
+        :param model: Model name
+        :param embedding_config: Embedding config dictionary
+        :param model_config: Model config dictionary
+        :param sweep_config: Optional sweep config dictionary
+        :return: Updated classifier config dictionary
         """
         if sweep_config is not None:
             self._set_feature_cols(classifier_config['features_col'], sweep_config)
-
             self._build_embedding_config(embedding_config, sweep_config)
             
         OmegaConf.set_struct(classifier_config, False)  # Allow dynamic updates to classifier_config
@@ -335,6 +409,10 @@ class ExperimentConfigHandler:
     def _build_embedding_config(self, embedding_config, sweep_config):
         """
         Builds the embedding configuration based on the provided embedding config and sweep config.
+
+        :param embedding_config: Embedding config dictionary
+        :param sweep_config: Sweep config dictionary
+        :return: Updated embedding config dictionary
         """
         for k, v in embedding_config.items():
             if k == 'training':
@@ -347,39 +425,44 @@ class ExperimentConfigHandler:
                     if k == 'go_embeddings' and embedding_config[k][key]['use']:
                         embedding_config[k][key]['aggregation_strategy'] = sweep_config.get('go_aggregation_strategy')
                         embedding_config[k][key]['go_categories'] = sweep_config.get('go_categories')
-        
         return embedding_config
 
     def _set_embedding_and_training_configs(self, classifier_config, embedding_config):
         """
         Sets the embedding and training configurations in the classifier config.
+
+        :param classifier_config: Classifier config dictionary
+        :param embedding_config: Embedding config dictionary
         """
         for k, v in embedding_config.items():
-                    if k in classifier_config and k == 'training':
-                        for key, value in v.items():
-                            classifier_config[k][key] = value
-                    elif k == 'sequence_embeddings' or k == 'go_embeddings':
-                        for key, value in v.items():
-                            if isinstance(value, dict):
-                                # Ensure the sub-dictionary exists
-                                if key not in classifier_config[k]:
-                                    classifier_config[k][key] = {}
-                                # Update existing dictionary with new keys/values
-                                classifier_config[k][key].update(value)
-                            else:
-                                print(f"Warning: Expected dict for {k}.{key}, got {type(value)}. Skipping.")
-                            
-                            if k == 'go_embeddings' and key == 'autoencoded_go_embeddings':
-                                if classifier_config[k]['aggregation_strategy'] == 'mean_pooling':
-                                    classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim']
-                                elif classifier_config[k]['aggregation_strategy'] == 'padding':
-                                    classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim'] * 10
-                                else:
-                                    raise ValueError(f"Unsupported aggregation strategy: {classifier_config[k]['aggregation_strategy']}")
+            if k in classifier_config and k == 'training':
+                for key, value in v.items():
+                    classifier_config[k][key] = value
+            elif k == 'sequence_embeddings' or k == 'go_embeddings':
+                for key, value in v.items():
+                    if isinstance(value, dict):
+                        # Ensure the sub-dictionary exists
+                        if key not in classifier_config[k]:
+                            classifier_config[k][key] = {}
+                        # Update existing dictionary with new keys/values
+                        classifier_config[k][key].update(value)
+                    else:
+                        print(f"Warning: Expected dict for {k}.{key}, got {type(value)}. Skipping.")
+                    
+                    if k == 'go_embeddings' and key == 'autoencoded_go_embeddings':
+                        if classifier_config[k]['aggregation_strategy'] == 'mean_pooling':
+                            classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim']
+                        elif classifier_config[k]['aggregation_strategy'] == 'padding':
+                            classifier_config[k][key]['aggregated_dim'] = classifier_config[k][key]['emb_dim'] * 10
+                        else:
+                            raise ValueError(f"Unsupported aggregation strategy: {classifier_config[k]['aggregation_strategy']}")
 
     def _set_feature_cols(self, features_col, sweep_config):
         """
         Sets the feature columns in the classifier config based on the sweep configuration.
+
+        :param features_col: List of feature column names
+        :param sweep_config: Sweep config dictionary
         """
         for feature in features_col:
             if not sweep_config[f'use_{feature}']:

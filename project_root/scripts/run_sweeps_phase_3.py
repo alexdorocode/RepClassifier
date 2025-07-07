@@ -1,7 +1,7 @@
 import hydra
 from omegaconf import DictConfig, OmegaConf
 import wandb
-from project_root.experiment.experiment_launcher import ExperimentLauncher
+from project_root.launchers.experiment_launcher import ExperimentLauncher
 SAVE_CONFIGS_FOLDER = "./project_root/config/sweeps_configs/"
 PATH_RESULTS_PHASE_1_EMBEDDINGS_CONFIG = "./project_root/config/phase_results/for_phase_3_embedding_configs.yaml"
 PATH_RESULTS_PHASE_2_MODEL_CONFIG = "./project_root/config/phase_results/for_phase_3_model_configs.yaml"

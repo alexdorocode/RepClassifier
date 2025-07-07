@@ -1,9 +1,18 @@
 import os
 
-# dataset/dataset_config.py
 class DatasetConfigReader:
-    def __init__(self, cfg):
+    """
+    Reads and organizes dataset and experiment configuration for downstream processing.
 
+    :param cfg: Configuration object (e.g., from Hydra/OmegaConf)
+    """
+
+    def __init__(self, cfg):
+        """
+        Initialize the DatasetConfigReader.
+
+        :param cfg: Configuration object with dataset, features, embeddings, and training info.
+        """
         self.root = cfg.dataset.root_dir
 
         if cfg.dataset.unified_dataset is not None:
@@ -53,6 +62,11 @@ class DatasetConfigReader:
         self.random_seed = cfg.classifier_definition.get('random_seed') if 'random_seed' in cfg.classifier_definition else None
         
     def get_as_dict(self):
+        """
+        Returns the configuration as a dictionary.
+
+        :return: Dictionary of all relevant configuration fields.
+        """
         return {
             "root": self.root,
             "file": self.file,
@@ -72,4 +86,9 @@ class DatasetConfigReader:
         }
     
     def get_random_seed(self):
-        return self.random_seed
+        """
+        Returns the random seed from the configuration.
+
+        :return: Random seed (int or None)
+        """
+        return  self.random_seed

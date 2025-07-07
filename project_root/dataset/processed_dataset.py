@@ -2,8 +2,19 @@ from project_root.dataset.raw_dataset import RawDataset
 from project_root.dataset.features.metric_processor import MetricProcessor
 from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader
 
-
 class ProcessedDataset:
+    """
+    Handles feature processing, embedding loading, and dataset construction for protein classification.
+    Supports zero-shot dataset creation and flexible feature/embedding selection.
+
+    :param raw_dataset: Instance containing raw input data.
+    :param config: Configuration with embedding/normalization parameters.
+    :param classifier_dataset_config: Optional config for classifier dataset.
+    :param seq_loader: Loader for sequence embeddings.
+    :param go_loader: Loader for GO embeddings.
+    :param build_zero_shot_dataset: If True, builds a zero-shot dataset split.
+    """
+
     def __init__(self, raw_dataset: RawDataset, 
                  config, classifier_dataset_config=None,
                  seq_loader: SequenceEmbeddingLoader = None,
@@ -12,26 +23,17 @@ class ProcessedDataset:
         """
         Initializes the ProcessedDataset for selected feature processing.
 
-        Args:
-            raw_dataset (RawDataset): Instance containing raw input data.
-            config (DictConfig or dict): Configuration with embedding/normalization parameters.
-            features_to_process (list or None): If None, process all available features.
+        :param raw_dataset: Instance containing raw input data.
+        :param config: Configuration with embedding/normalization parameters.
+        :param classifier_dataset_config: Optional config for classifier dataset.
+        :param seq_loader: Loader for sequence embeddings.
+        :param go_loader: Loader for GO embeddings.
+        :param build_zero_shot_dataset: If True, builds a zero-shot dataset split.
         """
-        
         self.config = config
         self.processed_df = self._process_metrics(raw_dataset)
         self.main_columns = raw_dataset.main_columns
         self.build_zero_shot_dataset = build_zero_shot_dataset
-
-        '''
-        main_columns = {
-            "id_col" :
-            "label_col" :
-            "organism_col" :
-            "metrics_col" :
-            "sequence_col" :
-        }
-        '''
 
         # Load embedding loaders if not provided
         self.seq_loader = seq_loader
@@ -47,22 +49,29 @@ class ProcessedDataset:
     def get_dataset(self):
         """
         Returns the processed dataset as a pandas DataFrame.
-        Returns:
-            pd.DataFrame: Processed dataset with embeddings and metrics.
+
+        :return: Processed dataset with embeddings and metrics (pd.DataFrame)
         """
         return self.df
 
     def get_zero_shot_dataset(self):
         """
         Returns the zero-shot dataset as a pandas DataFrame.
-        Returns:
-            pd.DataFrame: Zero-shot dataset with embeddings and metrics.
+
+        :return: Zero-shot dataset with embeddings and metrics (pd.DataFrame)
+        :raises ValueError: If zero-shot dataset is not enabled.
         """
         if not self.build_zero_shot_dataset:
             raise ValueError("Zero-shot dataset is not enabled in the configuration.")
         return self.zero_shot_df
 
     def _process_metrics(self, raw_dataset: RawDataset):
+        """
+        Processes and normalizes metrics from the raw dataset.
+
+        :param raw_dataset: RawDataset instance
+        :return: Processed DataFrame
+        """
         metric_cols = self.config.columns
         print(f"Processing metrics: {metric_cols}")
         processor = MetricProcessor(
@@ -76,41 +85,33 @@ class ProcessedDataset:
 
     def _build_processed_dataset(self, config, debug=False):
         """
-        Returns the processed dataset based on the provided configuration.
+        Builds the processed dataset and, if enabled, the zero-shot dataset.
 
-        Args:
-            config (dict): Configuration for the dataset processing.
-
-        Returns:
-            pd.DataFrame: Processed dataset.
+        :param config: Configuration for the dataset processing.
+        :param debug: If True, prints debug information.
         """
-        selected_accessions = self._selected_accessions(config['organism_discrimination_strategy'])
-                    
-        self.df = self._build_dataset(config, selected_accessions, debug=debug)
+        self.selected_accessions = self._selected_accessions(config['organism_discrimination_strategy'])
+        self.df = self._build_dataset(config, self.selected_accessions, debug=debug)
 
         print('----' * 20)
         print(f"Zero-shot dataset enabled: {self.build_zero_shot_dataset}")
 
         if self.build_zero_shot_dataset:
-            # For zero-shot, we use all accessions not in the selected ones
+            # For zero-shot, use all accessions not in the selected ones
             print("Creating zero-shot dataset, using all accessions not in the selected ones.")
             all_accessions = self.processed_df[self.main_columns['id_col']]
-            zero_shot_accesions = all_accessions[~all_accessions.isin(selected_accessions)]
-            self.zero_shot_df = self._build_dataset(config, zero_shot_accesions, debug=debug)
+            self.zero_shot_accesions = all_accessions[~all_accessions.isin(self.selected_accessions)]
+            self.zero_shot_df = self._build_dataset(config, self.zero_shot_accesions, debug=debug)
 
     def _build_dataset(self, config, selected_accessions, debug=False):
         """
         Builds the dataset based on the provided configuration and selected accessions.
 
-        Args:
-            config (dict): Configuration for the dataset processing.
-            selected_accessions (pd.Series): Accessions to include in the dataset.
-            debug (bool): If True, prints debug information.
-
-        Returns:
-            pd.DataFrame: Processed dataset.
+        :param config: Configuration for the dataset processing.
+        :param selected_accessions: Accessions to include in the dataset (pd.Series).
+        :param debug: If True, prints debug information.
+        :return: Processed dataset (pd.DataFrame)
         """
-        
         if debug:
             print(f"Building dataset with {len(selected_accessions)} accessions.")
         
@@ -139,23 +140,15 @@ class ProcessedDataset:
             # emb_dict: {accession: embedding}
             df[emb_name] = df.index.map(emb_dict)
 
-        # Optionally, reset index if you want accession as a column
-        # df.reset_index(inplace=True)
-        
         return df
 
     def _selected_accessions(self, organism_discrimination_strategy=None):
         """
         Returns the accessions of the processed dataset based on the organism discrimination strategy.
-    
-        Args:
-            organism_discrimination_strategy (dict): Strategy for organism discrimination.
-    
-        Returns:
-            pd.Series: Accessions of the processed dataset.
+
+        :param organism_discrimination_strategy: Strategy for organism discrimination (dict)
+        :return: Accessions of the processed dataset (pd.Series)
         """
-        
-        # Use dictionary access, not attribute access
         use_selected = organism_discrimination_strategy.get('use_selected_organisms')
         use_top = organism_discrimination_strategy.get('use_top_organisms')
         
@@ -173,35 +166,33 @@ class ProcessedDataset:
     def _top_n_organisms(self, n):
         """
         Returns the top n organisms with the most samples in the dataframe.
-        
-        Args:
-            df (pd.DataFrame): DataFrame containing an 'organism' column.
-            n (int): Number of top organisms to return.
-        
-        Returns:
-            pd.DataFrame: A dataframe with two columns: 'organism' and 'count', sorted by count descending.
+
+        :param n: Number of top organisms to return.
+        :return: DataFrame with columns: 'organism', 'count', sorted by count descending.
         """
-        # Count samples per organism
         organism_counts = self.processed_df['organism'].value_counts().reset_index()
         organism_counts.columns = ['organism', 'count']
-        
-        # Return top n organisms
         return organism_counts.head(n)
     
     def _get_accessions_by_organism(self, selected_organisms):
         """
         Returns accessions filtered by the selected organisms.
 
-        Args:
-            selected_organisms (list): List of organisms to filter by.
-
-        Returns:
-            pd.Series: Accessions corresponding to the selected organisms.
+        :param selected_organisms: List of organisms to filter by.
+        :return: Accessions corresponding to the selected organisms (pd.Series)
         """
         print(f"Selected organisms: {selected_organisms}")
         return self.processed_df[self.processed_df['organism'].isin(selected_organisms)][self.main_columns['id_col']]
     
     def _extract_embeddings(self, df, accessions, accession_col):
+        """
+        Extracts embeddings from a DataFrame for the given accessions.
+
+        :param df: DataFrame containing embeddings.
+        :param accessions: Accessions to extract.
+        :param accession_col: Column name for accessions.
+        :return: Dict mapping accession to embedding.
+        """
         filtered = df[df[accession_col].isin(accessions)]
         if "embedding" in filtered.columns:
             return filtered.set_index(accession_col)["embedding"].to_dict()
@@ -214,6 +205,13 @@ class ProcessedDataset:
             )
     
     def _load_sequence_embeddings(self, accessions, sequence_embeddings):
+        """
+        Loads sequence embeddings for the given accessions and embedding configs.
+
+        :param accessions: Accessions to load embeddings for.
+        :param sequence_embeddings: Sequence embedding configuration dict.
+        :return: Dict of embeddings.
+        """
         seq_embeddings = {}
         for model_name, seq_cfg in sequence_embeddings.items():
             target_dim = seq_cfg.get("target_dim")
@@ -231,10 +229,15 @@ class ProcessedDataset:
         return seq_embeddings
     
     def _load_go_embeddings(self, accessions, go_embeddings):
+        """
+        Loads GO embeddings for the given accessions and embedding configs.
+
+        :param accessions: Accessions to load embeddings for.
+        :param go_embeddings: GO embedding configuration dict.
+        :return: Dict of embeddings.
+        """
         go_embs = {}
         for model_name, go_cfg in go_embeddings.items():
-            # Extract configuration parameters for GO embeddings
-
             print(f"Loading GO embeddings for model: {model_name}")
             print(f"GO configuration: {go_cfg}")
 
@@ -260,38 +263,34 @@ class ProcessedDataset:
         return go_embs
     
     def _load_embeddings(self, accessions, sequence_embeddings, go_embeddings):
+        """
+        Loads all embeddings (sequence and GO) for the given accessions.
+
+        :param accessions: Accessions to load embeddings for.
+        :param sequence_embeddings: Sequence embedding configuration dict.
+        :param go_embeddings: GO embedding configuration dict.
+        :return: Dict of all embeddings.
+        """
         all_embeddings = {}
         all_embeddings.update(self._load_sequence_embeddings(accessions, sequence_embeddings))
         all_embeddings.update(self._load_go_embeddings(accessions, go_embeddings))
         return all_embeddings
+    
+    def get_zero_shot_accessions(self):
+        """
+        Returns the accessions of the zero-shot dataset.
 
-'''
+        :return: Accessions of the zero-shot dataset (pd.Series)
+        :raises ValueError: If zero-shot dataset is not enabled.
+        """
+        if not self.build_zero_shot_dataset:
+            raise ValueError("Zero-shot dataset is not enabled in the configuration.")
+        return self.zero_shot_accesions
 
-    @property
-    def all_possible_features(self):
-        return {"metrics", "sequence_embeddings", "go_embeddings"}
+    def get_accessions(self):
+        """
+        Returns the accessions of the processed dataset.
 
-    def _process_features(self):
-        self.feature_outputs = {}
-
-        if "metrics" in self.features_to_process:
-            self.feature_outputs["metrics"] = self._process_metrics()
-
-    @property
-    def sequence_embeddings(self):
-        if self._sequence_embeddings is None:
-            self._sequence_embeddings = self.seq_loader.load()
-        return self._sequence_embeddings
-
-    @property
-    def go_embeddings(self):
-        if self._go_embeddings is None:
-            self._go_embeddings = self.go_loader.load()
-        return self._go_embeddings
-
-    def get_feature(self, name):
-        if name not in self.feature_outputs:
-            raise KeyError(f"Feature '{name}' not found or not processed.")
-        return self.feature_outputs[name]
-
-        '''
+        :return: Accessions of the processed dataset (pd.Series)
+        """
+        return self.selected_accessions

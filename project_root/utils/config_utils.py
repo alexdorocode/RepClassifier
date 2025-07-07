@@ -148,6 +148,13 @@ def validate_config(model_name, config):
     return True
 
 def merge_dicts(*dicts):
+    """Merge multiple dictionaries into one, handling nested dictionaries.
+    If a key exists in multiple dictionaries, the value from the last dictionary will be used.
+    If a key's value is a dictionary in multiple dictionaries, they will be merged recursively.
+    If the merged dictionary exceeds 1000 keys, a message will be printed.
+    :param dicts: Variable number of dictionaries to merge.
+    :return: Merged dictionary.
+    """
     result = {}
     for d in dicts:
         for k, v in d.items():
