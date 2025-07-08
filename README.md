@@ -54,7 +54,7 @@ This project was designed with a **limited development scope**, prioritizing **m
 
 ## 📂 Folder Highlights
 
-# csv_embeddings/
+## csv_embeddings/
 
 Precomputed embedding files including:
 
@@ -64,19 +64,19 @@ Precomputed embedding files including:
 
     Autoencoded sequence embeddings (ProtT5, ProstT5, ESM) for multiple compression levels
 
-# 🧬 datasets/
+## 🧬 datasets/
 
     Includes raw, merged, and labeled datasets such as moonprot_dataset.csv, moondb_dataset.csv, and predictor_dataset.csv
 
     MBL-scores and UniProt mappings used to define moonlighting candidates and controls
 
-# 🧪 preprocess/
+## 🧪 preprocess/
 
     analyses/: Notebooks exploring data distributions, GO terms, sequence representations
 
     embeddings_geokg/: Scripts for embedding extraction, autoencoder training, and sweeps via W&B
 
-# 🧠 project_root/
+## 🧠 project_root/
 
     config/: Organized configs for experiments, sweeps, tunable params, and paths
 
@@ -149,8 +149,7 @@ Launch hyperparameter sweep
 ```bash
 python project_root/scripts/run_sweeps_phase_2.py
 ```
-
-## 📘 Documentation
+## 📘 Documentation
 
 The full code documentation generated with Doxygen can be seen downloading \html folder, or cloning the repository and runing the following command:
 ```bash
@@ -189,5 +188,5 @@ Test files:
 
 Àlex Domínguez Rodríguez
 Master’s Thesis – Bioinformatics
-Universitat Autònoma de Barcelona
-Centro Andaluz de Biologia y Desarrollo - CSIC
+Universitat Autònoma de Barcelona (UAB) -
+Centro Andaluz de Biologia y Desarrollo (CABD) - CSIC
