@@ -50,6 +50,7 @@
 ├── datasets
 │   ├── all_data_mbls.csv
 │   ├── all_data_seq.csv
+│   ├── all_ids_labeled.csv
 │   ├── merged_dataset.csv
 │   ├── moondb_dataset.csv
 │   ├── moonprot_dataset.csv
@@ -59,44 +60,6 @@
 │   └── uniprot_ids_moonprot.csv
 ├── Doxyfile
 ├── LICENSE
-├── notebooks
-│   ├── 3Di_processor.py
-│   ├── base_test
-│   ├── BaseLineNotebooks
-│   │   ├── esm3 2
-│   │   └── Pla2g2_features 2.csv
-│   ├── BaseLineNotebooks 2
-│   │   └── esm3
-│   ├── Calaix_de_Sastre
-│   ├── check_uniprot_ids.py
-│   ├── distribution_analysis_go_only.py
-│   ├── download_MoonProt3.py
-│   ├── embedding_processor.py
-│   ├── experiments
-│   ├── feature_processor.py
-│   ├── generate_dummy_3di.py
-│   ├── get_pdbs.py
-│   ├── get_raw_aa_seq.py
-│   ├── get_raw_uniprot_ids_labeled.py
-│   ├── go_processor.py
-│   ├── merge_MoonProt3.py
-│   ├── preprocess
-│   │   ├── all_ids_labeled.csv
-│   │   ├── all_ids.csv
-│   │   ├── compare_moonprot3.ipynb
-│   │   ├── dataset_preprocess.ipynb
-│   │   ├── exploringMBLs_top7.ipynb
-│   │   ├── get_embedding_prott5.ipynb
-│   │   ├── get_embeddings_emc3.ipynb
-│   │   ├── get_uniprots_moondb.ipynb
-│   │   ├── go-basic.obo
-│   │   ├── merged_dataset.csv
-│   │   ├── moondb_not_in_labels.csv
-│   │   ├── not_in_mbls.csv
-│   │   ├── processed_proteins_labeled.csv
-│   │   ├── protein_procedence_statistics.csv
-│   │   └── protein_procedence.csv
-│   └── processor_utils.py
 ├── preprocess
 │   ├── analyses
 │   │   ├── distribution_analysis.py
@@ -219,16 +182,11 @@
 │       └── visualization.py
 ├── README.md
 ├── results
-│   ├── agreement_summary.csv
-│   ├── Figure_1.png
 │   ├── final_evaluation_knn.csv
 │   ├── final_evaluation_lr.csv
 │   ├── final_evaluation_rf.csv
 │   ├── final_evaluation_svm.csv
 │   ├── final_evaluation_xgb.csv
-│   ├── incorrect_agreement_proteins_80.png
-│   ├── model_self_agreement.csv
-│   ├── stacked_agreement_per_protein_80pct_threshold.png
 │   ├── zero_shot_prediction_agreement_knn.csv
 │   ├── zero_shot_prediction_agreement_lr.csv
 │   ├── zero_shot_prediction_agreement_rf.csv
@@ -241,4 +199,4 @@
 │   └── test_wrapped_dataset.py
 └── tree.txt
 
-38 directories, 204 files
+29 directories, 171 files

@@ -1,97 +1,153 @@
-Here's a structured explanation of what can be found in the **`project_root/`** repository **(currently under development)**, based on the given directory structure.
+# 🧬 Protein Classification Workspace
+
+> This repository contains the modular and experimental workspace developed for my Master’s Thesis in Bioinformatics. It implements a flexible and extensible pipeline for classifying proteins using sequence-based, structural, and functional features.
 
 ---
 
-## **📂 Project Overview**
-The **`project_root/`** directory contains code for a machine learning pipeline focused on protein classification. The structure is modular, with different folders handling **data loading, explainability, modeling, training, and utility functions**.  
+## 📌 Project Context
 
-This repository is **currently under development**, meaning that some features may be expanded or optimized.
-
----
-
-## **📂 Directory Structure & Explanation**
-```
-project_root/
-├── dataset/
-│   ├── data_loader_factory.py
-│   ├── dataset_loader.py
-│   ├── protein_dataset.py
-│   ├── wrapped_protein_dataset.py
-│   └── __pycache__/  (compiled Python cache files)
-├── explainability/
-│   ├── model_explainability.py
-│   └── pca_explainability.py
-├── models/
-│   └── protein_classifier.py
-├── training/
-│   ├── trainer_config.py
-│   └── trainer.py
-└── utils/
-    ├── data_loader_factory.py
-    └── feature_processor.py
-```
+This project was designed with a **limited development scope**, prioritizing **modular and reusable code** for future extensions. While some paths reference external files, required data has been relocated to the internal `datasets/` and `csv_embeddings/` folders to facilitate evaluation.
 
 ---
 
-## **🗂 Explanation of Each Folder**
-Each folder serves a specific purpose within the pipeline.
+## 🗂️ Project Structure (Main Folders)
 
-### **📁 `dataset/` – Data Handling**
-Handles **loading, processing, and structuring** protein datasets.
-- **`dataset_loader.py`** → Loads CSV datasets and NumPy-encoded embeddings & attention weights.
-- **`data_loader_factory.py`** → Creates PyTorch `DataLoader` objects from datasets.
-- **`protein_dataset.py`** → Defines the `ProteinDataset` class for handling structured protein data.
-- **`wrapped_protein_dataset.py`** → Extends `ProteinDataset` to apply dimensionality reduction techniques like **PCA and t-SNE**.
+```bash
+.
+├── csv_embeddings/         # Precomputed sequence and GO embeddings (autoencoded and raw)
+├── datasets/               # Labeled protein datasets and metadata
+├── preprocess/             # Notebooks and scripts for preprocessing and embedding generation
+├── project_root/           # Core pipeline: dataset handling, training, models, scripts, explainability
+├── results/                # Final evaluation and agreement prediction CSVs
+├── tests/                  # Unit tests for key modules
+├── Doxyfile                # Doxygen configuration for documentation generation
+├── README.md
+├── requirements.txt
+└── environment.yml
 
----
+📂 Folder Highlights
+🔬 csv_embeddings/
 
-### **📁 `explainability/` – Model Interpretation**
-Provides tools for **understanding model predictions** and data transformations.
-- **`model_explainability.py`** → Uses SHAP, LIME, or other methods to analyze model decisions.
-- **`pca_explainability.py`** → Analyzes PCA transformations and variance explained.
+Precomputed embedding files including:
 
----
+    Raw embeddings: esm_embeddings.csv, prot_embeddings.csv, prostT5_embeddings.csv
 
-### **📁 `models/` – Neural Network Definition**
-Defines the **protein classifier** model.
-- **`protein_classifier.py`** → Implements a PyTorch-based deep learning model for protein classification.
+    Autoencoded GO term embeddings by dimension, pooling, and category (C, F, P)
 
----
+    Autoencoded sequence embeddings (ProtT5, ProstT5, ESM) for multiple compression levels
 
-### **📁 `training/` – Training Pipeline**
-Manages **training, validation, and hyperparameter tuning**.
-- **`trainer.py`** → Handles the training loop, evaluation, and metrics tracking.
-- **`trainer_config.py`** → Stores hyperparameter settings for training.
+🧬 datasets/
 
----
+    Includes raw, merged, and labeled datasets such as moonprot_dataset.csv, moondb_dataset.csv, and predictor_dataset.csv
 
-### **📁 `utils/` – Helper Functions**
-Stores **general-purpose utilities** for the project.
-- **`data_loader_factory.py`** → (duplicate, consider removing) Handles dataset batching.
-- **`feature_processor.py`** → Preprocessing functions for feature selection, scaling, etc.
+    MBL-scores and UniProt mappings used to define moonlighting candidates and controls
 
----
+🧪 preprocess/
 
-## **🚀 Current Development Status**
-✅ **Data Loading** → `dataset_loader.py` and `ProteinDataset` are functional.  
-🔄 **Dimensionality Reduction** → `WrappedProteinDataset` is being debugged to ensure smooth PCA/t-SNE transformations.  
-🛠 **Training & Model Explainability** → Not fully integrated yet; requires more testing.
+    analyses/: Notebooks exploring data distributions, GO terms, sequence representations
 
----
+    embeddings_geokg/: Scripts for embedding extraction, autoencoder training, and sweeps via W&B
 
-## **🔜 Next Steps**
-- ✅ **Fix `WrappedProteinDataset` initialization issues** (ongoing).  
-- 🔄 **Integrate SHAP or LIME for model explainability**.  
-- 🛠 **Expand `trainer.py` to handle advanced logging and monitoring**.  
+🧠 project_root/
 
----
+    config/: Organized configs for experiments, sweeps, tunable params, and paths
 
-## **🎯 Summary**
-This repository is structured **for scalability and modularity**, with clear separations between:
-- **Data Loading (`dataset/`)**
-- **Dimensionality Reduction & Visualization (`explainability/`)**
-- **Model Definition (`models/`)**
-- **Training & Evaluation (`training/`)**
-- **Utility Functions (`utils/`)**
+    dataset/: Dataset loaders, handlers, and feature extraction wrappers
 
-This organization makes it easy to **expand** and **maintain** as new features are added! 🚀
+    experiment/: YAML fork expander and experiment config management
+
+    models/: Classifiers (MLP, etc.) and autoencoders
+
+    scripts/: Full experiment runners, result processors, agreement calculators
+
+    explainability/: SHAP, agreement visualization, PCA
+
+    training/: W&B tracking, training loop utilities
+
+    utils/: General helper functions (visualization, config, feature processing)
+
+📊 results/
+
+Final .csv outputs of trained models and ensemble agreement experiments (per model type).
+📜 Script Overview
+🚀 Launcher Scripts
+
+Located in project_root/scripts/:
+
+    run_classifier_launcher.py, run_experiment_launcher.py: Full pipeline runners
+
+    run_wandb_agent_phase*.py: Sweep execution using Weights & Biases
+
+    run_final_evaluation.py, run_prediction_agreement.py: Evaluation and ensemble scoring
+
+📈 Model Agreement & Visualization
+
+    Scripts in model_aggreement/ generate bar plots, stacked plots, incorrect agreement visualizations, etc.
+
+🧪 Embedding Generation
+
+    Found in preprocess/embeddings_geokg/
+
+        train_go_autoencoder_wandb.py, train_seq_autoencoder_wandb.py: Autoencoder training
+
+        launch_*_sweeps.py, launch_*_results_of_sweep.py: W&B-managed sweeps
+
+        go_embeddings_per_protein.py: GO term aggregation and per-protein embedding
+
+⚙️ Setup Instructions
+Option A – pip
+
+pip install -r requirements.txt
+
+Option B – conda
+
+conda env create -f environment.yml
+conda activate protein-classifier-env
+
+🚀 Basic Usage
+Run a classifier
+
+python project_root/scripts/run_classifier_launcher.py --config project_root/config/config_classifier_base.yaml
+
+Run a zero-shot or agreement evaluation
+
+python project_root/scripts/run_final_evaluation.py
+
+Launch hyperparameter sweep
+
+python project_root/scripts/run_sweeps_phase_2.py
+
+📘 Documentation
+
+To generate full code documentation with Doxygen:
+
+doxygen Doxyfile
+
+Then open the generated docs/html/index.html in a browser.
+
+You may optionally host the HTML docs via GitHub Pages and link here.
+🧪 Testing
+
+Unit tests for core components:
+
+pytest tests/
+
+Test files:
+
+    test_model_trainer.py, test_model_explainability.py
+
+    test_wrapped_dataset.py, test_data_visualizer.py
+
+📌 Notes for Reviewers
+
+    External paths have been minimized; required data files are placed in datasets/ and csv_embeddings/
+
+    Results are reproducible through launcher scripts and defined config files
+
+    The pipeline uses Weights & Biases for sweep management and result tracking
+
+👤 Author
+
+Àlex Domínguez Roig
+Master’s Thesis – Bioinformatics
+Universitat Autònoma de Barcelona
