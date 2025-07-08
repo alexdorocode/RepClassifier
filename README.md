@@ -47,8 +47,11 @@ This project was designed with a **limited development scope**, prioritizing **m
 └── environment.yml
 ```
 
+--
+
 ## 📂 Folder Highlights
-# 🔬 csv_embeddings/
+
+### 🔬 csv_embeddings/
 
 Precomputed embedding files including:
 
@@ -58,7 +61,7 @@ Precomputed embedding files including:
 
     Autoencoded sequence embeddings (ProtT5, ProstT5, ESM) for multiple compression levels
 
-# 🧬 datasets/
+### 🧬 datasets/
 
     Includes raw, merged, and labeled datasets such as moonprot_dataset.csv, moondb_dataset.csv, and predictor_dataset.csv
 
@@ -91,6 +94,8 @@ Precomputed embedding files including:
 # 📊 results/
 
 Final .csv outputs of trained models and ensemble agreement experiments (per model type).
+
+--
 
 ## 📜 Script Overview
 🚀 Launcher Scripts
