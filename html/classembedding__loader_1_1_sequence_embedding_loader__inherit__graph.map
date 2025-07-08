@@ -1,0 +1,7 @@
+<map id="embedding_loader.SequenceEmbeddingLoader" name="embedding_loader.SequenceEmbeddingLoader">
+<area shape="rect" id="Node000001" title="Loader for sequence embeddings, with optional autoencoder compression." alt="" coords="18,386,195,467"/>
+<area shape="rect" id="Node000002" href="$classembedding__loader_1_1_embedding_loader.html" title="Abstract base class for embedding loaders." alt="" coords="5,120,208,338"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,353,110,386,104,386,104,353"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="88,5,126,72"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="110,87,110,120,104,120,104,87"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="embedding_loader.SequenceEmbeddingLoader.load" name="embedding_loader.SequenceEmbeddingLoader.load">
+<area shape="rect" id="Node000001" title="Load sequence embeddings for a given model and dimension." alt="" coords="5,39,193,79"/>
+<area shape="rect" id="Node000002" href="$classembedding__loader_1_1_embedding_loader.html#a5bf19b8270b4616effafa3cf25d073cd" title="Loads an autoencoder model for the given model name and dimensions." alt="" coords="256,5,450,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,44,240,38,241,43,193,49"/>
+<area shape="rect" id="Node000003" href="$classembedding__loader_1_1_embedding_loader.html#a03903a37344d00c95c0cd81a7602be80" title="Shared method to load embeddings from flattened CSV." alt="" coords="241,71,465,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,68,225,72,225,78,193,73"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="experiment_launcher.ExperimentLauncher._launch_classifier_storing_zero_shot_results" name="experiment_launcher.ExperimentLauncher._launch_classifier_storing_zero_shot_results">
+<area shape="rect" id="Node000001" title="Launch classifier and store zero&#45;shot results for each seed." alt="" coords="5,5,216,61"/>
+<area shape="rect" id="Node000002" href="$classexperiment__launcher_1_1_experiment_launcher.html#aa8afc3083c17c1a1b36468a822083516" title="Launch the classifier for a given configuration and seed." alt="" coords="264,5,474,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,30,248,30,248,36,216,36"/>
+</map>

@@ -1,0 +1,3 @@
+<map id="classifier_launcher.ClassifierLauncher" name="classifier_launcher.ClassifierLauncher">
+<area shape="rect" id="Node000001" title="Orchestrates model training, evaluation, zero&#45;shot testing, and explainability for a given configurat..." alt="" coords="5,5,182,453"/>
+</map>

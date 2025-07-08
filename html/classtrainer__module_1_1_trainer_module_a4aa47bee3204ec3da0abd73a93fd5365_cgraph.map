@@ -1,0 +1,17 @@
+<map id="trainer_module.TrainerModule.cross_validate" name="trainer_module.TrainerModule.cross_validate">
+<area shape="rect" id="Node000001" title="Perform cross&#45;validation and return average metrics." alt="" coords="5,144,234,185"/>
+<area shape="rect" id="Node000002" href="$classtrainer__module_1_1_trainer_module.html#a580b0fd3a7ce2e590dedeb9be66524ae" title="Clone the model for each fold to avoid data leakage." alt="" coords="297,5,494,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,141,208,102,280,62,310,49,312,54,283,67,211,107,151,146"/>
+<area shape="rect" id="Node000003" href="$classtrainer__module_1_1_trainer_module.html#af7d1f77308e045e70deff61fd751bed9" title="Create PyTorch DataLoaders for training and validation sets." alt="" coords="557,104,753,145"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,141,221,121,281,106,348,98,416,97,542,105,541,110,416,102,348,104,282,111,222,126,169,146"/>
+<area shape="rect" id="Node000004" href="$classtrainer__module_1_1_trainer_module.html#ae27ab0062e47a7e5bb6077111263b636" title="Evaluate a PyTorch model on validation data." alt="" coords="297,144,494,185"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="234,162,281,162,281,167,234,167"/>
+<area shape="rect" id="Node000005" href="$classtrainer__module_1_1_trainer_module.html#aeaf19fe6702f9a97f755a4bc8149d313" title="Train a PyTorch model with optional early stopping." alt="" coords="297,209,494,250"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="209,183,293,203,291,208,208,188"/>
+<area shape="rect" id="Node000007" href="$classtrainer__module_1_1_trainer_module.html#a29637d91300a316996584acb25f6a198" title="Show balance summary for training and validation sets." alt="" coords="282,275,509,315"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="151,183,211,221,283,259,301,267,299,272,281,264,208,226,148,187"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="493,147,541,139,542,144,494,152"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="347,144,344,134,352,125,369,119,395,117,423,120,440,126,438,131,422,125,395,123,370,125,355,129,349,135,352,143"/>
+<area shape="rect" id="Node000006" href="$classtrainer__module_1_1_trainer_module.html#a04b5d88ce62f21b6536fe4a9b45e43d6" title="Compute validation loss for early stopping." alt="" coords="557,209,753,250"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="494,227,541,227,541,232,494,232"/>
+</map>

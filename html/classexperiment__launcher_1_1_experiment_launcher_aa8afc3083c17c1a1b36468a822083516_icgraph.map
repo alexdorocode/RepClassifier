@@ -1,0 +1,9 @@
+<map id="experiment_launcher.ExperimentLauncher._launch_classifier_launcher" name="experiment_launcher.ExperimentLauncher._launch_classifier_launcher">
+<area shape="rect" id="Node000001" title="Launch the classifier for a given configuration and seed." alt="" coords="522,41,732,97"/>
+<area shape="rect" id="Node000002" href="$classexperiment__launcher_1_1_experiment_launcher.html#a3b5b7b1e6ce0df19efe7902c0b0aadfd" title="Launch classifier and store zero&#45;shot results for each seed." alt="" coords="264,5,474,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="506,55,474,51,475,45,507,50"/>
+<area shape="rect" id="Node000004" href="$classexperiment__launcher_1_1_experiment_launcher.html#a18d12c500535f2c74f6849175147f387" title="Run final evaluation for the best configurations from all phases." alt="" coords="264,85,474,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="507,89,475,93,474,88,506,83"/>
+<area shape="rect" id="Node000003" href="$classexperiment__launcher_1_1_experiment_launcher.html#a09b51739f224ac1f5455d2701f6b5816" title="Evaluate protein&#45;level prediction agreement for the best configurations." alt="" coords="5,5,216,61"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="248,36,216,36,216,30,248,30"/>
+</map>

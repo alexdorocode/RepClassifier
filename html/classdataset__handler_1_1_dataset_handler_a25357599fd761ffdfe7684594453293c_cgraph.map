@@ -1,0 +1,6 @@
+<map id="dataset_handler.DatasetHandler._build_embedding_loaders" name="dataset_handler.DatasetHandler._build_embedding_loaders">
+<area shape="rect" id="Node000001" title="Load configurations for embedding loaders (Sequence and GO) and return loader instances." alt="" coords="5,29,216,70"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="62,29,60,19,68,10,85,5,111,3,138,5,155,11,153,16,137,10,110,8,86,10,71,15,65,21,67,28"/>
+<area shape="rect" id="Node000002" href="$classdataset__handler_1_1_dataset_handler.html#a4b8cbe02ba9abee0c7fc248259b38c1b" title="Loads the raw dataset from disk and checks required columns." alt="" coords="264,29,474,70"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="216,47,248,47,248,52,216,52"/>
+</map>

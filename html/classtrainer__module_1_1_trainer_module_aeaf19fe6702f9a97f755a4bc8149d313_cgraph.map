@@ -1,0 +1,5 @@
+<map id="trainer_module.TrainerModule._train_pytorch" name="trainer_module.TrainerModule._train_pytorch">
+<area shape="rect" id="Node000001" title="Train a PyTorch model with optional early stopping." alt="" coords="5,5,202,46"/>
+<area shape="rect" id="Node000002" href="$classtrainer__module_1_1_trainer_module.html#a04b5d88ce62f21b6536fe4a9b45e43d6" title="Compute validation loss for early stopping." alt="" coords="250,5,446,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,23,234,23,234,28,202,28"/>
+</map>

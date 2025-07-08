@@ -1,0 +1,55 @@
+\doxysection{test\+\_\+mlp Namespace Reference}
+\hypertarget{namespacetest__mlp}{}\label{namespacetest__mlp}\index{test\_mlp@{test\_mlp}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{namespacetest__mlp_a7a79954ef3485938a4daf73b645fdc4a}{device}} = "{}cpu"{}
+\item 
+\mbox{\hyperlink{namespacetest__mlp_a1fedc31bc9713a0b338c633257baf98f}{X}} = torch.\+randn(32, 8).to(\mbox{\hyperlink{namespacetest__mlp_a7a79954ef3485938a4daf73b645fdc4a}{device}})
+\item 
+\mbox{\hyperlink{namespacetest__mlp_a507f4c118eb976c9f69b46ec34a1c888}{model}}
+\item 
+\mbox{\hyperlink{namespacetest__mlp_a446b231df57bb5e8d6975280f0c46bcf}{out}} = \mbox{\hyperlink{namespacetest__mlp_a507f4c118eb976c9f69b46ec34a1c888}{model}}(\mbox{\hyperlink{namespacetest__mlp_a1fedc31bc9713a0b338c633257baf98f}{X}})
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\Hypertarget{namespacetest__mlp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetest__mlp_a7a79954ef3485938a4daf73b645fdc4a}\index{test\_mlp@{test\_mlp}!device@{device}}
+\index{device@{device}!test\_mlp@{test\_mlp}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{namespacetest__mlp_a7a79954ef3485938a4daf73b645fdc4a} 
+str test\+\_\+mlp.\+device = "{}cpu"{}}
+
+\Hypertarget{namespacetest__mlp_a507f4c118eb976c9f69b46ec34a1c888}\index{test\_mlp@{test\_mlp}!model@{model}}
+\index{model@{model}!test\_mlp@{test\_mlp}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{namespacetest__mlp_a507f4c118eb976c9f69b46ec34a1c888} 
+test\+\_\+mlp.\+model}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ MLPProteinClassifier(}
+\DoxyCodeLine{00002\ \ \ \ \ input\_size=8,}
+\DoxyCodeLine{00003\ \ \ \ \ output\_size=2,}
+\DoxyCodeLine{00004\ \ \ \ \ num\_hidden\_layers=2,}
+\DoxyCodeLine{00005\ \ \ \ \ hidden\_layers\_mode=\textcolor{stringliteral}{"{}quadratic\_increase"{}},}
+\DoxyCodeLine{00006\ \ \ \ \ initialization=\textcolor{stringliteral}{"{}kaiming"{}},}
+\DoxyCodeLine{00007\ \ \ \ \ activation\_function=\textcolor{stringliteral}{"{}ReLU"{}},}
+\DoxyCodeLine{00008\ \ \ \ \ use\_batch\_norm=\textcolor{keyword}{False}}
+\DoxyCodeLine{00009\ ).to(device)}
+
+\end{DoxyCode}
+\Hypertarget{namespacetest__mlp_a446b231df57bb5e8d6975280f0c46bcf}\index{test\_mlp@{test\_mlp}!out@{out}}
+\index{out@{out}!test\_mlp@{test\_mlp}}
+\doxysubsubsection{\texorpdfstring{out}{out}}
+{\footnotesize\ttfamily \label{namespacetest__mlp_a446b231df57bb5e8d6975280f0c46bcf} 
+test\+\_\+mlp.\+out = \mbox{\hyperlink{namespacetest__mlp_a507f4c118eb976c9f69b46ec34a1c888}{model}}(\mbox{\hyperlink{namespacetest__mlp_a1fedc31bc9713a0b338c633257baf98f}{X}})}
+
+\Hypertarget{namespacetest__mlp_a1fedc31bc9713a0b338c633257baf98f}\index{test\_mlp@{test\_mlp}!X@{X}}
+\index{X@{X}!test\_mlp@{test\_mlp}}
+\doxysubsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily \label{namespacetest__mlp_a1fedc31bc9713a0b338c633257baf98f} 
+test\+\_\+mlp.\+X = torch.\+randn(32, 8).to(\mbox{\hyperlink{namespacetest__mlp_a7a79954ef3485938a4daf73b645fdc4a}{device}})}
+

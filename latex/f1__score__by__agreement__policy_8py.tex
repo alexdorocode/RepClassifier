@@ -1,0 +1,52 @@
+\doxysection{project\+\_\+root/scripts/model\+\_\+aggreement/f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.py File Reference}
+\hypertarget{f1__score__by__agreement__policy_8py}{}\label{f1__score__by__agreement__policy_8py}\index{project\_root/scripts/model\_aggreement/f1\_score\_by\_agreement\_policy.py@{project\_root/scripts/model\_aggreement/f1\_score\_by\_agreement\_policy.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacef1__score__by__agreement__policy}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a966a7c15cd7faba3e8008604e30b4373}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+file\+\_\+paths}}
+\item 
+list \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a0abb4325ca7f47cd81dfb30a01c22e63}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+dfs}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a684d6dd457b1e9c3cc5249e5fb29c020}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+df}} = pd.\+read\+\_\+csv(path)
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a7671f9909444d7ccec92acaa91cd8b9c}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+df\+\_\+all}} = pd.\+concat(\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a0abb4325ca7f47cd81dfb30a01c22e63}{dfs}}, ignore\+\_\+index=True)
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a9fb523f538b65a3448b1aaa2e5e19dbc}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+agg}}
+\item 
+list \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a9a20f1e5a3ee99177837394df6889cca}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+thresholds}} = \mbox{[}0.\+75, 0.\+8, 0.\+9, 0.\+95\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a176a3f66806db82860f65407c156f003}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+min\+\_\+models}} = \mbox{[}1, 2, 3, 4, 5\mbox{]}
+\item 
+list \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a1ca344751279914b77849fe61db3e8d9}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+rows}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a0aa9c510e92e205c7c6c450e5543c76b}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+sub}} = \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a9fb523f538b65a3448b1aaa2e5e19dbc}{agg}}\mbox{[}\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a9fb523f538b65a3448b1aaa2e5e19dbc}{agg}}\mbox{[}"{}agreement\+\_\+ratio"{}\mbox{]} $>$= thresh\mbox{]}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a3b2d1183f7afdf73ee3a6a691081627d}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+grp}} = sub.\+groupby("{}protein\+\_\+id"{})
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a13debdf2e4bbb234e7bfd3cb811cd0e2}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+valid}} = grp.\+filter(lambda g\+: len(g) $>$= k)
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a3db57507e6ee2eede4909d6b9ff81308}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+y\+\_\+true}} = \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a13debdf2e4bbb234e7bfd3cb811cd0e2}{valid}}\mbox{[}"{}true\+\_\+label"{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a42ae0377136b4ac09832bbeef7242c28}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+y\+\_\+pred}} = \mbox{\hyperlink{namespacef1__score__by__agreement__policy_a13debdf2e4bbb234e7bfd3cb811cd0e2}{valid}}\mbox{[}"{}votes"{}\mbox{]}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a12af7b20ce12727bddeee95c31765a54}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+p}}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a1eacdf22ce27cb295e7445d3f3259809}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+r}}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a201096f86c1665b387e7f288175d1b0e}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+f1}}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a523e8b5db5a4aa7fbec7792c1d556f3a}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+\_\+}}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a2dbef9ff1bef88bad2c9f4dc241eabee}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+average}}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_abd0ee46e83e7cf575c589a270aaa878e}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+zero\+\_\+division}}
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a8fba129f3dcee8f3b05007dd45e4b657}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+results}} = pd.\+Data\+Frame(\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a1ca344751279914b77849fe61db3e8d9}{rows}}, columns=\mbox{[}"{}min\+\_\+models"{}, "{}threshold"{}, "{}precision"{}, "{}recall"{}, "{}f1"{}\mbox{]})
+\item 
+\mbox{\hyperlink{namespacef1__score__by__agreement__policy_a7fc26a7d30f924ff5247c2ae447969bc}{f1\+\_\+score\+\_\+by\+\_\+agreement\+\_\+policy.\+pivot}} = results.\+pivot(index="{}min\+\_\+models"{}, columns="{}threshold"{}, values="{}f1"{})
+\end{DoxyCompactItemize}

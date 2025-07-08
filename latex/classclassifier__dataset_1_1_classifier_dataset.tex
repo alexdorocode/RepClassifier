@@ -1,0 +1,276 @@
+\doxysection{classifier\+\_\+dataset.\+Classifier\+Dataset Class Reference}
+\hypertarget{classclassifier__dataset_1_1_classifier_dataset}{}\label{classclassifier__dataset_1_1_classifier_dataset}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+
+
+Py\+Torch Dataset for processed protein classification data.  
+
+
+
+
+Inheritance diagram for classifier\+\_\+dataset.\+Classifier\+Dataset\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classclassifier__dataset_1_1_classifier_dataset__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for classifier\+\_\+dataset.\+Classifier\+Dataset\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classclassifier__dataset_1_1_classifier_dataset__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_afa0d2f0c46d22db2200de93a754be796}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, processed\+\_\+df, \mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a2e2de405fd2b9ed1da1ea89ce18a0d46}{feature\+\_\+cols}}=None, \mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a85343f41d2e18a74e523e0c660894678}{label\+\_\+col}}="{}label"{}, \mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ade6bacd93b2115764635518ff09f28d4}{balance\+\_\+col}}=None, \mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ab015de2cf0f819bed8353cb35dda8b60}{production}}=False, \mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ab0f7c79d2debdecca3f6f4d0f6476701}{accession\+\_\+ids}}=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classclassifier__dataset_1_1_classifier_dataset}{Classifier\+Dataset}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a8d03d16d9e3924b8f1c81a11a7ff8eb6}{\+\_\+\+\_\+len\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the number of samples in the dataset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_aaa4a5d0ef7a6e816515f61c6a79bd4e3}{\+\_\+\+\_\+getitem\+\_\+\+\_\+}} (self, idx)
+\begin{DoxyCompactList}\small\item\em Returns a single sample (features, label) or just features in production mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_aac8b5f2329766e0bcd6abd04d7b1885a}{get\+\_\+\+X\+\_\+y}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the features and labels as numpy arrays. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a6571915fa0c15f899bfbd45ed994a9d1}{get\+\_\+ids}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the protein identifiers if available. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ab015de2cf0f819bed8353cb35dda8b60}{production}} = production
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a7987883a687fc72ff3ac5e86360ba494}{df}} = processed\+\_\+df
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a85343f41d2e18a74e523e0c660894678}{label\+\_\+col}} = label\+\_\+col
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ade6bacd93b2115764635518ff09f28d4}{balance\+\_\+col}} = balance\+\_\+col
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ab0f7c79d2debdecca3f6f4d0f6476701}{accession\+\_\+ids}} = accession\+\_\+ids
+\item 
+list \mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a2e2de405fd2b9ed1da1ea89ce18a0d46}{feature\+\_\+cols}} = \mbox{[}col for col in processed\+\_\+df.\+columns if col not in excluded\mbox{]}
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ac8626d6007a500ea9369c9810b8bde16}{features}} = self.\+\_\+prepare\+\_\+features()
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a59617f90c1f8f82d18b1151dbc475b16}{labels}} = self.\+\_\+prepare\+\_\+labels()
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a5431ce91a82e5c4729383f47c0390fc1}{balance\+\_\+values}} = processed\+\_\+df\mbox{[}\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ade6bacd93b2115764635518ff09f28d4}{balance\+\_\+col}}\mbox{]}.values
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_a4e22bc476b86a35f681d123ec60367bd}{\+\_\+prepare\+\_\+features}} (self)
+\begin{DoxyCompactList}\small\item\em Prepares and stacks feature columns into a single tensor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ab140dd07b84e0138b1d242707c7ef07d}{\+\_\+prepare\+\_\+labels}} (self)
+\begin{DoxyCompactList}\small\item\em Prepares the label tensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Py\+Torch Dataset for processed protein classification data. 
+
+Handles feature/label extraction, supports production (inference) mode, and provides access to accession IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em processed\+\_\+df} & pandas Data\+Frame with all processed features and labels. \\
+\hline
+{\em feature\+\_\+cols} & List of column names to include as features (default\+: all columns except label\+\_\+col). \\
+\hline
+{\em label\+\_\+col} & Name of the label column (default\+: \textquotesingle{}label\textquotesingle{}). \\
+\hline
+{\em balance\+\_\+col} & Name of the balance column for stratification (optional). \\
+\hline
+{\em production} & If True, assumes no labels (for classifying new data). \\
+\hline
+{\em accession\+\_\+ids} & Optional list/array of protein IDs. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-constructors}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_afa0d2f0c46d22db2200de93a754be796}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_afa0d2f0c46d22db2200de93a754be796} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{processed\+\_\+df}{, }\item[{}]{feature\+\_\+cols}{ = {\ttfamily None}, }\item[{}]{label\+\_\+col}{ = {\ttfamily "{}label"{}}, }\item[{}]{balance\+\_\+col}{ = {\ttfamily None}, }\item[{}]{production}{ = {\ttfamily False}, }\item[{}]{accession\+\_\+ids}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classclassifier__dataset_1_1_classifier_dataset}{Classifier\+Dataset}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em processed\+\_\+df} & pandas Data\+Frame with all processed features and labels. \\
+\hline
+{\em feature\+\_\+cols} & List of column names to include as features (default\+: all columns except label\+\_\+col). \\
+\hline
+{\em label\+\_\+col} & Name of the label column (default\+: \textquotesingle{}label\textquotesingle{}). \\
+\hline
+{\em balance\+\_\+col} & Name of the balance column for stratification (optional). \\
+\hline
+{\em production} & If True, assumes no labels (for classifying new data). \\
+\hline
+{\em accession\+\_\+ids} & Optional list/array of protein IDs. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_aaa4a5d0ef7a6e816515f61c6a79bd4e3}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!\_\_getitem\_\_@{\_\_getitem\_\_}}
+\index{\_\_getitem\_\_@{\_\_getitem\_\_}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_getitem\_\_()}{\_\_getitem\_\_()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_aaa4a5d0ef7a6e816515f61c6a79bd4e3} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+\_\+\+\_\+getitem\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{idx}{}\end{DoxyParamCaption})}
+
+
+
+Returns a single sample (features, label) or just features in production mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Index of the sample \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tuple (features, label) or features only 
+\end{DoxyReturn}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a8d03d16d9e3924b8f1c81a11a7ff8eb6}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!\_\_len\_\_@{\_\_len\_\_}}
+\index{\_\_len\_\_@{\_\_len\_\_}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_len\_\_()}{\_\_len\_\_()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a8d03d16d9e3924b8f1c81a11a7ff8eb6} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+\_\+\+\_\+len\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the number of samples in the dataset. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a4e22bc476b86a35f681d123ec60367bd}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!\_prepare\_features@{\_prepare\_features}}
+\index{\_prepare\_features@{\_prepare\_features}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{\_prepare\_features()}{\_prepare\_features()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a4e22bc476b86a35f681d123ec60367bd} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+\_\+prepare\+\_\+features (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Prepares and stacks feature columns into a single tensor. 
+
+\begin{DoxyReturn}{Returns}
+torch.\+Float\+Tensor of shape (n\+\_\+samples, n\+\_\+features) 
+\end{DoxyReturn}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_ab140dd07b84e0138b1d242707c7ef07d}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!\_prepare\_labels@{\_prepare\_labels}}
+\index{\_prepare\_labels@{\_prepare\_labels}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{\_prepare\_labels()}{\_prepare\_labels()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_ab140dd07b84e0138b1d242707c7ef07d} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+\_\+prepare\+\_\+labels (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Prepares the label tensor. 
+
+\begin{DoxyReturn}{Returns}
+torch.\+Long\+Tensor of shape (n\+\_\+samples,) 
+\end{DoxyReturn}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a6571915fa0c15f899bfbd45ed994a9d1}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!get\_ids@{get\_ids}}
+\index{get\_ids@{get\_ids}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{get\_ids()}{get\_ids()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a6571915fa0c15f899bfbd45ed994a9d1} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+get\+\_\+ids (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the protein identifiers if available. 
+
+Assumes a column \textquotesingle{}protein\+\_\+id\textquotesingle{} exists in the Data\+Frame or uses provided accession\+\_\+ids.
+
+\begin{DoxyReturn}{Returns}
+Array of protein IDs 
+\end{DoxyReturn}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_aac8b5f2329766e0bcd6abd04d7b1885a}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!get\_X\_y@{get\_X\_y}}
+\index{get\_X\_y@{get\_X\_y}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{get\_X\_y()}{get\_X\_y()}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_aac8b5f2329766e0bcd6abd04d7b1885a} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+get\+\_\+\+X\+\_\+y (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the features and labels as numpy arrays. 
+
+Useful for compatibility with sklearn or other libraries.
+
+\begin{DoxyReturn}{Returns}
+Tuple (X, y) as numpy arrays 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_ab0f7c79d2debdecca3f6f4d0f6476701}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!accession\_ids@{accession\_ids}}
+\index{accession\_ids@{accession\_ids}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{accession\_ids}{accession\_ids}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_ab0f7c79d2debdecca3f6f4d0f6476701} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+accession\+\_\+ids = accession\+\_\+ids}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_ade6bacd93b2115764635518ff09f28d4}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!balance\_col@{balance\_col}}
+\index{balance\_col@{balance\_col}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{balance\_col}{balance\_col}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_ade6bacd93b2115764635518ff09f28d4} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+balance\+\_\+col = balance\+\_\+col}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a5431ce91a82e5c4729383f47c0390fc1}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!balance\_values@{balance\_values}}
+\index{balance\_values@{balance\_values}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{balance\_values}{balance\_values}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a5431ce91a82e5c4729383f47c0390fc1} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+balance\+\_\+values = processed\+\_\+df\mbox{[}\mbox{\hyperlink{classclassifier__dataset_1_1_classifier_dataset_ade6bacd93b2115764635518ff09f28d4}{balance\+\_\+col}}\mbox{]}.values}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a7987883a687fc72ff3ac5e86360ba494}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!df@{df}}
+\index{df@{df}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{df}{df}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a7987883a687fc72ff3ac5e86360ba494} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+df = processed\+\_\+df}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a2e2de405fd2b9ed1da1ea89ce18a0d46}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!feature\_cols@{feature\_cols}}
+\index{feature\_cols@{feature\_cols}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{feature\_cols}{feature\_cols}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a2e2de405fd2b9ed1da1ea89ce18a0d46} 
+list classifier\+\_\+dataset.\+Classifier\+Dataset.\+feature\+\_\+cols = \mbox{[}col for col in processed\+\_\+df.\+columns if col not in excluded\mbox{]}}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_ac8626d6007a500ea9369c9810b8bde16}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!features@{features}}
+\index{features@{features}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{features}{features}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_ac8626d6007a500ea9369c9810b8bde16} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+features = self.\+\_\+prepare\+\_\+features()}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a85343f41d2e18a74e523e0c660894678}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!label\_col@{label\_col}}
+\index{label\_col@{label\_col}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{label\_col}{label\_col}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a85343f41d2e18a74e523e0c660894678} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+label\+\_\+col = label\+\_\+col}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_a59617f90c1f8f82d18b1151dbc475b16}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!labels@{labels}}
+\index{labels@{labels}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{labels}{labels}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_a59617f90c1f8f82d18b1151dbc475b16} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+labels = self.\+\_\+prepare\+\_\+labels()}
+
+\Hypertarget{classclassifier__dataset_1_1_classifier_dataset_ab015de2cf0f819bed8353cb35dda8b60}\index{classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}!production@{production}}
+\index{production@{production}!classifier\_dataset.ClassifierDataset@{classifier\_dataset.ClassifierDataset}}
+\doxysubsubsection{\texorpdfstring{production}{production}}
+{\footnotesize\ttfamily \label{classclassifier__dataset_1_1_classifier_dataset_ab015de2cf0f819bed8353cb35dda8b60} 
+classifier\+\_\+dataset.\+Classifier\+Dataset.\+production = production}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/\mbox{\hyperlink{classifier__dataset_8py}{classifier\+\_\+dataset.\+py}}\end{DoxyCompactItemize}

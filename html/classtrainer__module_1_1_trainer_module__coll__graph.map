@@ -1,0 +1,3 @@
+<map id="trainer_module.TrainerModule" name="trainer_module.TrainerModule">
+<area shape="rect" id="Node000001" title="Training and evaluation wrapper for PyTorch and sklearn&#45;style models." alt="" coords="5,5,187,534"/>
+</map>

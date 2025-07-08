@@ -1,0 +1,198 @@
+\doxysection{embedding\+\_\+loader.\+Embedding\+Loader Class Reference}
+\hypertarget{classembedding__loader_1_1_embedding_loader}{}\label{classembedding__loader_1_1_embedding_loader}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+
+
+Abstract base class for embedding loaders.  
+
+
+
+
+Inheritance diagram for embedding\+\_\+loader.\+Embedding\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classembedding__loader_1_1_embedding_loader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for embedding\+\_\+loader.\+Embedding\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classembedding__loader_1_1_embedding_loader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a5ae68a36fd8b28ee25cfa328b93d5cbc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a0b03065405bbbbb74509f1636cbdc008}{embedding\+\_\+sequence\+\_\+paths}}=None, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a2ecbddf2c2181cb17eb3509abbed2764}{ae\+\_\+paths}}=None, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a531d56149d7581e38652f80e2028ea28}{autoencoded\+\_\+seq\+\_\+embeddings}}=None, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_aaddb1d327fe6207294f13764a6b0a021}{autoencoded\+\_\+go\+\_\+embeddings}}=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classembedding__loader_1_1_embedding_loader}{Embedding\+Loader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_ab8af4713cda2f9476bd09d7349ea1d40}{load}} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\begin{DoxyCompactList}\small\item\em Load embeddings based on model and dimension information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a0b03065405bbbbb74509f1636cbdc008}{embedding\+\_\+sequence\+\_\+paths}} = embedding\+\_\+sequence\+\_\+paths
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a2ecbddf2c2181cb17eb3509abbed2764}{ae\+\_\+paths}} = ae\+\_\+paths
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a531d56149d7581e38652f80e2028ea28}{autoencoded\+\_\+seq\+\_\+embeddings}} = autoencoded\+\_\+seq\+\_\+embeddings
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_aaddb1d327fe6207294f13764a6b0a021}{autoencoded\+\_\+go\+\_\+embeddings}} = autoencoded\+\_\+go\+\_\+embeddings
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a03903a37344d00c95c0cd81a7602be80}{\+\_\+load\+\_\+flat\+\_\+csv\+\_\+embeddings}} (self, path, id\+\_\+col=0, target\+\_\+dim=None, ae\+\_\+model=None)
+\begin{DoxyCompactList}\small\item\em Shared method to load embeddings from flattened CSV. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a5bf19b8270b4616effafa3cf25d073cd}{\+\_\+load\+\_\+autoencoder}} (self, model\+\_\+name, input\+\_\+dim, target\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em Loads an autoencoder model for the given model name and dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for embedding loaders. 
+
+Handles loading and (optionally) compressing embeddings using autoencoders. 
+
+\label{doc-constructors}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_a5ae68a36fd8b28ee25cfa328b93d5cbc}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_a5ae68a36fd8b28ee25cfa328b93d5cbc} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{embedding\+\_\+sequence\+\_\+paths}{ = {\ttfamily None}, }\item[{}]{ae\+\_\+paths}{ = {\ttfamily None}, }\item[{}]{autoencoded\+\_\+seq\+\_\+embeddings}{ = {\ttfamily None}, }\item[{}]{autoencoded\+\_\+go\+\_\+embeddings}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classembedding__loader_1_1_embedding_loader}{Embedding\+Loader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em embedding\+\_\+sequence\+\_\+paths} & Dict of paths to sequence embeddings. \\
+\hline
+{\em ae\+\_\+paths} & Dict of autoencoder model paths. \\
+\hline
+{\em autoencoded\+\_\+seq\+\_\+embeddings} & Dict of precomputed autoencoded sequence embeddings. \\
+\hline
+{\em autoencoded\+\_\+go\+\_\+embeddings} & Dict of precomputed autoencoded GO embeddings. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_a5bf19b8270b4616effafa3cf25d073cd}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!\_load\_autoencoder@{\_load\_autoencoder}}
+\index{\_load\_autoencoder@{\_load\_autoencoder}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{\_load\_autoencoder()}{\_load\_autoencoder()}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_a5bf19b8270b4616effafa3cf25d073cd} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+\_\+load\+\_\+autoencoder (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model\+\_\+name}{, }\item[{}]{input\+\_\+dim}{, }\item[{}]{target\+\_\+dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Loads an autoencoder model for the given model name and dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model. \\
+\hline
+{\em input\+\_\+dim} & Input dimension. \\
+\hline
+{\em target\+\_\+dim} & Target (latent) dimension. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Loaded Autoencoder instance. \+:raises Value\+Error\+: If no matching autoencoder is found. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classembedding__loader_1_1_embedding_loader_a5bf19b8270b4616effafa3cf25d073cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_a03903a37344d00c95c0cd81a7602be80}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!\_load\_flat\_csv\_embeddings@{\_load\_flat\_csv\_embeddings}}
+\index{\_load\_flat\_csv\_embeddings@{\_load\_flat\_csv\_embeddings}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{\_load\_flat\_csv\_embeddings()}{\_load\_flat\_csv\_embeddings()}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_a03903a37344d00c95c0cd81a7602be80} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+\_\+load\+\_\+flat\+\_\+csv\+\_\+embeddings (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{path}{, }\item[{}]{id\+\_\+col}{ = {\ttfamily 0}, }\item[{}]{target\+\_\+dim}{ = {\ttfamily None}, }\item[{}]{ae\+\_\+model}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Shared method to load embeddings from flattened CSV. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to the CSV file. \\
+\hline
+{\em id\+\_\+col} & Index of the ID column. \\
+\hline
+{\em target\+\_\+dim} & Target dimension for compression. \\
+\hline
+{\em ae\+\_\+model} & Autoencoder model for compression. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with ID and embedding columns. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classembedding__loader_1_1_embedding_loader_a03903a37344d00c95c0cd81a7602be80_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_ab8af4713cda2f9476bd09d7349ea1d40}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!load@{load}}
+\index{load@{load}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_ab8af4713cda2f9476bd09d7349ea1d40} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+load (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+
+
+Load embeddings based on model and dimension information. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classembedding__loader_1_1_g_o_embedding_loader_a6ac92b69d12f21488f946614eb181190}{embedding\+\_\+loader.\+GOEmbedding\+Loader}}, and \mbox{\hyperlink{classembedding__loader_1_1_sequence_embedding_loader_ab1d7b09a910bd9074df1a753d3c95398}{embedding\+\_\+loader.\+Sequence\+Embedding\+Loader}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classembedding__loader_1_1_embedding_loader_a2ecbddf2c2181cb17eb3509abbed2764}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!ae\_paths@{ae\_paths}}
+\index{ae\_paths@{ae\_paths}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{ae\_paths}{ae\_paths}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_a2ecbddf2c2181cb17eb3509abbed2764} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+ae\+\_\+paths = ae\+\_\+paths}
+
+\Hypertarget{classembedding__loader_1_1_embedding_loader_aaddb1d327fe6207294f13764a6b0a021}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!autoencoded\_go\_embeddings@{autoencoded\_go\_embeddings}}
+\index{autoencoded\_go\_embeddings@{autoencoded\_go\_embeddings}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{autoencoded\_go\_embeddings}{autoencoded\_go\_embeddings}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_aaddb1d327fe6207294f13764a6b0a021} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+autoencoded\+\_\+go\+\_\+embeddings = autoencoded\+\_\+go\+\_\+embeddings}
+
+\Hypertarget{classembedding__loader_1_1_embedding_loader_a531d56149d7581e38652f80e2028ea28}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!autoencoded\_seq\_embeddings@{autoencoded\_seq\_embeddings}}
+\index{autoencoded\_seq\_embeddings@{autoencoded\_seq\_embeddings}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{autoencoded\_seq\_embeddings}{autoencoded\_seq\_embeddings}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_a531d56149d7581e38652f80e2028ea28} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+autoencoded\+\_\+seq\+\_\+embeddings = autoencoded\+\_\+seq\+\_\+embeddings}
+
+\Hypertarget{classembedding__loader_1_1_embedding_loader_a0b03065405bbbbb74509f1636cbdc008}\index{embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}!embedding\_sequence\_paths@{embedding\_sequence\_paths}}
+\index{embedding\_sequence\_paths@{embedding\_sequence\_paths}!embedding\_loader.EmbeddingLoader@{embedding\_loader.EmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{embedding\_sequence\_paths}{embedding\_sequence\_paths}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_embedding_loader_a0b03065405bbbbb74509f1636cbdc008} 
+embedding\+\_\+loader.\+Embedding\+Loader.\+embedding\+\_\+sequence\+\_\+paths = embedding\+\_\+sequence\+\_\+paths}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/features/\mbox{\hyperlink{embedding__loader_8py}{embedding\+\_\+loader.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="feature_processor.get_best_pca_components" name="feature_processor.get_best_pca_components">
+<area shape="rect" id="Node000001" title="Determine optimal number of PCA components." alt="" coords="472,5,631,46"/>
+<area shape="rect" id="Node000002" href="$namespacefeature__processor.html#a39749084fdf6c3c4c12f2a15de2947c9" title="Apply PCA reduction using threshold or fixed component count." alt="" coords="237,13,424,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="456,28,425,28,425,23,456,23"/>
+<area shape="rect" id="Node000003" href="$namespacefeature__processor.html#a46efa1bfa3dc7749a761d31b3afad652" title="Applies optional random projection and dimensionality reduction to embeddings and attention weights." alt="" coords="5,5,189,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="221,28,189,28,189,23,221,23"/>
+</map>

@@ -1,0 +1,174 @@
+\doxysection{plot\+\_\+by\+\_\+policy Namespace Reference}
+\hypertarget{namespaceplot__by__policy}{}\label{namespaceplot__by__policy}\index{plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}} (policy, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}}, min\+\_\+k=None)
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_ab80749d431aed7f82e8a08708155f666}{ytick\+\_\+fmt}} (x, pos)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{namespaceplot__by__policy_a7e8bc67cf692e05baf8e5f04a0640ad0}{file\+\_\+paths}}
+\item 
+list \mbox{\hyperlink{namespaceplot__by__policy_a01d6e87283e14a8a782fce0496ad66bc}{dfs}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_aef3d2d2075902b2eb94819fee7eccf43}{df}} = pd.\+read\+\_\+csv(path)
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_ab6f1b79c29aabebbbf6cb79214b87221}{agg}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}} = np.\+arange(0.\+501, 0.\+999, 0.\+005)
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_ad58e9c66a3fc021bfdbdb214f05d3a8d}{dem}} = \mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}}("{}democratic"{}, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}})
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_a5202aed310eec2efc6cb1e50f5ce7bb1}{dem\+\_\+strong}} = \mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}}("{}democratic\+\_\+strong\+\_\+models"{}, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}})
+\item 
+dict \mbox{\hyperlink{namespaceplot__by__policy_a8908ea0fe5b26a21894afe546637e405}{min\+\_\+k\+\_\+vals}} = \{k\+: \mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}}("{}min\+\_\+k"{}, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}}, min\+\_\+k=k) for k in \mbox{[}3, 5\mbox{]}\}
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_a66f840a4bde05ea05e08e40417bca516}{figsize}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_ad38d4cd6158f7a39b6d2398920f11c5d}{label}}
+\item 
+list \mbox{\hyperlink{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada}{colors}} = \mbox{[}\textquotesingle{}r\textquotesingle{}, \textquotesingle{}m\textquotesingle{}, \textquotesingle{}y\textquotesingle{}, \textquotesingle{}k\textquotesingle{}\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceplot__by__policy_a4873ce8fc70c3026cbec7145b430b645}{color}} = \mbox{\hyperlink{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada}{colors}}\mbox{[}idx \% len(\mbox{\hyperlink{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada}{colors}})\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__by__policy_a03f61b087c7a47d96d93c3db4739438b}{yticks}} = np.\+arange(0, 317, 10)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespaceplot__by__policy_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}\index{plot\_by\_policy@{plot\_by\_policy}!evaluate\_policy@{evaluate\_policy}}
+\index{evaluate\_policy@{evaluate\_policy}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{evaluate\_policy()}{evaluate\_policy()}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd} 
+plot\+\_\+by\+\_\+policy.\+evaluate\+\_\+policy (\begin{DoxyParamCaption}\item[{}]{policy}{, }\item[{}]{thresholds}{, }\item[{}]{min\+\_\+k}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceplot__by__policy_ab80749d431aed7f82e8a08708155f666}\index{plot\_by\_policy@{plot\_by\_policy}!ytick\_fmt@{ytick\_fmt}}
+\index{ytick\_fmt@{ytick\_fmt}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{ytick\_fmt()}{ytick\_fmt()}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_ab80749d431aed7f82e8a08708155f666} 
+plot\+\_\+by\+\_\+policy.\+ytick\+\_\+fmt (\begin{DoxyParamCaption}\item[{}]{x}{, }\item[{}]{pos}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{namespaceplot__by__policy_ab80749d431aed7f82e8a08708155f666_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{namespaceplot__by__policy_ab80749d431aed7f82e8a08708155f666_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{namespaceplot__by__policy_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceplot__by__policy_ab6f1b79c29aabebbbf6cb79214b87221}\index{plot\_by\_policy@{plot\_by\_policy}!agg@{agg}}
+\index{agg@{agg}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{agg}{agg}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_ab6f1b79c29aabebbbf6cb79214b87221} 
+plot\+\_\+by\+\_\+policy.\+agg}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ df.groupby([\textcolor{stringliteral}{"{}protein\_id"{}},\ \textcolor{stringliteral}{"{}model\_type"{}},\ \textcolor{stringliteral}{"{}true\_label"{}}]).agg(}
+\DoxyCodeLine{00002\ \ \ \ \ votes=(\textcolor{stringliteral}{"{}pred\_label"{}},\ \textcolor{keyword}{lambda}\ x:\ x.mode()[0]),}
+\DoxyCodeLine{00003\ \ \ \ \ cnt\_votes=(\textcolor{stringliteral}{"{}pred\_label"{}},\ \textcolor{stringliteral}{"{}count"{}}),}
+\DoxyCodeLine{00004\ \ \ \ \ max\_votes=(\textcolor{stringliteral}{"{}pred\_label"{}},\ \textcolor{keyword}{lambda}\ x:\ x.value\_counts().iloc[0])}
+\DoxyCodeLine{00005\ ).reset\_index()}
+
+\end{DoxyCode}
+\Hypertarget{namespaceplot__by__policy_a4873ce8fc70c3026cbec7145b430b645}\index{plot\_by\_policy@{plot\_by\_policy}!color@{color}}
+\index{color@{color}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a4873ce8fc70c3026cbec7145b430b645} 
+list plot\+\_\+by\+\_\+policy.\+color = \mbox{\hyperlink{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada}{colors}}\mbox{[}idx \% len(\mbox{\hyperlink{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada}{colors}})\mbox{]}}
+
+\Hypertarget{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada}\index{plot\_by\_policy@{plot\_by\_policy}!colors@{colors}}
+\index{colors@{colors}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{colors}{colors}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_ae741cd680919351bdc013e7388730ada} 
+list plot\+\_\+by\+\_\+policy.\+colors = \mbox{[}\textquotesingle{}r\textquotesingle{}, \textquotesingle{}m\textquotesingle{}, \textquotesingle{}y\textquotesingle{}, \textquotesingle{}k\textquotesingle{}\mbox{]}}
+
+\Hypertarget{namespaceplot__by__policy_ad58e9c66a3fc021bfdbdb214f05d3a8d}\index{plot\_by\_policy@{plot\_by\_policy}!dem@{dem}}
+\index{dem@{dem}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{dem}{dem}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_ad58e9c66a3fc021bfdbdb214f05d3a8d} 
+plot\+\_\+by\+\_\+policy.\+dem = \mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}}("{}democratic"{}, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}})}
+
+\Hypertarget{namespaceplot__by__policy_a5202aed310eec2efc6cb1e50f5ce7bb1}\index{plot\_by\_policy@{plot\_by\_policy}!dem\_strong@{dem\_strong}}
+\index{dem\_strong@{dem\_strong}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{dem\_strong}{dem\_strong}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a5202aed310eec2efc6cb1e50f5ce7bb1} 
+plot\+\_\+by\+\_\+policy.\+dem\+\_\+strong = \mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}}("{}democratic\+\_\+strong\+\_\+models"{}, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}})}
+
+\Hypertarget{namespaceplot__by__policy_aef3d2d2075902b2eb94819fee7eccf43}\index{plot\_by\_policy@{plot\_by\_policy}!df@{df}}
+\index{df@{df}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{df}{df}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_aef3d2d2075902b2eb94819fee7eccf43} 
+plot\+\_\+by\+\_\+policy.\+df = pd.\+read\+\_\+csv(path)}
+
+\Hypertarget{namespaceplot__by__policy_a01d6e87283e14a8a782fce0496ad66bc}\index{plot\_by\_policy@{plot\_by\_policy}!dfs@{dfs}}
+\index{dfs@{dfs}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{dfs}{dfs}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a01d6e87283e14a8a782fce0496ad66bc} 
+list plot\+\_\+by\+\_\+policy.\+dfs = \mbox{[}$\,$\mbox{]}}
+
+\Hypertarget{namespaceplot__by__policy_a66f840a4bde05ea05e08e40417bca516}\index{plot\_by\_policy@{plot\_by\_policy}!figsize@{figsize}}
+\index{figsize@{figsize}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{figsize}{figsize}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a66f840a4bde05ea05e08e40417bca516} 
+plot\+\_\+by\+\_\+policy.\+figsize}
+
+\Hypertarget{namespaceplot__by__policy_a7e8bc67cf692e05baf8e5f04a0640ad0}\index{plot\_by\_policy@{plot\_by\_policy}!file\_paths@{file\_paths}}
+\index{file\_paths@{file\_paths}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{file\_paths}{file\_paths}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a7e8bc67cf692e05baf8e5f04a0640ad0} 
+dict plot\+\_\+by\+\_\+policy.\+file\+\_\+paths}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ \{}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}lr"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_lr.csv"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}svm"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_svm.csv"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}rf"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_rf.csv"{}},}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{stringliteral}{"{}xgb"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_xgb.csv"{}},}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{stringliteral}{"{}knn"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_knn.csv"{}}}
+\DoxyCodeLine{00007\ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceplot__by__policy_ad38d4cd6158f7a39b6d2398920f11c5d}\index{plot\_by\_policy@{plot\_by\_policy}!label@{label}}
+\index{label@{label}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_ad38d4cd6158f7a39b6d2398920f11c5d} 
+plot\+\_\+by\+\_\+policy.\+label}
+
+\Hypertarget{namespaceplot__by__policy_a8908ea0fe5b26a21894afe546637e405}\index{plot\_by\_policy@{plot\_by\_policy}!min\_k\_vals@{min\_k\_vals}}
+\index{min\_k\_vals@{min\_k\_vals}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{min\_k\_vals}{min\_k\_vals}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a8908ea0fe5b26a21894afe546637e405} 
+dict plot\+\_\+by\+\_\+policy.\+min\+\_\+k\+\_\+vals = \{k\+: \mbox{\hyperlink{namespaceplot__by__policy_affa951a4e0ce4cac583993f68a615ccd}{evaluate\+\_\+policy}}("{}min\+\_\+k"{}, \mbox{\hyperlink{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}{thresholds}}, min\+\_\+k=k) for k in \mbox{[}3, 5\mbox{]}\}}
+
+\Hypertarget{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9}\index{plot\_by\_policy@{plot\_by\_policy}!thresholds@{thresholds}}
+\index{thresholds@{thresholds}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{thresholds}{thresholds}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_af9ebd2150ef19db3caf6b738173e2ba9} 
+plot\+\_\+by\+\_\+policy.\+thresholds = np.\+arange(0.\+501, 0.\+999, 0.\+005)}
+
+\Hypertarget{namespaceplot__by__policy_a03f61b087c7a47d96d93c3db4739438b}\index{plot\_by\_policy@{plot\_by\_policy}!yticks@{yticks}}
+\index{yticks@{yticks}!plot\_by\_policy@{plot\_by\_policy}}
+\doxysubsubsection{\texorpdfstring{yticks}{yticks}}
+{\footnotesize\ttfamily \label{namespaceplot__by__policy_a03f61b087c7a47d96d93c3db4739438b} 
+plot\+\_\+by\+\_\+policy.\+yticks = np.\+arange(0, 317, 10)}
+

@@ -1,0 +1,200 @@
+\doxysection{dataset\+\_\+handler.\+Dataset\+Handler Class Reference}
+\hypertarget{classdataset__handler_1_1_dataset_handler}{}\label{classdataset__handler_1_1_dataset_handler}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+
+
+Handles loading, processing, and embedding enrichment of protein datasets.  
+
+
+
+
+Collaboration diagram for dataset\+\_\+handler.\+Dataset\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classdataset__handler_1_1_dataset_handler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_a0c6b38e3d1bf6c18794c298cdf9b1911}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, config\+\_\+reader, bool \mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_ae236c9b7865c0ef5bd5bd8cc4c0eb75c}{build\+\_\+zero\+\_\+shot\+\_\+dataset}}=False)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classdataset__handler_1_1_dataset_handler}{Dataset\+Handler}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_af974ab68321487a95bb476be8828d54d}{load\+\_\+classifier\+\_\+dataset}} (self, bool zero\+\_\+shot=False)
+\begin{DoxyCompactList}\small\item\em Load the experimental dataset based on the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_a3afb15c2e619112bf97a8cd24d13bcae}{config}} = config\+\_\+reader
+\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_ae236c9b7865c0ef5bd5bd8cc4c0eb75c}{build\+\_\+zero\+\_\+shot\+\_\+dataset}} = build\+\_\+zero\+\_\+shot\+\_\+dataset
+\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_a80ea35c7e6d22356583c45d14e38e602}{id\+\_\+col}} = df\mbox{[}id\+\_\+col\mbox{]}
+\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_aa22880a230b3b974b2ee146cfadbc127}{processed\+\_\+dataset}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_a4b8cbe02ba9abee0c7fc248259b38c1b}{\+\_\+build\+\_\+raw}} (self)
+\begin{DoxyCompactList}\small\item\em Loads the raw dataset from disk and checks required columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_a25357599fd761ffdfe7684594453293c}{\+\_\+build\+\_\+embedding\+\_\+loaders}} (self)
+\begin{DoxyCompactList}\small\item\em Load configurations for embedding loaders (Sequence and GO) and return loader instances. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdataset__handler_1_1_dataset_handler_adac2ef705e3866482956b459ba893540}{\+\_\+build\+\_\+processed\+\_\+dataset}} (self)
+\begin{DoxyCompactList}\small\item\em Load the processed dataset based on the raw dataset and configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles loading, processing, and embedding enrichment of protein datasets. 
+
+Supports both standard and zero-\/shot dataset splits. 
+
+\label{doc-constructors}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_a0c6b38e3d1bf6c18794c298cdf9b1911}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_a0c6b38e3d1bf6c18794c298cdf9b1911} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config\+\_\+reader}{, }\item[{bool }]{build\+\_\+zero\+\_\+shot\+\_\+dataset}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classdataset__handler_1_1_dataset_handler}{Dataset\+Handler}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+reader} & Configuration object with dataset and embedding paths/settings. \\
+\hline
+{\em build\+\_\+zero\+\_\+shot\+\_\+dataset} & If True, enables zero-\/shot dataset split. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_a25357599fd761ffdfe7684594453293c}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!\_build\_embedding\_loaders@{\_build\_embedding\_loaders}}
+\index{\_build\_embedding\_loaders@{\_build\_embedding\_loaders}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{\_build\_embedding\_loaders()}{\_build\_embedding\_loaders()}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_a25357599fd761ffdfe7684594453293c} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+\_\+build\+\_\+embedding\+\_\+loaders (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Load configurations for embedding loaders (Sequence and GO) and return loader instances. 
+
+\begin{DoxyReturn}{Returns}
+Tuple (Sequence\+Embedding\+Loader, GOEmbedding\+Loader) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classdataset__handler_1_1_dataset_handler_a25357599fd761ffdfe7684594453293c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classdataset__handler_1_1_dataset_handler_a25357599fd761ffdfe7684594453293c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_adac2ef705e3866482956b459ba893540}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!\_build\_processed\_dataset@{\_build\_processed\_dataset}}
+\index{\_build\_processed\_dataset@{\_build\_processed\_dataset}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{\_build\_processed\_dataset()}{\_build\_processed\_dataset()}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_adac2ef705e3866482956b459ba893540} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+\_\+build\+\_\+processed\+\_\+dataset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Load the processed dataset based on the raw dataset and configuration. 
+
+\Hypertarget{classdataset__handler_1_1_dataset_handler_a4b8cbe02ba9abee0c7fc248259b38c1b}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!\_build\_raw@{\_build\_raw}}
+\index{\_build\_raw@{\_build\_raw}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{\_build\_raw()}{\_build\_raw()}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_a4b8cbe02ba9abee0c7fc248259b38c1b} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+\_\+build\+\_\+raw (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Loads the raw dataset from disk and checks required columns. 
+
+\begin{DoxyReturn}{Returns}
+Raw\+Dataset instance \+:raises File\+Not\+Found\+Error\+: If the dataset file does not exist. \+:raises Value\+Error\+: If required columns are missing. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classdataset__handler_1_1_dataset_handler_a4b8cbe02ba9abee0c7fc248259b38c1b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_af974ab68321487a95bb476be8828d54d}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!load\_classifier\_dataset@{load\_classifier\_dataset}}
+\index{load\_classifier\_dataset@{load\_classifier\_dataset}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{load\_classifier\_dataset()}{load\_classifier\_dataset()}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_af974ab68321487a95bb476be8828d54d} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+load\+\_\+classifier\+\_\+dataset (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{zero\+\_\+shot}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Load the experimental dataset based on the configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em zero\+\_\+shot} & If True, loads the zero-\/shot dataset split. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Classifier\+Dataset instance 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdataset__handler_1_1_dataset_handler_ae236c9b7865c0ef5bd5bd8cc4c0eb75c}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!build\_zero\_shot\_dataset@{build\_zero\_shot\_dataset}}
+\index{build\_zero\_shot\_dataset@{build\_zero\_shot\_dataset}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{build\_zero\_shot\_dataset}{build\_zero\_shot\_dataset}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_ae236c9b7865c0ef5bd5bd8cc4c0eb75c} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+build\+\_\+zero\+\_\+shot\+\_\+dataset = build\+\_\+zero\+\_\+shot\+\_\+dataset}
+
+\Hypertarget{classdataset__handler_1_1_dataset_handler_a3afb15c2e619112bf97a8cd24d13bcae}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!config@{config}}
+\index{config@{config}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_a3afb15c2e619112bf97a8cd24d13bcae} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+config = config\+\_\+reader}
+
+\Hypertarget{classdataset__handler_1_1_dataset_handler_a80ea35c7e6d22356583c45d14e38e602}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!id\_col@{id\_col}}
+\index{id\_col@{id\_col}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{id\_col}{id\_col}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_a80ea35c7e6d22356583c45d14e38e602} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+id\+\_\+col = df\mbox{[}id\+\_\+col\mbox{]}}
+
+\Hypertarget{classdataset__handler_1_1_dataset_handler_aa22880a230b3b974b2ee146cfadbc127}\index{dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}!processed\_dataset@{processed\_dataset}}
+\index{processed\_dataset@{processed\_dataset}!dataset\_handler.DatasetHandler@{dataset\_handler.DatasetHandler}}
+\doxysubsubsection{\texorpdfstring{processed\_dataset}{processed\_dataset}}
+{\footnotesize\ttfamily \label{classdataset__handler_1_1_dataset_handler_aa22880a230b3b974b2ee146cfadbc127} 
+dataset\+\_\+handler.\+Dataset\+Handler.\+processed\+\_\+dataset}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ProcessedDataset(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ raw\_dataset=raw\_dataset,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ config=self.config.features\_to\_process,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ seq\_loader=sequence\_loader,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ go\_loader=go\_loader,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ classifier\_dataset\_config=self.config.classifier\_definition,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ build\_zero\_shot\_dataset=self.build\_zero\_shot\_dataset}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/\mbox{\hyperlink{dataset__handler_8py}{dataset\+\_\+handler.\+py}}\end{DoxyCompactItemize}

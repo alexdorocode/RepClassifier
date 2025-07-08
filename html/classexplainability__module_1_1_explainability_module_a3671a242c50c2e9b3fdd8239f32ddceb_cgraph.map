@@ -1,0 +1,18 @@
+<map id="explainability_module.ExplainabilityModule.explain" name="explainability_module.ExplainabilityModule.explain">
+<area shape="rect" id="Node000001" title="Compute feature attributions for the given input and model type." alt="" coords="5,136,232,177"/>
+<area shape="rect" id="Node000002" href="$classexplainability__module_1_1_explainability_module.html#afc955111f3c8cb53bedc36a54b285a51" title="Explain KNN models using SHAP KernelExplainer." alt="" coords="280,5,506,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,133,206,95,279,57,297,49,299,54,281,61,209,100,150,138"/>
+<area shape="rect" id="Node000003" href="$classexplainability__module_1_1_explainability_module.html#a41fb95da0acb3d7c951e2f47adcdbc75" title="Explain linear models (logistic regression, SVM) using SHAP LinearExplainer." alt="" coords="280,71,506,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,133,289,113,290,118,208,138"/>
+<area shape="rect" id="Node000005" href="$classexplainability__module_1_1_explainability_module.html#aea0c7217b806fae40a43233fd3d50939" title="Explain MLP models using Integrated Gradients." alt="" coords="280,136,506,177"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="232,154,264,154,264,159,232,159"/>
+<area shape="rect" id="Node000006" href="$classexplainability__module_1_1_explainability_module.html#a9565b9d11820e60a38e94e48b326e6f3" title="Explain Random Forest models using SHAP TreeExplainer." alt="" coords="280,201,506,242"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="208,175,290,195,289,200,206,180"/>
+<area shape="rect" id="Node000007" href="$classexplainability__module_1_1_explainability_module.html#abdb5f7e054dcd919ae6c687e6814f239" title="Explain XGBoost models using SHAP TreeExplainer." alt="" coords="280,267,506,307"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="150,175,209,213,281,251,299,259,297,264,279,256,206,218,147,179"/>
+<area shape="rect" id="Node000004" href="$classexplainability__module_1_1_explainability_module.html#a3c497a7244f7962f790da373ed704aa3" title="Build a summary DataFrame from SHAP or attribution values." alt="" coords="554,136,780,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="482,109,565,129,563,134,481,115"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="616,136,613,126,622,117,640,111,667,109,697,112,714,118,712,123,695,117,667,115,641,117,625,121,619,127,621,135"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="507,154,538,154,538,159,507,159"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="481,198,563,178,565,183,482,203"/>
+</map>

@@ -1,0 +1,248 @@
+\doxysection{mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier Class Reference}
+\hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier}{}\label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+
+
+Multi-\/layer Perceptron (MLP) classifier for protein data.  
+
+
+
+
+Inheritance diagram for mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classmlp__protein__classifier_1_1_m_l_p_protein_classifier__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classmlp__protein__classifier_1_1_m_l_p_protein_classifier__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_abe7fe316e89ce7656a930dea1f69c62b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, input\+\_\+size, output\+\_\+size, num\+\_\+hidden\+\_\+layers, dropout\+\_\+rate=0.\+1, hidden\+\_\+layers\+\_\+mode="{}quadratic\+\_\+increase"{}, custom\+\_\+hidden\+\_\+layers=None, activation\+\_\+function="{}Re\+LU"{}, use\+\_\+batch\+\_\+norm=False, output\+\_\+activation=None, device=None, initialization=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier}{MLPProtein\+Classifier}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a8523515c1c30f3196665bcb8c26cdbd4}{forward}} (self, x)
+\begin{DoxyCompactList}\small\item\em Forward pass through the MLP. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a4c8ab6a4a1ca310ae0c409f342f88937}{hidden\+\_\+layers\+\_\+sizes}}
+\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_ab636e55197d7962ea405387f89d41126}{classifier}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_ac94f59c447cde877a2eb223c0b470a29}{\+\_\+set\+\_\+hidden\+\_\+layers\+\_\+size}} (self, mode, num\+\_\+layers, input\+\_\+size, custom\+\_\+sizes)
+\begin{DoxyCompactList}\small\item\em Determine hidden layer sizes based on mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a789fc38256ff87ea10f545645eee824e}{\+\_\+build\+\_\+classifier}} (self, input\+\_\+size, output\+\_\+size, \mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a4c8ab6a4a1ca310ae0c409f342f88937}{hidden\+\_\+layers\+\_\+sizes}}, dropout\+\_\+rate, activation\+\_\+function, use\+\_\+batch\+\_\+norm, output\+\_\+activation)
+\begin{DoxyCompactList}\small\item\em Build the sequential classifier network. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a86ec421eb76d6b642c0c0fa9ec496fe1}{\+\_\+get\+\_\+initializer}} (self, method)
+\begin{DoxyCompactList}\small\item\em Return a weight initialization function for use with .apply(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Multi-\/layer Perceptron (MLP) classifier for protein data. 
+
+Supports configurable hidden layers, dropout, batch normalization, activation, and weight initialization. 
+
+\label{doc-constructors}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_abe7fe316e89ce7656a930dea1f69c62b}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_abe7fe316e89ce7656a930dea1f69c62b} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{input\+\_\+size}{, }\item[{}]{output\+\_\+size}{, }\item[{}]{num\+\_\+hidden\+\_\+layers}{, }\item[{}]{dropout\+\_\+rate}{ = {\ttfamily 0.1}, }\item[{}]{hidden\+\_\+layers\+\_\+mode}{ = {\ttfamily "{}quadratic\+\_\+increase"{}}, }\item[{}]{custom\+\_\+hidden\+\_\+layers}{ = {\ttfamily None}, }\item[{}]{activation\+\_\+function}{ = {\ttfamily "{}ReLU"{}}, }\item[{}]{use\+\_\+batch\+\_\+norm}{ = {\ttfamily False}, }\item[{}]{output\+\_\+activation}{ = {\ttfamily None}, }\item[{}]{device}{ = {\ttfamily None}, }\item[{}]{initialization}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classmlp__protein__classifier_1_1_m_l_p_protein_classifier}{MLPProtein\+Classifier}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+size} & Number of input features (int) \\
+\hline
+{\em output\+\_\+size} & Number of output classes (int) \\
+\hline
+{\em num\+\_\+hidden\+\_\+layers} & Number of hidden layers (int) \\
+\hline
+{\em dropout\+\_\+rate} & Dropout rate for regularization (float) \\
+\hline
+{\em hidden\+\_\+layers\+\_\+mode} & "{}quadratic\+\_\+increase"{} or "{}custom"{} (str) \\
+\hline
+{\em custom\+\_\+hidden\+\_\+layers} & List of custom hidden layer sizes (list of int) \\
+\hline
+{\em activation\+\_\+function} & Name of activation function (str, e.\+g., "{}\+Re\+LU"{}) \\
+\hline
+{\em use\+\_\+batch\+\_\+norm} & Whether to use batch normalization (bool) \\
+\hline
+{\em output\+\_\+activation} & Optional output activation function (str, e.\+g., "{}\+Sigmoid"{}) \\
+\hline
+{\em device} & Device to use ("{}cpu"{} or "{}cuda"{}), not used directly here \\
+\hline
+{\em initialization} & Weight initialization method ("{}xavier"{}, "{}kaiming"{}, "{}normal"{}, or None) \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_abe7fe316e89ce7656a930dea1f69c62b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_abe7fe316e89ce7656a930dea1f69c62b_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a789fc38256ff87ea10f545645eee824e}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!\_build\_classifier@{\_build\_classifier}}
+\index{\_build\_classifier@{\_build\_classifier}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{\_build\_classifier()}{\_build\_classifier()}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a789fc38256ff87ea10f545645eee824e} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+\_\+build\+\_\+classifier (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{input\+\_\+size}{, }\item[{}]{output\+\_\+size}{, }\item[{}]{hidden\+\_\+layers\+\_\+sizes}{, }\item[{}]{dropout\+\_\+rate}{, }\item[{}]{activation\+\_\+function}{, }\item[{}]{use\+\_\+batch\+\_\+norm}{, }\item[{}]{output\+\_\+activation}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Build the sequential classifier network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+size} & Input feature size \\
+\hline
+{\em output\+\_\+size} & Output class size \\
+\hline
+{\em hidden\+\_\+layers\+\_\+sizes} & List of hidden layer sizes \\
+\hline
+{\em dropout\+\_\+rate} & Dropout rate \\
+\hline
+{\em activation\+\_\+function} & Activation function name \\
+\hline
+{\em use\+\_\+batch\+\_\+norm} & Whether to use batch normalization \\
+\hline
+{\em output\+\_\+activation} & Optional output activation function name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nn.\+Sequential classifier network 
+\end{DoxyReturn}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a86ec421eb76d6b642c0c0fa9ec496fe1}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!\_get\_initializer@{\_get\_initializer}}
+\index{\_get\_initializer@{\_get\_initializer}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{\_get\_initializer()}{\_get\_initializer()}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a86ec421eb76d6b642c0c0fa9ec496fe1} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+\_\+get\+\_\+initializer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{method}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Return a weight initialization function for use with .apply(). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & Initialization method ("{}xavier"{}, "{}kaiming"{}, "{}normal"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Initialization function 
+\end{DoxyReturn}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_ac94f59c447cde877a2eb223c0b470a29}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!\_set\_hidden\_layers\_size@{\_set\_hidden\_layers\_size}}
+\index{\_set\_hidden\_layers\_size@{\_set\_hidden\_layers\_size}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{\_set\_hidden\_layers\_size()}{\_set\_hidden\_layers\_size()}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_ac94f59c447cde877a2eb223c0b470a29} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+\_\+set\+\_\+hidden\+\_\+layers\+\_\+size (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mode}{, }\item[{}]{num\+\_\+layers}{, }\item[{}]{input\+\_\+size}{, }\item[{}]{custom\+\_\+sizes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Determine hidden layer sizes based on mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & "{}quadratic\+\_\+increase"{} or "{}custom"{} \\
+\hline
+{\em num\+\_\+layers} & Number of hidden layers \\
+\hline
+{\em input\+\_\+size} & Input feature size \\
+\hline
+{\em custom\+\_\+sizes} & List of custom hidden layer sizes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of hidden layer sizes 
+\end{DoxyReturn}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a8523515c1c30f3196665bcb8c26cdbd4}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!forward@{forward}}
+\index{forward@{forward}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a8523515c1c30f3196665bcb8c26cdbd4} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+forward (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Forward pass through the MLP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Input tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Output tensor 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_ab636e55197d7962ea405387f89d41126}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!classifier@{classifier}}
+\index{classifier@{classifier}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{classifier}{classifier}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_ab636e55197d7962ea405387f89d41126} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+classifier}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ self.\_build\_classifier(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ input\_size=input\_size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ output\_size=output\_size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ hidden\_layers\_sizes=self.hidden\_layers\_sizes,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ dropout\_rate=dropout\_rate,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ activation\_function=activation\_function,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ use\_batch\_norm=use\_batch\_norm,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ output\_activation=output\_activation}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a4c8ab6a4a1ca310ae0c409f342f88937}\index{mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}!hidden\_layers\_sizes@{hidden\_layers\_sizes}}
+\index{hidden\_layers\_sizes@{hidden\_layers\_sizes}!mlp\_protein\_classifier.MLPProteinClassifier@{mlp\_protein\_classifier.MLPProteinClassifier}}
+\doxysubsubsection{\texorpdfstring{hidden\_layers\_sizes}{hidden\_layers\_sizes}}
+{\footnotesize\ttfamily \label{classmlp__protein__classifier_1_1_m_l_p_protein_classifier_a4c8ab6a4a1ca310ae0c409f342f88937} 
+mlp\+\_\+protein\+\_\+classifier.\+MLPProtein\+Classifier.\+hidden\+\_\+layers\+\_\+sizes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ self.\_set\_hidden\_layers\_size(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ hidden\_layers\_mode,\ num\_hidden\_layers,\ input\_size,\ custom\_hidden\_layers}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/models/\mbox{\hyperlink{mlp__protein__classifier_8py}{mlp\+\_\+protein\+\_\+classifier.\+py}}\end{DoxyCompactItemize}

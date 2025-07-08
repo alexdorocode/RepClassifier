@@ -1,0 +1,344 @@
+\doxysection{explainability\+\_\+module.\+Explainability\+Module Class Reference}
+\hypertarget{classexplainability__module_1_1_explainability_module}{}\label{classexplainability__module_1_1_explainability_module}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+
+
+Unified explainability interface for different model types.  
+
+
+
+
+Collaboration diagram for explainability\+\_\+module.\+Explainability\+Module\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classexplainability__module_1_1_explainability_module__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a89a374f0dbbd700ceaf4c900517110ec}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a26bb09e6e957460246874cb73b2f3c0b}{model}}, \mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a9153598110dec841a3c7b59690d1cb33}{model\+\_\+type}}, \mbox{\hyperlink{classexplainability__module_1_1_explainability_module_aebd3515834610eb652b5a268a442b70f}{device}}=\textquotesingle{}cpu\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classexplainability__module_1_1_explainability_module}{Explainability\+Module}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a3671a242c50c2e9b3fdd8239f32ddceb}{explain}} (self, X, feature\+\_\+names=None, target=None)
+\begin{DoxyCompactList}\small\item\em Compute feature attributions for the given input and model type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a26bb09e6e957460246874cb73b2f3c0b}{model}} = model
+\item 
+str \mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a9153598110dec841a3c7b59690d1cb33}{model\+\_\+type}} = model\+\_\+type.\+lower()
+\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_aebd3515834610eb652b5a268a442b70f}{device}} = device
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a3c497a7244f7962f790da373ed704aa3}{\+\_\+build\+\_\+summary\+\_\+df}} (self, shap\+\_\+values, feature\+\_\+names, n\+\_\+samples)
+\begin{DoxyCompactList}\small\item\em Build a summary Data\+Frame from SHAP or attribution values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a41fb95da0acb3d7c951e2f47adcdbc75}{\+\_\+explain\+\_\+linear}} (self, X, feature\+\_\+names)
+\begin{DoxyCompactList}\small\item\em Explain linear models (logistic regression, SVM) using SHAP Linear\+Explainer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_abdb5f7e054dcd919ae6c687e6814f239}{\+\_\+explain\+\_\+xgboost}} (self, X, feature\+\_\+names)
+\begin{DoxyCompactList}\small\item\em Explain XGBoost models using SHAP Tree\+Explainer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_aea0c7217b806fae40a43233fd3d50939}{\+\_\+explain\+\_\+mlp}} (self, X, feature\+\_\+names, target=None)
+\begin{DoxyCompactList}\small\item\em Explain MLP models using Integrated Gradients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_a9565b9d11820e60a38e94e48b326e6f3}{\+\_\+explain\+\_\+random\+\_\+forest}} (self, X, feature\+\_\+names)
+\begin{DoxyCompactList}\small\item\em Explain Random Forest models using SHAP Tree\+Explainer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexplainability__module_1_1_explainability_module_afc955111f3c8cb53bedc36a54b285a51}{\+\_\+explain\+\_\+knn}} (self, X, feature\+\_\+names)
+\begin{DoxyCompactList}\small\item\em Explain KNN models using SHAP Kernel\+Explainer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Unified explainability interface for different model types. 
+
+Supports SHAP for tree/linear models, Integrated Gradients for MLP, and Kernel\+Explainer for KNN. 
+
+\label{doc-constructors}
+\Hypertarget{classexplainability__module_1_1_explainability_module_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classexplainability__module_1_1_explainability_module_a89a374f0dbbd700ceaf4c900517110ec}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a89a374f0dbbd700ceaf4c900517110ec} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{model\+\_\+type}{, }\item[{}]{device}{ = {\ttfamily \textquotesingle{}cpu\textquotesingle{}}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classexplainability__module_1_1_explainability_module}{Explainability\+Module}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Trained model object \\
+\hline
+{\em model\+\_\+type} & Model type string (e.\+g., \textquotesingle{}mlp\textquotesingle{}, \textquotesingle{}logistic\textquotesingle{}, \textquotesingle{}svm\textquotesingle{}, \textquotesingle{}xgboost\textquotesingle{}, \textquotesingle{}random\+\_\+forest\textquotesingle{}, \textquotesingle{}knn\textquotesingle{}) \\
+\hline
+{\em device} & Device to use (\textquotesingle{}cpu\textquotesingle{} or \textquotesingle{}cuda\textquotesingle{}) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classexplainability__module_1_1_explainability_module_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classexplainability__module_1_1_explainability_module_a3c497a7244f7962f790da373ed704aa3}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_build\_summary\_df@{\_build\_summary\_df}}
+\index{\_build\_summary\_df@{\_build\_summary\_df}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_build\_summary\_df()}{\_build\_summary\_df()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a3c497a7244f7962f790da373ed704aa3} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+build\+\_\+summary\+\_\+df (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{shap\+\_\+values}{, }\item[{}]{feature\+\_\+names}{, }\item[{}]{n\+\_\+samples}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Build a summary Data\+Frame from SHAP or attribution values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shap\+\_\+values} & SHAP or attribution values (array or list) \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+{\em n\+\_\+samples} & Number of samples \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with attributions per feature and sample 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classexplainability__module_1_1_explainability_module_a3c497a7244f7962f790da373ed704aa3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_a3c497a7244f7962f790da373ed704aa3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexplainability__module_1_1_explainability_module_afc955111f3c8cb53bedc36a54b285a51}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_explain\_knn@{\_explain\_knn}}
+\index{\_explain\_knn@{\_explain\_knn}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_explain\_knn()}{\_explain\_knn()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_afc955111f3c8cb53bedc36a54b285a51} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+explain\+\_\+knn (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{feature\+\_\+names}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Explain KNN models using SHAP Kernel\+Explainer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Input data \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with SHAP values 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_afc955111f3c8cb53bedc36a54b285a51_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexplainability__module_1_1_explainability_module_a41fb95da0acb3d7c951e2f47adcdbc75}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_explain\_linear@{\_explain\_linear}}
+\index{\_explain\_linear@{\_explain\_linear}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_explain\_linear()}{\_explain\_linear()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a41fb95da0acb3d7c951e2f47adcdbc75} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+explain\+\_\+linear (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{feature\+\_\+names}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Explain linear models (logistic regression, SVM) using SHAP Linear\+Explainer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Input data \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with SHAP values 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_a41fb95da0acb3d7c951e2f47adcdbc75_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_a41fb95da0acb3d7c951e2f47adcdbc75_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexplainability__module_1_1_explainability_module_aea0c7217b806fae40a43233fd3d50939}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_explain\_mlp@{\_explain\_mlp}}
+\index{\_explain\_mlp@{\_explain\_mlp}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_explain\_mlp()}{\_explain\_mlp()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_aea0c7217b806fae40a43233fd3d50939} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+explain\+\_\+mlp (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{feature\+\_\+names}{, }\item[{}]{target}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Explain MLP models using Integrated Gradients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Input data (numpy array or torch tensor) \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+{\em target} & Target class index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with attributions 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_aea0c7217b806fae40a43233fd3d50939_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_aea0c7217b806fae40a43233fd3d50939_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexplainability__module_1_1_explainability_module_a9565b9d11820e60a38e94e48b326e6f3}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_explain\_random\_forest@{\_explain\_random\_forest}}
+\index{\_explain\_random\_forest@{\_explain\_random\_forest}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_explain\_random\_forest()}{\_explain\_random\_forest()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a9565b9d11820e60a38e94e48b326e6f3} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+explain\+\_\+random\+\_\+forest (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{feature\+\_\+names}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Explain Random Forest models using SHAP Tree\+Explainer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Input data \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with SHAP values 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_a9565b9d11820e60a38e94e48b326e6f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_a9565b9d11820e60a38e94e48b326e6f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexplainability__module_1_1_explainability_module_abdb5f7e054dcd919ae6c687e6814f239}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!\_explain\_xgboost@{\_explain\_xgboost}}
+\index{\_explain\_xgboost@{\_explain\_xgboost}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{\_explain\_xgboost()}{\_explain\_xgboost()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_abdb5f7e054dcd919ae6c687e6814f239} 
+explainability\+\_\+module.\+Explainability\+Module.\+\_\+explain\+\_\+xgboost (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{feature\+\_\+names}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Explain XGBoost models using SHAP Tree\+Explainer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Input data \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with SHAP values 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_abdb5f7e054dcd919ae6c687e6814f239_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexplainability__module_1_1_explainability_module_a3671a242c50c2e9b3fdd8239f32ddceb}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!explain@{explain}}
+\index{explain@{explain}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{explain()}{explain()}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a3671a242c50c2e9b3fdd8239f32ddceb} 
+explainability\+\_\+module.\+Explainability\+Module.\+explain (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{feature\+\_\+names}{ = {\ttfamily None}, }\item[{}]{target}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Compute feature attributions for the given input and model type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Input data (numpy array or torch tensor) \\
+\hline
+{\em feature\+\_\+names} & List of feature names \\
+\hline
+{\em target} & Target class index (for MLP/\+IG) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with feature attributions 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexplainability__module_1_1_explainability_module_a3671a242c50c2e9b3fdd8239f32ddceb_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classexplainability__module_1_1_explainability_module_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classexplainability__module_1_1_explainability_module_aebd3515834610eb652b5a268a442b70f}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!device@{device}}
+\index{device@{device}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_aebd3515834610eb652b5a268a442b70f} 
+explainability\+\_\+module.\+Explainability\+Module.\+device = device}
+
+\Hypertarget{classexplainability__module_1_1_explainability_module_a26bb09e6e957460246874cb73b2f3c0b}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!model@{model}}
+\index{model@{model}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a26bb09e6e957460246874cb73b2f3c0b} 
+explainability\+\_\+module.\+Explainability\+Module.\+model = model}
+
+\Hypertarget{classexplainability__module_1_1_explainability_module_a9153598110dec841a3c7b59690d1cb33}\index{explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}!model\_type@{model\_type}}
+\index{model\_type@{model\_type}!explainability\_module.ExplainabilityModule@{explainability\_module.ExplainabilityModule}}
+\doxysubsubsection{\texorpdfstring{model\_type}{model\_type}}
+{\footnotesize\ttfamily \label{classexplainability__module_1_1_explainability_module_a9153598110dec841a3c7b59690d1cb33} 
+str explainability\+\_\+module.\+Explainability\+Module.\+model\+\_\+type = model\+\_\+type.\+lower()}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/explainability/\mbox{\hyperlink{explainability__module_8py}{explainability\+\_\+module.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="processed_dataset.ProcessedDataset._get_accessions_by_organism" name="processed_dataset.ProcessedDataset._get_accessions_by_organism">
+<area shape="rect" id="Node000001" title="Returns accessions filtered by the selected organisms." alt="" coords="499,5,696,61"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#a3e306570da3337f20f9efd0a0129e30f" title="Returns the accessions of the processed dataset based on the organism discrimination strategy." alt="" coords="251,13,451,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="483,36,451,36,451,30,483,30"/>
+<area shape="rect" id="Node000003" href="$classprocessed__dataset_1_1_processed_dataset.html#a4678f4c183853ed92167bc91b2ed4702" title="Processes and normalizes metrics from the raw dataset." alt="" coords="5,13,203,54"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,36,203,36,203,30,235,30"/>
+</map>

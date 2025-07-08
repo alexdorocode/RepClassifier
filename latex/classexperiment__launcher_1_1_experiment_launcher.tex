@@ -1,0 +1,397 @@
+\doxysection{experiment\+\_\+launcher.\+Experiment\+Launcher Class Reference}
+\hypertarget{classexperiment__launcher_1_1_experiment_launcher}{}\label{classexperiment__launcher_1_1_experiment_launcher}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+
+
+Orchestrates experiment sweeps and final evaluations for all phases.  
+
+
+
+
+Collaboration diagram for experiment\+\_\+launcher.\+Experiment\+Launcher\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classexperiment__launcher_1_1_experiment_launcher__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_af9e924f1e4954d5cb7578b3c44a72b45}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Dict\+Config \mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_aa123b4641ab88d509219a7bb33ea2aca}{cfg}}, str phase\+\_\+1\+\_\+result\+\_\+path=None, str phase\+\_\+2\+\_\+result\+\_\+path=None, str phase\+\_\+3\+\_\+result\+\_\+path=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classexperiment__launcher_1_1_experiment_launcher}{Experiment\+Launcher}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a8bc576566ffde7a87da80ed10036f5db}{run\+\_\+phase\+\_\+1\+\_\+sweep}} (self, str model\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Run a W\&B sweep for phase 1 (model/embedding/feature/training search). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_ad27c7b3a6923420658d831d7661f286d}{run\+\_\+phase\+\_\+2\+\_\+sweep}} (self, str model\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Run a W\&B sweep for phase 2 (model/embedding/feature/training search). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a522674c945894839f6c37c8cd8a88b74}{run\+\_\+phase\+\_\+3\+\_\+sweep}} (self, str model\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Run a W\&B sweep for phase 3 (final model selection and zero-\/shot evaluation). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a18d12c500535f2c74f6849175147f387}{run\+\_\+final\+\_\+evaluation}} (self, str model\+\_\+name, str save\+\_\+model\+\_\+folder, str save\+\_\+metrics\+\_\+path=None)
+\begin{DoxyCompactList}\small\item\em Run final evaluation for the best configurations from all phases. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a09b51739f224ac1f5455d2701f6b5816}{evaluate\+\_\+protein\+\_\+prediction\+\_\+agreement}} (self, str model\+\_\+name, str save\+\_\+model\+\_\+folder, str save\+\_\+metrics\+\_\+path=None, list best\+\_\+configs\+\_\+list=None)
+\begin{DoxyCompactList}\small\item\em Evaluate protein-\/level prediction agreement for the best configurations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_aa123b4641ab88d509219a7bb33ea2aca}{cfg}} = cfg
+\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a65a898da881ccc77ed8f4c1b98ac4f9c}{handler}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a3b5b7b1e6ce0df19efe7902c0b0aadfd}{\+\_\+launch\+\_\+classifier\+\_\+storing\+\_\+zero\+\_\+shot\+\_\+results}} (self, \mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_aa123b4641ab88d509219a7bb33ea2aca}{cfg}}, model\+\_\+name, key, results\+\_\+collection)
+\begin{DoxyCompactList}\small\item\em Launch classifier and store zero-\/shot results for each seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_aa8afc3083c17c1a1b36468a822083516}{\+\_\+launch\+\_\+classifier\+\_\+launcher}} (self, \mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_aa123b4641ab88d509219a7bb33ea2aca}{cfg}}, seed=42)
+\begin{DoxyCompactList}\small\item\em Launch the classifier for a given configuration and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_aac7e3898882baf9d5c0331f1e7908b24}{\+\_\+calculate\+\_\+seed\+\_\+from\+\_\+config}} (self, config, phase\+\_\+num=1, seed\+\_\+offset=42)
+\begin{DoxyCompactList}\small\item\em Calculate a deterministic seed from a config dictionary. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_a08b22bfc4d1dba7aab115edfc31405f0}{\+\_\+validate\+\_\+phase\+\_\+3\+\_\+sweep\+\_\+config}} (self, config)
+\begin{DoxyCompactList}\small\item\em Validate phase 3 sweep config (must have at least 2 features enabled). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__launcher_1_1_experiment_launcher_ad63e91b1a9e032d723015bd58e6d8409}{\+\_\+store\+\_\+metrics\+\_\+csv}} (self, metrics\+\_\+collection, model\+\_\+name, save\+\_\+metrics\+\_\+path=None, file\+\_\+name=None, save\+\_\+as\+\_\+T=True)
+\begin{DoxyCompactList}\small\item\em Store metrics as a CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Orchestrates experiment sweeps and final evaluations for all phases. 
+
+Handles configuration, dataset, and classifier launching for each phase. 
+
+\label{doc-constructors}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_af9e924f1e4954d5cb7578b3c44a72b45}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_af9e924f1e4954d5cb7578b3c44a72b45} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\+Config}]{cfg}{, }\item[{str }]{phase\+\_\+1\+\_\+result\+\_\+path}{ = {\ttfamily None}, }\item[{str }]{phase\+\_\+2\+\_\+result\+\_\+path}{ = {\ttfamily None}, }\item[{str }]{phase\+\_\+3\+\_\+result\+\_\+path}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classexperiment__launcher_1_1_experiment_launcher}{Experiment\+Launcher}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Hydra/\+Omega\+Conf configuration object \\
+\hline
+{\em phase\+\_\+1\+\_\+result\+\_\+path} & Optional path to phase 1 results \\
+\hline
+{\em phase\+\_\+2\+\_\+result\+\_\+path} & Optional path to phase 2 results \\
+\hline
+{\em phase\+\_\+3\+\_\+result\+\_\+path} & Optional path to phase 3 results \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_aac7e3898882baf9d5c0331f1e7908b24}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!\_calculate\_seed\_from\_config@{\_calculate\_seed\_from\_config}}
+\index{\_calculate\_seed\_from\_config@{\_calculate\_seed\_from\_config}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{\_calculate\_seed\_from\_config()}{\_calculate\_seed\_from\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_aac7e3898882baf9d5c0331f1e7908b24} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+\_\+calculate\+\_\+seed\+\_\+from\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config}{, }\item[{}]{phase\+\_\+num}{ = {\ttfamily 1}, }\item[{}]{seed\+\_\+offset}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Calculate a deterministic seed from a config dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Integer seed 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_aac7e3898882baf9d5c0331f1e7908b24_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_aa8afc3083c17c1a1b36468a822083516}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!\_launch\_classifier\_launcher@{\_launch\_classifier\_launcher}}
+\index{\_launch\_classifier\_launcher@{\_launch\_classifier\_launcher}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{\_launch\_classifier\_launcher()}{\_launch\_classifier\_launcher()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_aa8afc3083c17c1a1b36468a822083516} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+\_\+launch\+\_\+classifier\+\_\+launcher (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{cfg}{, }\item[{}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Launch the classifier for a given configuration and seed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Configuration dictionary \\
+\hline
+{\em seed} & Random seed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Metrics and results from the classifier launcher 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_aa8afc3083c17c1a1b36468a822083516_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a3b5b7b1e6ce0df19efe7902c0b0aadfd}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!\_launch\_classifier\_storing\_zero\_shot\_results@{\_launch\_classifier\_storing\_zero\_shot\_results}}
+\index{\_launch\_classifier\_storing\_zero\_shot\_results@{\_launch\_classifier\_storing\_zero\_shot\_results}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{\_launch\_classifier\_storing\_zero\_shot\_results()}{\_launch\_classifier\_storing\_zero\_shot\_results()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a3b5b7b1e6ce0df19efe7902c0b0aadfd} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+\_\+launch\+\_\+classifier\+\_\+storing\+\_\+zero\+\_\+shot\+\_\+results (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{cfg}{, }\item[{}]{model\+\_\+name}{, }\item[{}]{key}{, }\item[{}]{results\+\_\+collection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Launch classifier and store zero-\/shot results for each seed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Configuration dictionary \\
+\hline
+{\em model\+\_\+name} & Name of the model \\
+\hline
+{\em key} & Configuration key \\
+\hline
+{\em results\+\_\+collection} & List to append results to \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a3b5b7b1e6ce0df19efe7902c0b0aadfd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a3b5b7b1e6ce0df19efe7902c0b0aadfd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_ad63e91b1a9e032d723015bd58e6d8409}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!\_store\_metrics\_csv@{\_store\_metrics\_csv}}
+\index{\_store\_metrics\_csv@{\_store\_metrics\_csv}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{\_store\_metrics\_csv()}{\_store\_metrics\_csv()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_ad63e91b1a9e032d723015bd58e6d8409} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+\_\+store\+\_\+metrics\+\_\+csv (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{metrics\+\_\+collection}{, }\item[{}]{model\+\_\+name}{, }\item[{}]{save\+\_\+metrics\+\_\+path}{ = {\ttfamily None}, }\item[{}]{file\+\_\+name}{ = {\ttfamily None}, }\item[{}]{save\+\_\+as\+\_\+T}{ = {\ttfamily True}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Store metrics as a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em metrics\+\_\+collection} & Dictionary or list of metrics \\
+\hline
+{\em model\+\_\+name} & Name of the model \\
+\hline
+{\em save\+\_\+metrics\+\_\+path} & Path to save metrics CSV \\
+\hline
+{\em file\+\_\+name} & Optional custom file name \\
+\hline
+{\em save\+\_\+as\+\_\+T} & If True, transpose Data\+Frame before saving \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_ad63e91b1a9e032d723015bd58e6d8409_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a08b22bfc4d1dba7aab115edfc31405f0}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!\_validate\_phase\_3\_sweep\_config@{\_validate\_phase\_3\_sweep\_config}}
+\index{\_validate\_phase\_3\_sweep\_config@{\_validate\_phase\_3\_sweep\_config}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{\_validate\_phase\_3\_sweep\_config()}{\_validate\_phase\_3\_sweep\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a08b22bfc4d1dba7aab115edfc31405f0} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+\_\+validate\+\_\+phase\+\_\+3\+\_\+sweep\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Validate phase 3 sweep config (must have at least 2 features enabled). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if valid, False otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a08b22bfc4d1dba7aab115edfc31405f0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a09b51739f224ac1f5455d2701f6b5816}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!evaluate\_protein\_prediction\_agreement@{evaluate\_protein\_prediction\_agreement}}
+\index{evaluate\_protein\_prediction\_agreement@{evaluate\_protein\_prediction\_agreement}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{evaluate\_protein\_prediction\_agreement()}{evaluate\_protein\_prediction\_agreement()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a09b51739f224ac1f5455d2701f6b5816} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+evaluate\+\_\+protein\+\_\+prediction\+\_\+agreement (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{model\+\_\+name}{, }\item[{str}]{save\+\_\+model\+\_\+folder}{, }\item[{str }]{save\+\_\+metrics\+\_\+path}{ = {\ttfamily None}, }\item[{list }]{best\+\_\+configs\+\_\+list}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Evaluate protein-\/level prediction agreement for the best configurations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model \\
+\hline
+{\em save\+\_\+model\+\_\+folder} & Folder to save models \\
+\hline
+{\em save\+\_\+metrics\+\_\+path} & Path to save metrics CSV \\
+\hline
+{\em best\+\_\+configs\+\_\+list} & List of best configuration keys to evaluate \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a09b51739f224ac1f5455d2701f6b5816_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a18d12c500535f2c74f6849175147f387}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!run\_final\_evaluation@{run\_final\_evaluation}}
+\index{run\_final\_evaluation@{run\_final\_evaluation}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{run\_final\_evaluation()}{run\_final\_evaluation()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a18d12c500535f2c74f6849175147f387} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+run\+\_\+final\+\_\+evaluation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{model\+\_\+name}{, }\item[{str}]{save\+\_\+model\+\_\+folder}{, }\item[{str }]{save\+\_\+metrics\+\_\+path}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Run final evaluation for the best configurations from all phases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model \\
+\hline
+{\em save\+\_\+model\+\_\+folder} & Folder to save trained models \\
+\hline
+{\em save\+\_\+metrics\+\_\+path} & Path to save metrics CSV \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a18d12c500535f2c74f6849175147f387_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a8bc576566ffde7a87da80ed10036f5db}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!run\_phase\_1\_sweep@{run\_phase\_1\_sweep}}
+\index{run\_phase\_1\_sweep@{run\_phase\_1\_sweep}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{run\_phase\_1\_sweep()}{run\_phase\_1\_sweep()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a8bc576566ffde7a87da80ed10036f5db} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+run\+\_\+phase\+\_\+1\+\_\+sweep (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{model\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Run a W\&B sweep for phase 1 (model/embedding/feature/training search). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model to sweep \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a8bc576566ffde7a87da80ed10036f5db_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_ad27c7b3a6923420658d831d7661f286d}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!run\_phase\_2\_sweep@{run\_phase\_2\_sweep}}
+\index{run\_phase\_2\_sweep@{run\_phase\_2\_sweep}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{run\_phase\_2\_sweep()}{run\_phase\_2\_sweep()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_ad27c7b3a6923420658d831d7661f286d} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+run\+\_\+phase\+\_\+2\+\_\+sweep (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{model\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Run a W\&B sweep for phase 2 (model/embedding/feature/training search). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model to sweep \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_ad27c7b3a6923420658d831d7661f286d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a522674c945894839f6c37c8cd8a88b74}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!run\_phase\_3\_sweep@{run\_phase\_3\_sweep}}
+\index{run\_phase\_3\_sweep@{run\_phase\_3\_sweep}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{run\_phase\_3\_sweep()}{run\_phase\_3\_sweep()}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a522674c945894839f6c37c8cd8a88b74} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+run\+\_\+phase\+\_\+3\+\_\+sweep (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{model\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Run a W\&B sweep for phase 3 (final model selection and zero-\/shot evaluation). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model to sweep \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__launcher_1_1_experiment_launcher_a522674c945894839f6c37c8cd8a88b74_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_aa123b4641ab88d509219a7bb33ea2aca}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!cfg@{cfg}}
+\index{cfg@{cfg}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{cfg}{cfg}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_aa123b4641ab88d509219a7bb33ea2aca} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+cfg = cfg}
+
+\Hypertarget{classexperiment__launcher_1_1_experiment_launcher_a65a898da881ccc77ed8f4c1b98ac4f9c}\index{experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}!handler@{handler}}
+\index{handler@{handler}!experiment\_launcher.ExperimentLauncher@{experiment\_launcher.ExperimentLauncher}}
+\doxysubsubsection{\texorpdfstring{handler}{handler}}
+{\footnotesize\ttfamily \label{classexperiment__launcher_1_1_experiment_launcher_a65a898da881ccc77ed8f4c1b98ac4f9c} 
+experiment\+\_\+launcher.\+Experiment\+Launcher.\+handler}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ExperimentConfigHandler(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ base\_config\_path=cfg.get(\textcolor{stringliteral}{'base\_path'},\ \{\}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ model\_fork\_paths=cfg.get(\textcolor{stringliteral}{'model\_fork\_paths'},\ []),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ embedding\_fork\_path=cfg.get(\textcolor{stringliteral}{'embedding\_fork\_path'},\ \{\}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ feature\_fork\_path=cfg.get(\textcolor{stringliteral}{'feature\_fork\_path'},\ \{\}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ training\_fork\_path=cfg.get(\textcolor{stringliteral}{'training\_fork\_path'},\ \{\}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ phase\_1\_result\_path=phase\_1\_result\_path,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ phase\_2\_result\_path=phase\_2\_result\_path,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ phase\_3\_result\_path=phase\_3\_result\_path,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/launchers/\mbox{\hyperlink{experiment__launcher_8py}{experiment\+\_\+launcher.\+py}}\end{DoxyCompactItemize}

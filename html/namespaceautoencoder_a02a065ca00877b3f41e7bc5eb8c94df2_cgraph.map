@@ -1,0 +1,5 @@
+<map id="autoencoder.generate_hidden_dims" name="autoencoder.generate_hidden_dims">
+<area shape="rect" id="Node000001" title="Generate a list of hidden dimensions from input_dim down to latent_dim using powers of 2." alt="" coords="5,5,151,46"/>
+<area shape="rect" id="Node000002" href="$namespaceautoencoder.html#a71c86f616b512814b5a6359292bf0456" title=" " alt="" coords="199,5,361,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,23,183,23,183,28,151,28"/>
+</map>

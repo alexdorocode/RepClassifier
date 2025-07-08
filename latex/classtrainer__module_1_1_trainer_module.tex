@@ -1,0 +1,506 @@
+\doxysection{trainer\+\_\+module.\+Trainer\+Module Class Reference}
+\hypertarget{classtrainer__module_1_1_trainer_module}{}\label{classtrainer__module_1_1_trainer_module}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+
+
+Training and evaluation wrapper for Py\+Torch and sklearn-\/style models.  
+
+
+
+
+Collaboration diagram for trainer\+\_\+module.\+Trainer\+Module\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classtrainer__module_1_1_trainer_module__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a2a399d13b639a5ddf45ab20277717580}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}{model}}, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_adbeb7507dd6d433a8fc3b7549efcfb3f}{model\+\_\+type}}, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a8b3957d02fb9a2995ff451560f8f9ba9}{device}}=\textquotesingle{}cpu\textquotesingle{}, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a3bc6f52933aaa6022b36109d3f09f6c1}{cv\+\_\+folds}}=5, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aded86c849ee7c2d4b0c4783e1d7f554f}{tracker}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a42ca9417395a83e281af3f7c8815fb52}{cross\+\_\+val\+\_\+balance}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a202dc5239d22c22344cd54d89958fb91}{random\+\_\+seed}}=42, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a5609120d8f1f739e8035969e276e821a}{learning\+\_\+rate}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a5ca4f146ee4de1e9a427f2a31831ddd8}{num\+\_\+epochs}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_af5aec5fae9a1a108f957bc5891a0be66}{optimizer\+\_\+name}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a391645b98994e5423c3b6a9d2af3acbf}{criterion\+\_\+name}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a86831aded336cc3a1415e11e2ae326bb}{batch\+\_\+size}}=None, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a8654b0c820d3185d03863f4f70402138}{early\+\_\+stopping\+\_\+patience}}=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classtrainer__module_1_1_trainer_module}{Trainer\+Module}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a4aa47bee3204ec3da0abd73a93fd5365}{cross\+\_\+validate}} (self, X, y, balance\+\_\+df=None, debug=False)
+\begin{DoxyCompactList}\small\item\em Perform cross-\/validation and return average metrics. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a8e447d1c5d0d3ccbed994ad6aeb31e1d}{evaluate\+\_\+on\+\_\+dataset}} (self, dataset)
+\begin{DoxyCompactList}\small\item\em Evaluate the model on a given dataset (zero-\/shot or test). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a29637d91300a316996584acb25f6a198}{show\+\_\+balance\+\_\+summary}} (self, y\+\_\+train, balance\+\_\+train, y\+\_\+val=None, balance\+\_\+val=None)
+\begin{DoxyCompactList}\small\item\em Show balance summary for training and validation sets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}{model}} = model
+\item 
+str \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_adbeb7507dd6d433a8fc3b7549efcfb3f}{model\+\_\+type}} = model\+\_\+type
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a8b3957d02fb9a2995ff451560f8f9ba9}{device}} = device
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a3bc6f52933aaa6022b36109d3f09f6c1}{cv\+\_\+folds}} = cv\+\_\+folds
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aded86c849ee7c2d4b0c4783e1d7f554f}{tracker}} = tracker
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a42ca9417395a83e281af3f7c8815fb52}{cross\+\_\+val\+\_\+balance}} = cross\+\_\+val\+\_\+balance
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a202dc5239d22c22344cd54d89958fb91}{random\+\_\+seed}} = random\+\_\+seed
+\item 
+float \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a5609120d8f1f739e8035969e276e821a}{learning\+\_\+rate}} = learning\+\_\+rate or 0.\+001
+\item 
+int \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a5ca4f146ee4de1e9a427f2a31831ddd8}{num\+\_\+epochs}} = num\+\_\+epochs or 10
+\item 
+str \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_af5aec5fae9a1a108f957bc5891a0be66}{optimizer\+\_\+name}} = optimizer\+\_\+name or "{}Adam"{}
+\item 
+str \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a391645b98994e5423c3b6a9d2af3acbf}{criterion\+\_\+name}} = criterion\+\_\+name or "{}Cross\+Entropy\+Loss"{}
+\item 
+int \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a86831aded336cc3a1415e11e2ae326bb}{batch\+\_\+size}} = batch\+\_\+size or 32
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a8654b0c820d3185d03863f4f70402138}{early\+\_\+stopping\+\_\+patience}} = early\+\_\+stopping\+\_\+patience
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_af7d1f77308e045e70deff61fd751bed9}{\+\_\+create\+\_\+loaders}} (self, X\+\_\+train, y\+\_\+train, X\+\_\+val, y\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Create Py\+Torch Data\+Loaders for training and validation sets. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a580b0fd3a7ce2e590dedeb9be66524ae}{\+\_\+clone\+\_\+model}} (self)
+\begin{DoxyCompactList}\small\item\em Clone the model for each fold to avoid data leakage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aeab54d944a1ae1fe8dacceaa77473025}{\+\_\+get\+\_\+optimizer}} (self, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}{model}})
+\begin{DoxyCompactList}\small\item\em Get the optimizer for Py\+Torch models. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_af3be048e81655e1bf06c82dab54134ab}{\+\_\+get\+\_\+criterion}} (self)
+\begin{DoxyCompactList}\small\item\em Get the loss function for Py\+Torch models. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aeaf19fe6702f9a97f755a4bc8149d313}{\+\_\+train\+\_\+pytorch}} (self, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}{model}}, train\+\_\+loader, val\+\_\+loader=None, debug=False)
+\begin{DoxyCompactList}\small\item\em Train a Py\+Torch model with optional early stopping. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_a04b5d88ce62f21b6536fe4a9b45e43d6}{\+\_\+compute\+\_\+validation\+\_\+loss}} (self, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}{model}}, val\+\_\+loader, criterion)
+\begin{DoxyCompactList}\small\item\em Compute validation loss for early stopping. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtrainer__module_1_1_trainer_module_ae27ab0062e47a7e5bb6077111263b636}{\+\_\+evaluate\+\_\+pytorch}} (self, \mbox{\hyperlink{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}{model}}, val\+\_\+loader)
+\begin{DoxyCompactList}\small\item\em Evaluate a Py\+Torch model on validation data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Training and evaluation wrapper for Py\+Torch and sklearn-\/style models. 
+
+Supports cross-\/validation, early stopping, and metric tracking. 
+
+\label{doc-constructors}
+\Hypertarget{classtrainer__module_1_1_trainer_module_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a2a399d13b639a5ddf45ab20277717580}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a2a399d13b639a5ddf45ab20277717580} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{model\+\_\+type}{, }\item[{}]{device}{ = {\ttfamily \textquotesingle{}cpu\textquotesingle{}}, }\item[{}]{cv\+\_\+folds}{ = {\ttfamily 5}, }\item[{}]{tracker}{ = {\ttfamily None}, }\item[{}]{cross\+\_\+val\+\_\+balance}{ = {\ttfamily None}, }\item[{}]{random\+\_\+seed}{ = {\ttfamily 42}, }\item[{}]{learning\+\_\+rate}{ = {\ttfamily None}, }\item[{}]{num\+\_\+epochs}{ = {\ttfamily None}, }\item[{}]{optimizer\+\_\+name}{ = {\ttfamily None}, }\item[{}]{criterion\+\_\+name}{ = {\ttfamily None}, }\item[{}]{batch\+\_\+size}{ = {\ttfamily None}, }\item[{}]{early\+\_\+stopping\+\_\+patience}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classtrainer__module_1_1_trainer_module}{Trainer\+Module}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Initialized model (Py\+Torch or sklearn/\+XGB/\+LGBM) \\
+\hline
+{\em model\+\_\+type} & Model type string, e.\+g., \textquotesingle{}mlp\textquotesingle{}, \textquotesingle{}logistic\+\_\+regression\textquotesingle{}, \textquotesingle{}svm\textquotesingle{}, etc. \\
+\hline
+{\em device} & \textquotesingle{}cpu\textquotesingle{} or \textquotesingle{}cuda\textquotesingle{} (used for Py\+Torch) \\
+\hline
+{\em cv\+\_\+folds} & Number of folds for cross-\/validation \\
+\hline
+{\em tracker} & Optional Tracker\+Module instance \\
+\hline
+{\em cross\+\_\+val\+\_\+balance} & Optional stratification feature (e.\+g., \textquotesingle{}organism\textquotesingle{}) \\
+\hline
+{\em random\+\_\+seed} & Random state for reproducibility \\
+\hline
+{\em learning\+\_\+rate} & Optimizer learning rate (MLP only) \\
+\hline
+{\em num\+\_\+epochs} & Number of epochs (MLP only) \\
+\hline
+{\em optimizer\+\_\+name} & Optimizer name (MLP only) \\
+\hline
+{\em criterion\+\_\+name} & Loss function name (MLP only) \\
+\hline
+{\em batch\+\_\+size} & Training batch size (MLP only) \\
+\hline
+{\em early\+\_\+stopping\+\_\+patience} & Early stopping patience (MLP only) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classtrainer__module_1_1_trainer_module_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a580b0fd3a7ce2e590dedeb9be66524ae}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_clone\_model@{\_clone\_model}}
+\index{\_clone\_model@{\_clone\_model}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_clone\_model()}{\_clone\_model()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a580b0fd3a7ce2e590dedeb9be66524ae} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+clone\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Clone the model for each fold to avoid data leakage. 
+
+\begin{DoxyReturn}{Returns}
+A deep copy of the model. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_a580b0fd3a7ce2e590dedeb9be66524ae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a04b5d88ce62f21b6536fe4a9b45e43d6}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_compute\_validation\_loss@{\_compute\_validation\_loss}}
+\index{\_compute\_validation\_loss@{\_compute\_validation\_loss}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_compute\_validation\_loss()}{\_compute\_validation\_loss()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a04b5d88ce62f21b6536fe4a9b45e43d6} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+compute\+\_\+validation\+\_\+loss (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{val\+\_\+loader}{, }\item[{}]{criterion}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Compute validation loss for early stopping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Py\+Torch model \\
+\hline
+{\em val\+\_\+loader} & Data\+Loader for validation data \\
+\hline
+{\em criterion} & Loss function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Average validation loss 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_a04b5d88ce62f21b6536fe4a9b45e43d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_af7d1f77308e045e70deff61fd751bed9}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_create\_loaders@{\_create\_loaders}}
+\index{\_create\_loaders@{\_create\_loaders}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_create\_loaders()}{\_create\_loaders()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_af7d1f77308e045e70deff61fd751bed9} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+create\+\_\+loaders (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X\+\_\+train}{, }\item[{}]{y\+\_\+train}{, }\item[{}]{X\+\_\+val}{, }\item[{}]{y\+\_\+val}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Create Py\+Torch Data\+Loaders for training and validation sets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X\+\_\+train} & Training features \\
+\hline
+{\em y\+\_\+train} & Training labels \\
+\hline
+{\em X\+\_\+val} & Validation features \\
+\hline
+{\em y\+\_\+val} & Validation labels \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+train\+\_\+loader, val\+\_\+loader 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_af7d1f77308e045e70deff61fd751bed9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_ae27ab0062e47a7e5bb6077111263b636}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_evaluate\_pytorch@{\_evaluate\_pytorch}}
+\index{\_evaluate\_pytorch@{\_evaluate\_pytorch}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_evaluate\_pytorch()}{\_evaluate\_pytorch()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_ae27ab0062e47a7e5bb6077111263b636} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+evaluate\+\_\+pytorch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{val\+\_\+loader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Evaluate a Py\+Torch model on validation data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Py\+Torch model \\
+\hline
+{\em val\+\_\+loader} & Data\+Loader for validation data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dictionary of metrics 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_ae27ab0062e47a7e5bb6077111263b636_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_ae27ab0062e47a7e5bb6077111263b636_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_af3be048e81655e1bf06c82dab54134ab}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_get\_criterion@{\_get\_criterion}}
+\index{\_get\_criterion@{\_get\_criterion}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_get\_criterion()}{\_get\_criterion()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_af3be048e81655e1bf06c82dab54134ab} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+get\+\_\+criterion (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Get the loss function for Py\+Torch models. 
+
+\begin{DoxyReturn}{Returns}
+Loss function instance 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_af3be048e81655e1bf06c82dab54134ab_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classtrainer__module_1_1_trainer_module_af3be048e81655e1bf06c82dab54134ab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_aeab54d944a1ae1fe8dacceaa77473025}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_get\_optimizer@{\_get\_optimizer}}
+\index{\_get\_optimizer@{\_get\_optimizer}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_get\_optimizer()}{\_get\_optimizer()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_aeab54d944a1ae1fe8dacceaa77473025} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+get\+\_\+optimizer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Get the optimizer for Py\+Torch models. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Py\+Torch model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Optimizer instance 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_aeab54d944a1ae1fe8dacceaa77473025_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_aeaf19fe6702f9a97f755a4bc8149d313}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!\_train\_pytorch@{\_train\_pytorch}}
+\index{\_train\_pytorch@{\_train\_pytorch}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{\_train\_pytorch()}{\_train\_pytorch()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_aeaf19fe6702f9a97f755a4bc8149d313} 
+trainer\+\_\+module.\+Trainer\+Module.\+\_\+train\+\_\+pytorch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{train\+\_\+loader}{, }\item[{}]{val\+\_\+loader}{ = {\ttfamily None}, }\item[{}]{debug}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Train a Py\+Torch model with optional early stopping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Py\+Torch model \\
+\hline
+{\em train\+\_\+loader} & Data\+Loader for training data \\
+\hline
+{\em val\+\_\+loader} & Data\+Loader for validation data \\
+\hline
+{\em debug} & If True, print debug info \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_aeaf19fe6702f9a97f755a4bc8149d313_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_aeaf19fe6702f9a97f755a4bc8149d313_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a4aa47bee3204ec3da0abd73a93fd5365}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!cross\_validate@{cross\_validate}}
+\index{cross\_validate@{cross\_validate}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{cross\_validate()}{cross\_validate()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a4aa47bee3204ec3da0abd73a93fd5365} 
+trainer\+\_\+module.\+Trainer\+Module.\+cross\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{, }\item[{}]{y}{, }\item[{}]{balance\+\_\+df}{ = {\ttfamily None}, }\item[{}]{debug}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Perform cross-\/validation and return average metrics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & Features (numpy array) \\
+\hline
+{\em y} & Labels (numpy array) \\
+\hline
+{\em balance\+\_\+df} & Optional stratification column \\
+\hline
+{\em debug} & If True, print debug info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+avg\+\_\+acc, avg\+\_\+f1, avg\+\_\+precision, avg\+\_\+recall, fold\+\_\+metrics 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_a4aa47bee3204ec3da0abd73a93fd5365_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a8e447d1c5d0d3ccbed994ad6aeb31e1d}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!evaluate\_on\_dataset@{evaluate\_on\_dataset}}
+\index{evaluate\_on\_dataset@{evaluate\_on\_dataset}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{evaluate\_on\_dataset()}{evaluate\_on\_dataset()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a8e447d1c5d0d3ccbed994ad6aeb31e1d} 
+trainer\+\_\+module.\+Trainer\+Module.\+evaluate\+\_\+on\+\_\+dataset (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{dataset}{}\end{DoxyParamCaption})}
+
+
+
+Evaluate the model on a given dataset (zero-\/shot or test). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & Py\+Torch Tensor\+Dataset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dictionary of metrics 
+\end{DoxyReturn}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a29637d91300a316996584acb25f6a198}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!show\_balance\_summary@{show\_balance\_summary}}
+\index{show\_balance\_summary@{show\_balance\_summary}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{show\_balance\_summary()}{show\_balance\_summary()}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a29637d91300a316996584acb25f6a198} 
+trainer\+\_\+module.\+Trainer\+Module.\+show\+\_\+balance\+\_\+summary (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{y\+\_\+train}{, }\item[{}]{balance\+\_\+train}{, }\item[{}]{y\+\_\+val}{ = {\ttfamily None}, }\item[{}]{balance\+\_\+val}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Show balance summary for training and validation sets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y\+\_\+train} & Labels for training set \\
+\hline
+{\em balance\+\_\+train} & Balance column values for training set \\
+\hline
+{\em y\+\_\+val} & Labels for validation set (optional) \\
+\hline
+{\em balance\+\_\+val} & Balance column values for validation set (optional) \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtrainer__module_1_1_trainer_module_a29637d91300a316996584acb25f6a198_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classtrainer__module_1_1_trainer_module_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classtrainer__module_1_1_trainer_module_a86831aded336cc3a1415e11e2ae326bb}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!batch\_size@{batch\_size}}
+\index{batch\_size@{batch\_size}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{batch\_size}{batch\_size}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a86831aded336cc3a1415e11e2ae326bb} 
+int trainer\+\_\+module.\+Trainer\+Module.\+batch\+\_\+size = batch\+\_\+size or 32}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a391645b98994e5423c3b6a9d2af3acbf}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!criterion\_name@{criterion\_name}}
+\index{criterion\_name@{criterion\_name}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{criterion\_name}{criterion\_name}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a391645b98994e5423c3b6a9d2af3acbf} 
+trainer\+\_\+module.\+Trainer\+Module.\+criterion\+\_\+name = criterion\+\_\+name or "{}Cross\+Entropy\+Loss"{}}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a42ca9417395a83e281af3f7c8815fb52}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!cross\_val\_balance@{cross\_val\_balance}}
+\index{cross\_val\_balance@{cross\_val\_balance}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{cross\_val\_balance}{cross\_val\_balance}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a42ca9417395a83e281af3f7c8815fb52} 
+trainer\+\_\+module.\+Trainer\+Module.\+cross\+\_\+val\+\_\+balance = cross\+\_\+val\+\_\+balance}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a3bc6f52933aaa6022b36109d3f09f6c1}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!cv\_folds@{cv\_folds}}
+\index{cv\_folds@{cv\_folds}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{cv\_folds}{cv\_folds}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a3bc6f52933aaa6022b36109d3f09f6c1} 
+trainer\+\_\+module.\+Trainer\+Module.\+cv\+\_\+folds = cv\+\_\+folds}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a8b3957d02fb9a2995ff451560f8f9ba9}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!device@{device}}
+\index{device@{device}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a8b3957d02fb9a2995ff451560f8f9ba9} 
+trainer\+\_\+module.\+Trainer\+Module.\+device = device}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a8654b0c820d3185d03863f4f70402138}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!early\_stopping\_patience@{early\_stopping\_patience}}
+\index{early\_stopping\_patience@{early\_stopping\_patience}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{early\_stopping\_patience}{early\_stopping\_patience}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a8654b0c820d3185d03863f4f70402138} 
+trainer\+\_\+module.\+Trainer\+Module.\+early\+\_\+stopping\+\_\+patience = early\+\_\+stopping\+\_\+patience}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a5609120d8f1f739e8035969e276e821a}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!learning\_rate@{learning\_rate}}
+\index{learning\_rate@{learning\_rate}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{learning\_rate}{learning\_rate}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a5609120d8f1f739e8035969e276e821a} 
+float trainer\+\_\+module.\+Trainer\+Module.\+learning\+\_\+rate = learning\+\_\+rate or 0.\+001}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!model@{model}}
+\index{model@{model}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_aed5eda2627dbcc7524f8d650ba64f1b6} 
+trainer\+\_\+module.\+Trainer\+Module.\+model = model}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_adbeb7507dd6d433a8fc3b7549efcfb3f}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!model\_type@{model\_type}}
+\index{model\_type@{model\_type}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{model\_type}{model\_type}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_adbeb7507dd6d433a8fc3b7549efcfb3f} 
+str trainer\+\_\+module.\+Trainer\+Module.\+model\+\_\+type = model\+\_\+type}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a5ca4f146ee4de1e9a427f2a31831ddd8}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!num\_epochs@{num\_epochs}}
+\index{num\_epochs@{num\_epochs}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{num\_epochs}{num\_epochs}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a5ca4f146ee4de1e9a427f2a31831ddd8} 
+trainer\+\_\+module.\+Trainer\+Module.\+num\+\_\+epochs = num\+\_\+epochs or 10}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_af5aec5fae9a1a108f957bc5891a0be66}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!optimizer\_name@{optimizer\_name}}
+\index{optimizer\_name@{optimizer\_name}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{optimizer\_name}{optimizer\_name}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_af5aec5fae9a1a108f957bc5891a0be66} 
+str trainer\+\_\+module.\+Trainer\+Module.\+optimizer\+\_\+name = optimizer\+\_\+name or "{}Adam"{}}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_a202dc5239d22c22344cd54d89958fb91}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!random\_seed@{random\_seed}}
+\index{random\_seed@{random\_seed}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{random\_seed}{random\_seed}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_a202dc5239d22c22344cd54d89958fb91} 
+trainer\+\_\+module.\+Trainer\+Module.\+random\+\_\+seed = random\+\_\+seed}
+
+\Hypertarget{classtrainer__module_1_1_trainer_module_aded86c849ee7c2d4b0c4783e1d7f554f}\index{trainer\_module.TrainerModule@{trainer\_module.TrainerModule}!tracker@{tracker}}
+\index{tracker@{tracker}!trainer\_module.TrainerModule@{trainer\_module.TrainerModule}}
+\doxysubsubsection{\texorpdfstring{tracker}{tracker}}
+{\footnotesize\ttfamily \label{classtrainer__module_1_1_trainer_module_aded86c849ee7c2d4b0c4783e1d7f554f} 
+trainer\+\_\+module.\+Trainer\+Module.\+tracker = tracker}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/training/\mbox{\hyperlink{trainer__module_8py}{trainer\+\_\+module.\+py}}\end{DoxyCompactItemize}

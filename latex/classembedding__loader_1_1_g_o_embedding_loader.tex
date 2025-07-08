@@ -1,0 +1,152 @@
+\doxysection{embedding\+\_\+loader.\+GOEmbedding\+Loader Class Reference}
+\hypertarget{classembedding__loader_1_1_g_o_embedding_loader}{}\label{classembedding__loader_1_1_g_o_embedding_loader}\index{embedding\_loader.GOEmbeddingLoader@{embedding\_loader.GOEmbeddingLoader}}
+
+
+Loader for GO embeddings, with support for aggregation and autoencoding.  
+
+
+
+
+Inheritance diagram for embedding\+\_\+loader.\+GOEmbedding\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classembedding__loader_1_1_g_o_embedding_loader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for embedding\+\_\+loader.\+GOEmbedding\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classembedding__loader_1_1_g_o_embedding_loader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_g_o_embedding_loader_a6ac92b69d12f21488f946614eb181190}{load}} (self, int input\+\_\+dim, int emb\+\_\+dim, int aggregated\+\_\+dim, str aggregation\+\_\+strategy, list go\+\_\+categories, use\+\_\+autoencoder=False, autoencoded\+\_\+embeddings=False)
+\begin{DoxyCompactList}\small\item\em Load GO embeddings with the specified configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader}{embedding\+\_\+loader.\+Embedding\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a5ae68a36fd8b28ee25cfa328b93d5cbc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a0b03065405bbbbb74509f1636cbdc008}{embedding\+\_\+sequence\+\_\+paths}}=None, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a2ecbddf2c2181cb17eb3509abbed2764}{ae\+\_\+paths}}=None, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a531d56149d7581e38652f80e2028ea28}{autoencoded\+\_\+seq\+\_\+embeddings}}=None, \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_aaddb1d327fe6207294f13764a6b0a021}{autoencoded\+\_\+go\+\_\+embeddings}}=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classembedding__loader_1_1_embedding_loader}{Embedding\+Loader}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_g_o_embedding_loader_a2c2bf0974e890365e25360aa343ffeb2}{\+\_\+resolve\+\_\+go\+\_\+embedding\+\_\+path}} (self, input\+\_\+dim, emb\+\_\+dim, aggregated\+\_\+dim, aggregation\+\_\+strategy, go\+\_\+categories, autoencoded\+\_\+embeddings)
+\begin{DoxyCompactList}\small\item\em Resolves the file path for the requested GO embedding configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader}{embedding\+\_\+loader.\+Embedding\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a03903a37344d00c95c0cd81a7602be80}{\+\_\+load\+\_\+flat\+\_\+csv\+\_\+embeddings}} (self, path, id\+\_\+col=0, target\+\_\+dim=None, ae\+\_\+model=None)
+\begin{DoxyCompactList}\small\item\em Shared method to load embeddings from flattened CSV. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a5bf19b8270b4616effafa3cf25d073cd}{\+\_\+load\+\_\+autoencoder}} (self, model\+\_\+name, input\+\_\+dim, target\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em Loads an autoencoder model for the given model name and dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader}{embedding\+\_\+loader.\+Embedding\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a0b03065405bbbbb74509f1636cbdc008}{embedding\+\_\+sequence\+\_\+paths}} = embedding\+\_\+sequence\+\_\+paths
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a2ecbddf2c2181cb17eb3509abbed2764}{ae\+\_\+paths}} = ae\+\_\+paths
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_a531d56149d7581e38652f80e2028ea28}{autoencoded\+\_\+seq\+\_\+embeddings}} = autoencoded\+\_\+seq\+\_\+embeddings
+\item 
+\mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_aaddb1d327fe6207294f13764a6b0a021}{autoencoded\+\_\+go\+\_\+embeddings}} = autoencoded\+\_\+go\+\_\+embeddings
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Loader for GO embeddings, with support for aggregation and autoencoding. 
+
+\label{doc-func-members}
+\Hypertarget{classembedding__loader_1_1_g_o_embedding_loader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classembedding__loader_1_1_g_o_embedding_loader_a2c2bf0974e890365e25360aa343ffeb2}\index{embedding\_loader.GOEmbeddingLoader@{embedding\_loader.GOEmbeddingLoader}!\_resolve\_go\_embedding\_path@{\_resolve\_go\_embedding\_path}}
+\index{\_resolve\_go\_embedding\_path@{\_resolve\_go\_embedding\_path}!embedding\_loader.GOEmbeddingLoader@{embedding\_loader.GOEmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{\_resolve\_go\_embedding\_path()}{\_resolve\_go\_embedding\_path()}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_g_o_embedding_loader_a2c2bf0974e890365e25360aa343ffeb2} 
+embedding\+\_\+loader.\+GOEmbedding\+Loader.\+\_\+resolve\+\_\+go\+\_\+embedding\+\_\+path (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{input\+\_\+dim}{, }\item[{}]{emb\+\_\+dim}{, }\item[{}]{aggregated\+\_\+dim}{, }\item[{}]{aggregation\+\_\+strategy}{, }\item[{}]{go\+\_\+categories}{, }\item[{}]{autoencoded\+\_\+embeddings}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Resolves the file path for the requested GO embedding configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+dim} & Input dimension. \\
+\hline
+{\em emb\+\_\+dim} & Embedding dimension. \\
+\hline
+{\em aggregated\+\_\+dim} & Aggregated dimension. \\
+\hline
+{\em aggregation\+\_\+strategy} & Aggregation strategy. \\
+\hline
+{\em go\+\_\+categories} & List of GO categories. \\
+\hline
+{\em autoencoded\+\_\+embeddings} & If True, use autoencoded embeddings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Path to the embedding file. \+:raises Value\+Error\+: If no matching embedding file is found. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classembedding__loader_1_1_g_o_embedding_loader_a2c2bf0974e890365e25360aa343ffeb2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classembedding__loader_1_1_g_o_embedding_loader_a6ac92b69d12f21488f946614eb181190}\index{embedding\_loader.GOEmbeddingLoader@{embedding\_loader.GOEmbeddingLoader}!load@{load}}
+\index{load@{load}!embedding\_loader.GOEmbeddingLoader@{embedding\_loader.GOEmbeddingLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classembedding__loader_1_1_g_o_embedding_loader_a6ac92b69d12f21488f946614eb181190} 
+embedding\+\_\+loader.\+GOEmbedding\+Loader.\+load (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{input\+\_\+dim}{, }\item[{int}]{emb\+\_\+dim}{, }\item[{int}]{aggregated\+\_\+dim}{, }\item[{str}]{aggregation\+\_\+strategy}{, }\item[{list}]{go\+\_\+categories}{, }\item[{}]{use\+\_\+autoencoder}{ = {\ttfamily False}, }\item[{}]{autoencoded\+\_\+embeddings}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Load GO embeddings with the specified configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+dim} & Input dimension. \\
+\hline
+{\em emb\+\_\+dim} & Embedding dimension. \\
+\hline
+{\em aggregated\+\_\+dim} & Aggregated dimension. \\
+\hline
+{\em aggregation\+\_\+strategy} & Aggregation strategy (e.\+g., \textquotesingle{}mean\+\_\+pooling\textquotesingle{}). \\
+\hline
+{\em go\+\_\+categories} & List of GO categories. \\
+\hline
+{\em use\+\_\+autoencoder} & If True, use autoencoder for compression. \\
+\hline
+{\em autoencoded\+\_\+embeddings} & If True, load precomputed autoencoded embeddings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame with GO embeddings. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classembedding__loader_1_1_embedding_loader_ab8af4713cda2f9476bd09d7349ea1d40}{embedding\+\_\+loader.\+Embedding\+Loader}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classembedding__loader_1_1_g_o_embedding_loader_a6ac92b69d12f21488f946614eb181190_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/features/\mbox{\hyperlink{embedding__loader_8py}{embedding\+\_\+loader.\+py}}\end{DoxyCompactItemize}

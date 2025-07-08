@@ -1,0 +1,5 @@
+<map id="classifier_dataset.ClassifierDataset" name="classifier_dataset.ClassifierDataset">
+<area shape="rect" id="Node000001" title="PyTorch Dataset for processed protein classification data." alt="" coords="5,120,177,486"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="63,5,120,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,86,94,120,88,120,88,86"/>
+</map>

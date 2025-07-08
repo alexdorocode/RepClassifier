@@ -1,0 +1,18 @@
+var searchData=
+[
+  ['cfg_0',['cfg',['../classexperiment__launcher_1_1_experiment_launcher.html#aa123b4641ab88d509219a7bb33ea2aca',1,'experiment_launcher::ExperimentLauncher']]],
+  ['classifier_1',['classifier',['../classmlp__protein__classifier_1_1_m_l_p_protein_classifier.html#ab636e55197d7962ea405387f89d41126',1,'mlp_protein_classifier::MLPProteinClassifier']]],
+  ['classifier_5fdataset_2',['classifier_dataset',['../classclassifier__launcher_1_1_classifier_launcher.html#ab73d78e8206ee56de1825d038482d7d3',1,'classifier_launcher::ClassifierLauncher']]],
+  ['classifier_5fdefinition_3',['classifier_definition',['../classdataset__config_1_1_dataset_config_reader.html#af1402d1fbbff33716dcc71fd33545946',1,'dataset_config::DatasetConfigReader']]],
+  ['color_4',['color',['../namespaceplot__by__model.html#ab1d67e50248618629b921c8a8fd9ba15',1,'plot_by_model.color'],['../namespaceplot__by__model__f1.html#a7f4b61a962c9ffd804ca21310d48ec89',1,'plot_by_model_f1.color'],['../namespaceplot__by__policy.html#a4873ce8fc70c3026cbec7145b430b645',1,'plot_by_policy.color'],['../namespaceplot__stacked__aggreement.html#a696e87172436f8a30c4e174943062e17',1,'plot_stacked_aggreement.color'],['../namespaceplot__stacked__binary__aggreement.html#a35154b3b866dacfae662709c7a408b1a',1,'plot_stacked_binary_aggreement.color']]],
+  ['colormap_5',['colormap',['../namespaceplot__stacked__aggreement.html#a284a488335eacbf7847b69e473b1a288',1,'plot_stacked_aggreement.colormap'],['../namespaceplot__stacked__binary__aggreement.html#ac0af93102c44b5c6aab9e2f449d36a10',1,'plot_stacked_binary_aggreement.colormap'],['../namespaceplot__stacked__incorrect__agreement.html#a25d47bd402ece6642674adc1aae3845f',1,'plot_stacked_incorrect_agreement.colormap']]],
+  ['colors_6',['colors',['../namespaceplot__by__policy.html#ae741cd680919351bdc013e7388730ada',1,'plot_by_policy']]],
+  ['config_7',['config',['../classdataset__handler_1_1_dataset_handler.html#a3afb15c2e619112bf97a8cd24d13bcae',1,'dataset_handler.DatasetHandler.config'],['../classprocessed__dataset_1_1_processed_dataset.html#a2a69f47c595edeab7eb76c8a8a2c9dc4',1,'processed_dataset.ProcessedDataset.config']]],
+  ['config_5freader_8',['config_reader',['../classclassifier__launcher_1_1_classifier_launcher.html#afed7402987989373fc51b1f0844202ed',1,'classifier_launcher::ClassifierLauncher']]],
+  ['configs_9',['configs',['../classexperiment__config__handler_1_1_experiment_config_handler.html#aeb07bef7b5f9131f8b4a255b6ef38a65',1,'experiment_config_handler::ExperimentConfigHandler']]],
+  ['count_10',['count',['../namespacerun__wandb__agent__phase1.html#a2684552c9c662c2b79255b5ead962a6f',1,'run_wandb_agent_phase1.count'],['../namespacerun__wandb__agent__phase2.html#ab2fb2cd7271707dc974935360adf14a4',1,'run_wandb_agent_phase2.count'],['../namespacerun__wandb__agent__phase3.html#a5275031fcc7fdf11a623dac7d9a5c861',1,'run_wandb_agent_phase3.count']]],
+  ['criterion_5fname_11',['criterion_name',['../classtrainer__module_1_1_trainer_module.html#a391645b98994e5423c3b6a9d2af3acbf',1,'trainer_module::TrainerModule']]],
+  ['cross_5fval_5fbalance_12',['cross_val_balance',['../classtrainer__module_1_1_trainer_module.html#a42ca9417395a83e281af3f7c8815fb52',1,'trainer_module::TrainerModule']]],
+  ['csv_5ffiles_13',['csv_files',['../namespaceprocess__result__csv__phase__1.html#a06cb769e0d0d4560710069e4ac8c2068',1,'process_result_csv_phase_1.csv_files'],['../namespaceprocess__result__csv__phase__2.html#a6971030e3fedf0e99998dc2bf891c90c',1,'process_result_csv_phase_2.csv_files']]],
+  ['cv_5ffolds_14',['cv_folds',['../classtrainer__module_1_1_trainer_module.html#a3bc6f52933aaa6022b36109d3f09f6c1',1,'trainer_module::TrainerModule']]]
+];

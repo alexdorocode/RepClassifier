@@ -1,0 +1,26 @@
+\doxysection{project\+\_\+root/utils/feature\+\_\+processor.py File Reference}
+\hypertarget{feature__processor_8py}{}\label{feature__processor_8py}\index{project\_root/utils/feature\_processor.py@{project\_root/utils/feature\_processor.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacefeature__processor}{feature\+\_\+processor}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacefeature__processor_a46efa1bfa3dc7749a761d31b3afad652}{feature\+\_\+processor.\+process\+\_\+embeddings\+\_\+and\+\_\+attention}} (embeddings\+\_\+array, attention\+\_\+weights\+\_\+array, process\+\_\+attention\+\_\+weights=True, reduce\+\_\+method=None, pca\+\_\+method=\textquotesingle{}threshold\textquotesingle{}, threshold=0.\+95, random\+\_\+projection\+\_\+dim=1000, random\+\_\+projection\+\_\+method=\textquotesingle{}global\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Applies optional random projection and dimensionality reduction to embeddings and attention weights. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_aad9ee55a805512f9b058b4657afed355}{feature\+\_\+processor.\+flatten\+\_\+attention\+\_\+weights}} (attention\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Flattens a list of attention weight matrices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a223997afb229ac9fc75c1dffb5964c6c}{feature\+\_\+processor.\+pad\+\_\+attention\+\_\+weights}} (flattened\+\_\+attention\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Pads flattened attention weights to ensure uniform length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_ac0888d5b2d770a3abfb26190f69fb252}{feature\+\_\+processor.\+apply\+\_\+random\+\_\+projection\+\_\+globaly}} (data, n\+\_\+components=1000)
+\begin{DoxyCompactList}\small\item\em Applies sparse random projection to reduce dimensionality. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a7c392b33f11a38a4c920e4bb2928db4e}{feature\+\_\+processor.\+apply\+\_\+random\+\_\+projection\+\_\+by\+\_\+prot}} (data, n\+\_\+components=1000)
+\begin{DoxyCompactList}\small\item\em Applies sparse random projection to each protein individually. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a660e1ba38d99b091b4732309619caf9a}{feature\+\_\+processor.\+get\+\_\+best\+\_\+pca\+\_\+components}} (data, method=\textquotesingle{}threshold\textquotesingle{}, threshold=0.\+95)
+\begin{DoxyCompactList}\small\item\em Determine optimal number of PCA components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a39749084fdf6c3c4c12f2a15de2947c9}{feature\+\_\+processor.\+apply\+\_\+pca}} (data, method=\textquotesingle{}threshold\textquotesingle{}, pca\+\_\+components=100, threshold=0.\+95)
+\begin{DoxyCompactList}\small\item\em Apply PCA reduction using threshold or fixed component count. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_aaa7b30cfe2663c7e688a173f82819e84}{feature\+\_\+processor.\+apply\+\_\+tsne}} (data, n\+\_\+components=2, perplexity=30, random\+\_\+state=42)
+\begin{DoxyCompactList}\small\item\em Apply t-\/\+SNE for visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}

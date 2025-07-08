@@ -1,0 +1,6 @@
+<map id="trainer_module.TrainerModule._evaluate_pytorch" name="trainer_module.TrainerModule._evaluate_pytorch">
+<area shape="rect" id="Node000001" title="Evaluate a PyTorch model on validation data." alt="" coords="282,29,478,70"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="423,16,407,10,380,8,355,10,340,15,334,21,336,28,331,29,329,19,337,10,354,5,380,3,408,5,424,11"/>
+<area shape="rect" id="Node000002" href="$classtrainer__module_1_1_trainer_module.html#a4aa47bee3204ec3da0abd73a93fd5365" title="Perform cross&#45;validation and return average metrics." alt="" coords="5,29,234,70"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="266,52,234,52,234,47,266,47"/>
+</map>

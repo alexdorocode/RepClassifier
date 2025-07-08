@@ -1,0 +1,5 @@
+<map id="processed_dataset.ProcessedDataset._build_dataset" name="processed_dataset.ProcessedDataset._build_dataset">
+<area shape="rect" id="Node000001" title="Builds the dataset based on the provided configuration and selected accessions." alt="" coords="5,5,203,46"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#ae01c77c5a32e680ec6406e84a2008c45" title="Returns the top n organisms with the most samples in the dataframe." alt="" coords="251,5,448,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,23,235,23,235,28,203,28"/>
+</map>

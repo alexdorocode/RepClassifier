@@ -1,0 +1,174 @@
+\doxysection{plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement Namespace Reference}
+\hypertarget{namespaceplot__stacked__incorrect__agreement}{}\label{namespaceplot__stacked__incorrect__agreement}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_adcf0c1d8ccd94c9c6a79bef49a0f437f}{file\+\_\+paths}}
+\item 
+list \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a0d76c7680f6b95ac59e7f81255d23f81}{all\+\_\+data}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a8f350023f32e257bdbb451e6e417dee4}{df}} = pd.\+read\+\_\+csv(path)
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a8e9f42e49749854e7e74f17222762ee8}{df\+\_\+all}} = pd.\+concat(\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a0d76c7680f6b95ac59e7f81255d23f81}{all\+\_\+data}}, ignore\+\_\+index=\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b}{True}})
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947}{agg}}
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_abab875c36d1754b653f4b07bc19a1506}{agg80}} = \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947}{agg}}\mbox{[}\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947}{agg}}\mbox{[}"{}agreement\+\_\+ratio"{}\mbox{]} $>$= 0.\+8\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a03941018135aaf6aac3a6ec355467821}{axis}}
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a7d64ac4d32311003e50f7882b2819d92}{pivot}} = agg80.\+pivot(index="{}protein\+\_\+id"{}, columns="{}model\+\_\+type"{}, values="{}incorrect\+\_\+agreement\+\_\+count"{})
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a47b0f957af8b78592e26526fdbfe1c82}{pivot\+\_\+sorted}} = pivot.\+sort\+\_\+values("{}total\+\_\+incorrect\+\_\+agreements"{}, ascending=\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b}{True}}).drop(columns="{}total\+\_\+incorrect\+\_\+agreements"{})
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_ad5549adfa7d74b8ad7bd0531b4d66130}{fig}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a4785c29f64cb570b089d5691deaea542}{ax}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a5527e7a781646714e64f3dd3d0b95319}{figsize}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a66d1634809af5330aa8d67cacb27dab7}{kind}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_ade5c80cb94396992eaab7d0f37d149e7}{stacked}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b}{True}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a25d47bd402ece6642674adc1aae3845f}{colormap}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a8ce3896a6156bcb2112f5fa77bd70d3f}{width}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a609f47261e61823a356791b6bd70a03a}{dpi}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!agg@{agg}}
+\index{agg@{agg}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{agg}{agg}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947} 
+tuple plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+agg}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ (}
+\DoxyCodeLine{00002\ \ \ \ \ df\_all.groupby([\textcolor{stringliteral}{"{}protein\_id"{}},\ \textcolor{stringliteral}{"{}model\_type"{}}])}
+\DoxyCodeLine{00003\ \ \ \ \ .agg(correct\_runs=(\textcolor{stringliteral}{"{}is\_correct"{}},\textcolor{stringliteral}{"{}sum"{}}),\ total\_runs=(\textcolor{stringliteral}{"{}is\_correct"{}},\textcolor{stringliteral}{"{}count"{}}))}
+\DoxyCodeLine{00004\ \ \ \ \ .reset\_index()}
+\DoxyCodeLine{00005\ )}
+
+\end{DoxyCode}
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_abab875c36d1754b653f4b07bc19a1506}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!agg80@{agg80}}
+\index{agg80@{agg80}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{agg80}{agg80}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_abab875c36d1754b653f4b07bc19a1506} 
+tuple plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+agg80 = \mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947}{agg}}\mbox{[}\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_abd2257c5d2f51ebf9272c6a609379947}{agg}}\mbox{[}"{}agreement\+\_\+ratio"{}\mbox{]} $>$= 0.\+8\mbox{]}}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a0d76c7680f6b95ac59e7f81255d23f81}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!all\_data@{all\_data}}
+\index{all\_data@{all\_data}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{all\_data}{all\_data}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a0d76c7680f6b95ac59e7f81255d23f81} 
+list plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+all\+\_\+data = \mbox{[}$\,$\mbox{]}}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a4785c29f64cb570b089d5691deaea542}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!ax@{ax}}
+\index{ax@{ax}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{ax}{ax}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a4785c29f64cb570b089d5691deaea542} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+ax}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a03941018135aaf6aac3a6ec355467821}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!axis@{axis}}
+\index{axis@{axis}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{axis}{axis}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a03941018135aaf6aac3a6ec355467821} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+axis}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a25d47bd402ece6642674adc1aae3845f}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!colormap@{colormap}}
+\index{colormap@{colormap}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{colormap}{colormap}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a25d47bd402ece6642674adc1aae3845f} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+colormap}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a8f350023f32e257bdbb451e6e417dee4}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!df@{df}}
+\index{df@{df}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{df}{df}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a8f350023f32e257bdbb451e6e417dee4} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+df = pd.\+read\+\_\+csv(path)}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a8e9f42e49749854e7e74f17222762ee8}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!df\_all@{df\_all}}
+\index{df\_all@{df\_all}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{df\_all}{df\_all}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a8e9f42e49749854e7e74f17222762ee8} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+df\+\_\+all = pd.\+concat(\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a0d76c7680f6b95ac59e7f81255d23f81}{all\+\_\+data}}, ignore\+\_\+index=\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b}{True}})}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a609f47261e61823a356791b6bd70a03a}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!dpi@{dpi}}
+\index{dpi@{dpi}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{dpi}{dpi}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a609f47261e61823a356791b6bd70a03a} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+dpi}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_ad5549adfa7d74b8ad7bd0531b4d66130}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!fig@{fig}}
+\index{fig@{fig}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{fig}{fig}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_ad5549adfa7d74b8ad7bd0531b4d66130} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+fig}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a5527e7a781646714e64f3dd3d0b95319}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!figsize@{figsize}}
+\index{figsize@{figsize}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{figsize}{figsize}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a5527e7a781646714e64f3dd3d0b95319} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+figsize}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_adcf0c1d8ccd94c9c6a79bef49a0f437f}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!file\_paths@{file\_paths}}
+\index{file\_paths@{file\_paths}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{file\_paths}{file\_paths}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_adcf0c1d8ccd94c9c6a79bef49a0f437f} 
+dict plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+file\+\_\+paths}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ \{}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}lr"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_lr.csv"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}svm"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_svm.csv"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}rf"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_rf.csv"{}},}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{stringliteral}{"{}xgb"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_xgb.csv"{}},}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{stringliteral}{"{}knn"{}}:\ \textcolor{stringliteral}{"{}./results/zero\_shot\_prediction\_agreement\_knn.csv"{}}}
+\DoxyCodeLine{00007\ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a66d1634809af5330aa8d67cacb27dab7}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!kind@{kind}}
+\index{kind@{kind}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a66d1634809af5330aa8d67cacb27dab7} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+kind}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a7d64ac4d32311003e50f7882b2819d92}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!pivot@{pivot}}
+\index{pivot@{pivot}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{pivot}{pivot}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a7d64ac4d32311003e50f7882b2819d92} 
+tuple plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+pivot = agg80.\+pivot(index="{}protein\+\_\+id"{}, columns="{}model\+\_\+type"{}, values="{}incorrect\+\_\+agreement\+\_\+count"{})}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a47b0f957af8b78592e26526fdbfe1c82}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!pivot\_sorted@{pivot\_sorted}}
+\index{pivot\_sorted@{pivot\_sorted}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{pivot\_sorted}{pivot\_sorted}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a47b0f957af8b78592e26526fdbfe1c82} 
+tuple plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+pivot\+\_\+sorted = pivot.\+sort\+\_\+values("{}total\+\_\+incorrect\+\_\+agreements"{}, ascending=\mbox{\hyperlink{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b}{True}}).drop(columns="{}total\+\_\+incorrect\+\_\+agreements"{})}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_ade5c80cb94396992eaab7d0f37d149e7}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!stacked@{stacked}}
+\index{stacked@{stacked}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{stacked}{stacked}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_ade5c80cb94396992eaab7d0f37d149e7} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+stacked}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!True@{True}}
+\index{True@{True}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{True}{True}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a7aee19c76e509bb1d40fab1fd5a5925b} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+True}
+
+\Hypertarget{namespaceplot__stacked__incorrect__agreement_a8ce3896a6156bcb2112f5fa77bd70d3f}\index{plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}!width@{width}}
+\index{width@{width}!plot\_stacked\_incorrect\_agreement@{plot\_stacked\_incorrect\_agreement}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{namespaceplot__stacked__incorrect__agreement_a8ce3896a6156bcb2112f5fa77bd70d3f} 
+plot\+\_\+stacked\+\_\+incorrect\+\_\+agreement.\+width}
+

@@ -1,0 +1,6 @@
+<map id="processed_dataset.ProcessedDataset._load_sequence_embeddings" name="processed_dataset.ProcessedDataset._load_sequence_embeddings">
+<area shape="rect" id="Node000001" title="Loads sequence embeddings for the given accessions and embedding configs." alt="" coords="254,29,496,70"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#a39863e44d1b5a472442c171c2e5d6388" title="Loads GO embeddings for the given accessions and embedding configs." alt="" coords="5,29,206,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,52,206,52,206,47,238,47"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="150,16,133,10,105,8,80,10,64,15,58,21,60,28,55,29,53,19,61,10,79,5,106,3,134,5,152,11"/>
+</map>

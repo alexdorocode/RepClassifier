@@ -1,0 +1,55 @@
+\doxysection{project\+\_\+root/scripts/model\+\_\+aggreement/plot\+\_\+by\+\_\+model.py File Reference}
+\hypertarget{plot__by__model_8py}{}\label{plot__by__model_8py}\index{project\_root/scripts/model\_aggreement/plot\_by\_model.py@{project\_root/scripts/model\_aggreement/plot\_by\_model.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceplot__by__model}{plot\+\_\+by\+\_\+model}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a2b8e3867fd4a75c02090ad19ce2b7ab9}{plot\+\_\+by\+\_\+model.\+compute\+\_\+counts}} (model\+\_\+df)
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a12af516b0c10a67dd6493672b348fa2c}{plot\+\_\+by\+\_\+model.\+ytick\+\_\+fmt}} (x, pos)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{namespaceplot__by__model_aa4822032d7267d6bc5e34b4a0b73832a}{plot\+\_\+by\+\_\+model.\+file\+\_\+paths}}
+\item 
+list \mbox{\hyperlink{namespaceplot__by__model_ac2825d56162b57174b33735259300dea}{plot\+\_\+by\+\_\+model.\+dfs}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a79537b8bfd86f74d928e6b6997552266}{plot\+\_\+by\+\_\+model.\+df}} = pd.\+read\+\_\+csv(path)
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a322e8631a7002bb88fd77bc1bb4d76c9}{plot\+\_\+by\+\_\+model.\+agg}}
+\item 
+dict \mbox{\hyperlink{namespaceplot__by__model_a5c381f9953286b84583522a63c5056b7}{plot\+\_\+by\+\_\+model.\+model\+\_\+colors}} = \{model\+: \mbox{\hyperlink{namespaceplot__by__model_ab1d67e50248618629b921c8a8fd9ba15}{color}} for model, \mbox{\hyperlink{namespaceplot__by__model_ab1d67e50248618629b921c8a8fd9ba15}{color}} in zip(file\+\_\+paths.\+keys(), plt.\+cm.\+tab10.\+colors)\}
+\item 
+dict \mbox{\hyperlink{namespaceplot__by__model_a94a9ead278f9105e7b52ad235dd8012b}{plot\+\_\+by\+\_\+model.\+line\+\_\+styles}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a3613c32d14b7fe6f4dd9da24ca727f7f}{plot\+\_\+by\+\_\+model.\+total\+\_\+proteins}} = len(\mbox{\hyperlink{namespaceplot__by__model_a322e8631a7002bb88fd77bc1bb4d76c9}{agg}}\mbox{[}"{}protein\+\_\+id"{}\mbox{]}.unique())
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a6bcadf0ac3d66ee5cb7430d81dca16bd}{plot\+\_\+by\+\_\+model.\+figsize}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a68fd1e8f13eaa06572c5ebfc2274a3fc}{plot\+\_\+by\+\_\+model.\+dfm}} = \mbox{\hyperlink{namespaceplot__by__model_a322e8631a7002bb88fd77bc1bb4d76c9}{agg}}\mbox{[}\mbox{\hyperlink{namespaceplot__by__model_a322e8631a7002bb88fd77bc1bb4d76c9}{agg}}\mbox{[}"{}model\+\_\+type"{}\mbox{]} == model\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a6ec4ad20d0ac96c615261ddd4bfa60f9}{plot\+\_\+by\+\_\+model.\+stats}} = \mbox{\hyperlink{namespaceplot__by__model_a2b8e3867fd4a75c02090ad19ce2b7ab9}{compute\+\_\+counts}}(\mbox{\hyperlink{namespaceplot__by__model_a68fd1e8f13eaa06572c5ebfc2274a3fc}{dfm}})
+\item 
+dict \mbox{\hyperlink{namespaceplot__by__model_ab1d67e50248618629b921c8a8fd9ba15}{plot\+\_\+by\+\_\+model.\+color}} = \mbox{\hyperlink{namespaceplot__by__model_a5c381f9953286b84583522a63c5056b7}{model\+\_\+colors}}\mbox{[}model\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a991d74dea08059b5862d51b6a08542a8}{plot\+\_\+by\+\_\+model.\+label}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a9092dbef2f50856e27af7aded1b3865d}{plot\+\_\+by\+\_\+model.\+linestyle}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_afb698d99fb2f8410efa9d7a03ea732ee}{plot\+\_\+by\+\_\+model.\+yticks}} = np.\+arange(0, 221, 10)
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_afec154f61ac684423c2c374849177c35}{plot\+\_\+by\+\_\+model.\+loc}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_ae44137a9ca639c7a5eeb0ec90380a459}{plot\+\_\+by\+\_\+model.\+True}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_ade53857c0620ccae84523bd49e86bcd8}{plot\+\_\+by\+\_\+model.\+axis}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_aba70a11bfded18da7aeea5aeaa6d96f3}{plot\+\_\+by\+\_\+model.\+which}}
+\item 
+\mbox{\hyperlink{namespaceplot__by__model_a14a3cecde9a3b6820f2a3b2ebaeb8f50}{plot\+\_\+by\+\_\+model.\+linewidth}}
+\end{DoxyCompactItemize}

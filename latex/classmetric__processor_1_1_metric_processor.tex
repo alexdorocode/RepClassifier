@@ -1,0 +1,205 @@
+\doxysection{metric\+\_\+processor.\+Metric\+Processor Class Reference}
+\hypertarget{classmetric__processor_1_1_metric_processor}{}\label{classmetric__processor_1_1_metric_processor}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+
+
+Processes and normalizes metric columns in a Data\+Frame.  
+
+
+
+
+Collaboration diagram for metric\+\_\+processor.\+Metric\+Processor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classmetric__processor_1_1_metric_processor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_af18f50721cb2265657817b5985992236}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, pd.\+Data\+Frame \mbox{\hyperlink{classmetric__processor_1_1_metric_processor_aa11c5c850c660a19f388bc1bece83995}{df}}, list \mbox{\hyperlink{classmetric__processor_1_1_metric_processor_a1b62ba3afa0a5206c93eb6e9a12b7a95}{metric\+\_\+cols}}, \mbox{\hyperlink{classmetric__processor_1_1_metric_processor_ab57290224b60a4e19516ec397d834518}{nan\+\_\+strategy}}="{}drop"{}, \mbox{\hyperlink{classmetric__processor_1_1_metric_processor_a52f135bf8ca2e942e02d8a7168c484d3}{scaler}}="{}standard"{}, trim\+\_\+config=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classmetric__processor_1_1_metric_processor}{Metric\+Processor}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_ab79bf02c12717387f19869f8ddf32d3c}{handle\+\_\+nans}} (self)
+\begin{DoxyCompactList}\small\item\em Handle NaN values in the metric columns according to the chosen strategy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_abc2599fd96867a77b5619b4adfb10dcc}{normalize}} (self)
+\begin{DoxyCompactList}\small\item\em Normalize the metric columns using the selected scaler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_abf47dfc04f95f9452bfbd748c20023bd}{get\+\_\+processed\+\_\+df}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the processed Data\+Frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_aa11c5c850c660a19f388bc1bece83995}{df}} = df.\+copy()
+\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_a1b62ba3afa0a5206c93eb6e9a12b7a95}{metric\+\_\+cols}} = metric\+\_\+cols
+\item 
+str \mbox{\hyperlink{classmetric__processor_1_1_metric_processor_ab57290224b60a4e19516ec397d834518}{nan\+\_\+strategy}} = nan\+\_\+strategy
+\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_a52f135bf8ca2e942e02d8a7168c484d3}{scaler}} = self.\+\_\+init\+\_\+scaler(scaler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_ac76bb24aa9e758f05c0653f2cf725cee}{\+\_\+init\+\_\+scaler}} (self, scaler\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Initialize the scaler based on the scaler name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmetric__processor_1_1_metric_processor_a7795f80c10f55a8c0eeb86aa90e52380}{\+\_\+valid\+\_\+trim\+\_\+config}} (self, config)
+\begin{DoxyCompactList}\small\item\em Validates a trim configuration dictionary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Processes and normalizes metric columns in a Data\+Frame. 
+
+Handles NaN strategies, scaling, and optional row trimming based on config.
+
+
+\begin{DoxyParams}{Parameters}
+{\em df} & Input pandas Data\+Frame. \\
+\hline
+{\em metric\+\_\+cols} & List of metric column names to process. \\
+\hline
+{\em nan\+\_\+strategy} & Strategy for handling Na\+Ns ("{}drop"{}, "{}fill\+\_\+mean"{}, "{}fill\+\_\+zero"{}, "{}fill\+\_\+minus\+\_\+one"{}). \\
+\hline
+{\em scaler} & Scaling method ("{}standard"{} or "{}minmax"{}). \\
+\hline
+{\em trim\+\_\+config} & Optional list of dicts for row trimming (each with \textquotesingle{}column\textquotesingle{}, \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-constructors}
+\Hypertarget{classmetric__processor_1_1_metric_processor_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmetric__processor_1_1_metric_processor_af18f50721cb2265657817b5985992236}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_af18f50721cb2265657817b5985992236} 
+metric\+\_\+processor.\+Metric\+Processor.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{pd.\+Data\+Frame}]{df}{, }\item[{list}]{metric\+\_\+cols}{, }\item[{}]{nan\+\_\+strategy}{ = {\ttfamily "{}drop"{}}, }\item[{}]{scaler}{ = {\ttfamily "{}standard"{}}, }\item[{}]{trim\+\_\+config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classmetric__processor_1_1_metric_processor}{Metric\+Processor}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em df} & Input pandas Data\+Frame. \\
+\hline
+{\em metric\+\_\+cols} & List of metric column names to process. \\
+\hline
+{\em nan\+\_\+strategy} & Strategy for handling Na\+Ns. \\
+\hline
+{\em scaler} & Scaling method. \\
+\hline
+{\em trim\+\_\+config} & Optional list of dicts for row trimming. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classmetric__processor_1_1_metric_processor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmetric__processor_1_1_metric_processor_ac76bb24aa9e758f05c0653f2cf725cee}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!\_init\_scaler@{\_init\_scaler}}
+\index{\_init\_scaler@{\_init\_scaler}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{\_init\_scaler()}{\_init\_scaler()}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_ac76bb24aa9e758f05c0653f2cf725cee} 
+metric\+\_\+processor.\+Metric\+Processor.\+\_\+init\+\_\+scaler (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{scaler\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Initialize the scaler based on the scaler name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scaler\+\_\+name} & "{}standard"{} or "{}minmax"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Scaler instance 
+\end{DoxyReturn}
+\Hypertarget{classmetric__processor_1_1_metric_processor_a7795f80c10f55a8c0eeb86aa90e52380}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!\_valid\_trim\_config@{\_valid\_trim\_config}}
+\index{\_valid\_trim\_config@{\_valid\_trim\_config}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{\_valid\_trim\_config()}{\_valid\_trim\_config()}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_a7795f80c10f55a8c0eeb86aa90e52380} 
+metric\+\_\+processor.\+Metric\+Processor.\+\_\+valid\+\_\+trim\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Validates a trim configuration dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Dict with \textquotesingle{}column\textquotesingle{}, \textquotesingle{}min\textquotesingle{}, and \textquotesingle{}max\textquotesingle{} keys. \+:raises Value\+Error\+: If config is invalid. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmetric__processor_1_1_metric_processor_abf47dfc04f95f9452bfbd748c20023bd}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!get\_processed\_df@{get\_processed\_df}}
+\index{get\_processed\_df@{get\_processed\_df}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{get\_processed\_df()}{get\_processed\_df()}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_abf47dfc04f95f9452bfbd748c20023bd} 
+metric\+\_\+processor.\+Metric\+Processor.\+get\+\_\+processed\+\_\+df (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the processed Data\+Frame. 
+
+\begin{DoxyReturn}{Returns}
+pandas Data\+Frame 
+\end{DoxyReturn}
+\Hypertarget{classmetric__processor_1_1_metric_processor_ab79bf02c12717387f19869f8ddf32d3c}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!handle\_nans@{handle\_nans}}
+\index{handle\_nans@{handle\_nans}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{handle\_nans()}{handle\_nans()}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_ab79bf02c12717387f19869f8ddf32d3c} 
+metric\+\_\+processor.\+Metric\+Processor.\+handle\+\_\+nans (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Handle NaN values in the metric columns according to the chosen strategy. 
+
+\begin{DoxyReturn}{Returns}
+self 
+\end{DoxyReturn}
+\Hypertarget{classmetric__processor_1_1_metric_processor_abc2599fd96867a77b5619b4adfb10dcc}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!normalize@{normalize}}
+\index{normalize@{normalize}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_abc2599fd96867a77b5619b4adfb10dcc} 
+metric\+\_\+processor.\+Metric\+Processor.\+normalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Normalize the metric columns using the selected scaler. 
+
+\begin{DoxyReturn}{Returns}
+self \+:raises Value\+Error\+: If Na\+Ns remain in the metric columns. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classmetric__processor_1_1_metric_processor_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmetric__processor_1_1_metric_processor_aa11c5c850c660a19f388bc1bece83995}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!df@{df}}
+\index{df@{df}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{df}{df}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_aa11c5c850c660a19f388bc1bece83995} 
+metric\+\_\+processor.\+Metric\+Processor.\+df = df.\+copy()}
+
+\Hypertarget{classmetric__processor_1_1_metric_processor_a1b62ba3afa0a5206c93eb6e9a12b7a95}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!metric\_cols@{metric\_cols}}
+\index{metric\_cols@{metric\_cols}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{metric\_cols}{metric\_cols}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_a1b62ba3afa0a5206c93eb6e9a12b7a95} 
+metric\+\_\+processor.\+Metric\+Processor.\+metric\+\_\+cols = metric\+\_\+cols}
+
+\Hypertarget{classmetric__processor_1_1_metric_processor_ab57290224b60a4e19516ec397d834518}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!nan\_strategy@{nan\_strategy}}
+\index{nan\_strategy@{nan\_strategy}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{nan\_strategy}{nan\_strategy}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_ab57290224b60a4e19516ec397d834518} 
+str metric\+\_\+processor.\+Metric\+Processor.\+nan\+\_\+strategy = nan\+\_\+strategy}
+
+\Hypertarget{classmetric__processor_1_1_metric_processor_a52f135bf8ca2e942e02d8a7168c484d3}\index{metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}!scaler@{scaler}}
+\index{scaler@{scaler}!metric\_processor.MetricProcessor@{metric\_processor.MetricProcessor}}
+\doxysubsubsection{\texorpdfstring{scaler}{scaler}}
+{\footnotesize\ttfamily \label{classmetric__processor_1_1_metric_processor_a52f135bf8ca2e942e02d8a7168c484d3} 
+metric\+\_\+processor.\+Metric\+Processor.\+scaler = self.\+\_\+init\+\_\+scaler(scaler)}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/features/\mbox{\hyperlink{metric__processor_8py}{metric\+\_\+processor.\+py}}\end{DoxyCompactItemize}

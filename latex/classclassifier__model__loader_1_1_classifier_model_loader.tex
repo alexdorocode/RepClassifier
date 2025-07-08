@@ -1,0 +1,126 @@
+\doxysection{classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader Class Reference}
+\hypertarget{classclassifier__model__loader_1_1_classifier_model_loader}{}\label{classclassifier__model__loader_1_1_classifier_model_loader}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+
+
+Collaboration diagram for classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classclassifier__model__loader_1_1_classifier_model_loader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_aac1c9c7b17e81503d0e91ec1ef883053}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a66a696b5f56cb57741232022d986d3b4}{model\+\_\+type}}, \mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_af7e1ff6f4d6516797e599c05e6e4a949}{input\+\_\+size}}=None, \mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a94b852318f403fe787c910f1b5bfe424}{output\+\_\+size}}=None, \mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a6571825ff83cfc87b07071f115f23e76}{device}}=\textquotesingle{}cpu\textquotesingle{}, \mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_aa4b139bf85824edb498fc63371e6205a}{model\+\_\+params}}=None)
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a663d55d352434e3780a86d0341887abc}{get\+\_\+model}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a66a696b5f56cb57741232022d986d3b4}{model\+\_\+type}} = model\+\_\+type.\+lower()
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_af7e1ff6f4d6516797e599c05e6e4a949}{input\+\_\+size}} = input\+\_\+size
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a94b852318f403fe787c910f1b5bfe424}{output\+\_\+size}} = output\+\_\+size
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a6571825ff83cfc87b07071f115f23e76}{device}} = device
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_aa4b139bf85824edb498fc63371e6205a}{model\+\_\+params}} = model\+\_\+params if model\+\_\+params is not None else \{\}
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a0ea652d382e22b180e36e308f982cfc5}{model}} = self.\+\_\+initialize\+\_\+model()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__model__loader_1_1_classifier_model_loader_a1cc4248ff661313a6836b92c5b83d5ac}{\+\_\+initialize\+\_\+model}} (self)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_aac1c9c7b17e81503d0e91ec1ef883053}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_aac1c9c7b17e81503d0e91ec1ef883053} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model\+\_\+type}{, }\item[{}]{input\+\_\+size}{ = {\ttfamily None}, }\item[{}]{output\+\_\+size}{ = {\ttfamily None}, }\item[{}]{device}{ = {\ttfamily \textquotesingle{}cpu\textquotesingle{}}, }\item[{}]{model\+\_\+params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+type} & One of \mbox{[}\textquotesingle{}logistic\textquotesingle{}, \textquotesingle{}svm\textquotesingle{}, \textquotesingle{}xgboost\textquotesingle{}, \textquotesingle{}lightgbm\textquotesingle{}, \textquotesingle{}knn\textquotesingle{}, \textquotesingle{}random\+\_\+forest\textquotesingle{}, \textquotesingle{}mlp\textquotesingle{}\mbox{]} \\
+\hline
+{\em input\+\_\+size} & Input feature size (needed for MLP) \\
+\hline
+{\em output\+\_\+size} & Number of output classes (needed for MLP) \\
+\hline
+{\em device} & \textquotesingle{}cpu\textquotesingle{} or \textquotesingle{}cuda\textquotesingle{} \\
+\hline
+{\em model\+\_\+params} & Model-\/specific parameters \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_a1cc4248ff661313a6836b92c5b83d5ac}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!\_initialize\_model@{\_initialize\_model}}
+\index{\_initialize\_model@{\_initialize\_model}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{\_initialize\_model()}{\_initialize\_model()}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_a1cc4248ff661313a6836b92c5b83d5ac} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+\_\+initialize\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_a663d55d352434e3780a86d0341887abc}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!get\_model@{get\_model}}
+\index{get\_model@{get\_model}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{get\_model()}{get\_model()}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_a663d55d352434e3780a86d0341887abc} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+get\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_a6571825ff83cfc87b07071f115f23e76}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!device@{device}}
+\index{device@{device}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_a6571825ff83cfc87b07071f115f23e76} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+device = device}
+
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_af7e1ff6f4d6516797e599c05e6e4a949}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!input\_size@{input\_size}}
+\index{input\_size@{input\_size}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{input\_size}{input\_size}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_af7e1ff6f4d6516797e599c05e6e4a949} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+input\+\_\+size = input\+\_\+size}
+
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_a0ea652d382e22b180e36e308f982cfc5}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!model@{model}}
+\index{model@{model}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_a0ea652d382e22b180e36e308f982cfc5} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+model = self.\+\_\+initialize\+\_\+model()}
+
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_aa4b139bf85824edb498fc63371e6205a}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!model\_params@{model\_params}}
+\index{model\_params@{model\_params}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{model\_params}{model\_params}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_aa4b139bf85824edb498fc63371e6205a} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+model\+\_\+params = model\+\_\+params if model\+\_\+params is not None else \{\}}
+
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_a66a696b5f56cb57741232022d986d3b4}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!model\_type@{model\_type}}
+\index{model\_type@{model\_type}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{model\_type}{model\_type}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_a66a696b5f56cb57741232022d986d3b4} 
+str classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+model\+\_\+type = model\+\_\+type.\+lower()}
+
+\Hypertarget{classclassifier__model__loader_1_1_classifier_model_loader_a94b852318f403fe787c910f1b5bfe424}\index{classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}!output\_size@{output\_size}}
+\index{output\_size@{output\_size}!classifier\_model\_loader.ClassifierModelLoader@{classifier\_model\_loader.ClassifierModelLoader}}
+\doxysubsubsection{\texorpdfstring{output\_size}{output\_size}}
+{\footnotesize\ttfamily \label{classclassifier__model__loader_1_1_classifier_model_loader_a94b852318f403fe787c910f1b5bfe424} 
+classifier\+\_\+model\+\_\+loader.\+Classifier\+Model\+Loader.\+output\+\_\+size = output\+\_\+size}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/models/\mbox{\hyperlink{classifier__model__loader_8py}{classifier\+\_\+model\+\_\+loader.\+py}}\end{DoxyCompactItemize}

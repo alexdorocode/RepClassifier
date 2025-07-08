@@ -1,0 +1,207 @@
+\doxysection{raw\+\_\+dataset.\+Raw\+Dataset Class Reference}
+\hypertarget{classraw__dataset_1_1_raw_dataset}{}\label{classraw__dataset_1_1_raw_dataset}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+
+
+Container for raw protein dataset elements\+: Uni\+Prot IDs, labels, sequences, metrics, and optional embeddings.  
+
+
+
+
+Collaboration diagram for raw\+\_\+dataset.\+Raw\+Dataset\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classraw__dataset_1_1_raw_dataset__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_ada4dab5c1beb8a329db02ba66e042688}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, pd.\+Data\+Frame \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}, str id\+\_\+col, str label\+\_\+col, str organism\+\_\+col, list metrics\+\_\+col, str sequence\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Initializes a \doxylink{classraw__dataset_1_1_raw_dataset}{Raw\+Dataset} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_a06104f80c7c3f8e5b68d2cb96870304d}{\+\_\+\+\_\+len\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the number of samples in the dataset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_ad7c686f5dffa89eb943d12e60bc0b6f5}{summary}} (self)
+\begin{DoxyCompactList}\small\item\em Returns a summary of the dataset, including counts and sequence length stats. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aac8f19d3ccdeb4150831e77c057b991a}{get\+\_\+attribute}} (self, name)
+\begin{DoxyCompactList}\small\item\em Retrieve a specific attribute from the dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}} = dataset
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aeae326fc152b304e0dd940f09852e140}{uniprot\+\_\+ids}} = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}id\+\_\+col\mbox{]}
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_a923362cc8c77c810c09b1c92d9e0c9df}{labels}} = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}label\+\_\+col\mbox{]}
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_a2ea2e066bafb4b9f51acbb7d7e6e378a}{organisms}} = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}organism\+\_\+col\mbox{]}
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_a15f5e1d0441a22e6f4c3c8a05ecfbb7e}{metrics}} = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}metrics\+\_\+col\mbox{]} if metrics\+\_\+col else pd.\+Data\+Frame()
+\item 
+\mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_a2f4c0349875f313842dd003ae170735c}{sequences}} = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}sequence\+\_\+col\mbox{]}
+\item 
+dict \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_a7acc272970658b1a8dda7e0ba49f73d9}{main\+\_\+columns}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Container for raw protein dataset elements\+: Uni\+Prot IDs, labels, sequences, metrics, and optional embeddings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The raw dataset as a Data\+Frame. \\
+\hline
+{\em id\+\_\+col} & Column name for Uni\+Prot IDs. \\
+\hline
+{\em label\+\_\+col} & Column name for labels. \\
+\hline
+{\em organism\+\_\+col} & Column name for organism information. \\
+\hline
+{\em metrics\+\_\+col} & List of column names for metrics. \\
+\hline
+{\em sequence\+\_\+col} & Column name for protein sequences. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-constructors}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_ada4dab5c1beb8a329db02ba66e042688}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_ada4dab5c1beb8a329db02ba66e042688} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{pd.\+Data\+Frame}]{dataset}{, }\item[{str}]{id\+\_\+col}{, }\item[{str}]{label\+\_\+col}{, }\item[{str}]{organism\+\_\+col}{, }\item[{list}]{metrics\+\_\+col}{, }\item[{str                  }]{sequence\+\_\+col}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a \doxylink{classraw__dataset_1_1_raw_dataset}{Raw\+Dataset} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The raw dataset as a Data\+Frame. \\
+\hline
+{\em id\+\_\+col} & Column name for Uni\+Prot IDs. \\
+\hline
+{\em label\+\_\+col} & Column name for labels. \\
+\hline
+{\em organism\+\_\+col} & Column name for organism information. \\
+\hline
+{\em metrics\+\_\+col} & List of column names for metrics. \\
+\hline
+{\em sequence\+\_\+col} & Column name for protein sequences. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_a06104f80c7c3f8e5b68d2cb96870304d}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!\_\_len\_\_@{\_\_len\_\_}}
+\index{\_\_len\_\_@{\_\_len\_\_}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_len\_\_()}{\_\_len\_\_()}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_a06104f80c7c3f8e5b68d2cb96870304d} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+\_\+\+\_\+len\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the number of samples in the dataset. 
+
+\begin{DoxyReturn}{Returns}
+Number of Uni\+Prot IDs (int) 
+\end{DoxyReturn}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_aac8f19d3ccdeb4150831e77c057b991a}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!get\_attribute@{get\_attribute}}
+\index{get\_attribute@{get\_attribute}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{get\_attribute()}{get\_attribute()}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_aac8f19d3ccdeb4150831e77c057b991a} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+get\+\_\+attribute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Retrieve a specific attribute from the dataset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the attribute (\textquotesingle{}uniprot\+\_\+ids\textquotesingle{}, \textquotesingle{}labels\textquotesingle{}, \textquotesingle{}organisms\textquotesingle{}, \textquotesingle{}metrics\textquotesingle{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The requested attribute \+:raises Key\+Error\+: If the attribute is not found 
+\end{DoxyReturn}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_ad7c686f5dffa89eb943d12e60bc0b6f5}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!summary@{summary}}
+\index{summary@{summary}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{summary()}{summary()}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_ad7c686f5dffa89eb943d12e60bc0b6f5} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+summary (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns a summary of the dataset, including counts and sequence length stats. 
+
+\begin{DoxyReturn}{Returns}
+Dictionary with summary statistics 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!dataset@{dataset}}
+\index{dataset@{dataset}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{dataset}{dataset}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+dataset = dataset}
+
+\Hypertarget{classraw__dataset_1_1_raw_dataset_a923362cc8c77c810c09b1c92d9e0c9df}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!labels@{labels}}
+\index{labels@{labels}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{labels}{labels}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_a923362cc8c77c810c09b1c92d9e0c9df} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+labels = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}label\+\_\+col\mbox{]}}
+
+\Hypertarget{classraw__dataset_1_1_raw_dataset_a7acc272970658b1a8dda7e0ba49f73d9}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!main\_columns@{main\_columns}}
+\index{main\_columns@{main\_columns}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{main\_columns}{main\_columns}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_a7acc272970658b1a8dda7e0ba49f73d9} 
+dict raw\+\_\+dataset.\+Raw\+Dataset.\+main\+\_\+columns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id\_col"{}}\ :\ id\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}label\_col"{}}\ :\ label\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}organism\_col"{}}\ :\ organism\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metrics\_col"{}}\ :\ metrics\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sequence\_col"{}}\ :\ sequence\_col}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classraw__dataset_1_1_raw_dataset_a15f5e1d0441a22e6f4c3c8a05ecfbb7e}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!metrics@{metrics}}
+\index{metrics@{metrics}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{metrics}{metrics}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_a15f5e1d0441a22e6f4c3c8a05ecfbb7e} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+metrics = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}metrics\+\_\+col\mbox{]} if metrics\+\_\+col else pd.\+Data\+Frame()}
+
+\Hypertarget{classraw__dataset_1_1_raw_dataset_a2ea2e066bafb4b9f51acbb7d7e6e378a}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!organisms@{organisms}}
+\index{organisms@{organisms}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{organisms}{organisms}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_a2ea2e066bafb4b9f51acbb7d7e6e378a} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+organisms = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}organism\+\_\+col\mbox{]}}
+
+\Hypertarget{classraw__dataset_1_1_raw_dataset_a2f4c0349875f313842dd003ae170735c}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!sequences@{sequences}}
+\index{sequences@{sequences}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{sequences}{sequences}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_a2f4c0349875f313842dd003ae170735c} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+sequences = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}sequence\+\_\+col\mbox{]}}
+
+\Hypertarget{classraw__dataset_1_1_raw_dataset_aeae326fc152b304e0dd940f09852e140}\index{raw\_dataset.RawDataset@{raw\_dataset.RawDataset}!uniprot\_ids@{uniprot\_ids}}
+\index{uniprot\_ids@{uniprot\_ids}!raw\_dataset.RawDataset@{raw\_dataset.RawDataset}}
+\doxysubsubsection{\texorpdfstring{uniprot\_ids}{uniprot\_ids}}
+{\footnotesize\ttfamily \label{classraw__dataset_1_1_raw_dataset_aeae326fc152b304e0dd940f09852e140} 
+raw\+\_\+dataset.\+Raw\+Dataset.\+uniprot\+\_\+ids = \mbox{\hyperlink{classraw__dataset_1_1_raw_dataset_aa453231c37426295e4080421ff5478a3}{dataset}}\mbox{[}id\+\_\+col\mbox{]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/\mbox{\hyperlink{raw__dataset_8py}{raw\+\_\+dataset.\+py}}\end{DoxyCompactItemize}

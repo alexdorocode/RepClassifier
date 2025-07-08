@@ -1,0 +1,5 @@
+<map id="experiment_config_handler.ExperimentConfigHandler._build_classifier_config" name="experiment_config_handler.ExperimentConfigHandler._build_classifier_config">
+<area shape="rect" id="Node000001" title="Builds the classifier configuration based on the provided model, embedding, and model configs." alt="" coords="5,13,185,68"/>
+<area shape="rect" id="Node000002" href="$classexperiment__config__handler_1_1_experiment_config_handler.html#a7c266665aa2468e2b459f6f0bae501f2" title="Sets the embedding and training configurations in the classifier config." alt="" coords="233,5,426,76"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,38,217,38,217,43,185,43"/>
+</map>

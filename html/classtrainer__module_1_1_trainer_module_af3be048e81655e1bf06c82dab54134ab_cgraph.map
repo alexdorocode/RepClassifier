@@ -1,0 +1,6 @@
+<map id="trainer_module.TrainerModule._get_criterion" name="trainer_module.TrainerModule._get_criterion">
+<area shape="rect" id="Node000001" title="Get the loss function for PyTorch models." alt="" coords="5,29,202,70"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="58,29,55,19,63,10,79,5,104,3,130,5,145,11,143,16,129,10,103,8,80,10,66,15,61,21,63,28"/>
+<area shape="rect" id="Node000002" href="$classtrainer__module_1_1_trainer_module.html#aeab54d944a1ae1fe8dacceaa77473025" title="Get the optimizer for PyTorch models." alt="" coords="250,29,446,70"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="202,47,234,47,234,52,202,52"/>
+</map>

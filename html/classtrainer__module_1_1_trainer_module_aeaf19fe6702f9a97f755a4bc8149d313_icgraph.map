@@ -1,0 +1,5 @@
+<map id="trainer_module.TrainerModule._train_pytorch" name="trainer_module.TrainerModule._train_pytorch">
+<area shape="rect" id="Node000001" title="Train a PyTorch model with optional early stopping." alt="" coords="282,5,478,46"/>
+<area shape="rect" id="Node000002" href="$classtrainer__module_1_1_trainer_module.html#a4aa47bee3204ec3da0abd73a93fd5365" title="Perform cross&#45;validation and return average metrics." alt="" coords="5,5,234,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,28,234,28,234,23,266,23"/>
+</map>

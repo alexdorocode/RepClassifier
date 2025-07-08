@@ -1,0 +1,5 @@
+<map id="mlp_protein_classifier.MLPProteinClassifier" name="mlp_protein_classifier.MLPProteinClassifier">
+<area shape="rect" id="Node000001" title="Multi&#45;layer Perceptron (MLP) classifier for protein data." alt="" coords="5,120,213,318"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="74,5,144,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,87,112,120,106,120,106,87"/>
+</map>

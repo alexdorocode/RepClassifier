@@ -1,0 +1,9 @@
+<map id="embedding_loader.EmbeddingLoader" name="embedding_loader.EmbeddingLoader">
+<area shape="rect" id="Node000001" title="Abstract base class for embedding loaders." alt="" coords="112,120,315,338"/>
+<area shape="rect" id="Node000003" href="$classembedding__loader_1_1_g_o_embedding_loader.html" title="Loader for GO embeddings, with support for aggregation and autoencoding." alt="" coords="5,386,209,503"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,353,138,387,133,385,151,350"/>
+<area shape="rect" id="Node000004" href="$classembedding__loader_1_1_sequence_embedding_loader.html" title="Loader for sequence embeddings, with optional autoencoder compression." alt="" coords="234,404,410,485"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="278,350,304,403,300,405,273,352"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="194,5,233,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,87,216,120,211,120,211,87"/>
+</map>

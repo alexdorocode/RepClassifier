@@ -1,0 +1,11 @@
+<map id="processed_dataset.ProcessedDataset._process_metrics" name="processed_dataset.ProcessedDataset._process_metrics">
+<area shape="rect" id="Node000001" title="Processes and normalizes metrics from the raw dataset." alt="" coords="5,43,203,83"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#a90fbb51378e439da7d12a60f6326c365" title="Builds the dataset based on the provided configuration and selected accessions." alt="" coords="252,8,450,49"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,46,236,42,237,47,204,52"/>
+<area shape="rect" id="Node000004" href="$classprocessed__dataset_1_1_processed_dataset.html#a3e306570da3337f20f9efd0a0129e30f" title="Returns the accessions of the processed dataset based on the organism discrimination strategy." alt="" coords="251,75,451,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="204,73,236,77,235,83,203,78"/>
+<area shape="rect" id="Node000003" href="$classprocessed__dataset_1_1_processed_dataset.html#ae01c77c5a32e680ec6406e84a2008c45" title="Returns the top n organisms with the most samples in the dataframe." alt="" coords="499,5,696,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="450,25,483,24,483,30,450,30"/>
+<area shape="rect" id="Node000005" href="$classprocessed__dataset_1_1_processed_dataset.html#ae8daecaaecac63ebce1ec39a17030c5a" title="Returns accessions filtered by the selected organisms." alt="" coords="499,70,696,126"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="452,93,484,94,484,99,451,99"/>
+</map>

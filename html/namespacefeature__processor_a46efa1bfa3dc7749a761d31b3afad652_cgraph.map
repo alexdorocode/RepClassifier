@@ -1,0 +1,13 @@
+<map id="feature_processor.process_embeddings_and_attention" name="feature_processor.process_embeddings_and_attention">
+<area shape="rect" id="Node000001" title="Applies optional random projection and dimensionality reduction to embeddings and attention weights." alt="" coords="5,96,189,137"/>
+<area shape="rect" id="Node000002" href="$namespacefeature__processor.html#a39749084fdf6c3c4c12f2a15de2947c9" title="Apply PCA reduction using threshold or fixed component count." alt="" coords="239,13,426,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,93,236,49,259,41,261,46,238,53,139,98"/>
+<area shape="rect" id="Node000004" href="$namespacefeature__processor.html#a7c392b33f11a38a4c920e4bb2928db4e" title="Applies sparse random projection to each protein individually." alt="" coords="240,63,424,103"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="189,101,224,96,225,101,190,106"/>
+<area shape="rect" id="Node000005" href="$namespacefeature__processor.html#ac0888d5b2d770a3abfb26190f69fb252" title="Applies sparse random projection to reduce dimensionality." alt="" coords="241,128,424,169"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="190,126,226,131,226,137,189,131"/>
+<area shape="rect" id="Node000006" href="$namespacefeature__processor.html#aaa7b30cfe2663c7e688a173f82819e84" title="Apply t&#45;SNE for visualization." alt="" coords="237,193,428,218"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="140,135,238,178,261,186,259,191,236,183,138,140"/>
+<area shape="rect" id="Node000003" href="$namespacefeature__processor.html#a660e1ba38d99b091b4732309619caf9a" title="Determine optimal number of PCA components." alt="" coords="476,5,635,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="427,23,460,23,460,28,427,28"/>
+</map>

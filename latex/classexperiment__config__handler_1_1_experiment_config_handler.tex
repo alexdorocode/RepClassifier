@@ -1,0 +1,663 @@
+\doxysection{experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler Class Reference}
+\hypertarget{classexperiment__config__handler_1_1_experiment_config_handler}{}\label{classexperiment__config__handler_1_1_experiment_config_handler}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+
+
+Handles the expansion, merging, and management of experiment configurations for all phases.  
+
+
+
+
+Collaboration diagram for experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classexperiment__config__handler_1_1_experiment_config_handler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a86e459b214c0a74b9de853e24fa7649b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a5fb2ba69ba3cffe2d5e3e11c02ba07cc}{base\+\_\+config\+\_\+path}}, List\mbox{[}str\mbox{]} \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_ad06e14cb4173c6063b21b6e137de8dd8}{model\+\_\+fork\+\_\+paths}}, str \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a893aa6fe63afd751c65fb2ef2b66348e}{embedding\+\_\+fork\+\_\+path}}, str \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a0f942b0d1096155f78b06f2545ba8011}{feature\+\_\+fork\+\_\+path}}, str \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a31820e2d429a5abf11985172f2b8176a}{training\+\_\+fork\+\_\+path}}, int sampling\+\_\+resolution=3, str phase\+\_\+1\+\_\+result\+\_\+path=None, str phase\+\_\+2\+\_\+result\+\_\+path=None, str phase\+\_\+3\+\_\+result\+\_\+path=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classexperiment__config__handler_1_1_experiment_config_handler}{Experiment\+Config\+Handler}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a21b5ed8a1b4fb36ef5c92c024b5b9966}{expand\+\_\+all}} (self)
+\begin{DoxyCompactList}\small\item\em Expand all forks and store the resulting configs in self.\+configs. \end{DoxyCompactList}\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a192e405f5d17b6dd584fd19468f7abc6}{set\+\_\+sweeps\+\_\+config\+\_\+phase\+\_\+1}} (self, model)
+\begin{DoxyCompactList}\small\item\em Prepare sweep configuration for phase 1 using the baseline for the given model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a7e842d72330cb18ccc1e9f47ec4dd9eb}{get\+\_\+sweeps\+\_\+config\+\_\+phase\+\_\+2}} (self, model, classifier\+\_\+config, sweep\+\_\+config=None)
+\begin{DoxyCompactList}\small\item\em Prepare sweep configuration for phase 2 using phase 1 results. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a35db2925630f0414a40dc2a5073bce64}{get\+\_\+sweeps\+\_\+config\+\_\+phase\+\_\+3}} (self, model, classifier\+\_\+config, sweep\+\_\+config=None)
+\begin{DoxyCompactList}\small\item\em Prepare sweep configuration for phase 3 using phase 1 and 2 results. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a8375ce21094e17dab663dfc8709c6af1}{get\+\_\+final\+\_\+evaluation\+\_\+config}} (self, model, classifier\+\_\+config, sweep\+\_\+config=None)
+\begin{DoxyCompactList}\small\item\em Get the best configs for final evaluation from all phases. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_adce7462b7fa7c194d9890bad38259487}{set\+\_\+sweeps\+\_\+config\+\_\+final\+\_\+eval}} (self)
+\begin{DoxyCompactList}\small\item\em Prepare sweep configuration for final evaluation (phase 4). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_aec31a551815aeed07059ff3f2f350f2f}{save\+\_\+to\+\_\+file}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Save the expanded configs to a JSON file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a1451517447da19913a105d0da1af231a}{load\+\_\+from\+\_\+file}} (self, str path)
+\begin{DoxyCompactList}\small\item\em Load configs from a JSON file. \end{DoxyCompactList}\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a16d27ef81b532748b60d71dd6c818ac7}{get\+\_\+configs}} (self)
+\begin{DoxyCompactList}\small\item\em Get the current list of expanded configs. \end{DoxyCompactList}\item 
+List\mbox{[}dict\mbox{]} \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_ab87c749ad03a4c7853629619311857fa}{get\+\_\+classifier\+\_\+ready\+\_\+configs}} (self, input\+\_\+cfg, overwrite\+\_\+config=None, new\+\_\+config=None)
+\begin{DoxyCompactList}\small\item\em Extracts full classifier config in the desired format, preserving\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a5fb2ba69ba3cffe2d5e3e11c02ba07cc}{base\+\_\+config\+\_\+path}} = base\+\_\+config\+\_\+path
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_ad06e14cb4173c6063b21b6e137de8dd8}{model\+\_\+fork\+\_\+paths}} = model\+\_\+fork\+\_\+paths
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a893aa6fe63afd751c65fb2ef2b66348e}{embedding\+\_\+fork\+\_\+path}} = embedding\+\_\+fork\+\_\+path
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a0f942b0d1096155f78b06f2545ba8011}{feature\+\_\+fork\+\_\+path}} = feature\+\_\+fork\+\_\+path
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a31820e2d429a5abf11985172f2b8176a}{training\+\_\+fork\+\_\+path}} = training\+\_\+fork\+\_\+path
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a5277f8ac105a4d353c4341a2ddf29c2a}{expander}} = Fork\+Expander(sampling\+\_\+resolution=sampling\+\_\+resolution)
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a7e07d83ace45bd5136e23fb853ac5f4f}{phase\+\_\+1\+\_\+result\+\_\+load\+\_\+path}} = phase\+\_\+1\+\_\+result\+\_\+path
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a87b04b81bb860b9117289ae864d2c8f8}{phase\+\_\+2\+\_\+result\+\_\+load\+\_\+path}} = phase\+\_\+2\+\_\+result\+\_\+path
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a7a74cb2a923afdc6b7d4e58e1a3c96ff}{phase\+\_\+3\+\_\+result\+\_\+load\+\_\+path}} = phase\+\_\+3\+\_\+result\+\_\+path
+\item 
+list \mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_aeb07bef7b5f9131f8b4a255b6ef38a65}{configs}} = \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_ad511452d302b3f1bb8da33f8e414f61c}{\+\_\+expand\+\_\+and\+\_\+merge}} (self, model\+\_\+forks, embedding\+\_\+fork, feature\+\_\+fork, training\+\_\+fork)
+\begin{DoxyCompactList}\small\item\em Expand and merge all forks into a list of full experiment configs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a47dbbf20de1f236904dd916dd882f466}{\+\_\+get\+\_\+base\+\_\+config}} (self, config)
+\begin{DoxyCompactList}\small\item\em Cleans the configuration by removing unnecessary keys. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a78a2c0da6e9c6c3cd59fd652dc327342}{\+\_\+overwrite\+\_\+config}} (self, config, overwrite\+\_\+config, new\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Overwrites specific configuration keys with new values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a865a2ab8b238b2c42e8be273358fb00d}{\+\_\+unwrap\+\_\+sweep\+\_\+config}} (self, sweep\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Unwraps the model configuration from the sweep config. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a344b314ca9ef6cef13a418ba8dd9229f}{\+\_\+build\+\_\+classifier\+\_\+config}} (self, classifier\+\_\+config, model, embedding\+\_\+config, model\+\_\+config, sweep\+\_\+config=None)
+\begin{DoxyCompactList}\small\item\em Builds the classifier configuration based on the provided model, embedding, and model configs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a43a6d4937fe8664d8a1e287cb9b87cde}{\+\_\+build\+\_\+embedding\+\_\+config}} (self, embedding\+\_\+config, sweep\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Builds the embedding configuration based on the provided embedding config and sweep config. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a7c266665aa2468e2b459f6f0bae501f2}{\+\_\+set\+\_\+embedding\+\_\+and\+\_\+training\+\_\+configs}} (self, classifier\+\_\+config, embedding\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Sets the embedding and training configurations in the classifier config. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classexperiment__config__handler_1_1_experiment_config_handler_a7199b5cdf284e0135e4878cd9474684f}{\+\_\+set\+\_\+feature\+\_\+cols}} (self, features\+\_\+col, sweep\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Sets the feature columns in the classifier config based on the sweep configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the expansion, merging, and management of experiment configurations for all phases. 
+
+Supports sweep setup, config merging, and loading/saving of configs. 
+
+\label{doc-constructors}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a86e459b214c0a74b9de853e24fa7649b}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a86e459b214c0a74b9de853e24fa7649b} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{base\+\_\+config\+\_\+path}{, }\item[{List\mbox{[}str\mbox{]}}]{model\+\_\+fork\+\_\+paths}{, }\item[{str}]{embedding\+\_\+fork\+\_\+path}{, }\item[{str}]{feature\+\_\+fork\+\_\+path}{, }\item[{str}]{training\+\_\+fork\+\_\+path}{, }\item[{int }]{sampling\+\_\+resolution}{ = {\ttfamily 3}, }\item[{str }]{phase\+\_\+1\+\_\+result\+\_\+path}{ = {\ttfamily None}, }\item[{str }]{phase\+\_\+2\+\_\+result\+\_\+path}{ = {\ttfamily None}, }\item[{str }]{phase\+\_\+3\+\_\+result\+\_\+path}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classexperiment__config__handler_1_1_experiment_config_handler}{Experiment\+Config\+Handler}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+config\+\_\+path} & Path to the base config YAML \\
+\hline
+{\em model\+\_\+fork\+\_\+paths} & List of model fork config paths \\
+\hline
+{\em embedding\+\_\+fork\+\_\+path} & Path to embedding fork config \\
+\hline
+{\em feature\+\_\+fork\+\_\+path} & Path to feature fork config \\
+\hline
+{\em training\+\_\+fork\+\_\+path} & Path to training fork config \\
+\hline
+{\em sampling\+\_\+resolution} & Sampling resolution for parameter grids \\
+\hline
+{\em phase\+\_\+1\+\_\+result\+\_\+path} & Optional path to phase 1 results \\
+\hline
+{\em phase\+\_\+2\+\_\+result\+\_\+path} & Optional path to phase 2 results \\
+\hline
+{\em phase\+\_\+3\+\_\+result\+\_\+path} & Optional path to phase 3 results \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a344b314ca9ef6cef13a418ba8dd9229f}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_build\_classifier\_config@{\_build\_classifier\_config}}
+\index{\_build\_classifier\_config@{\_build\_classifier\_config}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_build\_classifier\_config()}{\_build\_classifier\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a344b314ca9ef6cef13a418ba8dd9229f} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+build\+\_\+classifier\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{classifier\+\_\+config}{, }\item[{}]{model}{, }\item[{}]{embedding\+\_\+config}{, }\item[{}]{model\+\_\+config}{, }\item[{}]{sweep\+\_\+config}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Builds the classifier configuration based on the provided model, embedding, and model configs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em classifier\+\_\+config} & Classifier config dictionary \\
+\hline
+{\em model} & Model name \\
+\hline
+{\em embedding\+\_\+config} & Embedding config dictionary \\
+\hline
+{\em model\+\_\+config} & Model config dictionary \\
+\hline
+{\em sweep\+\_\+config} & Optional sweep config dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updated classifier config dictionary 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a344b314ca9ef6cef13a418ba8dd9229f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a344b314ca9ef6cef13a418ba8dd9229f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a43a6d4937fe8664d8a1e287cb9b87cde}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_build\_embedding\_config@{\_build\_embedding\_config}}
+\index{\_build\_embedding\_config@{\_build\_embedding\_config}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_build\_embedding\_config()}{\_build\_embedding\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a43a6d4937fe8664d8a1e287cb9b87cde} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+build\+\_\+embedding\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{embedding\+\_\+config}{, }\item[{}]{sweep\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Builds the embedding configuration based on the provided embedding config and sweep config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em embedding\+\_\+config} & Embedding config dictionary \\
+\hline
+{\em sweep\+\_\+config} & Sweep config dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updated embedding config dictionary 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a43a6d4937fe8664d8a1e287cb9b87cde_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_ad511452d302b3f1bb8da33f8e414f61c}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_expand\_and\_merge@{\_expand\_and\_merge}}
+\index{\_expand\_and\_merge@{\_expand\_and\_merge}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_expand\_and\_merge()}{\_expand\_and\_merge()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_ad511452d302b3f1bb8da33f8e414f61c} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+expand\+\_\+and\+\_\+merge (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model\+\_\+forks}{, }\item[{}]{embedding\+\_\+fork}{, }\item[{}]{feature\+\_\+fork}{, }\item[{}]{training\+\_\+fork}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Expand and merge all forks into a list of full experiment configs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+forks} & List of model fork dicts \\
+\hline
+{\em embedding\+\_\+fork} & Embedding fork dict \\
+\hline
+{\em feature\+\_\+fork} & Feature fork dict \\
+\hline
+{\em training\+\_\+fork} & Training fork dict \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of merged config dicts 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_ad511452d302b3f1bb8da33f8e414f61c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a47dbbf20de1f236904dd916dd882f466}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_get\_base\_config@{\_get\_base\_config}}
+\index{\_get\_base\_config@{\_get\_base\_config}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_get\_base\_config()}{\_get\_base\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a47dbbf20de1f236904dd916dd882f466} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+get\+\_\+base\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Cleans the configuration by removing unnecessary keys. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Config dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cleaned config dictionary 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a47dbbf20de1f236904dd916dd882f466_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a78a2c0da6e9c6c3cd59fd652dc327342}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_overwrite\_config@{\_overwrite\_config}}
+\index{\_overwrite\_config@{\_overwrite\_config}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_overwrite\_config()}{\_overwrite\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a78a2c0da6e9c6c3cd59fd652dc327342} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+overwrite\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config}{, }\item[{}]{overwrite\+\_\+config}{, }\item[{}]{new\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Overwrites specific configuration keys with new values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Config dictionary \\
+\hline
+{\em overwrite\+\_\+config} & Key to overwrite \\
+\hline
+{\em new\+\_\+config} & New values to set \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a78a2c0da6e9c6c3cd59fd652dc327342_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a7c266665aa2468e2b459f6f0bae501f2}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_set\_embedding\_and\_training\_configs@{\_set\_embedding\_and\_training\_configs}}
+\index{\_set\_embedding\_and\_training\_configs@{\_set\_embedding\_and\_training\_configs}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_set\_embedding\_and\_training\_configs()}{\_set\_embedding\_and\_training\_configs()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a7c266665aa2468e2b459f6f0bae501f2} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+set\+\_\+embedding\+\_\+and\+\_\+training\+\_\+configs (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{classifier\+\_\+config}{, }\item[{}]{embedding\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sets the embedding and training configurations in the classifier config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em classifier\+\_\+config} & Classifier config dictionary \\
+\hline
+{\em embedding\+\_\+config} & Embedding config dictionary \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a7c266665aa2468e2b459f6f0bae501f2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a7199b5cdf284e0135e4878cd9474684f}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_set\_feature\_cols@{\_set\_feature\_cols}}
+\index{\_set\_feature\_cols@{\_set\_feature\_cols}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_set\_feature\_cols()}{\_set\_feature\_cols()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a7199b5cdf284e0135e4878cd9474684f} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+set\+\_\+feature\+\_\+cols (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{features\+\_\+col}{, }\item[{}]{sweep\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sets the feature columns in the classifier config based on the sweep configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em features\+\_\+col} & List of feature column names \\
+\hline
+{\em sweep\+\_\+config} & Sweep config dictionary \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a7199b5cdf284e0135e4878cd9474684f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a865a2ab8b238b2c42e8be273358fb00d}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!\_unwrap\_sweep\_config@{\_unwrap\_sweep\_config}}
+\index{\_unwrap\_sweep\_config@{\_unwrap\_sweep\_config}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{\_unwrap\_sweep\_config()}{\_unwrap\_sweep\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a865a2ab8b238b2c42e8be273358fb00d} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+\_\+unwrap\+\_\+sweep\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{sweep\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Unwraps the model configuration from the sweep config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sweep\+\_\+config} & Sweep config dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Flat config dictionary 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a865a2ab8b238b2c42e8be273358fb00d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a865a2ab8b238b2c42e8be273358fb00d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a21b5ed8a1b4fb36ef5c92c024b5b9966}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!expand\_all@{expand\_all}}
+\index{expand\_all@{expand\_all}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{expand\_all()}{expand\_all()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a21b5ed8a1b4fb36ef5c92c024b5b9966} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+expand\+\_\+all (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Expand all forks and store the resulting configs in self.\+configs. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a21b5ed8a1b4fb36ef5c92c024b5b9966_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_ab87c749ad03a4c7853629619311857fa}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!get\_classifier\_ready\_configs@{get\_classifier\_ready\_configs}}
+\index{get\_classifier\_ready\_configs@{get\_classifier\_ready\_configs}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{get\_classifier\_ready\_configs()}{get\_classifier\_ready\_configs()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_ab87c749ad03a4c7853629619311857fa} 
+ List\mbox{[}dict\mbox{]} experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+get\+\_\+classifier\+\_\+ready\+\_\+configs (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{input\+\_\+cfg}{, }\item[{}]{overwrite\+\_\+config}{ = {\ttfamily None}, }\item[{}]{new\+\_\+config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Extracts full classifier config in the desired format, preserving\+: 
+
+
+\begin{DoxyItemize}
+\item defaults
+\item classifier\+\_\+definition
+\item any top-\/level config metadata (e.\+g., label\+\_\+col, balance\+\_\+col, etc.)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+cfg} & Input config object \\
+\hline
+{\em overwrite\+\_\+config} & Optional config key to overwrite \\
+\hline
+{\em new\+\_\+config} & New config values to overwrite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tuple (base\+\_\+config, classifier\+\_\+configs) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_ab87c749ad03a4c7853629619311857fa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a16d27ef81b532748b60d71dd6c818ac7}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!get\_configs@{get\_configs}}
+\index{get\_configs@{get\_configs}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{get\_configs()}{get\_configs()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a16d27ef81b532748b60d71dd6c818ac7} 
+ List\mbox{[}Dict\mbox{]} experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+get\+\_\+configs (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Get the current list of expanded configs. 
+
+\begin{DoxyReturn}{Returns}
+List of config dicts 
+\end{DoxyReturn}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a8375ce21094e17dab663dfc8709c6af1}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!get\_final\_evaluation\_config@{get\_final\_evaluation\_config}}
+\index{get\_final\_evaluation\_config@{get\_final\_evaluation\_config}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{get\_final\_evaluation\_config()}{get\_final\_evaluation\_config()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a8375ce21094e17dab663dfc8709c6af1} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+get\+\_\+final\+\_\+evaluation\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{classifier\+\_\+config}{, }\item[{}]{sweep\+\_\+config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Get the best configs for final evaluation from all phases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Model name \\
+\hline
+{\em classifier\+\_\+config} & Classifier config dict \\
+\hline
+{\em sweep\+\_\+config} & Sweep config dict \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tuple (phase\+\_\+1\+\_\+result, phase\+\_\+2\+\_\+result, phase\+\_\+3\+\_\+result) 
+\end{DoxyReturn}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a7e842d72330cb18ccc1e9f47ec4dd9eb}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!get\_sweeps\_config\_phase\_2@{get\_sweeps\_config\_phase\_2}}
+\index{get\_sweeps\_config\_phase\_2@{get\_sweeps\_config\_phase\_2}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{get\_sweeps\_config\_phase\_2()}{get\_sweeps\_config\_phase\_2()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a7e842d72330cb18ccc1e9f47ec4dd9eb} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+get\+\_\+sweeps\+\_\+config\+\_\+phase\+\_\+2 (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{classifier\+\_\+config}{, }\item[{}]{sweep\+\_\+config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Prepare sweep configuration for phase 2 using phase 1 results. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Model name \\
+\hline
+{\em classifier\+\_\+config} & Classifier config dict \\
+\hline
+{\em sweep\+\_\+config} & Sweep config dict \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updated classifier config 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a7e842d72330cb18ccc1e9f47ec4dd9eb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a35db2925630f0414a40dc2a5073bce64}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!get\_sweeps\_config\_phase\_3@{get\_sweeps\_config\_phase\_3}}
+\index{get\_sweeps\_config\_phase\_3@{get\_sweeps\_config\_phase\_3}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{get\_sweeps\_config\_phase\_3()}{get\_sweeps\_config\_phase\_3()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a35db2925630f0414a40dc2a5073bce64} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+get\+\_\+sweeps\+\_\+config\+\_\+phase\+\_\+3 (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{, }\item[{}]{classifier\+\_\+config}{, }\item[{}]{sweep\+\_\+config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Prepare sweep configuration for phase 3 using phase 1 and 2 results. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Model name \\
+\hline
+{\em classifier\+\_\+config} & Classifier config dict \\
+\hline
+{\em sweep\+\_\+config} & Sweep config dict \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updated classifier config 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a35db2925630f0414a40dc2a5073bce64_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a1451517447da19913a105d0da1af231a}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!load\_from\_file@{load\_from\_file}}
+\index{load\_from\_file@{load\_from\_file}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{load\_from\_file()}{load\_from\_file()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a1451517447da19913a105d0da1af231a} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+load\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Load configs from a JSON file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & File path to load configs from \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_aec31a551815aeed07059ff3f2f350f2f}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!save\_to\_file@{save\_to\_file}}
+\index{save\_to\_file@{save\_to\_file}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{save\_to\_file()}{save\_to\_file()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_aec31a551815aeed07059ff3f2f350f2f} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+save\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Save the expanded configs to a JSON file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & File path to save configs \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_adce7462b7fa7c194d9890bad38259487}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!set\_sweeps\_config\_final\_eval@{set\_sweeps\_config\_final\_eval}}
+\index{set\_sweeps\_config\_final\_eval@{set\_sweeps\_config\_final\_eval}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{set\_sweeps\_config\_final\_eval()}{set\_sweeps\_config\_final\_eval()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_adce7462b7fa7c194d9890bad38259487} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+set\+\_\+sweeps\+\_\+config\+\_\+final\+\_\+eval (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Prepare sweep configuration for final evaluation (phase 4). 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_adce7462b7fa7c194d9890bad38259487_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a192e405f5d17b6dd584fd19468f7abc6}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!set\_sweeps\_config\_phase\_1@{set\_sweeps\_config\_phase\_1}}
+\index{set\_sweeps\_config\_phase\_1@{set\_sweeps\_config\_phase\_1}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{set\_sweeps\_config\_phase\_1()}{set\_sweeps\_config\_phase\_1()}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a192e405f5d17b6dd584fd19468f7abc6} 
+ List\mbox{[}Dict\mbox{]} experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+set\+\_\+sweeps\+\_\+config\+\_\+phase\+\_\+1 (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{model}{}\end{DoxyParamCaption})}
+
+
+
+Prepare sweep configuration for phase 1 using the baseline for the given model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Model name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of expanded configs 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classexperiment__config__handler_1_1_experiment_config_handler_a192e405f5d17b6dd584fd19468f7abc6_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a5fb2ba69ba3cffe2d5e3e11c02ba07cc}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!base\_config\_path@{base\_config\_path}}
+\index{base\_config\_path@{base\_config\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{base\_config\_path}{base\_config\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a5fb2ba69ba3cffe2d5e3e11c02ba07cc} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+base\+\_\+config\+\_\+path = base\+\_\+config\+\_\+path}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_aeb07bef7b5f9131f8b4a255b6ef38a65}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!configs@{configs}}
+\index{configs@{configs}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{configs}{configs}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_aeb07bef7b5f9131f8b4a255b6ef38a65} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+configs = \mbox{[}$\,$\mbox{]}}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a893aa6fe63afd751c65fb2ef2b66348e}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!embedding\_fork\_path@{embedding\_fork\_path}}
+\index{embedding\_fork\_path@{embedding\_fork\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{embedding\_fork\_path}{embedding\_fork\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a893aa6fe63afd751c65fb2ef2b66348e} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+embedding\+\_\+fork\+\_\+path = embedding\+\_\+fork\+\_\+path}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a5277f8ac105a4d353c4341a2ddf29c2a}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!expander@{expander}}
+\index{expander@{expander}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{expander}{expander}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a5277f8ac105a4d353c4341a2ddf29c2a} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+expander = Fork\+Expander(sampling\+\_\+resolution=sampling\+\_\+resolution)}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a0f942b0d1096155f78b06f2545ba8011}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!feature\_fork\_path@{feature\_fork\_path}}
+\index{feature\_fork\_path@{feature\_fork\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{feature\_fork\_path}{feature\_fork\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a0f942b0d1096155f78b06f2545ba8011} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+feature\+\_\+fork\+\_\+path = feature\+\_\+fork\+\_\+path}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_ad06e14cb4173c6063b21b6e137de8dd8}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!model\_fork\_paths@{model\_fork\_paths}}
+\index{model\_fork\_paths@{model\_fork\_paths}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{model\_fork\_paths}{model\_fork\_paths}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_ad06e14cb4173c6063b21b6e137de8dd8} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+model\+\_\+fork\+\_\+paths = model\+\_\+fork\+\_\+paths}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a7e07d83ace45bd5136e23fb853ac5f4f}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!phase\_1\_result\_load\_path@{phase\_1\_result\_load\_path}}
+\index{phase\_1\_result\_load\_path@{phase\_1\_result\_load\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{phase\_1\_result\_load\_path}{phase\_1\_result\_load\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a7e07d83ace45bd5136e23fb853ac5f4f} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+phase\+\_\+1\+\_\+result\+\_\+load\+\_\+path = phase\+\_\+1\+\_\+result\+\_\+path}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a87b04b81bb860b9117289ae864d2c8f8}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!phase\_2\_result\_load\_path@{phase\_2\_result\_load\_path}}
+\index{phase\_2\_result\_load\_path@{phase\_2\_result\_load\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{phase\_2\_result\_load\_path}{phase\_2\_result\_load\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a87b04b81bb860b9117289ae864d2c8f8} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+phase\+\_\+2\+\_\+result\+\_\+load\+\_\+path = phase\+\_\+2\+\_\+result\+\_\+path}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a7a74cb2a923afdc6b7d4e58e1a3c96ff}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!phase\_3\_result\_load\_path@{phase\_3\_result\_load\_path}}
+\index{phase\_3\_result\_load\_path@{phase\_3\_result\_load\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{phase\_3\_result\_load\_path}{phase\_3\_result\_load\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a7a74cb2a923afdc6b7d4e58e1a3c96ff} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+phase\+\_\+3\+\_\+result\+\_\+load\+\_\+path = phase\+\_\+3\+\_\+result\+\_\+path}
+
+\Hypertarget{classexperiment__config__handler_1_1_experiment_config_handler_a31820e2d429a5abf11985172f2b8176a}\index{experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}!training\_fork\_path@{training\_fork\_path}}
+\index{training\_fork\_path@{training\_fork\_path}!experiment\_config\_handler.ExperimentConfigHandler@{experiment\_config\_handler.ExperimentConfigHandler}}
+\doxysubsubsection{\texorpdfstring{training\_fork\_path}{training\_fork\_path}}
+{\footnotesize\ttfamily \label{classexperiment__config__handler_1_1_experiment_config_handler_a31820e2d429a5abf11985172f2b8176a} 
+experiment\+\_\+config\+\_\+handler.\+Experiment\+Config\+Handler.\+training\+\_\+fork\+\_\+path = training\+\_\+fork\+\_\+path}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/experiment/\mbox{\hyperlink{experiment__config__handler_8py}{experiment\+\_\+config\+\_\+handler.\+py}}\end{DoxyCompactItemize}

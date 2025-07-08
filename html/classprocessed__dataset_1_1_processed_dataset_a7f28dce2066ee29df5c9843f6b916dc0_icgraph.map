@@ -1,0 +1,7 @@
+<map id="processed_dataset.ProcessedDataset._extract_embeddings" name="processed_dataset.ProcessedDataset._extract_embeddings">
+<area shape="rect" id="Node000001" title="Extracts embeddings from a DataFrame for the given accessions." alt="" coords="254,29,451,70"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="393,16,378,10,352,8,329,10,314,15,309,21,311,28,306,29,304,19,311,10,328,5,352,3,379,5,395,11"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#a39863e44d1b5a472442c171c2e5d6388" title="Loads GO embeddings for the given accessions and embedding configs." alt="" coords="5,29,206,70"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="238,52,206,52,206,47,238,47"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="146,16,131,10,105,8,82,10,67,15,62,21,64,28,59,29,57,19,65,10,81,5,106,3,132,5,148,11"/>
+</map>

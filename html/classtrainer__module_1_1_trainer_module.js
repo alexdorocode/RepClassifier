@@ -1,0 +1,27 @@
+var classtrainer__module_1_1_trainer_module =
+[
+    [ "__init__", "classtrainer__module_1_1_trainer_module.html#a2a399d13b639a5ddf45ab20277717580", null ],
+    [ "_clone_model", "classtrainer__module_1_1_trainer_module.html#a580b0fd3a7ce2e590dedeb9be66524ae", null ],
+    [ "_compute_validation_loss", "classtrainer__module_1_1_trainer_module.html#a04b5d88ce62f21b6536fe4a9b45e43d6", null ],
+    [ "_create_loaders", "classtrainer__module_1_1_trainer_module.html#af7d1f77308e045e70deff61fd751bed9", null ],
+    [ "_evaluate_pytorch", "classtrainer__module_1_1_trainer_module.html#ae27ab0062e47a7e5bb6077111263b636", null ],
+    [ "_get_criterion", "classtrainer__module_1_1_trainer_module.html#af3be048e81655e1bf06c82dab54134ab", null ],
+    [ "_get_optimizer", "classtrainer__module_1_1_trainer_module.html#aeab54d944a1ae1fe8dacceaa77473025", null ],
+    [ "_train_pytorch", "classtrainer__module_1_1_trainer_module.html#aeaf19fe6702f9a97f755a4bc8149d313", null ],
+    [ "cross_validate", "classtrainer__module_1_1_trainer_module.html#a4aa47bee3204ec3da0abd73a93fd5365", null ],
+    [ "evaluate_on_dataset", "classtrainer__module_1_1_trainer_module.html#a8e447d1c5d0d3ccbed994ad6aeb31e1d", null ],
+    [ "show_balance_summary", "classtrainer__module_1_1_trainer_module.html#a29637d91300a316996584acb25f6a198", null ],
+    [ "batch_size", "classtrainer__module_1_1_trainer_module.html#a86831aded336cc3a1415e11e2ae326bb", null ],
+    [ "criterion_name", "classtrainer__module_1_1_trainer_module.html#a391645b98994e5423c3b6a9d2af3acbf", null ],
+    [ "cross_val_balance", "classtrainer__module_1_1_trainer_module.html#a42ca9417395a83e281af3f7c8815fb52", null ],
+    [ "cv_folds", "classtrainer__module_1_1_trainer_module.html#a3bc6f52933aaa6022b36109d3f09f6c1", null ],
+    [ "device", "classtrainer__module_1_1_trainer_module.html#a8b3957d02fb9a2995ff451560f8f9ba9", null ],
+    [ "early_stopping_patience", "classtrainer__module_1_1_trainer_module.html#a8654b0c820d3185d03863f4f70402138", null ],
+    [ "learning_rate", "classtrainer__module_1_1_trainer_module.html#a5609120d8f1f739e8035969e276e821a", null ],
+    [ "model", "classtrainer__module_1_1_trainer_module.html#aed5eda2627dbcc7524f8d650ba64f1b6", null ],
+    [ "model_type", "classtrainer__module_1_1_trainer_module.html#adbeb7507dd6d433a8fc3b7549efcfb3f", null ],
+    [ "num_epochs", "classtrainer__module_1_1_trainer_module.html#a5ca4f146ee4de1e9a427f2a31831ddd8", null ],
+    [ "optimizer_name", "classtrainer__module_1_1_trainer_module.html#af5aec5fae9a1a108f957bc5891a0be66", null ],
+    [ "random_seed", "classtrainer__module_1_1_trainer_module.html#a202dc5239d22c22344cd54d89958fb91", null ],
+    [ "tracker", "classtrainer__module_1_1_trainer_module.html#aded86c849ee7c2d4b0c4783e1d7f554f", null ]
+];

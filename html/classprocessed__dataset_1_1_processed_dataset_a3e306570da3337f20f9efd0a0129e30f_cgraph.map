@@ -1,0 +1,5 @@
+<map id="processed_dataset.ProcessedDataset._selected_accessions" name="processed_dataset.ProcessedDataset._selected_accessions">
+<area shape="rect" id="Node000001" title="Returns the accessions of the processed dataset based on the organism discrimination strategy." alt="" coords="5,13,206,54"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#ae8daecaaecac63ebce1ec39a17030c5a" title="Returns accessions filtered by the selected organisms." alt="" coords="254,5,451,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,30,238,30,238,36,206,36"/>
+</map>

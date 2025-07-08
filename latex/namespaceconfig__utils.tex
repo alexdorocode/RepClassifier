@@ -1,0 +1,68 @@
+\doxysection{config\+\_\+utils Namespace Reference}
+\hypertarget{namespaceconfig__utils}{}\label{namespaceconfig__utils}\index{config\_utils@{config\_utils}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceconfig__utils_a3b7957d54b4b78ac7aa69b9adb6c31a6}{validate\+\_\+config}} (model\+\_\+name, config)
+\begin{DoxyCompactList}\small\item\em Validate hyperparameter configurations for Logistic Regression, XGBoost, SVM, KNN, Random Forest, and MLPProtein\+Classifier. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespaceconfig__utils_aada72e85184a4fe30e22dc80de9c0b1f}{merge\+\_\+dicts}} (\texorpdfstring{$\ast$}{*}dicts)
+\begin{DoxyCompactList}\small\item\em Merge multiple dictionaries into one, handling nested dictionaries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespaceconfig__utils_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceconfig__utils_aada72e85184a4fe30e22dc80de9c0b1f}\index{config\_utils@{config\_utils}!merge\_dicts@{merge\_dicts}}
+\index{merge\_dicts@{merge\_dicts}!config\_utils@{config\_utils}}
+\doxysubsubsection{\texorpdfstring{merge\_dicts()}{merge\_dicts()}}
+{\footnotesize\ttfamily \label{namespaceconfig__utils_aada72e85184a4fe30e22dc80de9c0b1f} 
+config\+\_\+utils.\+merge\+\_\+dicts (\begin{DoxyParamCaption}\item[{\texorpdfstring{$\ast$}{*}}]{dicts}{}\end{DoxyParamCaption})}
+
+
+
+Merge multiple dictionaries into one, handling nested dictionaries. 
+
+If a key exists in multiple dictionaries, the value from the last dictionary will be used. If a key\textquotesingle{}s value is a dictionary in multiple dictionaries, they will be merged recursively. If the merged dictionary exceeds 1000 keys, a message will be printed. 
+\begin{DoxyParams}{Parameters}
+{\em dicts} & Variable number of dictionaries to merge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Merged dictionary. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{namespaceconfig__utils_aada72e85184a4fe30e22dc80de9c0b1f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{namespaceconfig__utils_aada72e85184a4fe30e22dc80de9c0b1f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceconfig__utils_a3b7957d54b4b78ac7aa69b9adb6c31a6}\index{config\_utils@{config\_utils}!validate\_config@{validate\_config}}
+\index{validate\_config@{validate\_config}!config\_utils@{config\_utils}}
+\doxysubsubsection{\texorpdfstring{validate\_config()}{validate\_config()}}
+{\footnotesize\ttfamily \label{namespaceconfig__utils_a3b7957d54b4b78ac7aa69b9adb6c31a6} 
+config\+\_\+utils.\+validate\+\_\+config (\begin{DoxyParamCaption}\item[{}]{model\+\_\+name}{, }\item[{}]{config}{}\end{DoxyParamCaption})}
+
+
+
+Validate hyperparameter configurations for Logistic Regression, XGBoost, SVM, KNN, Random Forest, and MLPProtein\+Classifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & str, one of \textquotesingle{}logistic\+\_\+regression\textquotesingle{}, \textquotesingle{}xgboost\textquotesingle{}, \textquotesingle{}svm\textquotesingle{}, \textquotesingle{}knn\textquotesingle{}, \textquotesingle{}random\+\_\+forest\textquotesingle{}, \textquotesingle{}\doxylink{namespacemlp__protein__classifier}{mlp\+\_\+protein\+\_\+classifier}\textquotesingle{} \\
+\hline
+{\em config} & dict, hyperparameter values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if valid, raises Value\+Error if invalid 
+\end{DoxyReturn}

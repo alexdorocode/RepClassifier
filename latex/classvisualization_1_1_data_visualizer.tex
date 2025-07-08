@@ -1,0 +1,192 @@
+\doxysection{visualization.\+Data\+Visualizer Class Reference}
+\hypertarget{classvisualization_1_1_data_visualizer}{}\label{classvisualization_1_1_data_visualizer}\index{visualization.DataVisualizer@{visualization.DataVisualizer}}
+
+
+Provides tools to visualize data and interpret results.  
+
+
+
+
+Collaboration diagram for visualization.\+Data\+Visualizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classvisualization_1_1_data_visualizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_a412bf8098b083a0a6075fba321652a02}{plot\+\_\+variance\+\_\+explained}} (pca, title=\textquotesingle{}PCA Variance Explained by Components\textquotesingle{}, threshold=0.\+95)
+\begin{DoxyCompactList}\small\item\em Plots the cumulative explained variance of PCA components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_ac3f142a57a79cd42714f7c36ffaa061f}{plot\+\_\+scree}} (pca)
+\begin{DoxyCompactList}\small\item\em Plots the scree plot for PCA. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_aa07fed0e4a6267ef66bb299a54f65782}{get\+\_\+loadings}} (pca)
+\begin{DoxyCompactList}\small\item\em Retrieves the loadings (eigenvectors) for the principal components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_ad2340257ef7d18f2f19bdbc14f55f26f}{plot\+\_\+feature\+\_\+importance}} (pca, feature\+\_\+names=None)
+\begin{DoxyCompactList}\small\item\em Plots the feature importance based on PCA loadings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_a6d6fd185d5fd79fe835d4da71f11d837}{get\+\_\+variance\+\_\+contribution}} (pca)
+\begin{DoxyCompactList}\small\item\em Returns the variance contribution of each component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_affd36688e79511fe0cd24136bab7bc2e}{plot\+\_\+variance\+\_\+contribution}} (pca)
+\begin{DoxyCompactList}\small\item\em Plots the variance contribution of each principal component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_a9880adc1163ba6653d5ef49daa7f3128}{plot\+\_\+kmeans}} (data, n\+\_\+clusters=3)
+\begin{DoxyCompactList}\small\item\em Apply K-\/\+Means clustering and visualize results. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvisualization_1_1_data_visualizer_a854cbc3e26780c5815f94ace89c879f3}{plot\+\_\+correration\+\_\+heatmap}} (data)
+\begin{DoxyCompactList}\small\item\em Plot a heatmap of the correlation between features. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides tools to visualize data and interpret results. 
+
+\label{doc-func-members}
+\Hypertarget{classvisualization_1_1_data_visualizer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classvisualization_1_1_data_visualizer_aa07fed0e4a6267ef66bb299a54f65782}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!get\_loadings@{get\_loadings}}
+\index{get\_loadings@{get\_loadings}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{get\_loadings()}{get\_loadings()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_aa07fed0e4a6267ef66bb299a54f65782} 
+visualization.\+Data\+Visualizer.\+get\+\_\+loadings (\begin{DoxyParamCaption}\item[{}]{pca}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the loadings (eigenvectors) for the principal components. 
+
+\begin{DoxyVerb}  The loadings are the coefficients of the original features for each
+  principal component. A high absolute value of a loading indicates that
+  a feature has a strong contribution to the corresponding component.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Parameters}
+pca Fitted PCA object with components\+\_\+.
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+
+
+np The loadings for each principal component. 
+\end{DoxyReturn}
+\Hypertarget{classvisualization_1_1_data_visualizer_a6d6fd185d5fd79fe835d4da71f11d837}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!get\_variance\_contribution@{get\_variance\_contribution}}
+\index{get\_variance\_contribution@{get\_variance\_contribution}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{get\_variance\_contribution()}{get\_variance\_contribution()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_a6d6fd185d5fd79fe835d4da71f11d837} 
+visualization.\+Data\+Visualizer.\+get\+\_\+variance\+\_\+contribution (\begin{DoxyParamCaption}\item[{}]{pca}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the variance contribution of each component. 
+
+\begin{DoxyVerb}  This function calculates the proportion of total variance explained by each
+  principal component based on its eigenvalue, as well as the cumulative contribution.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Parameters}
+pca Fitted PCA object with explained\+\_\+variance\+\_\+ratio\+\_\+.
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+
+
+dict A dictionary containing variance contributions for each component and cumulative variance. 
+\end{DoxyReturn}
+\Hypertarget{classvisualization_1_1_data_visualizer_a854cbc3e26780c5815f94ace89c879f3}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!plot\_correration\_heatmap@{plot\_correration\_heatmap}}
+\index{plot\_correration\_heatmap@{plot\_correration\_heatmap}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{plot\_correration\_heatmap()}{plot\_correration\_heatmap()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_a854cbc3e26780c5815f94ace89c879f3} 
+visualization.\+Data\+Visualizer.\+plot\+\_\+correration\+\_\+heatmap (\begin{DoxyParamCaption}\item[{}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Plot a heatmap of the correlation between features. 
+
+\Hypertarget{classvisualization_1_1_data_visualizer_ad2340257ef7d18f2f19bdbc14f55f26f}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!plot\_feature\_importance@{plot\_feature\_importance}}
+\index{plot\_feature\_importance@{plot\_feature\_importance}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{plot\_feature\_importance()}{plot\_feature\_importance()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_ad2340257ef7d18f2f19bdbc14f55f26f} 
+visualization.\+Data\+Visualizer.\+plot\+\_\+feature\+\_\+importance (\begin{DoxyParamCaption}\item[{}]{pca}{, }\item[{}]{feature\+\_\+names}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Plots the feature importance based on PCA loadings. 
+
+\begin{DoxyVerb}  This plot shows the absolute value of the loadings for each feature
+  across all components. Features with high loadings on the components
+  contribute more to the variance explained by the PCA.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Parameters}
+pca Fitted PCA object with components\+\_\+. feature\+\_\+names (list, optional)\+: List of feature names. If None, the features will be labeled as \textquotesingle{}Feature 1\textquotesingle{}, \textquotesingle{}Feature 2\textquotesingle{}, etc. 
+\end{DoxyParagraph}
+\Hypertarget{classvisualization_1_1_data_visualizer_a9880adc1163ba6653d5ef49daa7f3128}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!plot\_kmeans@{plot\_kmeans}}
+\index{plot\_kmeans@{plot\_kmeans}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{plot\_kmeans()}{plot\_kmeans()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_a9880adc1163ba6653d5ef49daa7f3128} 
+visualization.\+Data\+Visualizer.\+plot\+\_\+kmeans (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{n\+\_\+clusters}{ = {\ttfamily 3}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Apply K-\/\+Means clustering and visualize results. 
+
+\Hypertarget{classvisualization_1_1_data_visualizer_ac3f142a57a79cd42714f7c36ffaa061f}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!plot\_scree@{plot\_scree}}
+\index{plot\_scree@{plot\_scree}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{plot\_scree()}{plot\_scree()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_ac3f142a57a79cd42714f7c36ffaa061f} 
+visualization.\+Data\+Visualizer.\+plot\+\_\+scree (\begin{DoxyParamCaption}\item[{}]{pca}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Plots the scree plot for PCA. 
+
+\begin{DoxyVerb}  The scree plot visualizes the eigenvalues of each principal component,
+  which indicates the amount of variance captured by each component.
+  The "elbow" of the plot can help determine the number of components
+  to retain.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Parameters}
+pca Fitted PCA object with components\+\_\+ and explained\+\_\+variance\+\_\+ratio\+\_\+. 
+\end{DoxyParagraph}
+\Hypertarget{classvisualization_1_1_data_visualizer_affd36688e79511fe0cd24136bab7bc2e}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!plot\_variance\_contribution@{plot\_variance\_contribution}}
+\index{plot\_variance\_contribution@{plot\_variance\_contribution}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{plot\_variance\_contribution()}{plot\_variance\_contribution()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_affd36688e79511fe0cd24136bab7bc2e} 
+visualization.\+Data\+Visualizer.\+plot\+\_\+variance\+\_\+contribution (\begin{DoxyParamCaption}\item[{}]{pca}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Plots the variance contribution of each principal component. 
+
+\begin{DoxyVerb}  This plot shows how much variance each principal component contributes
+  to the overall dataset, allowing for insight into the importance of each component.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Parameters}
+pca Fitted PCA object with explained\+\_\+variance\+\_\+. 
+\end{DoxyParagraph}
+\Hypertarget{classvisualization_1_1_data_visualizer_a412bf8098b083a0a6075fba321652a02}\index{visualization.DataVisualizer@{visualization.DataVisualizer}!plot\_variance\_explained@{plot\_variance\_explained}}
+\index{plot\_variance\_explained@{plot\_variance\_explained}!visualization.DataVisualizer@{visualization.DataVisualizer}}
+\doxysubsubsection{\texorpdfstring{plot\_variance\_explained()}{plot\_variance\_explained()}}
+{\footnotesize\ttfamily \label{classvisualization_1_1_data_visualizer_a412bf8098b083a0a6075fba321652a02} 
+visualization.\+Data\+Visualizer.\+plot\+\_\+variance\+\_\+explained (\begin{DoxyParamCaption}\item[{}]{pca}{, }\item[{}]{title}{ = {\ttfamily \textquotesingle{}PCA~Variance~Explained~by~Components\textquotesingle{}}, }\item[{}]{threshold}{ = {\ttfamily 0.95}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Plots the cumulative explained variance of PCA components. 
+
+\begin{DoxyVerb}  The plot shows the cumulative explained variance as more components are added.
+  This helps determine how many components are required to explain a certain
+  amount of variance in the dataset.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Parameters}
+pca Fitted PCA object with explained\+\_\+variance\+\_\+ratio\+\_\+. 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/utils/\mbox{\hyperlink{visualization_8py}{visualization.\+py}}\end{DoxyCompactItemize}

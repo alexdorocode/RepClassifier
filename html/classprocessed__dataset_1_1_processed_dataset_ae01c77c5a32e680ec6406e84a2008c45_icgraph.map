@@ -1,0 +1,7 @@
+<map id="processed_dataset.ProcessedDataset._top_n_organisms" name="processed_dataset.ProcessedDataset._top_n_organisms">
+<area shape="rect" id="Node000001" title="Returns the top n organisms with the most samples in the dataframe." alt="" coords="496,5,693,46"/>
+<area shape="rect" id="Node000002" href="$classprocessed__dataset_1_1_processed_dataset.html#a90fbb51378e439da7d12a60f6326c365" title="Builds the dataset based on the provided configuration and selected accessions." alt="" coords="251,5,448,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,28,449,28,449,23,481,23"/>
+<area shape="rect" id="Node000003" href="$classprocessed__dataset_1_1_processed_dataset.html#a4678f4c183853ed92167bc91b2ed4702" title="Processes and normalizes metrics from the raw dataset." alt="" coords="5,5,203,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,28,203,28,203,23,235,23"/>
+</map>

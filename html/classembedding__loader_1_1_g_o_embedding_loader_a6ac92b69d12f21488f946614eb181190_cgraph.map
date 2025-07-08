@@ -1,0 +1,5 @@
+<map id="embedding_loader.GOEmbeddingLoader.load" name="embedding_loader.GOEmbeddingLoader.load">
+<area shape="rect" id="Node000001" title="Load GO embeddings with the specified configuration." alt="" coords="5,5,220,46"/>
+<area shape="rect" id="Node000002" href="$classembedding__loader_1_1_g_o_embedding_loader.html#a2c2bf0974e890365e25360aa343ffeb2" title="Resolves the file path for the requested GO embedding configuration." alt="" coords="268,5,503,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,23,252,23,252,28,220,28"/>
+</map>

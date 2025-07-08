@@ -1,0 +1,313 @@
+\doxysection{classifier\+\_\+launcher.\+Classifier\+Launcher Class Reference}
+\hypertarget{classclassifier__launcher_1_1_classifier_launcher}{}\label{classclassifier__launcher_1_1_classifier_launcher}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+
+
+Orchestrates model training, evaluation, zero-\/shot testing, and explainability for a given configuration.  
+
+
+
+
+Collaboration diagram for classifier\+\_\+launcher.\+Classifier\+Launcher\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classclassifier__launcher_1_1_classifier_launcher__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_ae69e8e846e4ca7d4473b7834d1acfe7d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_afed7402987989373fc51b1f0844202ed}{config\+\_\+reader}}, \mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a4c4ca6a1dda23ec9c346d376faa2bf7e}{dataset\+\_\+handler}}, \mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a7f270e0c6cd02e3055642d1c10d4aa8e}{zero\+\_\+shot\+\_\+test}}=False, \mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a1ec3e9d824b7cff3898ab8e9c95bbc6b}{random\+\_\+seed}}=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classclassifier__launcher_1_1_classifier_launcher}{Classifier\+Launcher}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a12be1d0eccbdef96e5a41a18c96a6161}{run}} (self)
+\begin{DoxyCompactList}\small\item\em Run training, (optionally) zero-\/shot testing, and explainability. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_af910a536eb8efc13b78dcea5054b72bb}{device}} = \textquotesingle{}cuda\textquotesingle{} if torch.\+cuda.\+is\+\_\+available() else \textquotesingle{}cpu\textquotesingle{}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_afed7402987989373fc51b1f0844202ed}{config\+\_\+reader}} = config\+\_\+reader
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a4c4ca6a1dda23ec9c346d376faa2bf7e}{dataset\+\_\+handler}} = dataset\+\_\+handler
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a7f270e0c6cd02e3055642d1c10d4aa8e}{zero\+\_\+shot\+\_\+test}} = zero\+\_\+shot\+\_\+test
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a1ec3e9d824b7cff3898ab8e9c95bbc6b}{random\+\_\+seed}} = random\+\_\+seed
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_ac37e51af13e06f8a1f471c9fa9a2cf72}{tracker}}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_ab73d78e8206ee56de1825d038482d7d3}{classifier\+\_\+dataset}} = self.\+dataset\+\_\+handler.\+load\+\_\+classifier\+\_\+dataset()
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a71f4d3428dbeaaf0f5cfd28a7ff4c0a6}{X\+\_\+train}}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a964b5d66d79cf3ab07c37809375576ca}{X\+\_\+test}}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a99e4741b5e77b80e51771af0bd60c870}{y\+\_\+train}}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a015d4c2ed92374844ae2c9152cb1c778}{y\+\_\+test}}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_ab88a7cfb1726538d235c73a1b580634c}{model\+\_\+loader}}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_ab0b21e95d76f6200bc2508cbf1386c06}{model}} = self.\+model\+\_\+loader.\+get\+\_\+model()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_abcda75e896bdc97c0c0f6fbdbaf7a540}{\+\_\+initialize\+\_\+dataset}} (self)
+\begin{DoxyCompactList}\small\item\em Load and split the dataset into train and test sets. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a30e58ff09c8526964d01a6ec4d33ceac}{\+\_\+initialize\+\_\+model}} (self)
+\begin{DoxyCompactList}\small\item\em Initialize the model using the configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_af678e4dd89b4dd4afca64d76907035e9}{\+\_\+set\+\_\+all\+\_\+seeds}} (self, seed)
+\begin{DoxyCompactList}\small\item\em Set seeds for reproducibility across random, numpy, and torch. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_a10aa1e7318acd8630aed0791eeccb63f}{\+\_\+run\+\_\+zero\+\_\+shot}} (self)
+\begin{DoxyCompactList}\small\item\em Perform zero-\/shot testing on the zero-\/shot dataset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classclassifier__launcher_1_1_classifier_launcher_ac5d543673acbd5ed7667e95e236e7b3e}{\+\_\+run\+\_\+explainability}} (self)
+\begin{DoxyCompactList}\small\item\em Run explainability on the model and print the results. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Orchestrates model training, evaluation, zero-\/shot testing, and explainability for a given configuration. 
+
+\label{doc-constructors}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_ae69e8e846e4ca7d4473b7834d1acfe7d}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_ae69e8e846e4ca7d4473b7834d1acfe7d} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{config\+\_\+reader}{, }\item[{}]{dataset\+\_\+handler}{, }\item[{}]{zero\+\_\+shot\+\_\+test}{ = {\ttfamily False}, }\item[{}]{random\+\_\+seed}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classclassifier__launcher_1_1_classifier_launcher}{Classifier\+Launcher}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+reader} & Configuration reader object \\
+\hline
+{\em \doxylink{namespacedataset__handler}{dataset\+\_\+handler}} & Dataset handler object \\
+\hline
+{\em zero\+\_\+shot\+\_\+test} & If True, perform zero-\/shot testing after training \\
+\hline
+{\em random\+\_\+seed} & Random seed for reproducibility \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_abcda75e896bdc97c0c0f6fbdbaf7a540}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!\_initialize\_dataset@{\_initialize\_dataset}}
+\index{\_initialize\_dataset@{\_initialize\_dataset}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{\_initialize\_dataset()}{\_initialize\_dataset()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_abcda75e896bdc97c0c0f6fbdbaf7a540} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+\_\+initialize\+\_\+dataset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Load and split the dataset into train and test sets. 
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a30e58ff09c8526964d01a6ec4d33ceac}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!\_initialize\_model@{\_initialize\_model}}
+\index{\_initialize\_model@{\_initialize\_model}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{\_initialize\_model()}{\_initialize\_model()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a30e58ff09c8526964d01a6ec4d33ceac} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+\_\+initialize\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Initialize the model using the configuration. 
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_ac5d543673acbd5ed7667e95e236e7b3e}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!\_run\_explainability@{\_run\_explainability}}
+\index{\_run\_explainability@{\_run\_explainability}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{\_run\_explainability()}{\_run\_explainability()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_ac5d543673acbd5ed7667e95e236e7b3e} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+\_\+run\+\_\+explainability (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Run explainability on the model and print the results. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classclassifier__launcher_1_1_classifier_launcher_ac5d543673acbd5ed7667e95e236e7b3e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a10aa1e7318acd8630aed0791eeccb63f}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!\_run\_zero\_shot@{\_run\_zero\_shot}}
+\index{\_run\_zero\_shot@{\_run\_zero\_shot}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{\_run\_zero\_shot()}{\_run\_zero\_shot()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a10aa1e7318acd8630aed0791eeccb63f} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+\_\+run\+\_\+zero\+\_\+shot (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Perform zero-\/shot testing on the zero-\/shot dataset. 
+
+\begin{DoxyReturn}{Returns}
+Tuple (accuracy, f1, precision, recall, run\+\_\+results) 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classclassifier__launcher_1_1_classifier_launcher_a10aa1e7318acd8630aed0791eeccb63f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_af678e4dd89b4dd4afca64d76907035e9}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!\_set\_all\_seeds@{\_set\_all\_seeds}}
+\index{\_set\_all\_seeds@{\_set\_all\_seeds}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{\_set\_all\_seeds()}{\_set\_all\_seeds()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_af678e4dd89b4dd4afca64d76907035e9} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+\_\+set\+\_\+all\+\_\+seeds (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{seed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Set seeds for reproducibility across random, numpy, and torch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & Random seed (int) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a12be1d0eccbdef96e5a41a18c96a6161}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!run@{run}}
+\index{run@{run}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a12be1d0eccbdef96e5a41a18c96a6161} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+run (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Run training, (optionally) zero-\/shot testing, and explainability. 
+
+\begin{DoxyReturn}{Returns}
+Tuple (metrics dict, run\+\_\+results list) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classclassifier__launcher_1_1_classifier_launcher_a12be1d0eccbdef96e5a41a18c96a6161_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_ab73d78e8206ee56de1825d038482d7d3}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!classifier\_dataset@{classifier\_dataset}}
+\index{classifier\_dataset@{classifier\_dataset}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{classifier\_dataset}{classifier\_dataset}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_ab73d78e8206ee56de1825d038482d7d3} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+classifier\+\_\+dataset = self.\+dataset\+\_\+handler.\+load\+\_\+classifier\+\_\+dataset()}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_afed7402987989373fc51b1f0844202ed}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!config\_reader@{config\_reader}}
+\index{config\_reader@{config\_reader}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{config\_reader}{config\_reader}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_afed7402987989373fc51b1f0844202ed} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+config\+\_\+reader = config\+\_\+reader}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a4c4ca6a1dda23ec9c346d376faa2bf7e}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!dataset\_handler@{dataset\_handler}}
+\index{dataset\_handler@{dataset\_handler}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{dataset\_handler}{dataset\_handler}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a4c4ca6a1dda23ec9c346d376faa2bf7e} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+dataset\+\_\+handler = dataset\+\_\+handler}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_af910a536eb8efc13b78dcea5054b72bb}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!device@{device}}
+\index{device@{device}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_af910a536eb8efc13b78dcea5054b72bb} 
+str classifier\+\_\+launcher.\+Classifier\+Launcher.\+device = \textquotesingle{}cuda\textquotesingle{} if torch.\+cuda.\+is\+\_\+available() else \textquotesingle{}cpu\textquotesingle{}}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_ab0b21e95d76f6200bc2508cbf1386c06}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!model@{model}}
+\index{model@{model}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_ab0b21e95d76f6200bc2508cbf1386c06} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+model = self.\+model\+\_\+loader.\+get\+\_\+model()}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_ab88a7cfb1726538d235c73a1b580634c}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!model\_loader@{model\_loader}}
+\index{model\_loader@{model\_loader}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{model\_loader}{model\_loader}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_ab88a7cfb1726538d235c73a1b580634c} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+model\+\_\+loader}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ClassifierModelLoader(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ model\_type=model\_cfg[\textcolor{stringliteral}{'type'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ input\_size=input\_size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ output\_size=output\_size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ device=self.device,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ model\_params=model\_cfg[\textcolor{stringliteral}{'params'}]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a1ec3e9d824b7cff3898ab8e9c95bbc6b}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!random\_seed@{random\_seed}}
+\index{random\_seed@{random\_seed}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{random\_seed}{random\_seed}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a1ec3e9d824b7cff3898ab8e9c95bbc6b} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+random\+\_\+seed = random\+\_\+seed}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_ac37e51af13e06f8a1f471c9fa9a2cf72}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!tracker@{tracker}}
+\index{tracker@{tracker}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{tracker}{tracker}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_ac37e51af13e06f8a1f471c9fa9a2cf72} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+tracker}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ TrackerModule(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ project\_name=tracker\_cfg[\textcolor{stringliteral}{'project\_name'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ run\_name=tracker\_cfg[\textcolor{stringliteral}{'run\_name'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ offline=tracker\_cfg.get(\textcolor{stringliteral}{'offline'},\ \textcolor{keyword}{False}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ config=self.config\_reader,\ \ \textcolor{comment}{\#\ Store\ the\ entire\ config\_reader\ as\ a\ reference}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ random\_seed=self.random\_seed,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ tags=[\textcolor{stringliteral}{'phase\_final\_eval\_develop'},\ \textcolor{stringliteral}{'zero\_shot'},\ \textcolor{stringliteral}{'classifier'},\ f\textcolor{stringliteral}{'\{self.config\_reader.model["{}type"{}]\}'}]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a964b5d66d79cf3ab07c37809375576ca}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!X\_test@{X\_test}}
+\index{X\_test@{X\_test}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{X\_test}{X\_test}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a964b5d66d79cf3ab07c37809375576ca} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+X\+\_\+test}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a71f4d3428dbeaaf0f5cfd28a7ff4c0a6}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!X\_train@{X\_train}}
+\index{X\_train@{X\_train}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{X\_train}{X\_train}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a71f4d3428dbeaaf0f5cfd28a7ff4c0a6} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+X\+\_\+train}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a015d4c2ed92374844ae2c9152cb1c778}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!y\_test@{y\_test}}
+\index{y\_test@{y\_test}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{y\_test}{y\_test}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a015d4c2ed92374844ae2c9152cb1c778} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+y\+\_\+test}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ train\_test\_split(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ X,\ y,\ test\_size=self.config\_reader.training[\textcolor{stringliteral}{'test\_size\_ratio'}],\ random\_state=self.random\_seed,\ stratify=y}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a99e4741b5e77b80e51771af0bd60c870}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!y\_train@{y\_train}}
+\index{y\_train@{y\_train}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{y\_train}{y\_train}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a99e4741b5e77b80e51771af0bd60c870} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+y\+\_\+train}
+
+\Hypertarget{classclassifier__launcher_1_1_classifier_launcher_a7f270e0c6cd02e3055642d1c10d4aa8e}\index{classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}!zero\_shot\_test@{zero\_shot\_test}}
+\index{zero\_shot\_test@{zero\_shot\_test}!classifier\_launcher.ClassifierLauncher@{classifier\_launcher.ClassifierLauncher}}
+\doxysubsubsection{\texorpdfstring{zero\_shot\_test}{zero\_shot\_test}}
+{\footnotesize\ttfamily \label{classclassifier__launcher_1_1_classifier_launcher_a7f270e0c6cd02e3055642d1c10d4aa8e} 
+classifier\+\_\+launcher.\+Classifier\+Launcher.\+zero\+\_\+shot\+\_\+test = zero\+\_\+shot\+\_\+test}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/launchers/\mbox{\hyperlink{classifier__launcher_8py}{classifier\+\_\+launcher.\+py}}\end{DoxyCompactItemize}

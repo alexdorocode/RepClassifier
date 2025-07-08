@@ -1,0 +1,5 @@
+<map id="explainability_module.ExplainabilityModule._explain_linear" name="explainability_module.ExplainabilityModule._explain_linear">
+<area shape="rect" id="Node000001" title="Explain linear models (logistic regression, SVM) using SHAP LinearExplainer." alt="" coords="280,5,506,46"/>
+<area shape="rect" id="Node000002" href="$classexplainability__module_1_1_explainability_module.html#a3671a242c50c2e9b3fdd8239f32ddceb" title="Compute feature attributions for the given input and model type." alt="" coords="5,5,232,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,28,232,28,232,23,264,23"/>
+</map>

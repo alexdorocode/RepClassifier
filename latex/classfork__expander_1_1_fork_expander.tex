@@ -1,0 +1,258 @@
+\doxysection{fork\+\_\+expander.\+Fork\+Expander Class Reference}
+\hypertarget{classfork__expander_1_1_fork_expander}{}\label{classfork__expander_1_1_fork_expander}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+
+
+Utility class to expand parameter/configuration forks into all valid combinations for models, embeddings, features, and trainer settings.  
+
+
+
+
+Collaboration diagram for fork\+\_\+expander.\+Fork\+Expander\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classfork__expander_1_1_fork_expander__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfork__expander_1_1_fork_expander_ac0eea13678c3ae1a2d245c5df5c1e21a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int \mbox{\hyperlink{classfork__expander_1_1_fork_expander_a7701bc87b84811adf0b007444d8b34a1}{sampling\+\_\+resolution}}=5)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classfork__expander_1_1_fork_expander}{Fork\+Expander}. \end{DoxyCompactList}\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classfork__expander_1_1_fork_expander_ab4c77659d7fa5ab29e85dd244b129c41}{expand\+\_\+models}} (self, List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} forks)
+\begin{DoxyCompactList}\small\item\em Expand a list of forked model parameter spaces into all valid configurations. \end{DoxyCompactList}\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classfork__expander_1_1_fork_expander_a86db62f38afb48da30bb8b3cf501c179}{expand\+\_\+embeddings}} (self, Dict\mbox{[}str, Any\mbox{]} embedding\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Expand embedding configuration into all valid combinations. \end{DoxyCompactList}\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classfork__expander_1_1_fork_expander_a6a4c9cdf14b4153c75ccc650b88fd458}{expand\+\_\+features}} (self, Dict\mbox{[}str, Any\mbox{]} feature\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Expand feature configuration into all valid feature column combinations. \end{DoxyCompactList}\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classfork__expander_1_1_fork_expander_a339f4829b3130e56020b25c5cf72e6e3}{expand\+\_\+trainer}} (self, Dict\mbox{[}str, Any\mbox{]} trainer\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Expand trainer configuration into all valid combinations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfork__expander_1_1_fork_expander_a7701bc87b84811adf0b007444d8b34a1}{sampling\+\_\+resolution}} = sampling\+\_\+resolution
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classfork__expander_1_1_fork_expander_afb3d5303821c0f78acc7860fbb5eda40}{\+\_\+expand\+\_\+parameter\+\_\+block}} (self, Dict\mbox{[}str, Any\mbox{]} param\+\_\+dict, bool debug=False)
+\begin{DoxyCompactList}\small\item\em Expand a single model\textquotesingle{}s parameter space into all combinations. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classfork__expander_1_1_fork_expander_a4bf1058652a4d61697356ae4b22b3e75}{\+\_\+is\+\_\+valid}} (self, str model\+\_\+name, Dict\mbox{[}str, Any\mbox{]} param\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Validate a model parameter configuration using external validation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classfork__expander_1_1_fork_expander_ad331427f111bf8435fd67f11a0809b9d}{\+\_\+is\+\_\+valid\+\_\+embedding}} (self, Dict\mbox{[}str, Any\mbox{]} embedding\+\_\+config)
+\begin{DoxyCompactList}\small\item\em Validate if the embedding configuration is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility class to expand parameter/configuration forks into all valid combinations for models, embeddings, features, and trainer settings. 
+
+\label{doc-constructors}
+\Hypertarget{classfork__expander_1_1_fork_expander_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classfork__expander_1_1_fork_expander_ac0eea13678c3ae1a2d245c5df5c1e21a}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_ac0eea13678c3ae1a2d245c5df5c1e21a} 
+fork\+\_\+expander.\+Fork\+Expander.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{sampling\+\_\+resolution}{ = {\ttfamily 5}}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classfork__expander_1_1_fork_expander}{Fork\+Expander}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sampling\+\_\+resolution} & Number of discrete samples for continuous distributions (min/max) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classfork__expander_1_1_fork_expander_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfork__expander_1_1_fork_expander_afb3d5303821c0f78acc7860fbb5eda40}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!\_expand\_parameter\_block@{\_expand\_parameter\_block}}
+\index{\_expand\_parameter\_block@{\_expand\_parameter\_block}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{\_expand\_parameter\_block()}{\_expand\_parameter\_block()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_afb3d5303821c0f78acc7860fbb5eda40} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} fork\+\_\+expander.\+Fork\+Expander.\+\_\+expand\+\_\+parameter\+\_\+block (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{param\+\_\+dict}{, }\item[{bool }]{debug}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Expand a single model\textquotesingle{}s parameter space into all combinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+\_\+dict} & Dictionary of parameter settings \\
+\hline
+{\em debug} & If True, print debug info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of parameter combination dictionaries 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfork__expander_1_1_fork_expander_afb3d5303821c0f78acc7860fbb5eda40_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfork__expander_1_1_fork_expander_a4bf1058652a4d61697356ae4b22b3e75}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!\_is\_valid@{\_is\_valid}}
+\index{\_is\_valid@{\_is\_valid}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{\_is\_valid()}{\_is\_valid()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_a4bf1058652a4d61697356ae4b22b3e75} 
+ bool fork\+\_\+expander.\+Fork\+Expander.\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{model\+\_\+name}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{param\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Validate a model parameter configuration using external validation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the model \\
+\hline
+{\em param\+\_\+config} & Parameter configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if valid, False otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfork__expander_1_1_fork_expander_a4bf1058652a4d61697356ae4b22b3e75_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfork__expander_1_1_fork_expander_ad331427f111bf8435fd67f11a0809b9d}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!\_is\_valid\_embedding@{\_is\_valid\_embedding}}
+\index{\_is\_valid\_embedding@{\_is\_valid\_embedding}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{\_is\_valid\_embedding()}{\_is\_valid\_embedding()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_ad331427f111bf8435fd67f11a0809b9d} 
+ bool fork\+\_\+expander.\+Fork\+Expander.\+\_\+is\+\_\+valid\+\_\+embedding (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{embedding\+\_\+config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Validate if the embedding configuration is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em embedding\+\_\+config} & Embedding configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if valid, False otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfork__expander_1_1_fork_expander_ad331427f111bf8435fd67f11a0809b9d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfork__expander_1_1_fork_expander_a86db62f38afb48da30bb8b3cf501c179}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!expand\_embeddings@{expand\_embeddings}}
+\index{expand\_embeddings@{expand\_embeddings}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{expand\_embeddings()}{expand\_embeddings()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_a86db62f38afb48da30bb8b3cf501c179} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} fork\+\_\+expander.\+Fork\+Expander.\+expand\+\_\+embeddings (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{embedding\+\_\+config}{}\end{DoxyParamCaption})}
+
+
+
+Expand embedding configuration into all valid combinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em embedding\+\_\+config} & Embedding configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of valid embedding configuration dictionaries 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfork__expander_1_1_fork_expander_a86db62f38afb48da30bb8b3cf501c179_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfork__expander_1_1_fork_expander_a6a4c9cdf14b4153c75ccc650b88fd458}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!expand\_features@{expand\_features}}
+\index{expand\_features@{expand\_features}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{expand\_features()}{expand\_features()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_a6a4c9cdf14b4153c75ccc650b88fd458} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} fork\+\_\+expander.\+Fork\+Expander.\+expand\+\_\+features (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{feature\+\_\+config}{}\end{DoxyParamCaption})}
+
+
+
+Expand feature configuration into all valid feature column combinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em feature\+\_\+config} & Feature configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of feature configuration dictionaries 
+\end{DoxyReturn}
+\Hypertarget{classfork__expander_1_1_fork_expander_ab4c77659d7fa5ab29e85dd244b129c41}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!expand\_models@{expand\_models}}
+\index{expand\_models@{expand\_models}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{expand\_models()}{expand\_models()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_ab4c77659d7fa5ab29e85dd244b129c41} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} fork\+\_\+expander.\+Fork\+Expander.\+expand\+\_\+models (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]}}]{forks}{}\end{DoxyParamCaption})}
+
+
+
+Expand a list of forked model parameter spaces into all valid configurations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forks} & List of model fork dictionaries \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of valid model configuration dictionaries 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfork__expander_1_1_fork_expander_ab4c77659d7fa5ab29e85dd244b129c41_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classfork__expander_1_1_fork_expander_a339f4829b3130e56020b25c5cf72e6e3}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!expand\_trainer@{expand\_trainer}}
+\index{expand\_trainer@{expand\_trainer}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{expand\_trainer()}{expand\_trainer()}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_a339f4829b3130e56020b25c5cf72e6e3} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} fork\+\_\+expander.\+Fork\+Expander.\+expand\+\_\+trainer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{trainer\+\_\+config}{}\end{DoxyParamCaption})}
+
+
+
+Expand trainer configuration into all valid combinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trainer\+\_\+config} & Trainer configuration dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of trainer configuration dictionaries 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classfork__expander_1_1_fork_expander_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfork__expander_1_1_fork_expander_a7701bc87b84811adf0b007444d8b34a1}\index{fork\_expander.ForkExpander@{fork\_expander.ForkExpander}!sampling\_resolution@{sampling\_resolution}}
+\index{sampling\_resolution@{sampling\_resolution}!fork\_expander.ForkExpander@{fork\_expander.ForkExpander}}
+\doxysubsubsection{\texorpdfstring{sampling\_resolution}{sampling\_resolution}}
+{\footnotesize\ttfamily \label{classfork__expander_1_1_fork_expander_a7701bc87b84811adf0b007444d8b34a1} 
+fork\+\_\+expander.\+Fork\+Expander.\+sampling\+\_\+resolution = sampling\+\_\+resolution}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/experiment/\mbox{\hyperlink{fork__expander_8py}{fork\+\_\+expander.\+py}}\end{DoxyCompactItemize}

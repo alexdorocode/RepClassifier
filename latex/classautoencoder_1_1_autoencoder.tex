@@ -1,0 +1,142 @@
+\doxysection{autoencoder.\+Autoencoder Class Reference}
+\hypertarget{classautoencoder_1_1_autoencoder}{}\label{classautoencoder_1_1_autoencoder}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+
+
+Inheritance diagram for autoencoder.\+Autoencoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classautoencoder_1_1_autoencoder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for autoencoder.\+Autoencoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classautoencoder_1_1_autoencoder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classautoencoder_1_1_autoencoder_a2b14b5386e408a02bbc4e127976e476a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, input\+\_\+dim, latent\+\_\+dim, activation\+\_\+name="{}relu"{})
+\item 
+\mbox{\hyperlink{classautoencoder_1_1_autoencoder_afe8dd7531476f268c688093a1424d33d}{forward}} (self, x)
+\begin{DoxyCompactList}\small\item\em Forward pass through the autoencode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classautoencoder_1_1_autoencoder_af125b8d6c7c9d9eebc7ae49f3f61b293}{encode}} (self, x)
+\begin{DoxyCompactList}\small\item\em Encode the input data to the latent space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classautoencoder_1_1_autoencoder_a1c372908662a2c97058877bd4a4448ed}{load\+\_\+from\+\_\+checkpoint}} (path, input\+\_\+dim, latent\+\_\+dim, activation="{}relu"{}, device="{}cpu"{})
+\begin{DoxyCompactList}\small\item\em Load an \doxylink{classautoencoder_1_1_autoencoder}{Autoencoder} model from a .pt checkpoint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classautoencoder_1_1_autoencoder_a31c5c2071cf0189ecf74e755972e292a}{encoder}} = nn.\+Sequential(\texorpdfstring{$\ast$}{*}encoder\+\_\+layers)
+\item 
+\mbox{\hyperlink{classautoencoder_1_1_autoencoder_ad6fe3d9c4ff4c6d7ce0173ad5c1b0abd}{decoder}} = nn.\+Sequential(\texorpdfstring{$\ast$}{*}decoder\+\_\+layers)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classautoencoder_1_1_autoencoder_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classautoencoder_1_1_autoencoder_a2b14b5386e408a02bbc4e127976e476a}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classautoencoder_1_1_autoencoder_a2b14b5386e408a02bbc4e127976e476a} 
+autoencoder.\+Autoencoder.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{input\+\_\+dim}{, }\item[{}]{latent\+\_\+dim}{, }\item[{}]{activation\+\_\+name}{ = {\ttfamily "{}relu"{}}}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classautoencoder_1_1_autoencoder_a2b14b5386e408a02bbc4e127976e476a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classautoencoder_1_1_autoencoder_a2b14b5386e408a02bbc4e127976e476a_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classautoencoder_1_1_autoencoder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classautoencoder_1_1_autoencoder_af125b8d6c7c9d9eebc7ae49f3f61b293}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}!encode@{encode}}
+\index{encode@{encode}!autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \label{classautoencoder_1_1_autoencoder_af125b8d6c7c9d9eebc7ae49f3f61b293} 
+autoencoder.\+Autoencoder.\+encode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Encode the input data to the latent space. 
+
+\Hypertarget{classautoencoder_1_1_autoencoder_afe8dd7531476f268c688093a1424d33d}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}!forward@{forward}}
+\index{forward@{forward}!autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{classautoencoder_1_1_autoencoder_afe8dd7531476f268c688093a1424d33d} 
+autoencoder.\+Autoencoder.\+forward (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Forward pass through the autoencode. 
+
+\Hypertarget{classautoencoder_1_1_autoencoder_a1c372908662a2c97058877bd4a4448ed}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}!load\_from\_checkpoint@{load\_from\_checkpoint}}
+\index{load\_from\_checkpoint@{load\_from\_checkpoint}!autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+\doxysubsubsection{\texorpdfstring{load\_from\_checkpoint()}{load\_from\_checkpoint()}}
+{\footnotesize\ttfamily \label{classautoencoder_1_1_autoencoder_a1c372908662a2c97058877bd4a4448ed} 
+autoencoder.\+Autoencoder.\+load\+\_\+from\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{}]{path}{, }\item[{}]{input\+\_\+dim}{, }\item[{}]{latent\+\_\+dim}{, }\item[{}]{activation}{ = {\ttfamily "{}relu"{}}, }\item[{}]{device}{ = {\ttfamily "{}cpu"{}}}\end{DoxyParamCaption})}
+
+
+
+Load an \doxylink{classautoencoder_1_1_autoencoder}{Autoencoder} model from a .pt checkpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to the saved state\+\_\+dict (.pt file) \\
+\hline
+{\em input\+\_\+dim} & Input dimension of the autoencoder \\
+\hline
+{\em latent\+\_\+dim} & Latent dimension (output of encoder) \\
+\hline
+{\em activation} & Activation function used during training \\
+\hline
+{\em device} & Device to load the model onto ("{}cpu"{} or "{}cuda"{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+\doxylink{classautoencoder_1_1_autoencoder}{Autoencoder} Model loaded with weights and set to eval mode 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classautoencoder_1_1_autoencoder_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classautoencoder_1_1_autoencoder_ad6fe3d9c4ff4c6d7ce0173ad5c1b0abd}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}!decoder@{decoder}}
+\index{decoder@{decoder}!autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+\doxysubsubsection{\texorpdfstring{decoder}{decoder}}
+{\footnotesize\ttfamily \label{classautoencoder_1_1_autoencoder_ad6fe3d9c4ff4c6d7ce0173ad5c1b0abd} 
+autoencoder.\+Autoencoder.\+decoder = nn.\+Sequential(\texorpdfstring{$\ast$}{*}decoder\+\_\+layers)}
+
+\Hypertarget{classautoencoder_1_1_autoencoder_a31c5c2071cf0189ecf74e755972e292a}\index{autoencoder.Autoencoder@{autoencoder.Autoencoder}!encoder@{encoder}}
+\index{encoder@{encoder}!autoencoder.Autoencoder@{autoencoder.Autoencoder}}
+\doxysubsubsection{\texorpdfstring{encoder}{encoder}}
+{\footnotesize\ttfamily \label{classautoencoder_1_1_autoencoder_a31c5c2071cf0189ecf74e755972e292a} 
+autoencoder.\+Autoencoder.\+encoder = nn.\+Sequential(\texorpdfstring{$\ast$}{*}encoder\+\_\+layers)}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/models/\mbox{\hyperlink{autoencoder_8py}{autoencoder.\+py}}\end{DoxyCompactItemize}

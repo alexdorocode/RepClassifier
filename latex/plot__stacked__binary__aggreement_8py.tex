@@ -1,0 +1,74 @@
+\doxysection{project\+\_\+root/scripts/model\+\_\+aggreement/plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.py File Reference}
+\hypertarget{plot__stacked__binary__aggreement_8py}{}\label{plot__stacked__binary__aggreement_8py}\index{project\_root/scripts/model\_aggreement/plot\_stacked\_binary\_aggreement.py@{project\_root/scripts/model\_aggreement/plot\_stacked\_binary\_aggreement.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a3e1018c8b8a288e63b19c2633173c899}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+file\+\_\+paths}}
+\item 
+list \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a8ecafc628d8d46131ee4c3d267084bb0}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+all\+\_\+data}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ad463d27385ce25f11d1cc6ddae695de8}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+df}} = pd.\+read\+\_\+csv(path)
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a5216dfcf3e72d5a588c34aee946e84c6}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+df\+\_\+all}} = pd.\+concat(\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a8ecafc628d8d46131ee4c3d267084bb0}{all\+\_\+data}}, ignore\+\_\+index=\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a90b841e16f0c804c7ddd72325076b022}{True}})
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a8c744a114b6a677e7d7a13de93a29c7c}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+agg}}
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a62e75fa2fffdea2914b1d08db6c77a6b}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+pivot}} = agg.\+pivot(index="{}protein\+\_\+id"{}, columns="{}model\+\_\+type"{}, values="{}agreed"{}).fillna(0).astype(int)
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_aa1c0a22f83f48c1a60cdbf8e771c561c}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+axis}}
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a590b1045ca4c83a8fb56ed8a306fc034}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+pivot\+\_\+sorted}} = pivot.\+sort\+\_\+values("{}total"{}, ascending=False).drop(columns="{}total"{})
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a288abc361aae00e1bc4f9e3ff0ed680a}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+fig}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_adb77168ba1eaeae5a27118630468456f}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+ax}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a896f23796f3d40c5e76dc0ee4153898a}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+figsize}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ad6580335a336c645f77b31e7a82beda4}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+kind}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ad7c2cd44778f001a920a8ac31b2268ae}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+stacked}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a90b841e16f0c804c7ddd72325076b022}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+True}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ac0af93102c44b5c6aab9e2f449d36a10}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+colormap}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a5ed77ebd1fe58bfde202c9353e5efe6d}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+width}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a24c1897ab4b31e3cc751e09798cfba8c}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+title}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_adf6435f8004e8ef881e244bd4e321b98}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+bbox\+\_\+to\+\_\+anchor}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a38ef1fca4f2b10c2a3eb7c21b66ce32f}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+loc}}
+\item 
+tuple \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ae268fafd827a6fae89f27b1ebbf85f5d}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+num\+\_\+proteins}} = pivot\+\_\+sorted.\+shape\mbox{[}0\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a48e6d75edea13e2e900dd0106f40732d}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+pos}} = int(\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ae268fafd827a6fae89f27b1ebbf85f5d}{num\+\_\+proteins}} \texorpdfstring{$\ast$}{*} frac / 100)
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a35154b3b866dacfae662709c7a408b1a}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+color}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a7e786d0c849d8c17e7545c46cba86a84}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+linestyle}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_acb5677e4b26221d173ae879e8477f530}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+alpha}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a88c7efcf5e83edfa373fbdd5f08c8971}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+rotation}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_af5d090e50789298c44ac15b772bf6cdb}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+va}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ad541889910352301ba7e06cf46f6bb71}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+ha}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a61f91c610699b539b7f4029a68cd0d6b}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+fontsize}}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ac98ad0cd508576275875895a07ab52a2}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+y\+\_\+max}} = ax.\+get\+\_\+ylim()\mbox{[}1\mbox{]}
+\item 
+int \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_a6f0d9faceb169c9391f43917215f9252}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+y}} = \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ac98ad0cd508576275875895a07ab52a2}{y\+\_\+max}} \texorpdfstring{$\ast$}{*} frac / 100
+\item 
+str \mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_af2537f54c97ea788c2ef3837fe4c1427}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+output\+\_\+path}} = "{}./results/stacked\+\_\+agreement\+\_\+per\+\_\+protein\+\_\+80pct\+\_\+threshold.\+png"{}
+\item 
+\mbox{\hyperlink{namespaceplot__stacked__binary__aggreement_ab5347e262fbf8b919057d4a00f332dd4}{plot\+\_\+stacked\+\_\+binary\+\_\+aggreement.\+dpi}}
+\end{DoxyCompactItemize}

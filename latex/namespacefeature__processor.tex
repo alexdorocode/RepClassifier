@@ -1,0 +1,179 @@
+\doxysection{feature\+\_\+processor Namespace Reference}
+\hypertarget{namespacefeature__processor}{}\label{namespacefeature__processor}\index{feature\_processor@{feature\_processor}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacefeature__processor_a46efa1bfa3dc7749a761d31b3afad652}{process\+\_\+embeddings\+\_\+and\+\_\+attention}} (embeddings\+\_\+array, attention\+\_\+weights\+\_\+array, process\+\_\+attention\+\_\+weights=True, reduce\+\_\+method=None, pca\+\_\+method=\textquotesingle{}threshold\textquotesingle{}, threshold=0.\+95, random\+\_\+projection\+\_\+dim=1000, random\+\_\+projection\+\_\+method=\textquotesingle{}global\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Applies optional random projection and dimensionality reduction to embeddings and attention weights. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_aad9ee55a805512f9b058b4657afed355}{flatten\+\_\+attention\+\_\+weights}} (attention\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Flattens a list of attention weight matrices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a223997afb229ac9fc75c1dffb5964c6c}{pad\+\_\+attention\+\_\+weights}} (flattened\+\_\+attention\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Pads flattened attention weights to ensure uniform length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_ac0888d5b2d770a3abfb26190f69fb252}{apply\+\_\+random\+\_\+projection\+\_\+globaly}} (data, n\+\_\+components=1000)
+\begin{DoxyCompactList}\small\item\em Applies sparse random projection to reduce dimensionality. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a7c392b33f11a38a4c920e4bb2928db4e}{apply\+\_\+random\+\_\+projection\+\_\+by\+\_\+prot}} (data, n\+\_\+components=1000)
+\begin{DoxyCompactList}\small\item\em Applies sparse random projection to each protein individually. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a660e1ba38d99b091b4732309619caf9a}{get\+\_\+best\+\_\+pca\+\_\+components}} (data, method=\textquotesingle{}threshold\textquotesingle{}, threshold=0.\+95)
+\begin{DoxyCompactList}\small\item\em Determine optimal number of PCA components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_a39749084fdf6c3c4c12f2a15de2947c9}{apply\+\_\+pca}} (data, method=\textquotesingle{}threshold\textquotesingle{}, pca\+\_\+components=100, threshold=0.\+95)
+\begin{DoxyCompactList}\small\item\em Apply PCA reduction using threshold or fixed component count. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacefeature__processor_aaa7b30cfe2663c7e688a173f82819e84}{apply\+\_\+tsne}} (data, n\+\_\+components=2, perplexity=30, random\+\_\+state=42)
+\begin{DoxyCompactList}\small\item\em Apply t-\/\+SNE for visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacefeature__processor_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacefeature__processor_a39749084fdf6c3c4c12f2a15de2947c9}\index{feature\_processor@{feature\_processor}!apply\_pca@{apply\_pca}}
+\index{apply\_pca@{apply\_pca}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{apply\_pca()}{apply\_pca()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_a39749084fdf6c3c4c12f2a15de2947c9} 
+feature\+\_\+processor.\+apply\+\_\+pca (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{method}{ = {\ttfamily \textquotesingle{}threshold\textquotesingle{}}, }\item[{}]{pca\+\_\+components}{ = {\ttfamily 100}, }\item[{}]{threshold}{ = {\ttfamily 0.95}}\end{DoxyParamCaption})}
+
+
+
+Apply PCA reduction using threshold or fixed component count. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_a39749084fdf6c3c4c12f2a15de2947c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_a39749084fdf6c3c4c12f2a15de2947c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefeature__processor_a7c392b33f11a38a4c920e4bb2928db4e}\index{feature\_processor@{feature\_processor}!apply\_random\_projection\_by\_prot@{apply\_random\_projection\_by\_prot}}
+\index{apply\_random\_projection\_by\_prot@{apply\_random\_projection\_by\_prot}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{apply\_random\_projection\_by\_prot()}{apply\_random\_projection\_by\_prot()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_a7c392b33f11a38a4c920e4bb2928db4e} 
+feature\+\_\+processor.\+apply\+\_\+random\+\_\+projection\+\_\+by\+\_\+prot (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{n\+\_\+components}{ = {\ttfamily 1000}}\end{DoxyParamCaption})}
+
+
+
+Applies sparse random projection to each protein individually. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Array of shape (n\+\_\+proteins, seq\+\_\+len, feature\+\_\+dim) \\
+\hline
+{\em n\+\_\+components} & Target dimensionality\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+np Array of shape (n\+\_\+proteins, seq\+\_\+len, n\+\_\+components)
+\end{DoxyReturn}
+\begin{DoxyVerb}return np.array([
+    SparseRandomProjection(n_components=n_components).fit_transform(prot)
+    for prot in tqdm(data, desc="Applying projection per protein")
+])
+\end{DoxyVerb}
+ Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_a7c392b33f11a38a4c920e4bb2928db4e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefeature__processor_ac0888d5b2d770a3abfb26190f69fb252}\index{feature\_processor@{feature\_processor}!apply\_random\_projection\_globaly@{apply\_random\_projection\_globaly}}
+\index{apply\_random\_projection\_globaly@{apply\_random\_projection\_globaly}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{apply\_random\_projection\_globaly()}{apply\_random\_projection\_globaly()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_ac0888d5b2d770a3abfb26190f69fb252} 
+feature\+\_\+processor.\+apply\+\_\+random\+\_\+projection\+\_\+globaly (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{n\+\_\+components}{ = {\ttfamily 1000}}\end{DoxyParamCaption})}
+
+
+
+Applies sparse random projection to reduce dimensionality. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_ac0888d5b2d770a3abfb26190f69fb252_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefeature__processor_aaa7b30cfe2663c7e688a173f82819e84}\index{feature\_processor@{feature\_processor}!apply\_tsne@{apply\_tsne}}
+\index{apply\_tsne@{apply\_tsne}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{apply\_tsne()}{apply\_tsne()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_aaa7b30cfe2663c7e688a173f82819e84} 
+feature\+\_\+processor.\+apply\+\_\+tsne (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{n\+\_\+components}{ = {\ttfamily 2}, }\item[{}]{perplexity}{ = {\ttfamily 30}, }\item[{}]{random\+\_\+state}{ = {\ttfamily 42}}\end{DoxyParamCaption})}
+
+
+
+Apply t-\/\+SNE for visualization. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_aaa7b30cfe2663c7e688a173f82819e84_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefeature__processor_aad9ee55a805512f9b058b4657afed355}\index{feature\_processor@{feature\_processor}!flatten\_attention\_weights@{flatten\_attention\_weights}}
+\index{flatten\_attention\_weights@{flatten\_attention\_weights}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{flatten\_attention\_weights()}{flatten\_attention\_weights()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_aad9ee55a805512f9b058b4657afed355} 
+feature\+\_\+processor.\+flatten\+\_\+attention\+\_\+weights (\begin{DoxyParamCaption}\item[{}]{attention\+\_\+weights}{}\end{DoxyParamCaption})}
+
+
+
+Flattens a list of attention weight matrices. 
+
+\Hypertarget{namespacefeature__processor_a660e1ba38d99b091b4732309619caf9a}\index{feature\_processor@{feature\_processor}!get\_best\_pca\_components@{get\_best\_pca\_components}}
+\index{get\_best\_pca\_components@{get\_best\_pca\_components}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{get\_best\_pca\_components()}{get\_best\_pca\_components()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_a660e1ba38d99b091b4732309619caf9a} 
+feature\+\_\+processor.\+get\+\_\+best\+\_\+pca\+\_\+components (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{method}{ = {\ttfamily \textquotesingle{}threshold\textquotesingle{}}, }\item[{}]{threshold}{ = {\ttfamily 0.95}}\end{DoxyParamCaption})}
+
+
+
+Determine optimal number of PCA components. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_a660e1ba38d99b091b4732309619caf9a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefeature__processor_a223997afb229ac9fc75c1dffb5964c6c}\index{feature\_processor@{feature\_processor}!pad\_attention\_weights@{pad\_attention\_weights}}
+\index{pad\_attention\_weights@{pad\_attention\_weights}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{pad\_attention\_weights()}{pad\_attention\_weights()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_a223997afb229ac9fc75c1dffb5964c6c} 
+feature\+\_\+processor.\+pad\+\_\+attention\+\_\+weights (\begin{DoxyParamCaption}\item[{}]{flattened\+\_\+attention\+\_\+weights}{}\end{DoxyParamCaption})}
+
+
+
+Pads flattened attention weights to ensure uniform length. 
+
+\Hypertarget{namespacefeature__processor_a46efa1bfa3dc7749a761d31b3afad652}\index{feature\_processor@{feature\_processor}!process\_embeddings\_and\_attention@{process\_embeddings\_and\_attention}}
+\index{process\_embeddings\_and\_attention@{process\_embeddings\_and\_attention}!feature\_processor@{feature\_processor}}
+\doxysubsubsection{\texorpdfstring{process\_embeddings\_and\_attention()}{process\_embeddings\_and\_attention()}}
+{\footnotesize\ttfamily \label{namespacefeature__processor_a46efa1bfa3dc7749a761d31b3afad652} 
+feature\+\_\+processor.\+process\+\_\+embeddings\+\_\+and\+\_\+attention (\begin{DoxyParamCaption}\item[{}]{embeddings\+\_\+array}{, }\item[{}]{attention\+\_\+weights\+\_\+array}{, }\item[{}]{process\+\_\+attention\+\_\+weights}{ = {\ttfamily True}, }\item[{}]{reduce\+\_\+method}{ = {\ttfamily None}, }\item[{}]{pca\+\_\+method}{ = {\ttfamily \textquotesingle{}threshold\textquotesingle{}}, }\item[{}]{threshold}{ = {\ttfamily 0.95}, }\item[{}]{random\+\_\+projection\+\_\+dim}{ = {\ttfamily 1000}, }\item[{}]{random\+\_\+projection\+\_\+method}{ = {\ttfamily \textquotesingle{}global\textquotesingle{}}}\end{DoxyParamCaption})}
+
+
+
+Applies optional random projection and dimensionality reduction to embeddings and attention weights. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacefeature__processor_a46efa1bfa3dc7749a761d31b3afad652_cgraph}
+\end{center}
+\end{figure}

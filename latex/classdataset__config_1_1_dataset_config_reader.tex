@@ -1,0 +1,270 @@
+\doxysection{dataset\+\_\+config.\+Dataset\+Config\+Reader Class Reference}
+\hypertarget{classdataset__config_1_1_dataset_config_reader}{}\label{classdataset__config_1_1_dataset_config_reader}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+
+
+Reads and organizes dataset and experiment configuration for downstream processing.  
+
+
+
+
+Collaboration diagram for dataset\+\_\+config.\+Dataset\+Config\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classdataset__config_1_1_dataset_config_reader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a0b29d53656ff9f3e8e4c16d127c15f28}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, cfg)
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classdataset__config_1_1_dataset_config_reader}{Dataset\+Config\+Reader}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_ab5780286b4f0ca848e0bb1abf9075fe7}{get\+\_\+as\+\_\+dict}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the configuration as a dictionary. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a7e7af7e6da6200257fec2f0bed3ba203}{get\+\_\+random\+\_\+seed}} (self)
+\begin{DoxyCompactList}\small\item\em Returns the random seed from the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_aa629a69e5077614978e775eb89cde1d7}{root}} = cfg.\+dataset.\+root\+\_\+dir
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_acddc17cccc0422cb66c97c8cbba1b664}{file}} = cfg.\+dataset.\+unified\+\_\+dataset.\+file
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_aa04dba068748f700f1b85358149e4bb6}{id\+\_\+col}} = cfg.\+dataset.\+unified\+\_\+dataset.\+id\+\_\+col
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a944317f6cc00b2d648c700af51665826}{label\+\_\+col}} = cfg.\+dataset.\+unified\+\_\+dataset.\+label\+\_\+col
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_ab77a74dc25b7fab8499c2d91a46e771e}{organism\+\_\+col}} = cfg.\+dataset.\+unified\+\_\+dataset.\+organism\+\_\+col
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a7204c3c1c8b82326e9356a0812fb0b63}{sequence\+\_\+col}} = cfg.\+dataset.\+unified\+\_\+dataset.\+sequence\+\_\+col
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a88f0f722c9828e9560337dd0958ffb7c}{metrics\+\_\+col}} = cfg.\+dataset.\+unified\+\_\+dataset.\+metrics\+\_\+col
+\item 
+\mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a8fbd49f4a3f8e6c6811d9fd4223de0b3}{features\+\_\+to\+\_\+process}} = cfg.\+features\+\_\+to\+\_\+process
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a08f773aad140c3d2b8063a797c99b806}{paths}}
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_af1402d1fbbff33716dcc71fd33545946}{classifier\+\_\+definition}}
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a1fde3ca3419f89496c47973a6293f6c4}{model}}
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a92de2838118c00cedbc364d35b58579d}{training}}
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a4bba6f13f8be577362544eb13e2cb054}{tracker}}
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a69586ac95ebe611e85cd846b64125a0f}{explainability}} = cfg.\+classifier\+\_\+definition.\+explainability
+\item 
+dict \mbox{\hyperlink{classdataset__config_1_1_dataset_config_reader_a4269956e76ddf7c2227941d50915982d}{random\+\_\+seed}} = cfg.\+classifier\+\_\+definition.\+get(\textquotesingle{}random\+\_\+seed\textquotesingle{}) if \textquotesingle{}random\+\_\+seed\textquotesingle{} in cfg.\+classifier\+\_\+definition else None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reads and organizes dataset and experiment configuration for downstream processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Configuration object (e.\+g., from Hydra/\+Omega\+Conf) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-constructors}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a0b29d53656ff9f3e8e4c16d127c15f28}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a0b29d53656ff9f3e8e4c16d127c15f28} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{cfg}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classdataset__config_1_1_dataset_config_reader}{Dataset\+Config\+Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Configuration object with dataset, features, embeddings, and training info. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_ab5780286b4f0ca848e0bb1abf9075fe7}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!get\_as\_dict@{get\_as\_dict}}
+\index{get\_as\_dict@{get\_as\_dict}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{get\_as\_dict()}{get\_as\_dict()}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_ab5780286b4f0ca848e0bb1abf9075fe7} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+get\+\_\+as\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the configuration as a dictionary. 
+
+\begin{DoxyReturn}{Returns}
+Dictionary of all relevant configuration fields. 
+\end{DoxyReturn}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a7e7af7e6da6200257fec2f0bed3ba203}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!get\_random\_seed@{get\_random\_seed}}
+\index{get\_random\_seed@{get\_random\_seed}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{get\_random\_seed()}{get\_random\_seed()}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a7e7af7e6da6200257fec2f0bed3ba203} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+get\+\_\+random\+\_\+seed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Returns the random seed from the configuration. 
+
+\begin{DoxyReturn}{Returns}
+Random seed (int or None) 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_af1402d1fbbff33716dcc71fd33545946}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!classifier\_definition@{classifier\_definition}}
+\index{classifier\_definition@{classifier\_definition}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{classifier\_definition}{classifier\_definition}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_af1402d1fbbff33716dcc71fd33545946} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+classifier\+\_\+definition}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}label\_col"{}}:\ cfg.classifier\_definition.label\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}features\_col"{}}:\ cfg.classifier\_definition.features\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sequence\_embeddings"{}}:\ cfg.classifier\_definition.sequence\_embeddings,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}go\_embeddings"{}}:\ cfg.classifier\_definition.go\_embeddings,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}balance\_col"{}}:\ cfg.classifier\_definition.balance\_col,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}organism\_discrimination\_strategy"{}}:\ cfg.classifier\_definition.organism\_discrimination\_strategy,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}production\_mode"{}}:\ cfg.classifier\_definition.production\_mode,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a69586ac95ebe611e85cd846b64125a0f}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!explainability@{explainability}}
+\index{explainability@{explainability}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{explainability}{explainability}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a69586ac95ebe611e85cd846b64125a0f} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+explainability = cfg.\+classifier\+\_\+definition.\+explainability}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a8fbd49f4a3f8e6c6811d9fd4223de0b3}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!features\_to\_process@{features\_to\_process}}
+\index{features\_to\_process@{features\_to\_process}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{features\_to\_process}{features\_to\_process}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a8fbd49f4a3f8e6c6811d9fd4223de0b3} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+features\+\_\+to\+\_\+process = cfg.\+features\+\_\+to\+\_\+process}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_acddc17cccc0422cb66c97c8cbba1b664}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!file@{file}}
+\index{file@{file}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_acddc17cccc0422cb66c97c8cbba1b664} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+file = cfg.\+dataset.\+unified\+\_\+dataset.\+file}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_aa04dba068748f700f1b85358149e4bb6}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!id\_col@{id\_col}}
+\index{id\_col@{id\_col}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{id\_col}{id\_col}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_aa04dba068748f700f1b85358149e4bb6} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+id\+\_\+col = cfg.\+dataset.\+unified\+\_\+dataset.\+id\+\_\+col}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a944317f6cc00b2d648c700af51665826}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!label\_col@{label\_col}}
+\index{label\_col@{label\_col}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{label\_col}{label\_col}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a944317f6cc00b2d648c700af51665826} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+label\+\_\+col = cfg.\+dataset.\+unified\+\_\+dataset.\+label\+\_\+col}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a88f0f722c9828e9560337dd0958ffb7c}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!metrics\_col@{metrics\_col}}
+\index{metrics\_col@{metrics\_col}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{metrics\_col}{metrics\_col}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a88f0f722c9828e9560337dd0958ffb7c} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+metrics\+\_\+col = cfg.\+dataset.\+unified\+\_\+dataset.\+metrics\+\_\+col}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a1fde3ca3419f89496c47973a6293f6c4}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!model@{model}}
+\index{model@{model}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a1fde3ca3419f89496c47973a6293f6c4} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+model}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type"{}}:\ cfg.classifier\_definition.model.type,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}params"{}}:\ cfg.classifier\_definition.model.params}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_ab77a74dc25b7fab8499c2d91a46e771e}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!organism\_col@{organism\_col}}
+\index{organism\_col@{organism\_col}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{organism\_col}{organism\_col}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_ab77a74dc25b7fab8499c2d91a46e771e} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+organism\+\_\+col = cfg.\+dataset.\+unified\+\_\+dataset.\+organism\+\_\+col}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a08f773aad140c3d2b8063a797c99b806}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!paths@{paths}}
+\index{paths@{paths}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{paths}{paths}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a08f773aad140c3d2b8063a797c99b806} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+paths}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}embedding\_sequence\_paths"{}}:\ cfg.paths.embedding\_sequence\_paths,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}autoencoder\_paths"{}}:\ cfg.paths.autoencoder\_paths,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}autoencoded\_seq\_embeddings"{}}:\ cfg.paths.autoencoded\_seq\_embeddings,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}autoencoded\_go\_embeddings"{}}:\ cfg.paths.autoencoded\_go\_embeddings}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a4269956e76ddf7c2227941d50915982d}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!random\_seed@{random\_seed}}
+\index{random\_seed@{random\_seed}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{random\_seed}{random\_seed}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a4269956e76ddf7c2227941d50915982d} 
+dict dataset\+\_\+config.\+Dataset\+Config\+Reader.\+random\+\_\+seed = cfg.\+classifier\+\_\+definition.\+get(\textquotesingle{}random\+\_\+seed\textquotesingle{}) if \textquotesingle{}random\+\_\+seed\textquotesingle{} in cfg.\+classifier\+\_\+definition else None}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_aa629a69e5077614978e775eb89cde1d7}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!root@{root}}
+\index{root@{root}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_aa629a69e5077614978e775eb89cde1d7} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+root = cfg.\+dataset.\+root\+\_\+dir}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a7204c3c1c8b82326e9356a0812fb0b63}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!sequence\_col@{sequence\_col}}
+\index{sequence\_col@{sequence\_col}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{sequence\_col}{sequence\_col}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a7204c3c1c8b82326e9356a0812fb0b63} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+sequence\+\_\+col = cfg.\+dataset.\+unified\+\_\+dataset.\+sequence\+\_\+col}
+
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a4bba6f13f8be577362544eb13e2cb054}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!tracker@{tracker}}
+\index{tracker@{tracker}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{tracker}{tracker}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a4bba6f13f8be577362544eb13e2cb054} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+tracker}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}project\_name"{}}:\ cfg.classifier\_definition.tracker.project\_name,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}run\_name"{}}:\ cfg.classifier\_definition.tracker.run\_name,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}offline"{}}:\ cfg.classifier\_definition.tracker.get(\textcolor{stringliteral}{'offline'},\ \textcolor{keyword}{False})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classdataset__config_1_1_dataset_config_reader_a92de2838118c00cedbc364d35b58579d}\index{dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}!training@{training}}
+\index{training@{training}!dataset\_config.DatasetConfigReader@{dataset\_config.DatasetConfigReader}}
+\doxysubsubsection{\texorpdfstring{training}{training}}
+{\footnotesize\ttfamily \label{classdataset__config_1_1_dataset_config_reader_a92de2838118c00cedbc364d35b58579d} 
+dataset\+\_\+config.\+Dataset\+Config\+Reader.\+training}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cv\_folds"{}}:\ cfg.classifier\_definition.training.cv\_folds,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cross\_val\_balance"{}}:\ cfg.classifier\_definition.training.cross\_val\_balance,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}test\_size\_ratio"{}}:\ cfg.classifier\_definition.training.test\_size\_ratio,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}mlp\_params"{}}:\ cfg.classifier\_definition.training.mlp\_params\ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{'mlp\_params'}\ \textcolor{keywordflow}{in}\ cfg.classifier\_definition.training\ \textcolor{keywordflow}{else}\ \{\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+project\+\_\+root/dataset/\mbox{\hyperlink{dataset__config_8py}{dataset\+\_\+config.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,35,87,60"/>
+<area shape="rect" id="Node000001" href="$classautoencoder_1_1_autoencoder.html" title=" " alt="" coords="160,5,328,31"/>
+<area shape="poly" id="edge5_Node000000_Node000001" title=" " alt="" coords="102,37,159,28,159,33,103,42"/>
+<area shape="rect" id="Node000002" href="$classmlp__protein__classifier_1_1_m_l_p_protein_classifier.html" title="Multi&#45;layer Perceptron (MLP) classifier for protein data." alt="" coords="135,55,353,96"/>
+<area shape="poly" id="edge6_Node000000_Node000002" title=" " alt="" coords="103,53,134,57,134,63,102,58"/>
+</map>

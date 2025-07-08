@@ -1,0 +1,38 @@
+\doxysection{project\+\_\+root/scripts/model\+\_\+aggreement/analyze\+\_\+model\+\_\+agreement.py File Reference}
+\hypertarget{analyze__model__agreement_8py}{}\label{analyze__model__agreement_8py}\index{project\_root/scripts/model\_aggreement/analyze\_model\_agreement.py@{project\_root/scripts/model\_aggreement/analyze\_model\_agreement.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceanalyze__model__agreement}{analyze\+\_\+model\+\_\+agreement}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{namespaceanalyze__model__agreement_ae58c38c766769f6da2872df3d0ad1224}{analyze\+\_\+model\+\_\+agreement.\+file\+\_\+paths}}
+\item 
+list \mbox{\hyperlink{namespaceanalyze__model__agreement_aab110f22ba74cc03ca44d70e195cdddc}{analyze\+\_\+model\+\_\+agreement.\+dfs}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceanalyze__model__agreement_ac160a13f715ea71d90b48565d86a929d}{analyze\+\_\+model\+\_\+agreement.\+df}} = pd.\+read\+\_\+csv(path)
+\item 
+\mbox{\hyperlink{namespaceanalyze__model__agreement_ad5fd9a2d5f0837b389c27edc7b681842}{analyze\+\_\+model\+\_\+agreement.\+df\+\_\+all}} = pd.\+concat(\mbox{\hyperlink{namespaceanalyze__model__agreement_aab110f22ba74cc03ca44d70e195cdddc}{dfs}}, ignore\+\_\+index=True)
+\item 
+tuple \mbox{\hyperlink{namespaceanalyze__model__agreement_aaaf70545306141751045f7842430014c}{analyze\+\_\+model\+\_\+agreement.\+agg}}
+\item 
+list \mbox{\hyperlink{namespaceanalyze__model__agreement_a8289308c01b4b82e4a3969dc9cf2e59f}{analyze\+\_\+model\+\_\+agreement.\+thresholds}} = \mbox{[}0.\+75, 0.\+8, 0.\+85, 0.\+9, 0.\+95\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceanalyze__model__agreement_a211f309bac53edee66fdc67009dbc1cb}{analyze\+\_\+model\+\_\+agreement.\+model\+\_\+agreements\+\_\+required}} = \mbox{[}1, 2, 3, 4, 5\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceanalyze__model__agreement_a0d9e58f0ae2db201d9efd866c5f34ee1}{analyze\+\_\+model\+\_\+agreement.\+summary}} = \mbox{[}$\,$\mbox{]}
+\item 
+tuple \mbox{\hyperlink{namespaceanalyze__model__agreement_a7b3c216e180514da382937f13a27287e}{analyze\+\_\+model\+\_\+agreement.\+prot\+\_\+group}} = \mbox{\hyperlink{namespaceanalyze__model__agreement_aaaf70545306141751045f7842430014c}{agg}}\mbox{[}\mbox{\hyperlink{namespaceanalyze__model__agreement_aaaf70545306141751045f7842430014c}{agg}}\mbox{[}"{}agreement\+\_\+ratio"{}\mbox{]} $>$= threshold\mbox{]}
+\item 
+tuple \mbox{\hyperlink{namespaceanalyze__model__agreement_ac93ba0b9eaf588807f01b2195fea924d}{analyze\+\_\+model\+\_\+agreement.\+per\+\_\+protein\+\_\+count}} = prot\+\_\+group.\+groupby("{}protein\+\_\+id"{}).size().reset\+\_\+index(name="{}num\+\_\+agreeing\+\_\+models"{})
+\item 
+tuple \mbox{\hyperlink{namespaceanalyze__model__agreement_a44532681864e4de0dad199acc0175b32}{analyze\+\_\+model\+\_\+agreement.\+filtered}} = \mbox{\hyperlink{namespaceanalyze__model__agreement_ac93ba0b9eaf588807f01b2195fea924d}{per\+\_\+protein\+\_\+count}}\mbox{[}\mbox{\hyperlink{namespaceanalyze__model__agreement_ac93ba0b9eaf588807f01b2195fea924d}{per\+\_\+protein\+\_\+count}}\mbox{[}"{}num\+\_\+agreeing\+\_\+models"{}\mbox{]} $>$= min\+\_\+models\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceanalyze__model__agreement_ad40d8dfefe9e941a1ca011fb7f218ce3}{analyze\+\_\+model\+\_\+agreement.\+summary\+\_\+df}} = pd.\+Data\+Frame(\mbox{\hyperlink{namespaceanalyze__model__agreement_a0d9e58f0ae2db201d9efd866c5f34ee1}{summary}})
+\item 
+tuple \mbox{\hyperlink{namespaceanalyze__model__agreement_a671ba01ca5c7491df1b28687699c142f}{analyze\+\_\+model\+\_\+agreement.\+model\+\_\+variability}}
+\item 
+\mbox{\hyperlink{namespaceanalyze__model__agreement_aa5fc83e2f4afe6e2e8dbad7a8219c99c}{analyze\+\_\+model\+\_\+agreement.\+index}}
+\end{DoxyCompactItemize}
