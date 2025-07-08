@@ -109,7 +109,7 @@ conda activate protein-classifier-env
 ## 🚀 Basic Usage
 Run a classifier
 
-python project_root/scripts/run_classifier_launcher.py --config project_root/config/config_classifier_base.yaml
+python project_root/scripts/run_classifier_launcher.py
 
 Run a zero-shot or agreement evaluation
 
