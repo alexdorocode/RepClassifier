@@ -24,9 +24,10 @@ This project was designed with a **limited development scope**, prioritizing **m
 ├── README.md
 ├── requirements.txt
 └── environment.yml
+```
 
-📂 Folder Highlights
-🔬 csv_embeddings/
+## 📂 Folder Highlights
+#🔬 csv_embeddings/
 
 Precomputed embedding files including:
 
@@ -36,19 +37,19 @@ Precomputed embedding files including:
 
     Autoencoded sequence embeddings (ProtT5, ProstT5, ESM) for multiple compression levels
 
-🧬 datasets/
+# 🧬 datasets/
 
     Includes raw, merged, and labeled datasets such as moonprot_dataset.csv, moondb_dataset.csv, and predictor_dataset.csv
 
     MBL-scores and UniProt mappings used to define moonlighting candidates and controls
 
-🧪 preprocess/
+# 🧪 preprocess/
 
     analyses/: Notebooks exploring data distributions, GO terms, sequence representations
 
     embeddings_geokg/: Scripts for embedding extraction, autoencoder training, and sweeps via W&B
 
-🧠 project_root/
+# 🧠 project_root/
 
     config/: Organized configs for experiments, sweeps, tunable params, and paths
 
@@ -66,10 +67,11 @@ Precomputed embedding files including:
 
     utils/: General helper functions (visualization, config, feature processing)
 
-📊 results/
+# 📊 results/
 
 Final .csv outputs of trained models and ensemble agreement experiments (per model type).
-📜 Script Overview
+
+## 📜 Script Overview
 🚀 Launcher Scripts
 
 Located in project_root/scripts/:
@@ -80,11 +82,11 @@ Located in project_root/scripts/:
 
     run_final_evaluation.py, run_prediction_agreement.py: Evaluation and ensemble scoring
 
-📈 Model Agreement & Visualization
+## 📈 Model Agreement & Visualization
 
     Scripts in model_aggreement/ generate bar plots, stacked plots, incorrect agreement visualizations, etc.
 
-🧪 Embedding Generation
+## 🧪 Embedding Generation
 
     Found in preprocess/embeddings_geokg/
 
@@ -94,7 +96,7 @@ Located in project_root/scripts/:
 
         go_embeddings_per_protein.py: GO term aggregation and per-protein embedding
 
-⚙️ Setup Instructions
+## ⚙️ Setup Instructions
 Option A – pip
 
 pip install -r requirements.txt
@@ -104,7 +106,7 @@ Option B – conda
 conda env create -f environment.yml
 conda activate protein-classifier-env
 
-🚀 Basic Usage
+## 🚀 Basic Usage
 Run a classifier
 
 python project_root/scripts/run_classifier_launcher.py --config project_root/config/config_classifier_base.yaml
@@ -117,7 +119,7 @@ Launch hyperparameter sweep
 
 python project_root/scripts/run_sweeps_phase_2.py
 
-📘 Documentation
+## 📘 Documentation
 
 To generate full code documentation with Doxygen:
 
@@ -126,7 +128,8 @@ doxygen Doxyfile
 Then open the generated docs/html/index.html in a browser.
 
 You may optionally host the HTML docs via GitHub Pages and link here.
-🧪 Testing
+
+## 🧪 Testing
 
 Unit tests for core components:
 
@@ -138,7 +141,7 @@ Test files:
 
     test_wrapped_dataset.py, test_data_visualizer.py
 
-📌 Notes for Reviewers
+## 📌 Notes for Reviewers
 
     External paths have been minimized; required data files are placed in datasets/ and csv_embeddings/
 
@@ -146,7 +149,7 @@ Test files:
 
     The pipeline uses Weights & Biases for sweep management and result tracking
 
-👤 Author
+## 👤 Author
 
 Àlex Domínguez Roig
 Master’s Thesis – Bioinformatics
