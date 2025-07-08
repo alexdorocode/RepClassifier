@@ -25,7 +25,7 @@ This project was designed with a **limited development scope**, prioritizing **m
 ├── requirements.txt
 └── environment.yml
 
-📂 Folder Highlights
+## 📂 Folder Highlights
 🔬 csv_embeddings/
 
 Precomputed embedding files including:
