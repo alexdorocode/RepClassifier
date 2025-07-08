@@ -1,6 +1,27 @@
-# 🧬 Protein Classification Workspace
+# 🧬 Exploring Protein Multifunctionality Prediction
 
-> This repository contains the modular and experimental workspace developed for my Master’s Thesis in Bioinformatics. It implements a flexible and extensible pipeline for classifying proteins using sequence-based, structural, and functional features.
+> A modular and extensible classification pipeline for predicting multifunctional proteins (MFPs), developed as part of a Master's Thesis in Bioinformatics.
+
+---
+
+## 🎯 Project Overview
+
+This repository presents the experimental workspace developed for the thesis **"Exploring Protein Multifunctionality Prediction Using Deep Learning Protein Embeddings and Functional Similarity Metrics."**
+
+The goal is to predict **multifunctional proteins (MFPs)** by combining:
+- **Protein language model (pLM) embeddings**  
+- **Semantic similarity metrics** derived from Gene Ontology (GO) annotations
+
+The pipeline significantly improves upon a prior baseline developed by the research group, achieving:
+- 🎯 **F1-score up to 75%** with Random Forest models  
+- 🧪 **Zero-shot accuracy up to 61%**, demonstrating generalization capability
+
+Key findings include:
+- 🧬 GO-derived features (embeddings and similarity metrics) were the most informative
+- 📏 Sequence length provided limited value
+- 🧱 The modular architecture supports **feature expansion**, **model diversity**, and future **biological validation**
+
+This workspace is designed for reuse, experimentation, and further development by researchers in bioinformatics and computational biology.
 
 ---
 
@@ -26,8 +47,8 @@ This project was designed with a **limited development scope**, prioritizing **m
 └── environment.yml
 ```
 
-📂 Folder Highlights
-🔬 csv_embeddings/
+## 📂 Folder Highlights
+# 🔬 csv_embeddings/
 
 Precomputed embedding files including:
 
@@ -121,7 +142,7 @@ python project_root/scripts/run_sweeps_phase_2.py
 
 ## 📘 Documentation
 
-To generate full code documentation with Doxygen:
+The full code documentation generated with Doxygen can be seen downloading \html folder, or cloning the repository and runing the following command:
 
 doxygen Doxyfile
 
