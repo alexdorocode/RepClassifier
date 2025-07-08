@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import hydra
 from omegaconf import DictConfig, OmegaConf
 import wandb

@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 from project_root.dataset.raw_dataset import RawDataset
 from project_root.dataset.features.metric_processor import MetricProcessor
 from project_root.dataset.features.embedding_loader import SequenceEmbeddingLoader, GOEmbeddingLoader

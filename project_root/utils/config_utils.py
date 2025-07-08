@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 # XGBoost parameters url https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/ https://www.ibm.com/es-es/think/topics/xgboost
 # Logic regresion url https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
 

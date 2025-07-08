@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 # load_dataset.py
 import hydra # type: ignore
 from omegaconf import DictConfig # type: ignore

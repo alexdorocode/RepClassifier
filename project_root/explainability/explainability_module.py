@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import shap # type: ignore
 import torch # type: ignore
 from captum.attr import IntegratedGradients # type: ignore

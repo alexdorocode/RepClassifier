@@ -34,20 +34,24 @@ This project was designed with a **limited development scope**, prioritizing **m
 ## 🗂️ Project Structure (Main Folders)
 
 ```bash
+
 .
-├── csv_embeddings/         # Precomputed sequence and GO embeddings (autoencoded and raw)
-├── datasets/               # Labeled protein datasets and metadata
-├── preprocess/             # Notebooks and scripts for preprocessing and embedding generation
-├── project_root/           # Core pipeline: dataset handling, training, models, scripts, explainability
-├── results/                # Final evaluation and agreement prediction CSVs
-├── tests/                  # Unit tests for key modules
-├── Doxyfile                # Doxygen configuration for documentation generation
-├── README.md
-├── requirements.txt
-└── environment.yml
+├── csv_embeddings/         # Precomputed embeddings (raw & autoencoded for sequences and GO terms)
+├── datasets/               # Moonlighting and control datasets + ID/reference lists
+├── preprocess/             # Embedding generation scripts and Jupyter-based analyses
+├── project_root/           # Core pipeline: configs, dataset handling, models, explainability, and training
+├── results/                # CSVs of final evaluation and zero-shot agreement experiments
+├── tests/                  # Unit tests for pipeline components
+├── html/                   # Auto-generated Doxygen HTML documentation
+├── latex/                  # Auto-generated Doxygen LaTeX documentation
+├── Doxyfile                # Configuration file for generating documentation with Doxygen
+├── README.md               # Project overview and usage guide
+├── requirements.txt        # Python dependencies for pip users
+├── environment.yml         # Conda environment specification
+└── tree.txt                # Text representation of the project file tree
+
 ```
 
---
 
 ## 📂 Folder Highlights
 

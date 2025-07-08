@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import os

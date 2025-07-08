@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 

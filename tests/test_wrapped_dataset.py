@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import numpy as np # type: ignore
 import pytest # type: ignore
 from project_root.dataset.raw_dataset import RepresentationDataset

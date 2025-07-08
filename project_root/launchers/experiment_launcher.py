@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 from omegaconf import DictConfig, OmegaConf # type: ignore
 import wandb
 from project_root.experiment.experiment_config_handler import ExperimentConfigHandler

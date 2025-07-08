@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import torch
 from project_root.models.mlp_protein_classifier import MLPProteinClassifier
 

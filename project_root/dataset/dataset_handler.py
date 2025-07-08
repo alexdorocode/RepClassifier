@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import os
 import pandas as pd  # type: ignore
 import yaml  # type: ignore

@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import os
 import json
 from go_embeddings_per_protein import generate_go_embeddings_per_protein

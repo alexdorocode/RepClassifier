@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 from train_seq_autoencoder_wandb import train  # Adjust if your function is in another file
 
 # Define the best configurations for each embedding model

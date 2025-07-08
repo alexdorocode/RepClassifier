@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import os
 import pandas as pd
 from sklearn.metrics import precision_recall_fscore_support

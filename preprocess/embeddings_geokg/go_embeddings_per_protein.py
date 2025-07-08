@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import pandas as pd # type: ignore
 import numpy as np # type: ignore
 import os

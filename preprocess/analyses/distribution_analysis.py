@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import os
 import sys
 import numpy as np  # type: ignore

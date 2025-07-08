@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import numpy as np
 import torch
 import torch.nn as nn

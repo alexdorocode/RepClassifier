@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import itertools
 import numpy as np # type: ignore
 from copy import deepcopy

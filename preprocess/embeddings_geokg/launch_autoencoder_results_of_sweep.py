@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 # launch_autoencoder_results.py
 
 from train_go_autoencoder_wandb import train  # your training function

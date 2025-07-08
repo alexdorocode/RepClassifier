@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 # project_root/models/trainer_module.py
 
 import torch # type: ignore

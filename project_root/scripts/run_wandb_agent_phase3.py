@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 # run_wandb_agent_phase1.py
 
 import wandb

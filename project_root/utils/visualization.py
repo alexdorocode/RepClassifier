@@ -1,3 +1,5 @@
+# Final commit – Master’s Thesis by Àlex Domínguez Roig
+
 import matplotlib.pyplot as plt # type: ignore
 import numpy as np # type: ignore
 import seaborn as sns # type: ignore
