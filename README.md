@@ -52,10 +52,9 @@ This project was designed with a **limited development scope**, prioritizing **m
 
 ```
 
+## 📂 Folder Highlights
 
-## 📂 Folder Highlights
-
-### 🔬 csv_embeddings/
+# csv_embeddings/
 
 Precomputed embedding files including:
 
@@ -65,7 +64,7 @@ Precomputed embedding files including:
 
     Autoencoded sequence embeddings (ProtT5, ProstT5, ESM) for multiple compression levels
 
-### 🧬 datasets/
+# 🧬 datasets/
 
     Includes raw, merged, and labeled datasets such as moonprot_dataset.csv, moondb_dataset.csv, and predictor_dataset.csv
 
@@ -116,7 +115,7 @@ Located in project_root/scripts/:
 
     Scripts in model_aggreement/ generate bar plots, stacked plots, incorrect agreement visualizations, etc.
 
-## 🧪 Embedding Generation
+## 🧪 Embedding Generation
 
     Found in preprocess/embeddings_geokg/
 
@@ -126,52 +125,58 @@ Located in project_root/scripts/:
 
         go_embeddings_per_protein.py: GO term aggregation and per-protein embedding
 
-## ⚙️ Setup Instructions
+## ⚙️ Setup Instructions
 Option A – pip
-
+```bash
 pip install -r requirements.txt
-
+```
 Option B – conda
-
+```bash
 conda env create -f environment.yml
 conda activate protein-classifier-env
+```
 
 ## 🚀 Basic Usage
 Run a classifier
-
+```bash
 python project_root/scripts/run_classifier_launcher.py
-
+```
 Run a zero-shot or agreement evaluation
-
+```bash
 python project_root/scripts/run_final_evaluation.py
-
+```
 Launch hyperparameter sweep
-
+```bash
 python project_root/scripts/run_sweeps_phase_2.py
+```
 
 ## 📘 Documentation
 
 The full code documentation generated with Doxygen can be seen downloading \html folder, or cloning the repository and runing the following command:
-
+```bash
 doxygen Doxyfile
-
+```
 Then open the generated docs/html/index.html in a browser.
 
 You may optionally host the HTML docs via GitHub Pages and link here.
 
-## 🧪 Testing
+
+## 🧪 Testing
 
 Unit tests for core components:
-
+```bash
 pytest tests/
-
+```
 Test files:
-
+```bash
     test_model_trainer.py, test_model_explainability.py
 
     test_wrapped_dataset.py, test_data_visualizer.py
+```
+**
+    Some of the tests are not updated to the final version.
 
-## 📌 Notes for Reviewers
+## 📌 Notes for Reviewers
 
     External paths have been minimized; required data files are placed in datasets/ and csv_embeddings/
 
@@ -179,8 +184,10 @@ Test files:
 
     The pipeline uses Weights & Biases for sweep management and result tracking
 
-## 👤 Author
 
-Àlex Domínguez Roig
+## 👤 Author
+
+Àlex Domínguez Rodríguez
 Master’s Thesis – Bioinformatics
 Universitat Autònoma de Barcelona
+Centro Andaluz de Biologia y Desarrollo - CSIC
